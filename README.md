@@ -1,2 +1,0 @@
-# AnAvis
-progetto IDS 
