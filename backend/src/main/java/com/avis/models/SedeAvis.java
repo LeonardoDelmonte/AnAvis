@@ -5,10 +5,10 @@ public class SedeAvis {
 
     
     private long id;
-    private String provincia,comune,indirizzo,denominazione;
+    private String regione,provincia,comune,indirizzo,denominazione;
     private List<Prenotazione> calendario;
 
-
+    
 
     public long getId() {
         return id;
@@ -56,5 +56,20 @@ public class SedeAvis {
 
     public void setCalendario(List<Prenotazione> calendario) {
         this.calendario = calendario;
+    }
+
+    public String getRegione() {
+        return regione;
+    }
+
+    public void setRegione(String regione) {
+        this.regione = regione;
+    }
+
+    public SedeAvis(long id, String regione, String provincia, String comune) {
+        this.id = id;
+        this.regione = regione;
+        this.provincia = provincia;
+        this.comune = comune;
     }
 }

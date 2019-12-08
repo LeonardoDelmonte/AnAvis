@@ -1,7 +1,12 @@
 package com.avis.rest_controller;
+
 import java.util.List;
+import java.util.Set;
+
 import com.avis.models.Prenotazione;
 import com.avis.services.DateService;
+import com.avis.services.SedeService;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -15,6 +20,8 @@ public class PrenotazioneController{
 
     @Autowired
     private DateService dateService;
+    @Autowired
+    private SedeService sedeService;
 
     @PostMapping("/prenota")
     public List<Prenotazione> searchSede(@RequestBody String sede){
@@ -27,5 +34,22 @@ public class PrenotazioneController{
         dateService.prenotaData(id);
         return true;
     }
+
+    @PostMapping("/getRegioni")
+    public Set<String> searchRegioni(){
+        return sedeService.retrieveAllRegions();
+    }
+
+    @PostMapping("/getProvincie")
+    public Set<String> searchProvincie(@RequestBody String regione){
+        return sedeService.retrieveAllProvincie(regione);
+    }
+
+    @PostMapping("/getComuni")
+    public Set<String> searchComuni(@RequestBody String provincia){
+        return sedeService.retrieveAllProvincie(provincia);
+    }
+
+
 
 }
