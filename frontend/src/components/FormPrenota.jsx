@@ -1,51 +1,61 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
+import Select from 'react-select';
+import { Formik, Form, Field, ErrorMessage } from 'formik';
 import ListFreeDate from './ListFreeDate';
+import PrenotaService from '../utils/PrenotaService';
 
-class FormPrenota extends Component{
+class FormPrenota extends Component {
 
     constructor(props) {
         super(props)
         this.state = {
-            sede:'',
-            bool:false
+            regioni: [
+                { value: 'morrovalle', label: 'morrovalle' },
+                { value: 'puglia', label: 'Puglia' },
+                { value: 'toscana', label: 'Toscana' },
+            ],
+            freeDate: [],
         }
+
     }
 
-    changeSede(event){
-        this.setState({sede:event.target.value});
-    }
 
-    onSubmit(event){
-        this.setState({bool:true});   
-        event.preventDefault();     
-    }
 
-    //componentDidMount(){
-    //    
-    //    
-    //}
-//
-    //componentWillUnmount(){
-    //    this.setState({sede:''});
-    //    this.setState({bool:false});
-    //}
+    handleChange = selectedOption => {
+        if (selectedOption) {
+            PrenotaService.search(selectedOption.value)
+                .then(
+                    response => {
+                        this.setState({ freeDate: response.data })
+                    }
+                )
 
-    render(){
-        return(
-            <div>                   
-            <form onSubmit={this.onSubmit.bind(this)}  >
-                <fieldset >
-                    <label>sede</label>
-                    <input  type="text" onChange={this.changeSede.bind(this)} required />
-                </fieldset>
-                <button  type="submit">Search!</button>             
-            </form>
-            {this.state.bool && <ListFreeDate sede={this.state.sede}/>}
-           </div>
-       )
+        }
+    };
+
+
+
+    render() {
+        const { selectedOption } = this.state;
+
+        return (
+            <div>
+
+                <Select
+                    name="sede"
+                    value={selectedOption}
+                    onChange={this.handleChange}
+                    options={this.state.regioni}
+                    isClearable
+                />
+
+                <ListFreeDate freeDate={this.state.freeDate} />
+            </div>
+
+        );
     }
 }
-    
+
 
 
 export default FormPrenota
