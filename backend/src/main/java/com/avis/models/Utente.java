@@ -1,9 +1,23 @@
 package com.avis.models;
-//interfaccia per tutti i tipi di utenti registrati
-//(sede,donatore,centroTrasfusioni)
-//nessun attributo in comune, neanche un metodo, facciamo interfaccia persona ed ente?
-//forse potrebbe essere un factory degli utenti.
 
-public interface Utente {
-    
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.validation.constraints.NotEmpty;
+
+@Entity
+public class Utente{
+    @Column
+    @NotEmpty
+    @Id
+    @GeneratedValue(strategy=GenerationType.AUTO)
+    private long id;
+    @Column
+    @NotEmpty
+    private String nomeUtente,password;
+    @Column
+    private byte flagDonatore,flagSedeAvis,flagCentroTrasfusione;
+
 }
