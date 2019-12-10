@@ -47,7 +47,7 @@ public class PrenotazioneController{
 
     @PostMapping("/getComuni")
     public Set<String> searchComuni(@RequestBody String provincia){
-        return sedeService.retrieveAllProvincie(provincia);
+        return sedeService.retrieveAllComuni(provincia);
     }
 
 

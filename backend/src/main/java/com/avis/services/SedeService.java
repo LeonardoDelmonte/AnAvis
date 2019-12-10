@@ -1,12 +1,12 @@
 package com.avis.services;
-
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-
 import com.avis.models.SedeAvis;
+import org.springframework.stereotype.Service;
 
+@Service
 public class SedeService {
     static List<SedeAvis> listSede = new ArrayList<SedeAvis>();
 
