@@ -1,12 +1,13 @@
 package com.avis.services;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-import com.avis.models.Ente;
 import com.avis.models.Prenotazione;
+import com.avis.models.Utente;
 import com.avis.repositories.PrenotazioniRepository;
-import com.avis.repositories.SedeRepository;
+import com.avis.repositories.UtenteRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -20,17 +21,18 @@ public class PrenotazioniService{
     private PrenotazioniRepository prenotazioniRepository;
     
     @Autowired
-    private SedeRepository sedeRepository;
+    private UtenteRepository utenteRepository;
 
     //fatto così solo per non dare errore, cambierà!
     public Optional<Prenotazione> findBySedeAvis(String sede){
-        Optional<Prenotazione> listDateSede;
-        List<Ente> listSedi = new ArrayList<>();
-        listSedi = sedeRepository.findAll();
-        listSedi.stream().filter(e->e.getDenominazione().compareTo(sede)==0);
+        List<Prenotazione> listDateSede;
+        List<Utente> listSedi;
+        //listSedi = utenteRepository.findAll();
+        listDateSede = prenotazioniRepository.findAll();
+        //listSedi.stream().filter(e->e.getDenominazione().compareTo(sede)==0);
         //qualche if qua e la
-        listDateSede = prenotazioniRepository.findById(listSedi.get(0).getIdUtente());        
-        return listDateSede;
+        //listDateSede = prenotazioniRepository.findById(listSedi.get(0).getId());        
+        return null;
     }
 
     public boolean prenotaData(int id){

@@ -7,33 +7,47 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
-import javax.validation.constraints.NotEmpty;
 
 @Entity
 @Inheritance(strategy=InheritanceType.JOINED)
 public class Utente{
-
     @Column
-    @NotEmpty
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
-    private long idUtente;
+    private long id;
     @Column
-    @NotEmpty
-    private String email,password;
-    @Column
-    private byte flagDonatore,flagSedeAvis,flagCentroTrasfusione;
+    private String email,pw;
 
-	public String getEmail() {
-		return email;
-	}
-
-	public String getPassword() {
-		return null;
-	}
-
-    public long getIdUtente() {
-        return idUtente;
+    public Utente() {
     }
 
+    public Utente(String email, String pw){
+        this.email=email;
+        this.pw=pw;
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getPw() {
+        return pw;
+    }
+
+    public void setPw(String pw) {
+        this.pw = pw;
+    }
+    
 }
