@@ -1,7 +1,5 @@
 package com.avis.models;
-
 import java.sql.Date;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -23,5 +21,10 @@ public class Prenotazione {
     @Column
     @NotEmpty
     private Date data;
+
+
+	public long getIdSedeAvis() {
+		return idSedeAvis;
+	}
     
 }

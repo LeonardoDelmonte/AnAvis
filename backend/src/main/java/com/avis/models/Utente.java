@@ -16,8 +16,18 @@ public class Utente{
     private long id;
     @Column
     @NotEmpty
-    private String nomeUtente,password;
+    private String email,password;
     @Column
     private byte flagDonatore,flagSedeAvis,flagCentroTrasfusione;
+
+
+	public String getEmail() {
+		return email;
+	}
+
+
+	public String getPassword() {
+		return null;
+	}
 
 }

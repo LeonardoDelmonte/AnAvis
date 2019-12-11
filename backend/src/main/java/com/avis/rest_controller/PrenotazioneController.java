@@ -1,12 +1,9 @@
 package com.avis.rest_controller;
-
-import java.util.List;
+import java.util.Optional;
 import java.util.Set;
-
 import com.avis.models.Prenotazione;
-import com.avis.services.DateService;
+import com.avis.services.PrenotazioniService;
 import com.avis.services.SedeService;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -19,19 +16,20 @@ import org.springframework.web.bind.annotation.RestController;
 public class PrenotazioneController{
 
     @Autowired
-    private DateService dateService;
+    private PrenotazioniService prenotazioniService;
+
     @Autowired
     private SedeService sedeService;
 
     @PostMapping("/prenota")
-    public List<Prenotazione> searchSede(@RequestBody String sede){
+    public Optional<Prenotazione> searchSede(@RequestBody String sede){
         System.out.println(sede);
-        return dateService.findBySedeAvis(sede);
+        return prenotazioniService.findBySedeAvis(sede);
     } 
 
     @PostMapping("/prenota/data")
     public boolean prenotaData(@RequestBody int id){
-        dateService.prenotaData(id);
+        prenotazioniService.prenotaData(id);
         return true;
     }
 

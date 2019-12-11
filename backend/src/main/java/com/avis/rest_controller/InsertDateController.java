@@ -1,6 +1,8 @@
 package com.avis.rest_controller;
+
 import com.avis.models.Prenotazione;
-import com.avis.services.DateService;
+import com.avis.services.PrenotazioniService;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -13,13 +15,13 @@ public class InsertDateController{
     //private List<GregorianCalendar> listOrari = new ArrayList<>();
     
     @Autowired
-    private DateService dateService;
+    private PrenotazioniService prenotazioniService;
 
     @PostMapping("/inserisciDate")
     public boolean inserisciDate(@RequestBody Prenotazione dataLibera){
         //formattaData(dt.hourStart,minuteStart,hourFinish,minuteFinish);
         //for(GregorianCalendar orario : listOrari){
-        dateService.saveNewDate(dataLibera);
+        prenotazioniService.saveNewDate(dataLibera);
         //}
         return true;    
     }
