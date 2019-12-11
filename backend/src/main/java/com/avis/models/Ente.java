@@ -1,14 +1,14 @@
 package com.avis.models;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.PrimaryKeyJoinColumn;
 import javax.validation.constraints.NotEmpty;
 
 @Entity
-public class Ente{
+@PrimaryKeyJoinColumn(name="idUtente")
+public class Ente extends Utente{
 
-    @Column
-    @NotEmpty
-    private long utenteId;
     @Column
     @NotEmpty
     private String regione,provincia,comune,denominazione;
@@ -27,10 +27,6 @@ public class Ente{
 
 	public String getDenominazione() {
 		return denominazione;
-	}
-
-	public long getId() {
-		return utenteId;
 	}
     
 }

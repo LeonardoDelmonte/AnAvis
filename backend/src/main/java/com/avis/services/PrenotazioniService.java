@@ -29,7 +29,7 @@ public class PrenotazioniService{
         listSedi = sedeRepository.findAll();
         listSedi.stream().filter(e->e.getDenominazione().compareTo(sede)==0);
         //qualche if qua e la
-        listDateSede = prenotazioniRepository.findById(listSedi.get(0).getId());        
+        listDateSede = prenotazioniRepository.findById(listSedi.get(0).getIdUtente());        
         return listDateSede;
     }
 

@@ -2,14 +2,18 @@ package com.avis.models;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.validation.constraints.NotEmpty;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.OneToOne;
 
 @Entity
 public class Modulo{
 
     @Column
-    @NotEmpty
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
+    @OneToOne(mappedBy = "Modulo")
+    private Donatore donatore;
     @Column
     private byte sesso,fumatore,sportivo;
     @Column

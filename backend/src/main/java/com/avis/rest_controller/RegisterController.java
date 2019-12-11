@@ -1,5 +1,5 @@
 package com.avis.rest_controller;
-import com.avis.models.Utente;
+import com.avis.models.Donatore;
 import com.avis.services.UtenteService;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,8 +18,8 @@ public class RegisterController {
 
     /* TO DO */
     @RequestMapping(value = "public/register", method = RequestMethod.POST)
-    public boolean createUser(@RequestBody Utente utente){ 
-        utenteService.save(utente);       
+    public boolean createUser(@RequestBody Donatore donatore){ 
+        utenteService.save(donatore);       
         return true;
     }
 }

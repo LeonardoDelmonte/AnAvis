@@ -7,8 +7,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface UtenteRepository extends JpaRepository<Ente, Long>{
-
-	void save(Utente utente);
+public interface UtenteRepository extends JpaRepository<Utente, Long>{
 
 }
