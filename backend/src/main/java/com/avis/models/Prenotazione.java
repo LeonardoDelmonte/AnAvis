@@ -1,5 +1,5 @@
 package com.avis.models;
-import java.util.GregorianCalendar;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;

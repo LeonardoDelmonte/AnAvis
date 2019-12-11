@@ -5,23 +5,21 @@ import javax.persistence.Entity;
 import javax.persistence.PrimaryKeyJoinColumn;
 
 @Entity
-@PrimaryKeyJoinColumn(name="id")
+@PrimaryKeyJoinColumn(name = "id")
 public class Ente extends Utente {
+
     @Column
-    private String regione,provincia,comune,indirizzo,denominazione;
+    private String regione, provincia, comune, indirizzo, denominazione;
 
-    public Ente() { 
+    public Ente() {
     }
 
-    public Ente(String email,String pw,String regione,String provincia,String comune) {
-        super(email,pw);
-        
-        this.regione=regione;
-        this.provincia=provincia;
-        this.comune=comune;
+    public Ente(String email, String pw, String ruolo, String regione, String provincia, String comune) {
+        super(email, pw, ruolo);
+        this.regione = regione;
+        this.provincia = provincia;
+        this.comune = comune;
     }
-
-    
 
     public String getRegione() {
         return regione;
@@ -62,5 +60,5 @@ public class Ente extends Utente {
     public void setDenominazione(String denominazione) {
         this.denominazione = denominazione;
     }
-    
+
 }

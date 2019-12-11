@@ -9,21 +9,23 @@ import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 
 @Entity
-@Inheritance(strategy=InheritanceType.JOINED)
-public class Utente{
+@Inheritance(strategy = InheritanceType.JOINED)
+public class Utente {
+
     @Column
     @Id
-    @GeneratedValue(strategy=GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
     @Column
-    private String email,pw;
+    private String email, pw, ruolo;
 
     public Utente() {
     }
 
-    public Utente(String email, String pw){
-        this.email=email;
-        this.pw=pw;
+    public Utente(String email, String pw, String ruolo) {
+        this.email = email;
+        this.pw = pw;
+        this.ruolo = ruolo;
     }
 
     public long getId() {
@@ -49,5 +51,5 @@ public class Utente{
     public void setPw(String pw) {
         this.pw = pw;
     }
-    
+
 }

@@ -6,7 +6,11 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 public class JwtUser implements UserDetails {
 
-    private final String email,password,username;
+    /**
+     *
+     */
+    private static final long serialVersionUID = 1L;
+    private final String email, password, username;
     private final Collection<? extends GrantedAuthority> authorities;
     private final boolean enabled;
 

@@ -7,7 +7,7 @@ import java.util.Optional;
 import com.avis.models.Prenotazione;
 import com.avis.models.Utente;
 import com.avis.repositories.PrenotazioniRepository;
-import com.avis.repositories.UtenteRepository;
+import com.avis.repositories.EnteRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -21,7 +21,7 @@ public class PrenotazioniService{
     private PrenotazioniRepository prenotazioniRepository;
     
     @Autowired
-    private UtenteRepository utenteRepository;
+    private EnteRepository utenteRepository;
 
     //fatto così solo per non dare errore, cambierà!
     public Optional<Prenotazione> findBySedeAvis(String sede){
