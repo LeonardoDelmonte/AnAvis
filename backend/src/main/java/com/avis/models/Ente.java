@@ -10,7 +10,7 @@ public class Ente extends Utente {
     @Column
     private String regione,provincia,comune,indirizzo,denominazione;
 
-    public Ente() {
+    public Ente() { 
     }
 
     public Ente(String email,String pw,String regione,String provincia,String comune) {
