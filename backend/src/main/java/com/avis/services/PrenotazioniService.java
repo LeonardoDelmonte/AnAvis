@@ -1,13 +1,13 @@
 package com.avis.services;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+import com.avis.models.Donatore;
 import com.avis.models.Prenotazione;
-import com.avis.models.Utente;
+import com.avis.models.SedeAvis;
 import com.avis.repositories.PrenotazioniRepository;
-import com.avis.repositories.EnteRepository;
+import com.avis.repositories.SedeAvisRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -21,29 +21,31 @@ public class PrenotazioniService{
     private PrenotazioniRepository prenotazioniRepository;
     
     @Autowired
-    private EnteRepository utenteRepository;
+    private SedeAvisRepository sedeAvisRepository;
 
     //fatto così solo per non dare errore, cambierà!
-    public Optional<Prenotazione> findBySedeAvis(String sede){
-        List<Prenotazione> listDateSede;
-        List<Utente> listSedi;
-        //listSedi = utenteRepository.findAll();
-        listDateSede = prenotazioniRepository.findAll();
-        //listSedi.stream().filter(e->e.getDenominazione().compareTo(sede)==0);
-        //qualche if qua e la
-        //listDateSede = prenotazioniRepository.findById(listSedi.get(0).getId());        
-        return null;
+    public Optional<Prenotazione> getDateLibere(String comune){
+        List<SedeAvis> list;
+        list=sedeAvisRepository.findAll();
+        list.stream().filter(e->e.getComune().compareTo(comune)==0);
+        long id = list.get(0).getId();
+        Optional<Prenotazione> freeDate;
+        freeDate=prenotazioniRepository.findByIdSedeAvis(id);
+        freeDate.filter(e->e.getIdDonatore()==null);
+        return freeDate;     
     }
 
-    public boolean prenotaData(int id){
+    public boolean prenotaData(Long id,Donatore donatore){
         //controlla se la data esiste ancora
-        //aggiorna la data mettendo il donatore
-        //listDate.get(id).setDonatoreString("giovanni");
+        if(donatore==null)return false;
+        Optional<Prenotazione> prenotazione = prenotazioniRepository.findById(id);
+        prenotazione.get().setIdDonatore(donatore);
+        prenotazioniRepository.saveAndFlush(prenotazione.get());
         return true;
     }
 
-    public boolean saveNewDate(Prenotazione newDataLibera){
-        //listDate.add(newDataLibera);      
+    public boolean save(Prenotazione dataLibera){
+        prenotazioniRepository.save(dataLibera);    
         return true;
     }
     

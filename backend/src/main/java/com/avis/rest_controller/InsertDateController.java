@@ -12,25 +12,18 @@ import org.springframework.web.bind.annotation.RestController;
 @CrossOrigin(origins = { "*" })
 @RestController
 public class InsertDateController{
-    //private List<GregorianCalendar> listOrari = new ArrayList<>();
     
     @Autowired
     private PrenotazioniService prenotazioniService;
 
-    @PostMapping("/inserisciDate")
+    @PostMapping("/public/inserisciDate")
     public boolean inserisciDate(@RequestBody Prenotazione dataLibera){
-        //formattaData(dt.hourStart,minuteStart,hourFinish,minuteFinish);
-        //for(GregorianCalendar orario : listOrari){
-        prenotazioniService.saveNewDate(dataLibera);
-        //}
+        //ricevo il token e lo decapsulo
+        //utenteRepository findByID(token)
+        //Prenotazione new;
+        prenotazioniService.save(dataLibera);
         return true;    
     }
-
-     
-    //private boolean formattaData(int hourS,int minuteS,int hourF,int minuteF){
-    //    listOrari.add(new GregorianCalendar(1, 1, 1, hourS, minuteS));
-    //    return true;
-    //}
     
     
 }

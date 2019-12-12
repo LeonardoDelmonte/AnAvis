@@ -1,7 +1,13 @@
 package com.avis.security.dto;
+
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
+
+import com.avis.models.Utente;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 public class JwtUser implements UserDetails {
@@ -29,7 +35,18 @@ public class JwtUser implements UserDetails {
     }
 
 
-    @Override
+    public JwtUser(Utente utente) {
+        this.email = utente.getEmail();
+        this.password = utente.getPw();
+        this.username = utente.getEmail();
+        List<SimpleGrantedAuthority> auth = new ArrayList<>();
+        auth.add(new SimpleGrantedAuthority(utente.getRuolo()));
+        this.authorities=auth;
+        this.enabled = true;
+	}
+
+
+	@Override
     public String getUsername() {
         return username;
     }

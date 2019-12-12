@@ -6,15 +6,15 @@ import javax.persistence.PrimaryKeyJoinColumn;
 
 @Entity
 @PrimaryKeyJoinColumn(name = "id")
-public class Ente extends Utente {
+public class CentroTrasfusione extends Utente {
 
     @Column
     private String regione, provincia, comune, indirizzo, denominazione;
 
-    public Ente() {
+    public CentroTrasfusione() {
     }
 
-    public Ente(String email, String pw, String ruolo, String regione, String provincia, String comune) {
+    public CentroTrasfusione(String email, String pw, String ruolo, String regione, String provincia, String comune) {
         super(email, pw, ruolo);
         this.regione = regione;
         this.provincia = provincia;

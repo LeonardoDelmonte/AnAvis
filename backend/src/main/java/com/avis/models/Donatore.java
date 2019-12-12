@@ -1,16 +1,20 @@
 package com.avis.models;
 
+import java.util.List;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.PrimaryKeyJoinColumn;
 
 @Entity
 @PrimaryKeyJoinColumn(name = "id")
 public class Donatore extends Utente {
-    // ho messo extends solo per fare un services in meno, se non funziona si toglie
+
     @Column
     private String nome, cognome;
     @Column
@@ -18,6 +22,8 @@ public class Donatore extends Utente {
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "idModulo", referencedColumnName = "id")
     private Modulo modulo;
+    @OneToMany(mappedBy = "idDonatore", fetch = FetchType.LAZY)
+    private List<Prenotazione> prenotazione;
 
     public Donatore() {
     }

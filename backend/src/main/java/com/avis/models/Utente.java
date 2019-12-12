@@ -52,4 +52,12 @@ public class Utente {
         this.pw = pw;
     }
 
+    public String getRuolo() {
+        return ruolo;
+    }
+
+    public void setRuolo(String ruolo) {
+        this.ruolo = ruolo;
+    }
+
 }

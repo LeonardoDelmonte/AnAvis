@@ -1,7 +1,11 @@
 package com.avis.rest_controller;
+
+import com.avis.models.CentroTrasfusione;
 import com.avis.models.Donatore;
-import com.avis.models.Ente;
-import com.avis.services.UtenteService;
+import com.avis.models.SedeAvis;
+import com.avis.services.CentroTrasfusioniService;
+import com.avis.services.DonatoreService;
+import com.avis.services.SedeAvisService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -15,17 +19,27 @@ import org.springframework.web.bind.annotation.RestController;
 public class RegisterController {
 
     @Autowired
-    private UtenteService utenteService;
+    private SedeAvisService sedeAvisService;
+    @Autowired
+    private DonatoreService donatoreService;
+    @Autowired
+    private CentroTrasfusioniService centroTrasfusioniService;
 
-    @RequestMapping(value = "public/register", method = RequestMethod.POST)
-    public boolean createUser(@RequestBody Ente utente){ 
-        utenteService.save(utente);       
+    @RequestMapping(value = "public/register/centroTrasfusioni", method = RequestMethod.POST)
+    public boolean createCentro(@RequestBody CentroTrasfusione centroTrasfusioni) {
+        centroTrasfusioniService.save(centroTrasfusioni);
+        return true;
+    }
+
+    @RequestMapping(value = "public/register/sedeAvis", method = RequestMethod.POST)
+    public boolean createSede(@RequestBody SedeAvis sede) {
+        sedeAvisService.save(sede);
         return true;
     }
 
     @RequestMapping(value = "public/register/donatore", method = RequestMethod.POST)
-    public boolean createUser(@RequestBody Donatore donatore){ 
-        utenteService.save(donatore);       
+    public boolean createDonatore(@RequestBody Donatore donatore) {
+        donatoreService.save(donatore);
         return true;
     }
 

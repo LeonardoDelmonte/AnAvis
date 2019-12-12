@@ -1,10 +1,11 @@
 package com.avis.repositories;
 
-import com.avis.models.Ente;
+import com.avis.models.SedeAvis;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface EnteRepository extends JpaRepository<Ente, Long>{
+public interface SedeAvisRepository extends JpaRepository<SedeAvis, Long>{
 
 }

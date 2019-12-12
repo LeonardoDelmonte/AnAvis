@@ -1,7 +1,12 @@
 package com.avis.rest_controller;
+
 import java.util.Optional;
+import java.util.Set;
+
 import com.avis.models.Prenotazione;
 import com.avis.services.PrenotazioniService;
+import com.avis.services.SedeAvisService;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -15,32 +20,36 @@ public class PrenotazioneController{
 
     @Autowired
     private PrenotazioniService prenotazioniService;
+    @Autowired
+    private SedeAvisService sedeAvisService;
 
-    @PostMapping("/prenota")
-    public Optional<Prenotazione> searchSede(@RequestBody String sede){
-        return prenotazioniService.findBySedeAvis(sede);
+    @PostMapping("/public/prenota")
+    public Optional<Prenotazione> getDateLibere(@RequestBody String comune){
+        //controlla token
+        return prenotazioniService.getDateLibere(comune);
     } 
 
-    @PostMapping("/prenota/data")
-    public boolean prenotaData(@RequestBody int id){
-        prenotazioniService.prenotaData(id);
+    @PostMapping("/public/prenota/data")
+    public boolean prenotaData(@RequestBody Long id){
+        //con il token mi creo un donatore
+        prenotazioniService.prenotaData(id,null);
         return true;
     }
 
-    //@PostMapping("/getRegioni")
-    //public Set<String> searchRegioni(){
-    //    return sedeService.retrieveAllRegions();
-    //}
-//
-    //@PostMapping("/getProvincie")
-    //public Set<String> searchProvincie(@RequestBody String regione){
-    //    return sedeService.retrieveAllProvincie(regione);
-    //}
-//
-    //@PostMapping("/getComuni")
-    //public Set<String> searchComuni(@RequestBody String provincia){
-    //    return sedeService.retrieveAllComuni(provincia);
-    //}
+    @PostMapping("/public/getRegioni")
+    public Set<String> searchRegioni(){
+        return sedeAvisService.getRegioni();
+    }
+    
+    @PostMapping("/public/getProvincie")
+    public Set<String> searchProvincie(@RequestBody String regione){
+        return sedeAvisService.getProvincie(regione);
+    }
+    
+    @PostMapping("/public/getComuni")
+    public Set<String> searchComuni(@RequestBody String provincia){
+        return sedeAvisService.getComuni(provincia);
+    }
 
 
 

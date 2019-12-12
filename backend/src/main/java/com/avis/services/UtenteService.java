@@ -1,11 +1,7 @@
 package com.avis.services;
-
-import java.util.List;
-
-import com.avis.models.Donatore;
-import com.avis.models.Ente;
-import com.avis.repositories.DonatoreRepository;
-import com.avis.repositories.EnteRepository;
+import com.avis.models.Utente;
+import com.avis.repositories.UtenteRepository;
+import com.avis.security.dto.JwtUser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,22 +9,14 @@ import org.springframework.stereotype.Service;
 public class UtenteService{
 
     @Autowired
-    private EnteRepository enteRepository;
-    @Autowired
-    private DonatoreRepository donatoreRepository;
+    private UtenteRepository utenteRepository;
 
-    public void save(Ente utente){
-        enteRepository.save(utente);
+    //solo per login, potrebbe anche sparire
+    public JwtUser findUser(Utente utente){     
+        JwtUser jwtUser = new JwtUser(utenteRepository.findByEmail(utente.getEmail()));
+        //controlla pure la password e prendi il ruoolo
+        return jwtUser;
     }
-
-    public void save(Donatore donatore){
-        donatoreRepository.save(donatore);
-    }
-
-	public List<Ente> retriveAllSedi() {
-		return enteRepository.findAll();
-	}
-
 
 }
 

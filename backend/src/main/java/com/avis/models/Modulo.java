@@ -8,18 +8,18 @@ import javax.persistence.Id;
 import javax.persistence.OneToOne;
 
 @Entity
-public class Modulo{
+public class Modulo {
 
     @Column
-    @Id  
-    @GeneratedValue(strategy=GenerationType.AUTO)  
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
-    @Column 
+    @Column
     private String gruppoSanguigno, fumatore;
     @OneToOne(mappedBy = "modulo")
     private Donatore donatore;
 
-    public Modulo(){
+    public Modulo() {
 
     }
 
