@@ -4,9 +4,9 @@ const API_URL = 'http://localhost:8080'
 
 class PrenotaService{
 
-    search(sede){
+    search(comune){
         return axios.post(API_URL+'/prenota',
-        sede,
+        comune,
         {headers: {"Content-Type": "text/plain"}
         });       
     }
@@ -14,6 +14,24 @@ class PrenotaService{
     prenota(id){
         return axios.post(API_URL+'/prenota/data',
         id,
+        {headers: {"Content-Type": "application/json"}
+        });       
+    }
+
+    getRegioni(){
+        return axios.post(API_URL+'/getRegioni',
+        {headers: {"Content-Type": "application/json"}
+        });       
+    }
+
+    getProvincie(regione){
+        return axios.post(API_URL+'/getProvincie', regione, 
+        {headers: {"Content-Type": "application/json"}
+        });       
+    }
+
+    getComuni(provincia){
+        return axios.post(API_URL+'/getComuni', provincia, 
         {headers: {"Content-Type": "application/json"}
         });       
     }
