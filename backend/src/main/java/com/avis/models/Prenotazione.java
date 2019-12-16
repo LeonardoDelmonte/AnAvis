@@ -10,7 +10,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.validation.constraints.NotNull;
 
 @Entity
 public class Prenotazione {
@@ -21,7 +20,6 @@ public class Prenotazione {
     private long idPrenotazione;
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "idDonatore", referencedColumnName = "id", nullable = false)
-    @NotNull
     private Donatore idDonatore;
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "idSedeAvis", referencedColumnName = "id")

@@ -1,5 +1,6 @@
 package com.avis.rest_controller;
 
+import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 
@@ -8,9 +9,12 @@ import com.avis.services.PrenotazioniService;
 import com.avis.services.SedeAvisService;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 
@@ -26,7 +30,16 @@ public class PrenotazioneController{
     @PostMapping("/public/prenota")
     public Optional<Prenotazione> getDateLibere(@RequestBody String comune){
         //controlla token
-        return prenotazioniService.getDateLibere(comune);
+        return null;//prenotazioniService.getDateLibere(comune);
+    } 
+
+    @PostMapping("/public/prenotazione")
+    public ResponseEntity<List<Prenotazione>> getAlfredo(@RequestParam(name= "comune") String comune){
+        List<Prenotazione> pippo = prenotazioniService.getAlfredo(comune);
+        if(pippo==null || pippo.isEmpty()){
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<>(pippo, HttpStatus.OK);
     } 
 
     @PostMapping("/public/prenota/data")

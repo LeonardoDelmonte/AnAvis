@@ -1,0 +1,14 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Spring Boot-AnAvisApplication<avis>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "console": "internalConsole",
+            "mainClass": "com.avis.AnAvisApplication",
+            "projectName": "avis",
+            "args": ""
+        }
+    ]
+}
