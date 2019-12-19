@@ -3,6 +3,7 @@ package com.avis.services;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 
 import com.avis.models.SedeAvis;
@@ -29,18 +30,30 @@ public class SedeAvisService {
     }
     public Set<String> getProvincie(String regione){
         string = new HashSet<>();
-        List<SedeAvis> list = new ArrayList<SedeAvis>();
+        Optional<List<SedeAvis>> listasedi = sedeAvisRepository.findByRegione(regione);
+        if (!listasedi.isPresent()){
+            return null;
+        }
+        listasedi.get().forEach(e->string.add(e.getProvincia()));
+        /* List<SedeAvis> list = new ArrayList<SedeAvis>();
         list=sedeAvisRepository.findAll();
         list.stream().filter(e->e.getRegione().compareTo(regione)==0);
-        list.stream().forEach(e->string.add(e.getProvincia()));
+        list.stream().forEach(e->string.add(e.getProvincia())); */
         return string;
+        
     }
     public Set<String> getComuni(String provincia){
         string = new HashSet<>();
+        Optional<List<SedeAvis>> listasedi = sedeAvisRepository.findByProvincia(provincia);
+        if (!listasedi.isPresent()){
+            return null;
+        }
+        listasedi.get().forEach(e->string.add(e.getComune()));
+        /* List<String> string = new ArrayList<String>();
         List<SedeAvis> list = new ArrayList<SedeAvis>();
         list=sedeAvisRepository.findAll();
         list.stream().filter(e->e.getProvincia().compareTo(provincia)==0);
-        list.stream().forEach(e->string.add(e.getComune()));
+        list.stream().forEach(e->string.add(e.getComune())); */
         return string;
     }
 
