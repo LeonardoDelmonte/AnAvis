@@ -34,7 +34,7 @@ public class PrenotazioneController{
     } 
 
     @PostMapping("/public/prenotazione")
-    public ResponseEntity<List<Prenotazione>> getAlfredo(@RequestParam(name= "comune") String comune){
+    public ResponseEntity<List<Prenotazione>> getAlfredo(@RequestBody String comune){
         List<Prenotazione> pippo = prenotazioniService.getAlfredo(comune);
         if(pippo==null || pippo.isEmpty()){
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);

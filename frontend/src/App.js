@@ -12,7 +12,7 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 //-----components-----
 import Home from './components/Home';
 import FormPrenota from './components/FormPrenota';
-import ListFreeDate from './components/ListFreeDate';
+import InsertDate from './components/InsertDate';
 import TopMenu from './components/TopMenu';
 
 class App extends Component {
@@ -27,7 +27,7 @@ class App extends Component {
               <Route path="/" exact component={Home} />
               <Route path="/home" exact component={Home} />
               <Route path="/prenota" exact component={FormPrenota} />
-              <Route path="/insertDate" exact component={ListFreeDate} />
+              <Route path="/insertDate" exact component={InsertDate} />
             </Switch>
           </Router>
 

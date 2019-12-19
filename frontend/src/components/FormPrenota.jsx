@@ -1,12 +1,11 @@
 import React, { Component } from 'react';
 import Select from 'react-select';
-import { Formik, Form, Field, ErrorMessage } from 'formik';
-import DatePicker from "react-datepicker";
 
+import DatePicker from "react-datepicker";
+import 'react-datepicker/dist/react-datepicker-cssmodules.css';
 import "react-datepicker/dist/react-datepicker.css";
 import ListFreeDate from './ListFreeDate';
 import PrenotaService from '../utils/PrenotaService';
-import { min } from 'date-fns';
 
 class FormPrenota extends Component {
 
@@ -24,16 +23,78 @@ class FormPrenota extends Component {
             startDate: null,
             endDate: null,
 
+            searched: false,
             freeDate: []
         }
-        this.setComuni = this.setComuni.bind(this)
-        this.setProvincie = this.setProvincie.bind(this)
-        this.setComuni = this.setComuni.bind(this)
-        this.setDate = this.setDate.bind(this)
-        this.setStartDate = this.setStartDate.bind(this)
+
     }
 
-    setRegioni() {
+    SearchFreeDate = comune => {
+        
+        PrenotaService.search(comune)
+            .then(
+                response => {
+                    this.setState({ freeDate: response.data })
+                    this.setState({ searched: true })
+                    console.log(response);
+                }
+            )
+    }
+
+    selectedRegione = selectedRegione => {
+        this.setState({ regione: null, provincia: null, comune: null, startDate: null, endDate: null }, () => {
+            if (selectedRegione) {
+                this.setState({ provincie: [] });
+                PrenotaService.getProvincie(selectedRegione)
+                    .then(
+                        response => {
+                            response.data.map(
+                                v =>
+                                    this.state.provincie.push({ value: v, label: v })
+                            )
+                            this.setState({ regione: selectedRegione.value })
+                        }
+                    )
+            }
+        });
+    };
+
+    selectedProvincia = selectedProvincia => {
+        this.setState({ comune: null, provincia: null, startDate: null, endDate: null }, () => {
+            if (selectedProvincia) {
+                this.setState({ comuni: [] });
+                PrenotaService.getComuni(selectedProvincia)
+                    .then(
+                        response => {
+                            response.data.map(
+                                v =>
+                                    this.state.comuni.push({ value: v, label: v })
+                            )
+                            this.setState({ provincia: selectedProvincia.value })
+                        }
+                    )
+            }
+        });
+    };
+
+    selectedComune = selectedComune => {
+        this.setState({ comune: null, startDate: null, endDate: null }, () => {
+            if (selectedComune) {
+                // this.SearchFreeDate(selectedComune.value)
+                this.setState({ comune: selectedComune.value })
+            }
+        });
+    };
+
+    selectedStartDate = date => {
+        this.setState({ startDate: date }, () => { console.log(date) })
+    }
+
+    selectedEndDate = date => {
+        this.setState({ endDate: date }, () => { console.log(date) })
+    }
+
+    componentDidMount() {
         this.setState({ regioni: [] });
         PrenotaService.getRegioni()
             .then(
@@ -46,134 +107,62 @@ class FormPrenota extends Component {
             )
     }
 
-    setProvincie(regione) {
-        this.setState({ provincie: [] });
-        PrenotaService.getProvincie(regione)
-            .then(
-                response => {
-                    response.data.map(
-                        v =>
-                            this.state.provincie.push({ value: v, label: v })
-                    )
-                }
-            )
-    }
-
-    setComuni(provincia) {
-        this.setState({ comuni: undefined });
-        this.setState({ comuni: [] });
-        PrenotaService.getComuni(provincia)
-            .then(
-                response => {
-                    response.data.map(
-                        v =>
-                            this.state.comuni.push({ value: v, label: v })
-                    )
-                }
-            )
-    }
-
-    setDate(comune) {
-        PrenotaService.search(comune)
-            .then(
-                response => {
-                    this.setState({ freeDate: response.data })
-                }
-            )
-    }
-
-    selectedRegione = selectedRegione => {
-        this.setState({ regione: null, provincia: null, comune: null, startDate:null, endDate:null }, () => {
-            if (selectedRegione) {
-                this.setState({ regione: selectedRegione.value })
-                this.setProvincie(selectedRegione.value)
-            }
-        });
-    };
-
-    selectedProvincia = selectedProvincia => {
-        this.setState({ comune: null, provincia: null, startDate:null, endDate:null }, () => {
-            if (selectedProvincia) {
-                this.setState({ provincia: selectedProvincia.value })
-                this.setComuni(selectedProvincia.value)
-            }
-        });
-    };
-
-    selectedcomune = selectedcomune => {
-        this.setState({ comune: null, startDate:null, endDate:null }, () => {
-            if (selectedcomune) {
-                this.setDate(selectedcomune.value)
-                this.setState({ comune: selectedcomune.value })
-            }
-        });
-    };
-
-    setStartDate(date) {
-        this.setState({ startDate: date }, () => { console.log(date) })
-    }
-
-    setEndDate(date) {
-        this.setState({ endDate: date }, () => { console.log(date) })
-    }
-
-
-    componentDidMount() {
-        this.setRegioni()
-    }
-
     render() {
         const startDate = this.state.startDate;
         const endDate = this.state.endDate;
         return (
             <div>
                 <h1>Prenota Donazione</h1>
+
                 <div className="row m-3" >
-                    <SelectSearchDate dati={this.state.regioni} onSelected={this.selectedRegione} text={"Regione"} />
-                    {this.state.regione && <SelectSearchDate dati={this.state.provincie} onSelected={this.selectedProvincia} text={"Provincia"} />}
-                    {this.state.provincia && <SelectSearchDate dati={this.state.comuni} onSelected={this.selectedcomune} text={"Comune"} />}
+                    <SelectSearchDate dati={this.state.regioni} onSelected={this.selectedRegione} text={"Seleziona una regione"} />
+                    {this.state.regione && <SelectSearchDate dati={this.state.provincie} onSelected={this.selectedProvincia} text={"Seleziona una Provincia"} />}
+                    {this.state.provincia && <SelectSearchDate dati={this.state.comuni} onSelected={this.selectedComune} text={"Seleziona un Comune"} />}
                 </div>
-                {this.state.comune &&
-                    <div className="row m-3">
-                        <div className="col-sm-12 col-md-12 col-lg-6 col-xl-6 text-center" >
+                <div className="row m-3">
+                    {this.state.comune &&
+                        <div className="col-sm-12 col-md-12 col-lg-4 col-xl-4" >
                             <label>Dalla data</label>
                             <DatePicker
-                                inline
                                 selectsStart
                                 maxDate={endDate}
                                 selected={startDate}
-                                onChange={startDate => this.setStartDate(startDate)}
+                                onChange={startDate => this.selectedStartDate(startDate)}
                                 startDate={startDate}
                                 endDate={endDate}
                             />
                         </div>
-                        <div className="col-sm-12 col-md-12 col-lg-6 col-xl-6 text-center" >
+                    }
+                    {this.state.comune &&
+                        <div className="col-sm-12 col-md-12 col-lg-4 col-xl-4" >
                             <label>Alla data</label>
                             <DatePicker
-                                inline
                                 selectsEnd
                                 minDate={startDate}
                                 selected={endDate}
-                                onChange={endDate => this.setEndDate(endDate)}
+                                onChange={endDate => this.selectedEndDate(endDate)}
                                 startDate={startDate}
                                 endDate={endDate}
                             />
                         </div>
-                    </div>
-                }
-
-
-                {this.state.startDate && this.state.endDate && <ListFreeDate freeDate={this.state.freeDate} />}
+                    }
+                    {this.state.startDate && this.state.endDate &&
+                        <div className="col-sm-12 col-md-12 col-lg-4 col-xl-4" >
+                            <button type="button" className="btn btn-primary btn-block flex" onClick={() => this.SearchFreeDate(this.state.comune)}>Cerca</button>
+                        </div>
+                    }
+                </div>
+                {this.state.searched && <ListFreeDate freeDate={this.state.freeDate} />}
 
             </div>
         );
     }
 }
 
+
 class SelectSearchDate extends Component {
 
     render() {
-
         return (
             <div className="col-sm-12 col-md-12 col-lg-4 col-xl-4">
                 <label>{this.props.text}</label>
@@ -189,6 +178,8 @@ class SelectSearchDate extends Component {
         );
     }
 }
+
+
 
 
 export default FormPrenota

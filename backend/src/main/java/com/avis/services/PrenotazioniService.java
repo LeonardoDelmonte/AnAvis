@@ -58,7 +58,7 @@ public class PrenotazioniService{
 	public List<Prenotazione> getAlfredo(String comune) {
         SedeAvis sede = sedeAvisRepository.findByComune(comune);
         Optional<List<Prenotazione>> pippo = prenotazioniRepository.findByIdSedeAvis(sede);
-        if (pippo.isEmpty()){
+        if (!pippo.isPresent()){
             return null;
         }
         /* List<Date> alfredo = new ArrayList<>();
