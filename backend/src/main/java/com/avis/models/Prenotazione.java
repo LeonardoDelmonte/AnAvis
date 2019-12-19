@@ -1,6 +1,7 @@
 package com.avis.models;
 
 import java.sql.Date;
+import java.sql.Timestamp;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -10,6 +11,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 @Entity
 public class Prenotazione {
@@ -19,13 +22,13 @@ public class Prenotazione {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long idPrenotazione;
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "idDonatore", referencedColumnName = "id", nullable = false)
+    @JoinColumn(name = "idDonatore", referencedColumnName = "id")
     private Donatore idDonatore;
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "idSedeAvis", referencedColumnName = "id")
     private SedeAvis idSedeAvis;
     @Column
-    private Date date;
+    private Timestamp date;
 
     public Prenotazione() {
 
@@ -59,12 +62,14 @@ public class Prenotazione {
         this.idSedeAvis = idSedeAvis;
     }
 
-    public Date getDate() {
+    public Timestamp getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(Timestamp date) {
         this.date = date;
     }
+
+
 
 }
