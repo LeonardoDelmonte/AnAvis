@@ -1,5 +1,39 @@
 import React, { Component } from 'react';
 import PrenotaService from '../utils/PrenotaService';
+import DataTable from 'react-data-table-component';
+
+const columns = [
+    {
+        name: 'Denominazione',
+        selector: 'idSedeAvis.denominazione',
+        sortable: true,
+    },
+    {
+        name: 'Regione',
+        selector: 'idSedeAvis.regione',
+        sortable: true,
+    },
+    {
+        name: 'Provincia',
+        selector: 'idSedeAvis.provincia',
+        sortable: true,
+    },
+    {
+        name: 'Comune',
+        selector: 'idSedeAvis.comune',
+        sortable: true,
+    },
+    {
+        name: 'date',
+        selector: 'date',
+        sortable: true,
+    },
+    {
+        name: 'Year',
+        selector: 'year',
+        sortable: true,
+    },
+];
 
 class ListFreeDate extends Component {
     constructor(props) {
@@ -17,33 +51,19 @@ class ListFreeDate extends Component {
             )
     }
 
+    componentDidMount(){
+        console.log(this.props.freeDate)
+    }
+
     render() {
         return (
             <div className="container">
-                <h3>Date Disponibili</h3>
-                <div className="container">
-                    {<table className="table">
-                        <thead>
-                            <tr>
-                                <th>sede</th>
-                                <th>data</th>
-                                <th>bottone</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {
-                                this.props.freeDate.map(
-                                    v =>
-                                        <tr key={v.idPrenotazione}>
-                                            <td>{v.idSedeAvis.comune}</td>
-                                            <td>{v.date}</td>
-                                            <td><button type="submit" onClick={() => this.prenota(v.id)}>Prenota!</button></td>
-                                        </tr>
-                                )
-                            }
-                        </tbody>
-                    </table>}
-                </div>
+                <DataTable
+                    title="Date disponibili"
+                    columns={columns}
+                    data={this.props.freeDate}
+                    defaultSortField="title"
+                />
             </div>
         )
     }

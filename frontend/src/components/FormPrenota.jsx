@@ -20,17 +20,17 @@ class FormPrenota extends Component {
             provincia: null,
             comune: null,
 
-            startDate: null,
-            endDate: null,
+            startDate: new Date(),
+            endDate: new Date(),
 
             searched: false,
-            freeDate: []
+            freeDate: [],
         }
 
     }
 
     SearchFreeDate = comune => {
-        
+        this.setState({ freeDate: [] })
         PrenotaService.search(comune)
             .then(
                 response => {
@@ -42,16 +42,17 @@ class FormPrenota extends Component {
     }
 
     selectedRegione = selectedRegione => {
-        this.setState({ regione: null, provincia: null, comune: null, startDate: null, endDate: null }, () => {
+        this.setState({ regione: null, provincia: null, comune: null}, () => {
             if (selectedRegione) {
                 this.setState({ provincie: [] });
-                PrenotaService.getProvincie(selectedRegione)
+                PrenotaService.getProvincie(selectedRegione.value)
                     .then(
                         response => {
                             response.data.map(
                                 v =>
                                     this.state.provincie.push({ value: v, label: v })
                             )
+                            console.log(response)
                             this.setState({ regione: selectedRegione.value })
                         }
                     )
@@ -60,10 +61,10 @@ class FormPrenota extends Component {
     };
 
     selectedProvincia = selectedProvincia => {
-        this.setState({ comune: null, provincia: null, startDate: null, endDate: null }, () => {
+        this.setState({ comune: null, provincia: null }, () => {
             if (selectedProvincia) {
                 this.setState({ comuni: [] });
-                PrenotaService.getComuni(selectedProvincia)
+                PrenotaService.getComuni(selectedProvincia.value)
                     .then(
                         response => {
                             response.data.map(
@@ -78,7 +79,7 @@ class FormPrenota extends Component {
     };
 
     selectedComune = selectedComune => {
-        this.setState({ comune: null, startDate: null, endDate: null }, () => {
+        this.setState({ comune: null}, () => {
             if (selectedComune) {
                 // this.SearchFreeDate(selectedComune.value)
                 this.setState({ comune: selectedComune.value })
@@ -120,7 +121,7 @@ class FormPrenota extends Component {
                     {this.state.provincia && <SelectSearchDate dati={this.state.comuni} onSelected={this.selectedComune} text={"Seleziona un Comune"} />}
                 </div>
                 <div className="row m-3">
-                    {this.state.comune &&
+              
                         <div className="col-sm-12 col-md-12 col-lg-4 col-xl-4" >
                             <label>Dalla data</label>
                             <DatePicker
@@ -130,10 +131,11 @@ class FormPrenota extends Component {
                                 onChange={startDate => this.selectedStartDate(startDate)}
                                 startDate={startDate}
                                 endDate={endDate}
+                                dateFormat="dd/MM/yyyy"
                             />
                         </div>
-                    }
-                    {this.state.comune &&
+                    
+            
                         <div className="col-sm-12 col-md-12 col-lg-4 col-xl-4" >
                             <label>Alla data</label>
                             <DatePicker
@@ -143,16 +145,19 @@ class FormPrenota extends Component {
                                 onChange={endDate => this.selectedEndDate(endDate)}
                                 startDate={startDate}
                                 endDate={endDate}
+                                dateFormat="dd/MM/yyyy"
                             />
                         </div>
-                    }
-                    {this.state.startDate && this.state.endDate &&
-                        <div className="col-sm-12 col-md-12 col-lg-4 col-xl-4" >
-                            <button type="button" className="btn btn-primary btn-block flex" onClick={() => this.SearchFreeDate(this.state.comune)}>Cerca</button>
+                    
+                    {this.state.startDate && this.state.endDate && this.state.comune &&
+                        <div className="col-sm-12 col-md-12 col-lg-4 col-xl-4 align-self-end" >
+                            <button type="button" className="btn btn-primary btn-block " onClick={() => this.SearchFreeDate(this.state.comune)}>Cerca</button>
                         </div>
                     }
                 </div>
-                {this.state.searched && <ListFreeDate freeDate={this.state.freeDate} />}
+                {this.state.searched && 
+                    <ListFreeDate freeDate={this.state.freeDate} 
+                />}
 
             </div>
         );
