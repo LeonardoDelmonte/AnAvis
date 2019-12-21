@@ -1,10 +1,11 @@
 package com.avis.rest_controller;
 
 import java.util.List;
-import java.util.Optional;
+
 import java.util.Set;
 
 import com.avis.models.Prenotazione;
+import com.avis.models.PrenotazioneDto;
 import com.avis.services.PrenotazioniService;
 import com.avis.services.SedeAvisService;
 
@@ -13,8 +14,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestParam;
+//import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 
@@ -27,25 +29,25 @@ public class PrenotazioneController{
     @Autowired
     private SedeAvisService sedeAvisService;
 
-    @PostMapping("/public/prenota")
+    /* @PostMapping("/public/prenota")
     public Optional<Prenotazione> getDateLibere(@RequestBody String comune){
         //controlla token
         return null;//prenotazioniService.getDateLibere(comune);
-    } 
+    }  */
 
     @PostMapping("/public/prenotazione")
-    public ResponseEntity<List<Prenotazione>> getAlfredo(@RequestBody String comune){
-        List<Prenotazione> pippo = prenotazioniService.getAlfredo(comune);
+    public ResponseEntity<List<Prenotazione>> getDateLibere(@RequestBody String comune){
+        List<Prenotazione> pippo = prenotazioniService.getDateLibere(comune);
         if(pippo==null || pippo.isEmpty()){
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
         return new ResponseEntity<>(pippo, HttpStatus.OK);
     } 
 
-    @PostMapping("/public/prenota/data")
-    public boolean prenotaData(@RequestBody Long id){
+    @PutMapping("/public/prenotazione")
+    public boolean prenotaData(@RequestBody PrenotazioneDto prenotazioneDto){
         //con il token mi creo un donatore
-        prenotazioniService.prenotaData(id,null);
+        prenotazioniService.prenotaData(prenotazioneDto);
         return true;
     }
 
@@ -63,7 +65,5 @@ public class PrenotazioneController{
     public Set<String> searchComuni(@RequestBody String provincia){
         return sedeAvisService.getComuni(provincia);
     }
-
-
 
 }

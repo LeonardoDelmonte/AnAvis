@@ -6,7 +6,9 @@ import java.util.stream.Collectors;
 
 import com.avis.models.Donatore;
 import com.avis.models.Prenotazione;
+import com.avis.models.PrenotazioneDto;
 import com.avis.models.SedeAvis;
+import com.avis.repositories.DonatoreRepository;
 import com.avis.repositories.PrenotazioniRepository;
 import com.avis.repositories.SedeAvisRepository;
 
@@ -23,6 +25,9 @@ public class PrenotazioniService{
     
     @Autowired
     private SedeAvisRepository sedeAvisRepository;
+
+    @Autowired
+    private DonatoreRepository donatoreRepository;
 
     //fatto così solo per non dare errore, cambierà!
     /* public Optional<Prenotazione> getDateLibere(String comune){
@@ -41,11 +46,12 @@ public class PrenotazioniService{
         return freeDate;     
     } */
 
-    public boolean prenotaData(Long id,Donatore donatore){
+    public boolean prenotaData(PrenotazioneDto prenotazioneDto){
         //controlla se la data esiste ancora
-        if(donatore==null)return false;
-        Optional<Prenotazione> prenotazione = prenotazioniRepository.findById(id);
-        prenotazione.get().setIdDonatore(donatore);
+        //if(idDonatore==null)return false;
+        Optional<Donatore> donatore = donatoreRepository.findById(prenotazioneDto.getIdDonatore());
+        Optional<Prenotazione> prenotazione = prenotazioniRepository.findById(prenotazioneDto.getIdPrenotazione());
+        prenotazione.get().setIdDonatore(donatore.get());
         prenotazioniRepository.saveAndFlush(prenotazione.get());
         return true;
     }
@@ -55,7 +61,7 @@ public class PrenotazioniService{
         return true;
     }
 
-	public List<Prenotazione> getAlfredo(String comune) {
+	public List<Prenotazione> getDateLibere(String comune) {
         SedeAvis sede = sedeAvisRepository.findByComune(comune);
         Optional<List<Prenotazione>> pippo = prenotazioniRepository.findByIdSedeAvis(sede);
         if (!pippo.isPresent()){
