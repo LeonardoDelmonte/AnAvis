@@ -52,13 +52,20 @@ class ListFreeDate extends PureComponent {
 
     handleButtonClick = (state) => {
 
-        console.log('clicked');
-        console.log(state.target.id);
         var prenotazioneDto = {
             'idPrenotazione': state.target.id,
             'idDonatore': 3
         }
-        PrenotaService.prenota(prenotazioneDto);
+        PrenotaService.prenota(prenotazioneDto).then(
+            response => {
+               console.log(response)
+               if(response.data){
+                   alert("Prenotazione effettuata con successo")
+                   window.location.reload();
+               }
+            }
+        )
+
     }
 
 
