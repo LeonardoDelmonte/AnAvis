@@ -1,8 +1,15 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react'
 import PrenotaService from '../utils/PrenotaService';
 import DataTable from 'react-data-table-component';
+import memoize from 'memoize-one';
 
-const columns = [
+
+const columns = memoize(clickHandler => [
+    {
+        name: 'ID',
+        selector: 'idPrenotazione',
+        sortable: true,
+    },
     {
         name: 'Denominazione',
         selector: 'idSedeAvis.denominazione',
@@ -29,29 +36,39 @@ const columns = [
         sortable: true,
     },
     {
-        name: 'Year',
-        selector: 'year',
-        sortable: true,
+        name: 'Prenota',
+        cell: (row) => <button onClick={clickHandler} id={row.idPrenotazione}>Prenota</button>,
+        ignoreRowClick: true,
+        allowOverflow: true,
+        button: true,
     },
-];
+]);
 
-class ListFreeDate extends Component {
+class ListFreeDate extends PureComponent {
     constructor(props) {
         super(props)
-
         this.prenota = this.prenota.bind(this)
     }
 
-    prenota(id) {
-        PrenotaService.prenota(id)
-            .then(
-                response => {
-                    //boh
-                }
-            )
+    handleButtonClick = (state) => {
+
+        console.log('clicked');
+        console.log(state.target.id);
+        PrenotaService.prenota(state.target.id, 3);
     }
 
-    componentDidMount(){
+
+    prenota(id) {
+        // PrenotaService.prenota(id)
+        //     .then(
+        //         response => {
+        //             //boh
+        //         }
+        //     )
+        console.log("aaa" + id);
+    }
+
+    componentDidMount() {
         console.log(this.props.freeDate)
     }
 
@@ -60,7 +77,7 @@ class ListFreeDate extends Component {
             <div className="container">
                 <DataTable
                     title="Date disponibili"
-                    columns={columns}
+                    columns={columns(this.handleButtonClick)}
                     data={this.props.freeDate}
                     defaultSortField="title"
                 />
@@ -68,5 +85,6 @@ class ListFreeDate extends Component {
         )
     }
 }
+
 
 export default ListFreeDate

@@ -11,9 +11,9 @@ class PrenotaService{
         });       
     }
 
-    prenota(id){
-        return axios.post(API_URL+'/prenota/data',
-        id,
+    prenota(idPrenotazione, idDonatore){
+        return axios.put(API_URL+'/prenota/data',
+        idPrenotazione, idDonatore,
         {headers: {"Content-Type": "application/json"}
         });       
     }
