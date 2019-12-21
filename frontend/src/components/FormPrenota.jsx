@@ -45,7 +45,7 @@ class FormPrenota extends Component {
         this.setState({ regione: null, provincia: null, comune: null}, () => {
             if (selectedRegione) {
                 this.setState({ provincie: [] });
-                PrenotaService.getProvincie(selectedRegione.value)
+                PrenotaService.getProvince(selectedRegione.value)
                     .then(
                         response => {
                             response.data.map(

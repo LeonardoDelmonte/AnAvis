@@ -24,8 +24,8 @@ class PrenotaService{
         });       
     }
 
-    getProvincie(regione){
-        return axios.post(API_URL+'/public/getProvincie', regione, 
+    getProvince(regione){
+        return axios.post(API_URL+'/public/getProvince', regione, 
         {headers: {"Content-Type": "application/json"}
         });       
     }

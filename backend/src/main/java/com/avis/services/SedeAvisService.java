@@ -27,7 +27,7 @@ public class SedeAvisService {
         sedeAvisRepository.findAll().stream().forEach(e->string.add(e.getRegione()));
         return string;
     }
-    public Set<String> getProvincie(String regione){
+    public Set<String> getProvince(String regione){
         string = new HashSet<>();
         Optional<List<SedeAvis>> listasedi = sedeAvisRepository.findByRegione(regione);
         if (!listasedi.isPresent()){

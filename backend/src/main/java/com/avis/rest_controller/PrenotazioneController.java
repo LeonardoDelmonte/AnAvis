@@ -56,9 +56,9 @@ public class PrenotazioneController{
         return sedeAvisService.getRegioni();
     }
     
-    @PostMapping("/public/getProvincie")
-    public Set<String> searchProvincie(@RequestBody String regione){
-        return sedeAvisService.getProvincie(regione);
+    @PostMapping("/public/getProvince")
+    public Set<String> searchProvince(@RequestBody String regione){
+        return sedeAvisService.getProvince(regione);
     }
     
     @PostMapping("/public/getComuni")
