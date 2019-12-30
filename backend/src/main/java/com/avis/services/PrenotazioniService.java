@@ -1,12 +1,15 @@
 package com.avis.services;
 
+import java.sql.Timestamp;
 import java.util.List;
 import java.util.Optional;
+import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
 
 import com.avis.models.Donatore;
+import com.avis.dto.DateDto;
 import com.avis.models.Prenotazione;
-import com.avis.models.PrenotazioneDto;
+import com.avis.dto.PrenotazioneDto;
 import com.avis.models.SedeAvis;
 import com.avis.repositories.DonatoreRepository;
 import com.avis.repositories.PrenotazioniRepository;
@@ -16,39 +19,21 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class PrenotazioniService{
-
-    //prenotazione ha un id sede e non una stringa;
+public class PrenotazioniService {
 
     @Autowired
     private PrenotazioniRepository prenotazioniRepository;
-    
+
     @Autowired
     private SedeAvisRepository sedeAvisRepository;
 
     @Autowired
     private DonatoreRepository donatoreRepository;
 
-    //fatto così solo per non dare errore, cambierà!
-    /* public Optional<Prenotazione> getDateLibere(String comune){
-        List<SedeAvis>
-        listaDate = sedeAvisRepository.findByComune(comune);
-
-
-        List<SedeAvis> list;
-
-        list=sedeAvisRepository.findAll();
-        list.stream().filter(e->e.getComune().compareTo(comune)==0);
-        long id = list.get(0).getId();
-        Optional<Prenotazione> freeDate;
-        freeDate=prenotazioniRepository.findByIdSedeAvis(id);
-        freeDate.filter(e->e.getIdDonatore()==null);
-        return freeDate;     
-    } */
-
-    public boolean prenotaData(PrenotazioneDto prenotazioneDto){
-        //controlla se la data esiste ancora
-        //if(idDonatore==null)return false;
+    public boolean prenotaData(PrenotazioneDto prenotazioneDto) {
+        // controlla se la data esiste ancora
+        // if(idDonatore==null)return false;
+        // il donatore verrà preso col token
         Optional<Donatore> donatore = donatoreRepository.findById(prenotazioneDto.getIdDonatore());
         Optional<Prenotazione> prenotazione = prenotazioniRepository.findById(prenotazioneDto.getIdPrenotazione());
         prenotazione.get().setIdDonatore(donatore.get());
@@ -56,24 +41,33 @@ public class PrenotazioniService{
         return true;
     }
 
-    public boolean save(Prenotazione dataLibera){
-        prenotazioniRepository.save(dataLibera);    
+    public boolean save(DateDto dateLibere) {
+        Timestamp data2 = dateLibere.getDataFinale();
+        Timestamp data1 = dateLibere.getDataIniziale();
+        Prenotazione prenotazione;
+        // la sede verrà presa col token
+        SedeAvis sedeAvis = sedeAvisRepository.findById(1).get();
+        do {
+            prenotazione = new Prenotazione(sedeAvis, data1);
+            prenotazioniRepository.save(prenotazione);
+            data1 = new Timestamp(data1.getTime() + TimeUnit.MINUTES.toMillis(15));
+        } while (data1.compareTo(data2) != 0);
         return true;
     }
 
-	public List<Prenotazione> getDateLibere(String comune) {
+    public boolean delete(long id) {
+        Prenotazione prenotazione = prenotazioniRepository.findById(id).get();
+        prenotazioniRepository.delete(prenotazione);
+		return true;
+	}
+
+    public List<Prenotazione> getDateLibere(String comune) {
         SedeAvis sede = sedeAvisRepository.findByComune(comune);
         Optional<List<Prenotazione>> pippo = prenotazioniRepository.findByIdSedeAvis(sede);
-        if (!pippo.isPresent()){
+        if (!pippo.isPresent()) {
             return null;
         }
-        /* List<Date> alfredo = new ArrayList<>();
-        for (Prenotazione prenotazione : pippo.get()) {
-            if(prenotazione.getIdDonatore()==null){
-                alfredo.add(prenotazione.getDate());
-            }
-        } */
-        return pippo.get().stream().filter(e->e.getIdDonatore()==null).collect(Collectors.toList());
-	}
-    
+        return pippo.get().stream().filter(e -> e.getIdDonatore() == null).collect(Collectors.toList());
+    }
+
 }
