@@ -14,11 +14,8 @@ public class CentroTrasfusione extends Utente {
     public CentroTrasfusione() {
     }
 
-    public CentroTrasfusione(String email, String pw, String ruolo, String regione, String provincia, String comune) {
+    public CentroTrasfusione(String email, String pw, String ruolo) {
         super(email, pw, ruolo);
-        this.regione = regione;
-        this.provincia = provincia;
-        this.comune = comune;
     }
 
     public String getRegione() {

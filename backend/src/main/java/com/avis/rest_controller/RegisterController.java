@@ -3,11 +3,10 @@ package com.avis.rest_controller;
 import com.avis.models.CentroTrasfusione;
 import com.avis.models.Donatore;
 import com.avis.models.SedeAvis;
-import com.avis.services.CentroTrasfusioniService;
-import com.avis.services.DonatoreService;
-import com.avis.services.SedeAvisService;
-
+import com.avis.models.Utente;
+import com.avis.services.AuthenticationService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,28 +18,28 @@ import org.springframework.web.bind.annotation.RestController;
 public class RegisterController {
 
     @Autowired
-    private SedeAvisService sedeAvisService;
+    private AuthenticationService authService;
     @Autowired
-    private DonatoreService donatoreService;
-    @Autowired
-    private CentroTrasfusioniService centroTrasfusioniService;
-
-    @RequestMapping(value = "public/register/centroTrasfusioni", method = RequestMethod.POST)
-    public boolean createCentro(@RequestBody CentroTrasfusione centroTrasfusioni) {
-        centroTrasfusioniService.save(centroTrasfusioni);
-        return true;
+	private PasswordEncoder bcryptEncoder;
+    
+    @RequestMapping(value = "public/register", method = RequestMethod.POST)
+    public boolean register(@RequestBody Utente utente) {
+        //la pw la devo ricevere già criptata dal frontend
+        utente.setPw(bcryptEncoder.encode(utente.getPw()));
+        return authService.save(createUtente(utente));    
     }
 
-    @RequestMapping(value = "public/register/sedeAvis", method = RequestMethod.POST)
-    public boolean createSede(@RequestBody SedeAvis sede) {
-        sedeAvisService.save(sede);
-        return true;
-    }
-
-    @RequestMapping(value = "public/register/donatore", method = RequestMethod.POST)
-    public boolean createDonatore(@RequestBody Donatore donatore) {
-        donatoreService.save(donatore);
-        return true;
+    private Utente createUtente(Utente utente){
+        //ruolo required
+        switch(utente.getRuolo()){
+            case "donatore": 
+                return new Donatore(utente.getEmail(), utente.getPw(), utente.getRuolo());
+            case "sedeAvis": 
+                return new SedeAvis(utente.getEmail(), utente.getPw(), utente.getRuolo());
+            case "centroTrasfusioni": 
+                return new CentroTrasfusione(utente.getEmail(), utente.getPw(), utente.getRuolo());
+            default : return null;
+        }
     }
 
 }

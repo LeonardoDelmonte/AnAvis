@@ -19,6 +19,4 @@ public interface SedeAvisRepository extends JpaRepository<SedeAvis, Long>{
 
 	Optional<SedeAvis> findById(long i);
 
-
-
 }

@@ -1,8 +1,8 @@
 package com.avis.security;
-import java.util.Arrays;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -13,93 +13,57 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
-import org.springframework.web.cors.CorsConfiguration;
-import org.springframework.web.cors.CorsConfigurationSource;
-import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
 @Configuration
 @EnableWebSecurity
-@EnableGlobalMethodSecurity(prePostEnabled=true)
-public class JWTSecurityConfig extends WebSecurityConfigurerAdapter{
+@EnableGlobalMethodSecurity(prePostEnabled = true)
+public class JwtSecurityConfig extends WebSecurityConfigurerAdapter {
 
-    @Autowired
-    private JwtAuthenticationEntryPoint unauthorizedHandler;
+	@Autowired
+	private JwtAuthenticationEntryPoint jwtAuthenticationEntryPoint;
+	@Autowired
+	private UserDetailsService authService;
+	@Autowired
+	private JwtAuthenticationTokenFilter jwtAuthTokenFilter;
 
-    //UserDetailsService è un servizio che implementa un meccanismo di autenticazione? boh
-    //Spring Security utilizzerà il servizio userDetailsService per verificare l’esistenza dell’utente e la correttezza della password.
-    @Autowired
-    private UserDetailsService userDetailsService;
+	@Autowired
+	public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
+		// configure AuthenticationManager so that it knows from where to load
+		// user for matching credentials
+		// Use BCryptPasswordEncoder
+		auth.userDetailsService(authService).passwordEncoder(passwordEncoder());
+	}
 
-    //leggila questa classe perchè non so che fa 
-    @Autowired
-    public void configureAuthentication(AuthenticationManagerBuilder authenticationManagerBuilder) throws Exception{
-        authenticationManagerBuilder
-            .userDetailsService(this.userDetailsService)
-            .passwordEncoder(passwordEncoder());
-    }
+	@Bean
+	public PasswordEncoder passwordEncoder() {
+		return new BCryptPasswordEncoder();
+	}
 
-    //uso BCrypt per criptare le pw, quindi anche per salvarle dovrò usare questa libreria
-    @Bean
-    public PasswordEncoder passwordEncoder(){
-        return new BCryptPasswordEncoder();
-    }
+	@Bean
+	@Override
+	public AuthenticationManager authenticationManagerBean() throws Exception {
+		return super.authenticationManagerBean();
+	}
 
+	@Override
+	protected void configure(HttpSecurity httpSecurity) throws Exception {
+		// We don't need CSRF
+		httpSecurity.csrf().disable()
+				// dont authenticate this particular request
+				.authorizeRequests().antMatchers("/public/**").permitAll().and()
+				//authenticate this request
+				.authorizeRequests().antMatchers("/prenotazione/**").hasAuthority("donatore").and()
+				.authorizeRequests().antMatchers("/handlerDate/**").hasAuthority("sedeAvis").and()
+				.authorizeRequests().antMatchers("/requestEmerg/**").hasAuthority("centroTrasfusioni").and()
+				.authorizeRequests().antMatchers("/admin/**").hasAuthority("admin")
+				// questo si potrebbe togliere
+				.anyRequest().authenticated().and().
+				// make sure we use stateless session; session won't be used to
+				// store user's state.
+				exceptionHandling().authenticationEntryPoint(jwtAuthenticationEntryPoint).and().sessionManagement()
+				.sessionCreationPolicy(SessionCreationPolicy.STATELESS);
 
-    //filter custom richiamato dal metodo configure, ultimo metodo in this class
-    @Bean
-    public JwtAuthenticationTokenFilter authenticationTokenFilterBean() throws Exception{
-        return new JwtAuthenticationTokenFilter();
-    }
-
-     //configurazione Cors per poter consumare le api restful con richieste ajax
-     //sarà uguale  per azios? chi lo sa
-    @Bean
-    CorsConfigurationSource corsConfigurationSource() {
-        CorsConfiguration configuration = new CorsConfiguration();
-        configuration.addAllowedOrigin("*");
-        configuration.setAllowedMethods(Arrays.asList("POST, PUT, GET, OPTIONS, DELETE"));
-        configuration.addAllowedHeader("*");
-        configuration.addAllowedMethod("*");
-        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-        source.registerCorsConfiguration("/**", configuration);
-        return source;
-    }
-
-
-    /* Attraverso il metodo configure vengono impostate le direttive di autenticazione:
-    Non tutti gli endpoint dovranno essere utilizzabili solo da utenti autenticati, 
-    alcuni potranno essere pubblici:  vedi endpoint di login o di registrazione. */
-    @Override
-    protected void configure(HttpSecurity httpSecurity) throws Exception{
-        httpSecurity
-        //vedi la classe htppSecurity
-                .csrf().disable()
-                //unauthorizedHandler è la mia classe gestione per autenticazione non riuscita, forse
-                .exceptionHandling().authenticationEntryPoint(unauthorizedHandler).and()
-                // non abbiamo bisogno di una sessione
-                .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
-                .cors().and()
-                .authorizeRequests()
-                //dato che è REST gli elementi statici perchè dovrei averli qui? e perchè 
-                //ha diviso public da loro? notStonks
-                .antMatchers(
-                        //HttpMethod.GET,
-                        "/",
-                        "/*.html",
-                        "/favicon.ico",
-                        "/**/*.html",
-                        "/**/*.css",
-                        "/**/*.js"
-                ).permitAll()
-                .antMatchers("/public/**").permitAll()
-                //tutte gli altri urls richiedono l'autenticazione
-                .anyRequest().authenticated();
-
-        //Viene creato e impostato un filtro di tipo JwtAuthenticationTokenFilter  
-        //per scattare prima dei filtri di Spring Security che hanno il compito di verificare l’autenticazione,
-        //credo per evitare di creare il coockie automatico di spring security
-        httpSecurity.addFilterBefore(authenticationTokenFilterBean(), UsernamePasswordAuthenticationFilter.class);
-        //chi lo sa =)
-        httpSecurity.headers().cacheControl();
-    }
+		// Add a filter to validate the tokens with every request
+		httpSecurity.addFilterBefore(jwtAuthTokenFilter, UsernamePasswordAuthenticationFilter.class);
+	}
 }

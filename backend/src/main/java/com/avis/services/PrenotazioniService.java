@@ -6,10 +6,9 @@ import java.util.Optional;
 import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
 
-import com.avis.models.Donatore;
 import com.avis.dto.DateDto;
+import com.avis.models.Donatore;
 import com.avis.models.Prenotazione;
-import com.avis.dto.PrenotazioneDto;
 import com.avis.models.SedeAvis;
 import com.avis.repositories.DonatoreRepository;
 import com.avis.repositories.PrenotazioniRepository;
@@ -19,34 +18,33 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class PrenotazioniService {
+public class PrenotazioniService{
 
     @Autowired
     private PrenotazioniRepository prenotazioniRepository;
-
+    
     @Autowired
     private SedeAvisRepository sedeAvisRepository;
 
     @Autowired
     private DonatoreRepository donatoreRepository;
 
-    public boolean prenotaData(PrenotazioneDto prenotazioneDto) {
-        // controlla se la data esiste ancora
-        // if(idDonatore==null)return false;
-        // il donatore verrà preso col token
-        Optional<Donatore> donatore = donatoreRepository.findById(prenotazioneDto.getIdDonatore());
-        Optional<Prenotazione> prenotazione = prenotazioniRepository.findById(prenotazioneDto.getIdPrenotazione());
+    public boolean prenotaData(Long idDataLibera, Long idDonatore){
+        Optional<Donatore> donatore = donatoreRepository.findById(idDonatore);
+        Optional<Prenotazione> prenotazione = prenotazioniRepository.findById(idDataLibera);
+        if(prenotazione.get().getIdDonatore()!=null){
+            return false;
+        }
         prenotazione.get().setIdDonatore(donatore.get());
         prenotazioniRepository.saveAndFlush(prenotazione.get());
         return true;
     }
 
-    public boolean save(DateDto dateLibere) {
+    public boolean save(DateDto dateLibere,Long idSede) {
         Timestamp data2 = dateLibere.getDataFinale();
         Timestamp data1 = dateLibere.getDataIniziale();
         Prenotazione prenotazione;
-        // la sede verrà presa col token
-        SedeAvis sedeAvis = sedeAvisRepository.findById(1).get();
+        SedeAvis sedeAvis = sedeAvisRepository.findById(idSede).get();
         do {
             prenotazione = new Prenotazione(sedeAvis, data1);
             prenotazioniRepository.save(prenotazione);
@@ -61,13 +59,13 @@ public class PrenotazioniService {
 		return true;
 	}
 
-    public List<Prenotazione> getDateLibere(String comune) {
+	public List<Prenotazione> getDateLibere(String comune) {
         SedeAvis sede = sedeAvisRepository.findByComune(comune);
-        Optional<List<Prenotazione>> pippo = prenotazioniRepository.findByIdSedeAvis(sede);
-        if (!pippo.isPresent()) {
+        Optional<List<Prenotazione>> dateLibere = prenotazioniRepository.findByIdSedeAvis(sede);
+        if (!dateLibere.isPresent()){
             return null;
         }
-        return pippo.get().stream().filter(e -> e.getIdDonatore() == null).collect(Collectors.toList());
-    }
-
+        return dateLibere.get().stream().filter(e->e.getIdDonatore()==null).collect(Collectors.toList());
+	}
+    
 }

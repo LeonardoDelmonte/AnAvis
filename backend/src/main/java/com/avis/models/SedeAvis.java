@@ -20,11 +20,8 @@ public class SedeAvis extends Utente {
     public SedeAvis() {
     }
 
-    public SedeAvis(String email, String pw, String ruolo, String regione, String provincia, String comune) {
+    public SedeAvis(String email, String pw, String ruolo) {
         super(email, pw, ruolo);
-        this.regione = regione;
-        this.provincia = provincia;
-        this.comune = comune;
     }
 
     public String getRegione() {

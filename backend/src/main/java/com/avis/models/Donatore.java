@@ -28,10 +28,8 @@ public class Donatore extends Utente {
     public Donatore() {
     }
 
-    public Donatore(String email, String pw, String ruolo, String nome, String cognome) {
+    public Donatore(String email, String pw, String ruolo) {
         super(email, pw, ruolo);
-        this.nome = nome;
-        this.cognome = cognome;
         this.abilitazioneDonazione = 0;
     }
 
