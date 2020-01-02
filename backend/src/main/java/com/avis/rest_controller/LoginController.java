@@ -1,4 +1,5 @@
 package com.avis.rest_controller;
+
 import com.avis.services.AuthenticationService;
 import javax.servlet.http.HttpServletResponse;
 import com.avis.security.JwtTokenUtil;
@@ -13,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@CrossOrigin(origins={ "*" })
+@CrossOrigin(origins = { "*" })
 public class LoginController {
 
     @Value("${jwt.header}")
@@ -23,21 +24,17 @@ public class LoginController {
     @Autowired
     private AuthenticationService authService;
 
-
-
     @RequestMapping(value = "public/login", method = RequestMethod.POST)
-    public void createAuthenticationToken(@RequestBody JwtRequest authenticationRequest,HttpServletResponse response) throws Exception{       
-        //qui la pw è in chiaro...non credo vada bene
-        authService.authenticate(authenticationRequest.getEmail(),authenticationRequest.getPw());       
-        final JwtUser userDetails = (JwtUser)authService
-                                    .loadUserByUsername(authenticationRequest.getEmail());           
-        if(userDetails!=null){
+    public void createAuthenticationToken(@RequestBody JwtRequest authenticationRequest, HttpServletResponse response)
+            throws Exception {
+        // qui la pw è in chiaro...non credo vada bene
+        authService.authenticate(authenticationRequest.getEmail(), authenticationRequest.getPw());
+        final JwtUser userDetails = (JwtUser) authService.loadUserByUsername(authenticationRequest.getEmail());
+        if (userDetails != null) {
             final String token = jwtTokenUtil.generateToken(userDetails);
             response.setHeader(tokenHeader, token);
-        }else{//meglio farlo con ResponseEntity
+        } else {// meglio farlo con ResponseEntity
             response.setHeader(tokenHeader, null);
-        }        
-    }	
+        }
+    }
 }
-
-

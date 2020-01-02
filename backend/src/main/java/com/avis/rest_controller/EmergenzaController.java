@@ -1,9 +1,10 @@
 package com.avis.rest_controller;
 
 import javax.servlet.http.HttpServletRequest;
-import com.avis.dto.DateDto;
+
 import com.avis.security.JwtTokenUtil;
-import com.avis.services.PrenotazioniService;
+import com.avis.services.EmergenzaService;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -14,24 +15,24 @@ import org.springframework.web.bind.annotation.RestController;
 
 @CrossOrigin(origins = { "*" })
 @RestController
-public class DateController {
+public class EmergenzaController {
 
     @Autowired
-    private PrenotazioniService prenotazioniService;
+    private EmergenzaService emergenzaService;
     @Autowired
     private JwtTokenUtil jwtTokenUtil;
     @Value("${jwt.header}")
     private String tokenHeader;
 
-    @PostMapping("/handlerDate/insert")
-    public boolean insertDate(@RequestBody DateDto dateLibere, HttpServletRequest req) {
-        Long idSede = jwtTokenUtil.getIdFromToken(req.getHeader(tokenHeader));
-        return prenotazioniService.save(dateLibere, idSede);
+    @PostMapping("/requestEmerg/insert")
+    public boolean insertEmergenza(@RequestBody String gruppo, HttpServletRequest req) {
+        Long idCentro = jwtTokenUtil.getIdFromToken(req.getHeader(tokenHeader));
+        return emergenzaService.save(gruppo, idCentro);
     }
 
-    @DeleteMapping("/handlerDate/remove")
-    public boolean deleteDate(@RequestBody long prenotazione) {
-        return prenotazioniService.delete(prenotazione);
+    @DeleteMapping("/requestEmerg/remove")
+    public boolean deleteEmergenza(@RequestBody long emergenza) {
+        return emergenzaService.delete(emergenza);
     }
 
 }

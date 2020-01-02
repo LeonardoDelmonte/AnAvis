@@ -41,21 +41,17 @@ public class PrenotazioniService{
     }
 
     public boolean save(DateDto dateLibere,Long idSede) {
-        Timestamp data2 = dateLibere.getDataFinale();
         Timestamp data1 = dateLibere.getDataIniziale();
-        Prenotazione prenotazione;
         SedeAvis sedeAvis = sedeAvisRepository.findById(idSede).get();
         do {
-            prenotazione = new Prenotazione(sedeAvis, data1);
-            prenotazioniRepository.save(prenotazione);
+            prenotazioniRepository.save(new Prenotazione(sedeAvis, data1));
             data1 = new Timestamp(data1.getTime() + TimeUnit.MINUTES.toMillis(15));
-        } while (data1.compareTo(data2) != 0);
+        } while (data1.compareTo(dateLibere.getDataFinale()) != 0);
         return true;
     }
 
     public boolean delete(long id) {
-        Prenotazione prenotazione = prenotazioniRepository.findById(id).get();
-        prenotazioniRepository.delete(prenotazione);
+        prenotazioniRepository.delete(prenotazioniRepository.findById(id).get());
 		return true;
 	}
 
