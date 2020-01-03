@@ -7,9 +7,6 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.Serializable;
 
-//questa classe custom viene data come argomento ad una classe di spring security, qui possiamo
-//scrivere il nostro messaggio di errore
-
 @Component
 public class JwtAuthenticationEntryPoint implements AuthenticationEntryPoint, Serializable {
 

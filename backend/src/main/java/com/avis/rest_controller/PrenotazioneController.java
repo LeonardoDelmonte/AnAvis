@@ -4,7 +4,6 @@ import java.util.List;
 import java.util.Set;
 
 import javax.servlet.http.HttpServletRequest;
-
 import com.avis.models.Prenotazione;
 import com.avis.security.JwtTokenUtil;
 import com.avis.services.PrenotazioniService;

@@ -33,7 +33,7 @@ public class Prenotazione {
 
     public Prenotazione(SedeAvis sedeAvis, Timestamp date) {
         this.idSedeAvis = sedeAvis;
-        this.date = date;
+        this.date=date;
     }
 
     public long getIdPrenotazione() {

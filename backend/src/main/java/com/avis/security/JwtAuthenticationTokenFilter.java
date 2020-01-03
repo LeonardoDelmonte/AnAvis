@@ -4,7 +4,8 @@ import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import com.avis.dto.JwtUser;
+import com.avis.models.Utente;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -26,15 +27,15 @@ public class JwtAuthenticationTokenFilter extends OncePerRequestFilter {
 			throws ServletException, IOException {
 
 		String jwtToken = request.getHeader(jwtHeader);
-		JwtUser jwtUser = null;
+		Utente utente = null;
 		if (jwtToken!= null) {
-			jwtUser = jwtTokenUtil.getUserDetails(jwtToken);			
+			utente = jwtTokenUtil.getUserDetails(jwtToken);			
 		}
 		// Once we get the token validate it.
-		if (jwtUser != null && SecurityContextHolder.getContext().getAuthentication() == null) {
-			if (jwtTokenUtil.validateToken(jwtToken, jwtUser)) {
+		if (utente != null && SecurityContextHolder.getContext().getAuthentication() == null) {
+			if (jwtTokenUtil.validateToken(jwtToken, utente)) {
                 UsernamePasswordAuthenticationToken usernamePasswordAuthenticationToken = 
-                new UsernamePasswordAuthenticationToken(jwtUser,null, jwtUser.getAuthorities());           
+                new UsernamePasswordAuthenticationToken(utente,null, utente.getAuthorities());           
 				usernamePasswordAuthenticationToken.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));						
 				SecurityContextHolder.getContext().setAuthentication(usernamePasswordAuthenticationToken);
 			}

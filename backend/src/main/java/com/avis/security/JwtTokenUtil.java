@@ -2,10 +2,12 @@ package com.avis.security;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
-import java.util.function.Function;
-import com.avis.dto.JwtUser;
+import java.util.stream.Collectors;
+import com.avis.models.Utente;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.stereotype.Component;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
@@ -21,7 +23,7 @@ public class JwtTokenUtil implements Serializable {
 	private int JWT_TOKEN_VALIDITY;
 
 	public String getEmailFromToken(String token) {
-		return getClaimFromToken(token, Claims::getSubject);
+		return getAllClaimsFromToken(token).getSubject();
 	}
 
 	public Long getIdFromToken(String token) {
@@ -29,19 +31,20 @@ public class JwtTokenUtil implements Serializable {
 		return Long.valueOf((Integer)claims.get("id"));
 	}
 
-	public String getAuthoritiesFromToken(String token) {
+	public List<SimpleGrantedAuthority>  getAuthoritiesFromToken(String token) {
 		final Claims claims = getAllClaimsFromToken(token);
-		return (String)claims.get("roles");
+		List<SimpleGrantedAuthority> authorities = null;
+		if (claims.get("roles") != null) {
+			authorities = ((List<?>) claims.get("roles")).stream()
+			.map(role-> new SimpleGrantedAuthority((String) role)).collect(Collectors.toList());
+		}
+		return authorities;
 	}
 
 	public Date getExpirationDateFromToken(String token) {
-		return getClaimFromToken(token, Claims::getExpiration);
+		return getAllClaimsFromToken(token).getExpiration();
 	}
 
-	public <T> T getClaimFromToken(String token, Function<Claims, T> claimsResolver) {
-		final Claims claims = getAllClaimsFromToken(token);
-		return claimsResolver.apply(claims);
-	}
 	private Claims getAllClaimsFromToken(String token) {
 		return Jwts.parser().setSigningKey(secret).parseClaimsJws(token).getBody();
 	}
@@ -51,11 +54,14 @@ public class JwtTokenUtil implements Serializable {
 		return expiration.before(new Date());
 	}
 
-	public String generateToken(JwtUser userDetails) {
+	public String generateToken(Utente utente) {
 		Map<String, Object> claims = new HashMap<>();
-		claims.put("id",userDetails.getID());
-		claims.put("roles",userDetails.getRuolo());		
-		return doGenerateToken(claims, userDetails.getUsername());
+		claims.put("id",utente.getId());
+		claims.put("sub", utente.getEmail());
+		List<String> auth = 
+		utente.getAuthorities().stream().map(role-> role.getAuthority()).collect(Collectors.toList());
+        claims.put("roles", auth); 
+		return doGenerateToken(claims);
 	}
 
 	//while creating the token -
@@ -63,48 +69,32 @@ public class JwtTokenUtil implements Serializable {
 	//2. Sign the JWT using the HS512 algorithm and secret key.
 	//3. According to JWS Compact Serialization(https://tools.ietf.org/html/draft-ietf-jose-json-web-signature-41#section-3.1)
 	//   compaction of the JWT to a URL-safe string 
-	private String doGenerateToken(Map<String, Object> claims, String email) {
-		return Jwts.builder().setClaims(claims).setSubject(email)
+	private String doGenerateToken(Map<String, Object> claims) {
+		return Jwts.builder().setClaims(claims)
 				.setIssuedAt(new Date(System.currentTimeMillis()))
 				.setExpiration(new Date(System.currentTimeMillis() + JWT_TOKEN_VALIDITY * 1000))
 				.signWith(SignatureAlgorithm.HS512, secret).compact();
 	}
 
 	
-	public Boolean validateToken(String token, JwtUser userDetails) {
+	public Boolean validateToken(String token, Utente userDetails) {
 		final String email = getEmailFromToken(token);
 		return (email.equals(userDetails.getEmail()) && !isTokenExpired(token));
 	}
 
 
-	public JwtUser getUserDetails(String token) {
+	public Utente getUserDetails(String token) {
         if(token == null){
             return null;
         }
         try {
-            return new JwtUser(
-                    getIdFromToken(token),
-					getEmailFromToken(token), "",
-					getAuthoritiesFromToken(token)					               
-            );
+            Utente u = new Utente(
+				getEmailFromToken(token),"",
+				"",getAuthoritiesFromToken(token));				               
+			u.setId(getIdFromToken(token));			
+			return u;
         } catch (Exception e) {
             return null;
         }
-
 	}
-
-
-	//private Claims getClaimsFromToken(String token) {
-    //    Claims claims;
-    //    try {
-    //        claims = Jwts.parser()
-    //                .setSigningKey(secret)
-    //                .parseClaimsJws(token)
-    //                .getBody();
-    //    } catch (Exception e) {
-    //        claims = null;
-    //    }
-    //    return claims;
-    //}
-
 }

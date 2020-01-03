@@ -24,13 +24,13 @@ public class DateController {
     private String tokenHeader;
 
     @PostMapping("/handlerDate/insert")
-    public boolean insertDate(@RequestBody DateDto dateLibere, HttpServletRequest req) {
-        Long idSede = jwtTokenUtil.getIdFromToken(req.getHeader(tokenHeader));
-        return prenotazioniService.save(dateLibere, idSede);
+    public boolean inserisciDate(@RequestBody DateDto dateLibere, HttpServletRequest req) {
+        Long idSede = jwtTokenUtil.getIdFromToken(req.getHeader(tokenHeader));     
+        return prenotazioniService.save(dateLibere,idSede);
     }
 
     @DeleteMapping("/handlerDate/remove")
-    public boolean deleteDate(@RequestBody long prenotazione) {
+    public boolean DeleteDate(@RequestBody long prenotazione) {
         return prenotazioniService.delete(prenotazione);
     }
 

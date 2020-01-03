@@ -28,9 +28,7 @@ public class JwtSecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Autowired
 	public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
-		// configure AuthenticationManager so that it knows from where to load
-		// user for matching credentials
-		// Use BCryptPasswordEncoder
+		// configure AuthenticationManager
 		auth.userDetailsService(authService).passwordEncoder(passwordEncoder());
 	}
 
@@ -52,9 +50,9 @@ public class JwtSecurityConfig extends WebSecurityConfigurerAdapter {
 				// dont authenticate this particular request
 				.authorizeRequests().antMatchers("/public/**").permitAll().and()
 				//authenticate this request
-				.authorizeRequests().antMatchers("/prenotazione/**").hasAuthority("donatore").and()
-				.authorizeRequests().antMatchers("/handlerDate/**").hasAuthority("sedeAvis").and()
-				.authorizeRequests().antMatchers("/requestEmerg/**").hasAuthority("centroTrasfusioni").and()
+				.authorizeRequests().antMatchers("/prenotazione/**").hasAuthority("donare").and()
+				.authorizeRequests().antMatchers("/handlerDate/**").hasAuthority("handlerDate").and()
+				.authorizeRequests().antMatchers("/requestEmerg/**").hasAuthority("requestEmerg").and()
 				.authorizeRequests().antMatchers("/admin/**").hasAuthority("admin")
 				// questo si potrebbe togliere
 				.anyRequest().authenticated().and().

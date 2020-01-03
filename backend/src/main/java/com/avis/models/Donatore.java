@@ -1,5 +1,6 @@
 package com.avis.models;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -11,10 +12,16 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.PrimaryKeyJoinColumn;
 
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+
 @Entity
 @PrimaryKeyJoinColumn(name = "id")
 public class Donatore extends Utente {
 
+    /**
+     *
+     */
+    private static final long serialVersionUID = 1L;
     @Column
     private String nome, cognome;
     @Column
@@ -28,8 +35,8 @@ public class Donatore extends Utente {
     public Donatore() {
     }
 
-    public Donatore(String email, String pw, String ruolo) {
-        super(email, pw, ruolo);
+    public Donatore(String email, String pw, String ruolo,ArrayList<SimpleGrantedAuthority> authorities) {
+        super(email, pw, ruolo ,authorities);
         this.abilitazioneDonazione = 0;
     }
 
