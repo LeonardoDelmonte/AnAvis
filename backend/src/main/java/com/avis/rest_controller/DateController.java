@@ -6,6 +6,8 @@ import com.avis.security.JwtTokenUtil;
 import com.avis.services.PrenotazioniService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -24,14 +26,21 @@ public class DateController {
     private String tokenHeader;
 
     @PostMapping("/handlerDate/insert")
-    public boolean inserisciDate(@RequestBody DateDto dateLibere, HttpServletRequest req) {
+    public ResponseEntity<String> inserisciDate(@RequestBody DateDto dateLibere, HttpServletRequest req) {
         Long idSede = jwtTokenUtil.getIdFromToken(req.getHeader(tokenHeader));     
-        return prenotazioniService.save(dateLibere,idSede);
+        if(!prenotazioniService.save(dateLibere,idSede)){
+            return new ResponseEntity<String>("Data non inserita", HttpStatus.BAD_REQUEST);
+        }
+        return new ResponseEntity<String>("Data inserita correttamente", HttpStatus.OK);
     }
 
     @DeleteMapping("/handlerDate/remove")
-    public boolean DeleteDate(@RequestBody long prenotazione) {
-        return prenotazioniService.delete(prenotazione);
+    public ResponseEntity<String> deleteDate(@RequestBody long prenotazione) {
+        if(!prenotazioniService.delete(prenotazione)){
+            return new ResponseEntity<String>("Data non cancellata", HttpStatus.BAD_REQUEST);
+        }
+        return new ResponseEntity<String>("Data rimossa correttamente", HttpStatus.OK);
     }
+
 
 }

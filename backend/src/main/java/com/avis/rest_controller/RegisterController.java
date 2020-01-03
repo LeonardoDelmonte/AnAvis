@@ -8,6 +8,8 @@ import com.avis.models.Utente;
 import com.avis.services.AuthenticationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -34,10 +36,13 @@ public class RegisterController {
     
     
     @RequestMapping(value = "public/register", method = RequestMethod.POST)
-    public boolean register(@RequestBody Utente utente) {
+    public ResponseEntity<String> register(@RequestBody Utente utente) {
         //la pw la devo ricevere già criptata dal frontend
         utente.setPw(bcryptEncoder.encode(utente.getPassword()));
-        return authService.save(createUtente(utente));    
+        if(!authService.save(createUtente(utente))){
+            return new ResponseEntity<String>("Utente non registrato", HttpStatus.BAD_REQUEST);
+        }
+        return new ResponseEntity<String>("Utente registrato correttamente", HttpStatus.OK);    
     }
 
     private Utente createUtente(Utente utente){

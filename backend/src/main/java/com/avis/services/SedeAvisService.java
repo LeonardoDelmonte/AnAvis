@@ -31,7 +31,7 @@ public class SedeAvisService {
         string = new HashSet<>();
         Optional<List<SedeAvis>> listasedi = sedeAvisRepository.findByRegione(regione);
         if (!listasedi.isPresent()){
-            return null;
+            return string;
         }
         listasedi.get().forEach(e->string.add(e.getProvincia()));
         /* List<SedeAvis> list = new ArrayList<SedeAvis>();
@@ -45,7 +45,7 @@ public class SedeAvisService {
         string = new HashSet<>();
         Optional<List<SedeAvis>> listasedi = sedeAvisRepository.findByProvincia(provincia);
         if (!listasedi.isPresent()){
-            return null;
+            return string;
         }
         listasedi.get().forEach(e->string.add(e.getComune()));
         /* List<String> string = new ArrayList<String>();

@@ -10,8 +10,6 @@ import com.avis.repositories.DonatoreRepository;
 import com.avis.repositories.SedeAvisRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.authentication.BadCredentialsException;
-import org.springframework.security.authentication.DisabledException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -33,7 +31,9 @@ public class AuthenticationService implements UserDetailsService{
     private AuthenticationManager authenticationManager;
   
     public boolean save(Utente temp) {
-        // null pointer exception
+        if(temp == null){
+            return false;
+        }
         if (temp instanceof Donatore) {
             donatoreRepository.save((Donatore) temp);
             return true;
@@ -49,13 +49,8 @@ public class AuthenticationService implements UserDetailsService{
 
     
     public void authenticate(String email, String password) throws Exception {
-		try {
-			authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(email, password));
-		} catch (DisabledException e) {
-			throw new Exception("USER_DISABLED", e);
-		} catch (BadCredentialsException e) {
-			throw new Exception("INVALID_CREDENTIALS", e);
-		}
+
+		authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(email, password));
     }
 
     @Override

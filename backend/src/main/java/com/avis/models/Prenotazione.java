@@ -10,21 +10,24 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.validation.constraints.NotNull;
 
 @Entity
 public class Prenotazione {
 
     @Column(name = "id")
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long idPrenotazione;
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "idDonatore", referencedColumnName = "id")
     private Donatore idDonatore;
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "idSedeAvis", referencedColumnName = "id")
+    @NotNull
     private SedeAvis idSedeAvis;
     @Column
+    @NotNull
     private Timestamp date;
 
     public Prenotazione() {

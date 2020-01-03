@@ -31,8 +31,11 @@ public class PrenotazioniService{
 
     public boolean prenotaData(Long idDataLibera, Long idDonatore){
         Optional<Donatore> donatore = donatoreRepository.findById(idDonatore);
+        if (!donatore.isPresent()){
+            return false;
+        }
         Optional<Prenotazione> prenotazione = prenotazioniRepository.findById(idDataLibera);
-        if(prenotazione.get().getIdDonatore()!=null){
+        if(prenotazione.get().getIdDonatore()!=null || !prenotazione.isPresent()){
             return false;
         }
         prenotazione.get().setIdDonatore(donatore.get());
@@ -42,16 +45,23 @@ public class PrenotazioniService{
 
     public boolean save(DateDto dateLibere,Long idSede) {
         Timestamp data1 = dateLibere.getDataIniziale();
-        SedeAvis sedeAvis = sedeAvisRepository.findById(idSede).get();
+        Optional<SedeAvis> sedeAvis = sedeAvisRepository.findById(idSede);
+        if (!sedeAvis.isPresent()){
+            return false;
+        }
         do {         
-            prenotazioniRepository.save(new Prenotazione(sedeAvis, data1));
+            prenotazioniRepository.save(new Prenotazione(sedeAvis.get(), data1));
             data1 = new Timestamp(data1.getTime() + TimeUnit.MINUTES.toMillis(15));
         } while (data1.compareTo(dateLibere.getDataFinale()) != 0);
         return true;
     }
 
-    public boolean delete(long id) {       
-        prenotazioniRepository.delete(prenotazioniRepository.findById(id).get());
+    public boolean delete(long id) {
+        Optional<Prenotazione> prenotazione = prenotazioniRepository.findById(id);
+        if (!prenotazione.isPresent()){
+            return false;
+        }  
+        prenotazioniRepository.delete(prenotazione.get());
 		return true;
 	}
 

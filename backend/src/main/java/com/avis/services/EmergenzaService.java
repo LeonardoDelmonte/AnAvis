@@ -1,5 +1,8 @@
 package com.avis.services;
 
+import java.util.Optional;
+
+import com.avis.models.CentroTrasfusione;
 import com.avis.models.Emergenza;
 import com.avis.repositories.CentroTrasfusioneRepository;
 import com.avis.repositories.EmergenzaRepository;
@@ -16,12 +19,20 @@ public class EmergenzaService {
     private CentroTrasfusioneRepository centroRepository;
 
     public boolean delete(long idEmergenza) {
-        emergenzaRepository.delete(emergenzaRepository.findById(idEmergenza).get());
+        Optional<Emergenza> emergenza = emergenzaRepository.findById(idEmergenza);
+        if (!emergenza.isPresent()){
+            return false;
+        }
+        emergenzaRepository.delete(emergenza.get());
         return true;
     }
 
     public boolean save(String gruppo, Long idCentro) {
-        emergenzaRepository.save(new Emergenza(centroRepository.findById(idCentro).get(), gruppo));
+        Optional<CentroTrasfusione> centro = centroRepository.findById(idCentro);
+        if (!centro.isPresent()){
+            return false;
+        }
+        emergenzaRepository.save(new Emergenza(centro.get(), gruppo));
         return true;
     }
 

@@ -7,6 +7,8 @@ import com.avis.services.EmergenzaService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -25,14 +27,20 @@ public class EmergenzaController {
     private String tokenHeader;
 
     @PostMapping("/requestEmerg/insert")
-    public boolean insertEmergenza(@RequestBody String gruppo, HttpServletRequest req) {
+    public ResponseEntity<String> insertEmergenza(@RequestBody String gruppo, HttpServletRequest req) {
         Long idCentro = jwtTokenUtil.getIdFromToken(req.getHeader(tokenHeader));
-        return emergenzaService.save(gruppo, idCentro);
+        if (!emergenzaService.save(gruppo, idCentro)) {
+            return new ResponseEntity<String>("Emergenza non inviata", HttpStatus.BAD_REQUEST);
+        }
+        return new ResponseEntity<String>("Emergenza inviata correttamente", HttpStatus.OK);
     }
 
     @DeleteMapping("/requestEmerg/remove")
-    public boolean deleteEmergenza(@RequestBody long emergenza) {
-        return emergenzaService.delete(emergenza);
+    public ResponseEntity<String> deleteEmergenza(@RequestBody long emergenza) {
+        if (!emergenzaService.delete(emergenza)) {
+            new ResponseEntity<String>("Emergenza non cancellata", HttpStatus.BAD_REQUEST);
+        }
+        return new ResponseEntity<String>("Emergenza cancellata", HttpStatus.OK);
     }
 
 }

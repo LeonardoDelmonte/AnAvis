@@ -10,6 +10,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
+import javax.validation.constraints.NotNull;
+
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
@@ -20,11 +22,16 @@ public class Utente implements UserDetails {
     private static final long serialVersionUID = 1L;
     @Column
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
+    @Column(unique = true)
+    @NotNull
+    private String email;
     @Column
-    private String email, pw, ruolo;
+    @NotNull
+    private String pw, ruolo;
     @Column
+    @NotNull
     private ArrayList<SimpleGrantedAuthority> authorities; 
 
     public Utente() {

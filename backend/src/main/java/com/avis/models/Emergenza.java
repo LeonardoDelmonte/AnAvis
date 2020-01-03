@@ -11,18 +11,21 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.validation.constraints.NotNull;
 
 @Entity
 public class Emergenza {
 
     @Column(name = "id")
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "idCentroTrasfusione", referencedColumnName = "id")
+    @NotNull
     private CentroTrasfusione idCentroTrasfusione;
     @Column
+    @NotNull
     private String gruppoSanguigno;
     @Column
     private Timestamp dataEmergenza;
