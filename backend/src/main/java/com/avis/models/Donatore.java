@@ -38,7 +38,9 @@ public class Donatore extends Utente {
     public Donatore(String email, String pw, String ruolo,ArrayList<SimpleGrantedAuthority> authorities) {
         super(email, pw, ruolo ,authorities);
         this.abilitazioneDonazione = 0;
+        this.modulo = new Modulo();
     }
+    
 
     public String getNome() {
         return nome;
@@ -62,6 +64,22 @@ public class Donatore extends Utente {
 
     public void setAbilitazioneDonazione(byte abilitazioneDonazione) {
         this.abilitazioneDonazione = abilitazioneDonazione;
+    }
+
+    public Modulo getModulo() {
+        return modulo;
+    }
+
+    public void setModulo(Modulo modulo) {
+        this.modulo = modulo;
+    }
+
+    public List<Prenotazione> getPrenotazione() {
+        return prenotazione;
+    }
+
+    public void setPrenotazione(List<Prenotazione> prenotazione) {
+        this.prenotazione = prenotazione;
     }
 
 }

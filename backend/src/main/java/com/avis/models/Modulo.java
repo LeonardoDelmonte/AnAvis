@@ -13,7 +13,7 @@ public class Modulo {
     @Column
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Long id;
     @Column
     private String gruppoSanguigno, fumatore;
     @OneToOne(mappedBy = "modulo")
@@ -42,6 +42,22 @@ public class Modulo {
 
     public void setFumatore(String fumatore) {
         this.fumatore = fumatore;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public Donatore getDonatore() {
+        return donatore;
+    }
+
+    public void setDonatore(Donatore donatore) {
+        this.donatore = donatore;
     }
 
 }
