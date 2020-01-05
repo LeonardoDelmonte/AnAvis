@@ -2,17 +2,14 @@ package com.avis.models;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
 
 @Entity
 public class Modulo {
 
-    @Column
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column
+    @Id    
     private Long id;
     @Column
     private String gruppoSanguigno, fumatore;
@@ -23,7 +20,7 @@ public class Modulo {
 
     }
 
-    public Modulo(String gruppoSanguigno, String fumatore) {
+    public Modulo(String gruppoSanguigno, String fumatore) {      
         this.gruppoSanguigno = gruppoSanguigno;
         this.fumatore = fumatore;
     }

@@ -51,6 +51,7 @@ public class JwtSecurityConfig extends WebSecurityConfigurerAdapter {
 				.authorizeRequests().antMatchers("/public/**").permitAll().and()
 				//authenticate this request
 				.authorizeRequests().antMatchers("/prenotazione/**").hasAuthority("donare").and()
+				.authorizeRequests().antMatchers("/profilo/**").hasAuthority("profilo").and()
 				.authorizeRequests().antMatchers("/handlerDate/**").hasAuthority("handlerDate").and()
 				.authorizeRequests().antMatchers("/requestEmerg/**").hasAuthority("requestEmerg").and()
 				.authorizeRequests().antMatchers("/admin/**").hasAuthority("admin")

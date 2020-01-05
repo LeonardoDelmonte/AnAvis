@@ -38,7 +38,6 @@ public class Donatore extends Utente {
     public Donatore(String email, String pw, String ruolo,ArrayList<SimpleGrantedAuthority> authorities) {
         super(email, pw, ruolo ,authorities);
         this.abilitazioneDonazione = 0;
-        this.modulo = new Modulo();
     }
     
 

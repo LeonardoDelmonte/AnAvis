@@ -26,7 +26,7 @@ public class ProfiloController{
     @Value("${jwt.header}")
 	private String jwtHeader;
 
-    @PutMapping("/modificaModulo")
+    @PutMapping("/donatore/profilo/modificaModulo")
     public ResponseEntity<String> modificaModulo(@RequestBody Modulo modulo, HttpServletRequest req){
         Long idDonatore = jwtTokenUtil.getIdFromToken(req.getHeader(jwtHeader));
         if(!profiloService.modificaModulo(modulo,idDonatore)){

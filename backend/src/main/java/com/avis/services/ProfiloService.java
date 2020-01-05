@@ -18,16 +18,22 @@ public class ProfiloService {
     @Autowired
     private DonatoreRepository donatoreRepository;
 
-    // ho fatto la prova con riccà, il set modulo direttamente non si può fare,tocca dare 100 set :(
-	public boolean modificaModulo(Modulo modulo, Long idDonatore) {
+	public boolean modificaModulo(Modulo newModulo, Long idDonatore) {
         Optional<Donatore> donatore = donatoreRepository.findById(idDonatore);
-        if (!donatore.isPresent()){
+        Optional<Modulo> oldModulo = moduloRepository.findById(idDonatore);
+        if(!donatore.isPresent()){
             return false;
         }
-        donatore.get().getModulo().setFumatore(modulo.getFumatore());
-        donatore.get().getModulo().setGruppoSanguigno(modulo.getGruppoSanguigno());
-        moduloRepository.save(donatore.get().getModulo());
-		return true;
-	}
-
+        if(!oldModulo.isPresent()){
+            newModulo.setId(idDonatore);
+            moduloRepository.save(newModulo);
+            donatore.get().setModulo(newModulo);
+            donatoreRepository.save(donatore.get());
+            return true;
+        }else{
+            newModulo.setId(idDonatore);
+            moduloRepository.save(newModulo);
+            return true;
+        }
+    }
 }
