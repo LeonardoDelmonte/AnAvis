@@ -1,6 +1,10 @@
 package com.avis.rest_controller;
 
 import com.avis.services.AuthenticationService;
+
+import java.util.HashMap;
+import java.util.Map;
+
 import javax.servlet.http.HttpServletResponse;
 import com.avis.security.JwtTokenUtil;
 import com.avis.dto.JwtRequest;
@@ -28,21 +32,53 @@ public class LoginController {
     @Autowired
     private AuthenticationService authService;
 
+    // @RequestMapping(value = "public/login", method = RequestMethod.POST)
+    // public ResponseEntity<String> createAuthenticationToken(@RequestBody
+    // JwtRequest authenticationRequest, HttpServletResponse response)
+    // throws Exception {
+    // // qui la pw è in chiaro...non credo vada bene
+    // try {
+    // authService.authenticate(authenticationRequest.getEmail(),
+    // authenticationRequest.getPw());
+    // } catch (DisabledException e) {
+    // return new ResponseEntity<>("Login fallito, utente disabilitato",
+    // HttpStatus.UNAUTHORIZED);
+    // } catch (BadCredentialsException e) {
+    // return new ResponseEntity<>("Login fallito, credenziali errate",
+    // HttpStatus.UNAUTHORIZED);
+    // }
+    // Utente utente = (Utente)
+    // authService.loadUserByUsername(authenticationRequest.getEmail());
+    // final String token = jwtTokenUtil.generateToken(utente);
+    // response.setHeader(tokenHeader, token);
+    // return new ResponseEntity<>("Login effettuato con successo", HttpStatus.OK);
+
+    // }
+
     @RequestMapping(value = "public/login", method = RequestMethod.POST)
-    public ResponseEntity<String> createAuthenticationToken(@RequestBody JwtRequest authenticationRequest, HttpServletResponse response)
-            throws Exception {
+    public ResponseEntity<Map<Object, Object>> createAuthenticationToken(@RequestBody JwtRequest authenticationRequest,
+            HttpServletResponse response) throws Exception {
         // qui la pw è in chiaro...non credo vada bene
         try {
             authService.authenticate(authenticationRequest.getEmail(), authenticationRequest.getPw());
+
+            Utente utente = (Utente) authService.loadUserByUsername(authenticationRequest.getEmail());
+            final String token = jwtTokenUtil.generateToken(utente);
+
+            response.setHeader(tokenHeader, token);
+
+            Map<Object, Object> model = new HashMap<>();
+            // model.put("username", username);
+            model.put("token", token);
+            // model.put("role", role.getName());
+
+            return ResponseEntity.ok(model);
+
         } catch (DisabledException e) {
-            return new ResponseEntity<>("Login fallito, utente disabilitato", HttpStatus.UNAUTHORIZED);
+            throw new BadCredentialsException("Login Fallito, utente disabilizzato");
         } catch (BadCredentialsException e) {
-            return new ResponseEntity<>("Login fallito, credenziali errate", HttpStatus.UNAUTHORIZED);
+            throw new BadCredentialsException("Invalid username/password supplied");
         }
-        Utente utente = (Utente) authService.loadUserByUsername(authenticationRequest.getEmail());
-        final String token = jwtTokenUtil.generateToken(utente);
-        response.setHeader(tokenHeader, token);
-        return new ResponseEntity<>("Login effettuato con successo", HttpStatus.OK);
 
     }
 }
