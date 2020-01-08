@@ -12,6 +12,8 @@ import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.validation.constraints.NotNull;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
@@ -29,19 +31,17 @@ public class Utente implements UserDetails {
     private String email;
     @Column
     @NotNull
-    private String pw, ruolo;
-    @Column
-    @NotNull
-    private ArrayList<SimpleGrantedAuthority> authorities; 
+    private String password, ruolo;
+
+    // @Value("#{'${list.of.auth.for.Donatore}'.split(',')}")
 
     public Utente() {
     }
 
-    public Utente(String email, String pw, String ruolo,List<SimpleGrantedAuthority> authorities) {
+    public Utente(String email, String pw, String ruolo) {
         this.email = email;
-        this.pw = pw;
+        this.password = pw;
         this.ruolo = ruolo;
-        this.authorities = (ArrayList<SimpleGrantedAuthority>) authorities;
     }
 
     public long getId() {
@@ -52,7 +52,7 @@ public class Utente implements UserDetails {
         this.id = id;
     }
 
-    public String getEmail(){
+    public String getEmail() {
         return email;
     }
 
@@ -61,7 +61,7 @@ public class Utente implements UserDetails {
     }
 
     public void setPw(String pw) {
-        this.pw = pw;
+        this.password = pw;
     }
 
     public String getRuolo() {
@@ -73,36 +73,57 @@ public class Utente implements UserDetails {
     }
 
     @Override
+    @JsonIgnore
     public List<SimpleGrantedAuthority> getAuthorities() {
-        return authorities;
+        ArrayList<SimpleGrantedAuthority> authoritiesDonatore = new ArrayList<>();
+
+        authoritiesDonatore.add(new SimpleGrantedAuthority("profilo"));
+        switch (ruolo) {
+        case "donatore":
+            authoritiesDonatore.add(new SimpleGrantedAuthority("donare"));
+            return authoritiesDonatore;
+        case "sedeAvis":
+            authoritiesDonatore.add(new SimpleGrantedAuthority("donare"));
+            authoritiesDonatore.add(new SimpleGrantedAuthority("handlerDate"));
+            return authoritiesDonatore;
+        case "centroTrasfusioni":
+            authoritiesDonatore.add(new SimpleGrantedAuthority("requestEmerg"));
+            return authoritiesDonatore;
+        }
+        return authoritiesDonatore;
     }
 
     @Override
-    public String getPassword() {      
-        return pw;
+    public String getPassword() {
+        return password;
     }
 
     @Override
+    @JsonIgnore
     public String getUsername() {
         return "";
     }
 
     @Override
-    public boolean isAccountNonExpired() {        
+    @JsonIgnore
+    public boolean isAccountNonExpired() {
         return true;
     }
 
     @Override
+    @JsonIgnore
     public boolean isAccountNonLocked() {
         return true;
     }
 
     @Override
+    @JsonIgnore
     public boolean isCredentialsNonExpired() {
         return true;
     }
 
     @Override
+    @JsonIgnore
     public boolean isEnabled() {
         return true;
     }

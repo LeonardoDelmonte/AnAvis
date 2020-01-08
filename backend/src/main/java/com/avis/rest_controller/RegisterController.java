@@ -27,13 +27,13 @@ public class RegisterController {
     @Autowired
     private PasswordEncoder bcryptEncoder;
     
-    @Value("#{'${list.of.auth.for.Donatore}'.split(',')}") 
+    /* @Value("#{'${list.of.auth.for.Donatore}'.split(',')}") 
     private ArrayList<SimpleGrantedAuthority> authoritiesDonatore;
     @Value("#{'${list.of.auth.for.SedeAvis}'.split(',')}") 
     private ArrayList<SimpleGrantedAuthority> authoritiesSedeAvis; 
     @Value("#{'${list.of.auth.for.CentroTrasf}'.split(',')}") 
     private ArrayList<SimpleGrantedAuthority> authoritiesCentroTrasf;
-    
+     */
     
     @RequestMapping(value = "public/register", method = RequestMethod.POST)
     public ResponseEntity<String> register(@RequestBody Utente utente) {
@@ -49,11 +49,11 @@ public class RegisterController {
         //ruolo required
         switch(utente.getRuolo()){
             case "donatore": 
-                return new Donatore(utente.getEmail(), utente.getPassword(), utente.getRuolo(),authoritiesDonatore);
+                return new Donatore(utente.getEmail(), utente.getPassword(), utente.getRuolo());
             case "sedeAvis":                             
-                return new SedeAvis(utente.getEmail(), utente.getPassword(), utente.getRuolo(),authoritiesSedeAvis);
+                return new SedeAvis(utente.getEmail(), utente.getPassword(), utente.getRuolo());
             case "centroTrasfusioni":
-                return new CentroTrasfusione(utente.getEmail(), utente.getPassword(), utente.getRuolo(),authoritiesCentroTrasf);
+                return new CentroTrasfusione(utente.getEmail(), utente.getPassword(), utente.getRuolo());
             default : return null;
         }
     }

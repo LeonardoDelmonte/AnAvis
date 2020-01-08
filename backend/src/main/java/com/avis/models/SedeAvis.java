@@ -1,6 +1,5 @@
 package com.avis.models;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -9,7 +8,7 @@ import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
 import javax.persistence.PrimaryKeyJoinColumn;
 
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @PrimaryKeyJoinColumn(name = "id")
@@ -22,13 +21,14 @@ public class SedeAvis extends Utente {
     @Column
     private String regione, provincia, comune, indirizzo, denominazione;
     @OneToMany(mappedBy = "idSedeAvis", fetch = FetchType.LAZY)
+    @JsonIgnore
     private List<Prenotazione> prenotazioni;
 
     public SedeAvis() {
     }
 
-    public SedeAvis(String email, String pw, String ruolo,ArrayList<SimpleGrantedAuthority> authorities) {
-        super(email, pw, ruolo,authorities);
+    public SedeAvis(String email, String pw, String ruolo) {
+        super(email, pw, ruolo);
     }
 
     public String getRegione() {

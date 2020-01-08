@@ -6,6 +6,8 @@ public class DateDto {
     private Timestamp dataIniziale;
     private Timestamp dataFinale;
 
+    
+
     public Timestamp getDataIniziale() {
         return dataIniziale;
     }
@@ -20,5 +22,10 @@ public class DateDto {
 
     public void setDataFinale(Timestamp dataFinale) {
         this.dataFinale = dataFinale;
-    }    
+    }
+
+    public DateDto(Timestamp dataIniziale, Timestamp dataFinale) {
+        this.dataIniziale = dataIniziale;
+        this.dataFinale = dataFinale;
+    }
 }

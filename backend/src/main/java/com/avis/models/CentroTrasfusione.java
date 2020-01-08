@@ -1,6 +1,5 @@
 package com.avis.models;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -8,8 +7,6 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
 import javax.persistence.PrimaryKeyJoinColumn;
-
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
 
 @Entity
 @PrimaryKeyJoinColumn(name = "id")
@@ -27,8 +24,8 @@ public class CentroTrasfusione extends Utente {
     public CentroTrasfusione() {
     }
 
-    public CentroTrasfusione(String email, String pw, String ruolo,ArrayList<SimpleGrantedAuthority> authorities) {
-        super(email, pw, ruolo, authorities);
+    public CentroTrasfusione(String email, String pw, String ruolo) {
+        super(email, pw, ruolo);
     }
 
     public String getRegione() {

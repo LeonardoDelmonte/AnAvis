@@ -1,6 +1,5 @@
 package com.avis.models;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -12,7 +11,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.PrimaryKeyJoinColumn;
 
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @PrimaryKeyJoinColumn(name = "id")
@@ -30,13 +29,14 @@ public class Donatore extends Utente {
     @JoinColumn(name = "idModulo", referencedColumnName = "id")
     private Modulo modulo;
     @OneToMany(mappedBy = "idDonatore", fetch = FetchType.LAZY)
+    @JsonIgnore
     private List<Prenotazione> prenotazione;
 
     public Donatore() {
     }
 
-    public Donatore(String email, String pw, String ruolo,ArrayList<SimpleGrantedAuthority> authorities) {
-        super(email, pw, ruolo ,authorities);
+    public Donatore(String email, String pw, String ruolo) {
+        super(email, pw, ruolo);
         this.abilitazioneDonazione = 0;
     }
     

@@ -7,9 +7,12 @@ import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
 
 import com.avis.dto.DateDto;
+import com.avis.dto.PrenotazioneSedeDto;
 import com.avis.models.Donatore;
 import com.avis.models.Prenotazione;
 import com.avis.models.SedeAvis;
+import com.avis.models.Utente;
+import com.avis.repositories.AuthenticationRepository;
 import com.avis.repositories.DonatoreRepository;
 import com.avis.repositories.PrenotazioniRepository;
 import com.avis.repositories.SedeAvisRepository;
@@ -29,6 +32,14 @@ public class PrenotazioniService{
     @Autowired
     private DonatoreRepository donatoreRepository;
 
+    @Autowired
+    private AuthenticationRepository utenteRepository;
+
+    public boolean prenotaData(PrenotazioneSedeDto prenotazione) {
+        Utente utente = utenteRepository.findByEmail(prenotazione.getEmailDonatore());
+		return this.prenotaData(prenotazione.getIdDataLibera(), utente.getId());
+	}
+
     public boolean prenotaData(Long idDataLibera, Long idDonatore){
         Optional<Donatore> donatore = donatoreRepository.findById(idDonatore);
         if (!donatore.isPresent()){
@@ -44,6 +55,8 @@ public class PrenotazioniService{
     }
 
     public boolean save(DateDto dateLibere,Long idSede) {
+        /* System.out.println(dateLibere.getDataIniziale().getTime());
+        System.out.println(dateLibere.getDataFinale().getTime()); */
         Timestamp data1 = dateLibere.getDataIniziale();
         Optional<SedeAvis> sedeAvis = sedeAvisRepository.findById(idSede);
         if (!sedeAvis.isPresent()){
@@ -73,5 +86,5 @@ public class PrenotazioniService{
         }
         return dateLibere.get().stream().filter(e->e.getIdDonatore()==null).collect(Collectors.toList());
 	}
-    
+
 }

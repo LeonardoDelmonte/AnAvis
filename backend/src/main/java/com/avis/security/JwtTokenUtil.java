@@ -26,6 +26,10 @@ public class JwtTokenUtil implements Serializable {
 		return getAllClaimsFromToken(token).getSubject();
 	}
 
+	public String getRoleFromToken(String token) {
+		return getAllClaimsFromToken(token).getAudience();
+	}
+
 	public Long getIdFromToken(String token) {
 		final Claims claims = getAllClaimsFromToken(token);
 		return Long.valueOf((Integer)claims.get("id"));
@@ -58,9 +62,10 @@ public class JwtTokenUtil implements Serializable {
 		Map<String, Object> claims = new HashMap<>();
 		claims.put("id",utente.getId());
 		claims.put("sub", utente.getEmail());
-		List<String> auth = 
-		utente.getAuthorities().stream().map(role-> role.getAuthority()).collect(Collectors.toList());
-        claims.put("roles", auth); 
+		claims.put("aud", utente.getRuolo());
+		//List<String> auth = 
+		//utente.getAuthorities().stream().map(role-> role.getAuthority()).collect(Collectors.toList());
+        claims.put("roles", utente.getAuthorities()); 
 		return doGenerateToken(claims);
 	}
 
@@ -90,7 +95,7 @@ public class JwtTokenUtil implements Serializable {
         try {
             Utente u = new Utente(
 				getEmailFromToken(token),"",
-				"",getAuthoritiesFromToken(token));				               
+				getRoleFromToken(token));				               
 			u.setId(getIdFromToken(token));			
 			return u;
         } catch (Exception e) {

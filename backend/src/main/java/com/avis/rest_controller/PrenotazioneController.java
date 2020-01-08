@@ -4,6 +4,8 @@ import java.util.List;
 import java.util.Set;
 
 import javax.servlet.http.HttpServletRequest;
+
+import com.avis.dto.PrenotazioneSedeDto;
 import com.avis.models.Prenotazione;
 import com.avis.security.JwtTokenUtil;
 import com.avis.services.PrenotazioniService;
@@ -41,10 +43,18 @@ public class PrenotazioneController{
         return new ResponseEntity<List<Prenotazione>>(dateLibere, HttpStatus.OK);
     }
 
-    @PutMapping("/prenotazione")
+    @PutMapping("/prenotazione/donatore") // donatore
     public ResponseEntity<String> prenotaData(@RequestBody Long idDataLibera, HttpServletRequest req){
         Long idDonatore = jwtTokenUtil.getIdFromToken(req.getHeader(jwtHeader));
         if(!prenotazioniService.prenotaData(idDataLibera,idDonatore)){
+            return new ResponseEntity<String>("Prenotazione non effettuata", HttpStatus.NO_CONTENT);
+        }
+        return new ResponseEntity<String>("Prenotazione effettuata", HttpStatus.OK);
+    }
+
+    @PutMapping("/prenotazione/sede")  // sedeavis
+    public ResponseEntity<String> prenotaData(@RequestBody PrenotazioneSedeDto prenotazione, HttpServletRequest req){
+        if(!prenotazioniService.prenotaData(prenotazione)){
             return new ResponseEntity<String>("Prenotazione non effettuata", HttpStatus.NO_CONTENT);
         }
         return new ResponseEntity<String>("Prenotazione effettuata", HttpStatus.OK);
