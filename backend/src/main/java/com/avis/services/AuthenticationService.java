@@ -49,8 +49,7 @@ public class AuthenticationService implements UserDetailsService{
 
     
     public void authenticate(String email, String password) throws Exception {
-
-		authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(email, password));
+        authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(email, password));
     }
 
     @Override

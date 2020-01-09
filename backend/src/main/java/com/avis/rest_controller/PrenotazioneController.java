@@ -21,8 +21,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 
-@CrossOrigin(origins={"*"})
+
 @RestController
+@CrossOrigin(origins = {"*"})
 public class PrenotazioneController{
 
     @Autowired

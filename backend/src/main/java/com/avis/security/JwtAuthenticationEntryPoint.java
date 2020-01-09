@@ -1,4 +1,6 @@
 package com.avis.security;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.web.AuthenticationEntryPoint;
 import org.springframework.stereotype.Component;
@@ -12,11 +14,15 @@ public class JwtAuthenticationEntryPoint implements AuthenticationEntryPoint, Se
 
     private static final long serialVersionUID = -8970718410437077606L;
 
+    @Autowired
+    HeaderHandler headerHandler;
+
     @Override
     public void commence(HttpServletRequest request,
                          HttpServletResponse response,
                          AuthenticationException authException) throws IOException {
-        // Questo metodo e' invocato quando un utente tenta di accedere ad un endpoint non pubblico senza credenziali corrette
+                         // Questo metodo e' invocato quando un utente tenta di accedere ad un endpoint non pubblico senza credenziali corrette
+        headerHandler.process(request,response);
         response.sendError(HttpServletResponse.SC_UNAUTHORIZED, "Unauthorized");
     }
 }

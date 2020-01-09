@@ -1,4 +1,5 @@
 package com.avis.security;
+
 import java.io.IOException;
 import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
@@ -8,6 +9,7 @@ import com.avis.models.Utente;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Bean;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.authentication.WebAuthenticationDetailsSource;
@@ -22,9 +24,11 @@ public class JwtAuthenticationTokenFilter extends OncePerRequestFilter {
 	@Value("${jwt.header}")
 	private String jwtHeader;
 
+
 	@Override
 	protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain chain)
 			throws ServletException, IOException {
+
 
 		String jwtToken = request.getHeader(jwtHeader);
 		Utente utente = null;
