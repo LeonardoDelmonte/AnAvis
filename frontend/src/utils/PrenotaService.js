@@ -19,9 +19,17 @@ class PrenotaService{
     }
 
     getRegioni(){
-        return axios.post(API_URL+'/public/getRegioni',
-        {headers: {"Content-Type": "application/json"}
-        });       
+        var config = {
+            headers: {'Authorization': "bearer " + localStorage.getItem('Authorization')}
+        };
+        var bodyParameters = {
+        }
+
+        return axios.post(
+            API_URL+'/prenotazione/getRegioni',
+            bodyParameters,
+            config
+          )
     }
 
     getProvince(regione){

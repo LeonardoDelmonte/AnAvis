@@ -41,16 +41,12 @@ class Login extends Component {
             .then(
                 response => {
                     console.log(response);
-
-                    // export function doLogin(username, password) { 
-                    //     if (username && password) { 
-                    //         return function (dispatch) { 
-                    //             let url = 'http://localhost:8082/api/authentication?username=' + username + '&password=' + base64.encode(utf8.encode(password))          
-                    //             axios.post(url).then((response) => { localStorage.removeItem("token")                  
-                    //             localStorage.setItem("token", response.data.token); dispatch({ type: "LOGIN_SUCCESS", payload: response.data }) }).catch((err) => { 
-                    //                 dispatch({ type: "LOGIN_FAILED", payload: err }) }) } } return { type: "LOGIN_EMPTY", payload: { message: "Empty username or password.", } } }
+                    localStorage.removeItem('Authorization');
+                    localStorage.setItem('Authorization', response.data);
                 }
-            )
+            ).catch(err => {
+                console.log(err);
+            })
 
         event.preventDefault();
     }
