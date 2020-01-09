@@ -1,14 +1,8 @@
 package com.avis.models;
 
-import java.util.List;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.OneToMany;
 import javax.persistence.PrimaryKeyJoinColumn;
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @PrimaryKeyJoinColumn(name = "id")
@@ -20,9 +14,11 @@ public class SedeAvis extends Utente {
     private static final long serialVersionUID = 1L;
     @Column
     private String regione, provincia, comune, indirizzo, denominazione;
-    @OneToMany(mappedBy = "idSedeAvis", fetch = FetchType.LAZY)
-    @JsonIgnore
-    private List<Prenotazione> prenotazioni;
+    /*
+     * @OneToMany(mappedBy = "idSedeAvis", fetch = FetchType.LAZY)
+     * 
+     * @JsonIgnore private List<Prenotazione> prenotazioni;
+     */
 
     public SedeAvis() {
     }

@@ -1,17 +1,11 @@
 package com.avis.models;
 
-import java.util.List;
-
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
-import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.PrimaryKeyJoinColumn;
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @PrimaryKeyJoinColumn(name = "id")
@@ -28,9 +22,11 @@ public class Donatore extends Utente {
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "idModulo", referencedColumnName = "id")
     private Modulo modulo;
-    @OneToMany(mappedBy = "idDonatore", fetch = FetchType.LAZY)
-    @JsonIgnore
-    private List<Prenotazione> prenotazione;
+    /*
+     * @OneToMany(mappedBy = "idDonatore", fetch = FetchType.LAZY)
+     * 
+     * @JsonIgnore private List<Prenotazione> prenotazione;
+     */
 
     public Donatore() {
     }
@@ -39,7 +35,6 @@ public class Donatore extends Utente {
         super(email, pw, ruolo);
         this.abilitazioneDonazione = 0;
     }
-    
 
     public String getNome() {
         return nome;
@@ -73,12 +68,11 @@ public class Donatore extends Utente {
         this.modulo = modulo;
     }
 
-    public List<Prenotazione> getPrenotazione() {
-        return prenotazione;
-    }
-
-    public void setPrenotazione(List<Prenotazione> prenotazione) {
-        this.prenotazione = prenotazione;
-    }
+    /*
+     * public List<Prenotazione> getPrenotazione() { return prenotazione; }
+     * 
+     * public void setPrenotazione(List<Prenotazione> prenotazione) {
+     * this.prenotazione = prenotazione; }
+     */
 
 }

@@ -1,11 +1,7 @@
 package com.avis.models;
 
-import java.util.List;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.OneToMany;
 import javax.persistence.PrimaryKeyJoinColumn;
 
 @Entity
@@ -18,8 +14,8 @@ public class CentroTrasfusione extends Utente {
     private static final long serialVersionUID = 1L;
     @Column
     private String regione, provincia, comune, indirizzo, denominazione;
-    @OneToMany(mappedBy = "idCentroTrasfusione", fetch = FetchType.LAZY)
-    private List<Emergenza> emergenze;
+    /* @OneToMany(mappedBy = "idCentroTrasfusione", fetch = FetchType.LAZY)
+    private List<Emergenza> emergenze; */
 
     public CentroTrasfusione() {
     }
