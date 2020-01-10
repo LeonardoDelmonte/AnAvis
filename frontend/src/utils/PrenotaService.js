@@ -19,9 +19,14 @@ class PrenotaService {
         var config = {
             headers: { 'Authorization': localStorage.getItem('Authorization'), 'Content-Type': 'application/json' }
         };
+        //non sapevo dove metterla, veditela tu <3
+        var prenotazioneDto = {
+            'idDataLibera': idPrenotazione,
+            'emailDonatore': ""
+        }
         return axios.put(
             API_URL + '/prenotazione/donatore',
-            idPrenotazione,
+            prenotazioneDto,
             config
         );
     }

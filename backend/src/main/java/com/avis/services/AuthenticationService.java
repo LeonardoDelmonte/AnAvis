@@ -1,5 +1,6 @@
 package com.avis.services;
 
+import com.avis.dto.JwtRequest;
 import com.avis.models.CentroTrasfusione;
 import com.avis.models.Donatore;
 import com.avis.models.SedeAvis;
@@ -30,26 +31,28 @@ public class AuthenticationService implements UserDetailsService{
     @Autowired
     private AuthenticationManager authenticationManager;
   
-    public boolean save(Utente temp) {
-        if(temp == null){
-            return false;
+    public boolean save(Utente utente) {
+        switch (utente.getRuolo()) {
+            case "donatore":
+                donatoreRepository.save(
+                    new Donatore(utente.getEmail(), utente.getPassword(), utente.getRuolo()));
+                    return true;
+            case "sedeAvis":
+                sedeAvisRepository.save(
+                    new SedeAvis(utente.getEmail(), utente.getPassword(), utente.getRuolo()));
+            case "centroTrasfusioni":
+                centroRepository.save(     
+                    new CentroTrasfusione(utente.getEmail(), utente.getPassword(), utente.getRuolo()));
+            default:
+                return false;
         }
-        if (temp instanceof Donatore) {
-            donatoreRepository.save((Donatore) temp);
-            return true;
-        } else if (temp instanceof SedeAvis) {
-            sedeAvisRepository.save((SedeAvis) temp);
-            return true;
-        } else if (temp instanceof CentroTrasfusione) {
-            centroRepository.save((CentroTrasfusione) temp);
-            return true;
-        }
-        return false;
     }
 
     
-    public void authenticate(String email, String password) throws Exception {
-        authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(email, password));
+    public void authenticate(JwtRequest credentials) throws Exception {
+        authenticationManager.authenticate(
+            new UsernamePasswordAuthenticationToken(
+                credentials.getEmail(), credentials.getPw()));
     }
 
     @Override

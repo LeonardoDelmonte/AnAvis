@@ -33,8 +33,6 @@ public class Utente implements UserDetails {
     @NotNull
     private String password, ruolo;
 
-    // @Value("#{'${list.of.auth.for.Donatore}'.split(',')}")
-
     public Utente() {
     }
 

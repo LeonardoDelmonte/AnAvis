@@ -1,8 +1,4 @@
 package com.avis.rest_controller;
-
-import com.avis.models.CentroTrasfusione;
-import com.avis.models.Donatore;
-import com.avis.models.SedeAvis;
 import com.avis.models.Utente;
 import com.avis.services.AuthenticationService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,39 +20,15 @@ public class RegisterController {
     @Autowired
     private PasswordEncoder bcryptEncoder;
 
-    /*
-     * @Value("#{'${list.of.auth.for.Donatore}'.split(',')}") private
-     * ArrayList<SimpleGrantedAuthority> authoritiesDonatore;
-     * 
-     * @Value("#{'${list.of.auth.for.SedeAvis}'.split(',')}") private
-     * ArrayList<SimpleGrantedAuthority> authoritiesSedeAvis;
-     * 
-     * @Value("#{'${list.of.auth.for.CentroTrasf}'.split(',')}") private
-     * ArrayList<SimpleGrantedAuthority> authoritiesCentroTrasf;
-     */
-
+    //Annotation @Valid
     @RequestMapping(value = "public/register", method = RequestMethod.POST)
     public ResponseEntity<String> register(@RequestBody Utente utente) {
         // la pw la devo ricevere già criptata dal frontend
         utente.setPw(bcryptEncoder.encode(utente.getPassword()));
-        if (!authService.save(createUtente(utente))) {
+        if (!authService.save(utente)) {
             return new ResponseEntity<String>("Utente non registrato", HttpStatus.BAD_REQUEST);
         }
         return new ResponseEntity<String>("Utente registrato correttamente", HttpStatus.OK);
-    }
-
-    private Utente createUtente(Utente utente) {
-        // ruolo required
-        switch (utente.getRuolo()) {
-        case "donatore":
-            return new Donatore(utente.getEmail(), utente.getPassword(), utente.getRuolo());
-        case "sedeAvis":
-            return new SedeAvis(utente.getEmail(), utente.getPassword(), utente.getRuolo());
-        case "centroTrasfusioni":
-            return new CentroTrasfusione(utente.getEmail(), utente.getPassword(), utente.getRuolo());
-        default:
-            return null;
-        }
     }
 
 }

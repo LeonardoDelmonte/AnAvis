@@ -1,11 +1,11 @@
 package com.avis.dto;
 
-public class PrenotazioneSedeDto {
+public class PrenotazioneDto {
 
     private Long idDataLibera;
     private String emailDonatore;
 
-    public PrenotazioneSedeDto(Long idDataLibera, String emailDonatore) {
+    public PrenotazioneDto(Long idDataLibera, String emailDonatore) {
         this.idDataLibera = idDataLibera;
         this.emailDonatore = emailDonatore;
     }

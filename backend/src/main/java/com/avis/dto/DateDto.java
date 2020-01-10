@@ -5,9 +5,7 @@ public class DateDto {
 
     private Timestamp dataIniziale;
     private Timestamp dataFinale;
-
     
-
     public Timestamp getDataIniziale() {
         return dataIniziale;
     }

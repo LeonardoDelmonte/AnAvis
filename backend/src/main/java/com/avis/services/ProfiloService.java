@@ -2,11 +2,11 @@ package com.avis.services;
 
 import java.util.Optional;
 
+import com.avis.models.CentroTrasfusione;
 import com.avis.models.Donatore;
 import com.avis.models.Modulo;
 import com.avis.models.SedeAvis;
 import com.avis.models.Utente;
-import com.avis.repositories.AuthenticationRepository;
 import com.avis.repositories.CentroTrasfusioneRepository;
 import com.avis.repositories.DonatoreRepository;
 import com.avis.repositories.ModuloRepository;
@@ -20,8 +20,6 @@ public class ProfiloService {
 
     @Autowired
     private ModuloRepository moduloRepository;
-    @Autowired
-    private AuthenticationRepository utenteRepository;
     @Autowired
     private DonatoreRepository donatoreRepository;
     @Autowired
@@ -48,47 +46,31 @@ public class ProfiloService {
         }
     }
 
-    /*
-     * public boolean modificaCredenziali(Donatore newDonatore, Long id) {
-     * Optional<Donatore> donatore = donatoreRepository.findById(id); if
-     * (!donatore.isPresent()) { return false; }
-     * donatore.get().setNome(newDonatore.getNome());
-     * donatore.get().setCognome(newDonatore.getCognome());
-     * donatoreRepository.save(donatore.get()); return true;
-     * 
-     * }
-     */
 
-    public Utente showInfo(Long id) {
-        Optional<Utente> utente = utenteRepository.findById(id);
-        if (!utente.isPresent()) {
-            return null;
-        }
-        switch (utente.get().getRuolo()) {
-        case "donatore":
-            return donatoreRepository.findById(id).get();
-        case "sedeAvis":
-            return sedeAvisRepository.findById(id).get();
-        case "centroTrasfusioni":
-            return centroRepository.findById(id).get();
-        default:
-            return null;
-        }
-    }
-
-    public boolean modificaCredenziali(Utente utente) {
+    public Utente showInfo(Utente utente) {
         switch (utente.getRuolo()) {
         case "donatore":
-            donatoreRepository.save((Donatore) utente);
-            return true;
+            return donatoreRepository.findById(utente.getId()).get();
         case "sedeAvis":
-            sedeAvisRepository.save((SedeAvis) utente);
-            return true;
+            return sedeAvisRepository.findById(utente.getId()).get();
         case "centroTrasfusioni":
+            return centroRepository.findById(utente.getId()).get();
         default:
-            return false;
+            return null;
         }
-        //donatoreRepository.save(utente);
-        //return true;
     }
+    
+
+    public boolean modificaCredenziali(Donatore donatore) {
+        donatoreRepository.save(donatore);
+        return true;
+    }
+    public boolean modificaCredenziali(SedeAvis sede) {
+        sedeAvisRepository.save(sede);
+        return true;
+    }
+    public boolean modificaCredenziali(CentroTrasfusione centro) {
+        centroRepository.save(centro);
+        return true;
+    }      
 }

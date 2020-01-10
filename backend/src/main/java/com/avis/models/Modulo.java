@@ -12,12 +12,8 @@ public class Modulo {
     private Long id;
     @Column
     private String gruppoSanguigno, fumatore;
-    /*
-     * @OneToOne(mappedBy = "modulo") private Donatore donatore;
-     */
 
     public Modulo() {
-
     }
 
     public Modulo(String gruppoSanguigno, String fumatore) {
@@ -48,11 +44,5 @@ public class Modulo {
     public void setId(Long id) {
         this.id = id;
     }
-
-    /*
-     * public Donatore getDonatore() { return donatore; }
-     * 
-     * public void setDonatore(Donatore donatore) { this.donatore = donatore; }
-     */
 
 }

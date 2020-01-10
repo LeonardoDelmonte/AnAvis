@@ -1,11 +1,5 @@
 package com.avis.rest_controller;
-
 import com.avis.services.AuthenticationService;
-
-import java.util.HashMap;
-import java.util.Map;
-
-import javax.servlet.http.HttpServletResponse;
 import com.avis.security.JwtTokenUtil;
 import com.avis.dto.JwtRequest;
 import org.springframework.security.core.AuthenticationException;
@@ -14,7 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.DisabledException;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -33,40 +26,24 @@ public class LoginController {
     @Autowired
     private AuthenticationService authService;
 
-    // @RequestMapping(value = "public/login", method = RequestMethod.POST)
-    // public ResponseEntity<String> createAuthenticationToken(@RequestBody JwtRequest authenticationRequest,
-    //         HttpServletResponse response) throws Exception {
-    //     // qui la pw è in chiaro...non credo vada bene
-    //     try {
-    //         authService.authenticate(authenticationRequest.getEmail(), authenticationRequest.getPw());
-    //     } catch (DisabledException e) {
-    //         return new ResponseEntity<>("Login fallito, utente disabilitato", HttpStatus.UNAUTHORIZED);
-    //     } catch (BadCredentialsException e) {
-    //         return new ResponseEntity<>("Login fallito, credenziali errate", HttpStatus.UNAUTHORIZED);
-    //     }
-    //     Utente utente = (Utente) authService.loadUserByUsername(authenticationRequest.getEmail());
-    //     final String token = jwtTokenUtil.generateToken(utente);
-    //     response.setHeader(tokenHeader, token);
-    //     return new ResponseEntity<>("Login effettuato con successo", HttpStatus.OK);
-
-    // }
-
     @RequestMapping(value = "public/login", method = RequestMethod.POST)
-    public ResponseEntity<String> createAuthenticationToken(@RequestBody JwtRequest authenticationRequest,
-            HttpServletResponse response) throws Exception { // qui la pw è in chiaro...non credo vada bene
+    public ResponseEntity<String> createAuthenticationToken(
+        @RequestBody JwtRequest authenticationRequest)throws Exception { 
         try {
-            authService.authenticate(authenticationRequest.getEmail(), authenticationRequest.getPw());
+            authService.authenticate(authenticationRequest);
+            Utente utente = (Utente) authService.loadUserByUsername(authenticationRequest.getEmail());
+            final String token = jwtTokenUtil.generateToken(utente);
+            return new ResponseEntity<>(token, HttpStatus.OK);
         } catch (DisabledException e) {
             return new ResponseEntity<>("Login fallito, utente disabilitato", HttpStatus.UNAUTHORIZED);
-        } catch (BadCredentialsException e) {
-            return new ResponseEntity<>("Login fallito, credenziali errate", HttpStatus.UNAUTHORIZED);
         } catch (AuthenticationException e){
-            System.out.println(e);
-            return new ResponseEntity<>("ho il cazzo durooooo popopopopopopopopo", HttpStatus.UNAUTHORIZED);
-            //return new ResponseEntity<>("Login fallito, credenziali errate", HttpStatus.UNAUTHORIZED);
+            return new ResponseEntity<>("Login fallito, credenziali errate", HttpStatus.UNAUTHORIZED);
         }
-        Utente utente = (Utente) authService.loadUserByUsername(authenticationRequest.getEmail());
-        final String token = jwtTokenUtil.generateToken(utente);
-        return new ResponseEntity<>(token, HttpStatus.OK);
+        
     }
+
+
+    //refreshed Token(){
+        //
+    //}
 }

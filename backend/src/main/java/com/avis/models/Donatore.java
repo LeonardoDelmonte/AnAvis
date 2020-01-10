@@ -11,9 +11,6 @@ import javax.persistence.PrimaryKeyJoinColumn;
 @PrimaryKeyJoinColumn(name = "id")
 public class Donatore extends Utente {
 
-    /**
-     *
-     */
     private static final long serialVersionUID = 1L;
     @Column
     private String nome, cognome;
@@ -22,11 +19,6 @@ public class Donatore extends Utente {
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "idModulo", referencedColumnName = "id")
     private Modulo modulo;
-    /*
-     * @OneToMany(mappedBy = "idDonatore", fetch = FetchType.LAZY)
-     * 
-     * @JsonIgnore private List<Prenotazione> prenotazione;
-     */
 
     public Donatore() {
     }

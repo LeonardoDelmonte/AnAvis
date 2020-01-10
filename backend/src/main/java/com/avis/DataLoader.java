@@ -3,7 +3,7 @@ package com.avis;
 import java.sql.Timestamp;
 
 import com.avis.dto.DateDto;
-import com.avis.dto.PrenotazioneSedeDto;
+import com.avis.dto.PrenotazioneDto;
 import com.avis.models.CentroTrasfusione;
 import com.avis.models.Donatore;
 import com.avis.models.Modulo;
@@ -55,8 +55,8 @@ public class DataLoader implements ApplicationRunner {
         Timestamp ts3 = Timestamp.valueOf("2020-08-14 13:00:00");
         prenotazione.save(new DateDto(ts1,ts2), (long)3);
         prenotazione.save(new DateDto(ts2,ts3), (long)4);
-        prenotazione.prenotaData((long)3, (long)1);
-        prenotazione.prenotaData(new PrenotazioneSedeDto((long)6, "leo"));
+        prenotazione.prenotaData(new PrenotazioneDto((long)3, "marco"));
+        prenotazione.prenotaData(new PrenotazioneDto((long)6, "leo"));
         emergenza.save("A", (long)5);
         emergenza.save("00", (long)6);
         profilo.modificaModulo(new Modulo("B", "no"), (long)1);

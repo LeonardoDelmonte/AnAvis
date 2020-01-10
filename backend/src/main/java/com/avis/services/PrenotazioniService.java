@@ -7,12 +7,10 @@ import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
 
 import com.avis.dto.DateDto;
-import com.avis.dto.PrenotazioneSedeDto;
+import com.avis.dto.PrenotazioneDto;
 import com.avis.models.Donatore;
 import com.avis.models.Prenotazione;
 import com.avis.models.SedeAvis;
-import com.avis.models.Utente;
-import com.avis.repositories.AuthenticationRepository;
 import com.avis.repositories.DonatoreRepository;
 import com.avis.repositories.PrenotazioniRepository;
 import com.avis.repositories.SedeAvisRepository;
@@ -32,31 +30,22 @@ public class PrenotazioniService{
     @Autowired
     private DonatoreRepository donatoreRepository;
 
-    @Autowired
-    private AuthenticationRepository utenteRepository;
 
-    public boolean prenotaData(PrenotazioneSedeDto prenotazione) {
-        Utente utente = utenteRepository.findByEmail(prenotazione.getEmailDonatore());
-		return this.prenotaData(prenotazione.getIdDataLibera(), utente.getId());
+    public boolean prenotaData(PrenotazioneDto prenotazioneDto) {
+        Donatore donatore = donatoreRepository.findByEmail(prenotazioneDto.getEmailDonatore());
+        if(donatore==null)
+            return false;
+        Optional<Prenotazione> prenotazione = prenotazioniRepository.findById(prenotazioneDto.getIdDataLibera());
+        if(!prenotazione.isPresent() || prenotazione.get().getIdDonatore()!=null){
+            return false;
+        }
+        prenotazione.get().setIdDonatore(donatore);
+        prenotazioniRepository.save(prenotazione.get());
+        return true;
 	}
 
-    public boolean prenotaData(Long idDataLibera, Long idDonatore){
-        Optional<Donatore> donatore = donatoreRepository.findById(idDonatore);
-        if (!donatore.isPresent()){
-            return false;
-        }
-        Optional<Prenotazione> prenotazione = prenotazioniRepository.findById(idDataLibera);
-        if(prenotazione.get().getIdDonatore()!=null || !prenotazione.isPresent()){
-            return false;
-        }
-        prenotazione.get().setIdDonatore(donatore.get());
-        prenotazioniRepository.saveAndFlush(prenotazione.get());
-        return true;
-    }
 
     public boolean save(DateDto dateLibere,Long idSede) {
-        /* System.out.println(dateLibere.getDataIniziale().getTime());
-        System.out.println(dateLibere.getDataFinale().getTime()); */
         Timestamp data1 = dateLibere.getDataIniziale();
         Optional<SedeAvis> sedeAvis = sedeAvisRepository.findById(idSede);
         if (!sedeAvis.isPresent()){

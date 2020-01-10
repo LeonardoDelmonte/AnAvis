@@ -8,17 +8,9 @@ import javax.persistence.PrimaryKeyJoinColumn;
 @PrimaryKeyJoinColumn(name = "id")
 public class SedeAvis extends Utente {
 
-    /**
-     *
-     */
     private static final long serialVersionUID = 1L;
     @Column
     private String regione, provincia, comune, indirizzo, denominazione;
-    /*
-     * @OneToMany(mappedBy = "idSedeAvis", fetch = FetchType.LAZY)
-     * 
-     * @JsonIgnore private List<Prenotazione> prenotazioni;
-     */
 
     public SedeAvis() {
     }
