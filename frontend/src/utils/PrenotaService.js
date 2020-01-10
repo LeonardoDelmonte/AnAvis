@@ -2,46 +2,61 @@ import axios from 'axios'
 
 const API_URL = 'http://localhost:8080'
 
-class PrenotaService{
+class PrenotaService {
 
-    search(comune){
-        return axios.post(API_URL+'/public/prenotazione',
-        comune,
-        {headers: {"Content-Type": "text/plain"}
-        });       
-    }
-
-    prenota(prenotazioneDto){
-        return axios.put(API_URL+'/public/prenotazione',
-        prenotazioneDto,
-        {headers: {"Content-Type": "application/json"}
-        });       
-    }
-
-    getRegioni(){
+    search(comune) {
         var config = {
-            headers: {'Authorization': "bearer " + localStorage.getItem('Authorization')}
+            headers: { 'Authorization': localStorage.getItem('Authorization'), 'Content-Type': 'application/json' }
         };
-        var bodyParameters = {
-        }
-
         return axios.post(
-            API_URL+'/prenotazione/getRegioni',
-            bodyParameters,
+            API_URL + '/prenotazione/',
+            comune,
             config
-          )
+        );
     }
 
-    getProvince(regione){
-        return axios.post(API_URL+'/public/getProvince', regione, 
-        {headers: {"Content-Type": "application/json"}
-        });       
+    prenota(idPrenotazione) {
+        var config = {
+            headers: { 'Authorization': localStorage.getItem('Authorization'), 'Content-Type': 'application/json' }
+        };
+        return axios.put(
+            API_URL + '/prenotazione/donatore',
+            idPrenotazione,
+            config
+        );
     }
 
-    getComuni(provincia){
-        return axios.post(API_URL+'/public/getComuni', provincia, 
-        {headers: {"Content-Type": "application/json"}
-        });       
+    getRegioni() {
+        var config = {
+            headers: { 'Authorization': localStorage.getItem('Authorization') }
+        };
+        return axios.post(
+            API_URL + '/prenotazione/getRegioni',
+            null,
+            config
+        )
+    }
+
+    getProvince(regione) {
+        var config = {
+            headers: { 'Authorization': localStorage.getItem('Authorization'), 'Content-Type': 'application/json' }
+        };
+        return axios.post(
+            API_URL + '/prenotazione/getProvince',
+            regione,
+            config
+        );
+    }
+
+    getComuni(provincia) {
+        var config = {
+            headers: { 'Authorization': localStorage.getItem('Authorization'), 'Content-Type': 'application/json' }
+        };
+        return axios.post(
+            API_URL + '/prenotazione/getComuni',
+            provincia,
+            config
+        );
     }
 }
 

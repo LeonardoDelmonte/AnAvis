@@ -47,16 +47,12 @@ const columns = memoize(clickHandler => [
 class ListFreeDate extends PureComponent {
     constructor(props) {
         super(props)
-        this.prenota = this.prenota.bind(this)
+
     }
 
     handleButtonClick = (state) => {
 
-        var prenotazioneDto = {
-            'idPrenotazione': state.target.id,
-            'idDonatore': 3
-        }
-        PrenotaService.prenota(prenotazioneDto).then(
+        PrenotaService.prenota(state.target.id).then(
             response => {
                console.log(response)
                if(response.data){
@@ -66,17 +62,6 @@ class ListFreeDate extends PureComponent {
             }
         )
 
-    }
-
-
-    prenota(id) {
-        // PrenotaService.prenota(id)
-        //     .then(
-        //         response => {
-        //             //boh
-        //         }
-        //     )
-        console.log("aaa" + id);
     }
 
     componentDidMount() {

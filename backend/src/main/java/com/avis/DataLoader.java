@@ -43,8 +43,11 @@ public class DataLoader implements ApplicationRunner {
         
         donatore.save(new Donatore("marco",bcryptEncoder.encode("marco"),"donatore"));
         donatore.save(new Donatore("leo",bcryptEncoder.encode("leo"),"donatore"));
-        sedeAvis.save(new SedeAvis("sede1",bcryptEncoder.encode("sede1"),"sedeAvis"));
-        sedeAvis.save(new SedeAvis("sede2",bcryptEncoder.encode("sede2"),"sedeAvis"));
+        SedeAvis sede1 = new SedeAvis("sede1",bcryptEncoder.encode("sede1"),"sedeAvis");
+        sede1.setRegione("marche");sede1.setProvincia("macerata");sede1.setComune("morrovalle");
+        SedeAvis sede2 = new SedeAvis("sede2",bcryptEncoder.encode("sede2"),"sedeAvis");
+        sede2.setRegione("marche");sede2.setProvincia("macerata");sede2.setComune("montecosaro");
+        sedeAvis.save(sede1); sedeAvis.save(sede2);
         centroTrasf.save(new CentroTrasfusione("centro1",bcryptEncoder.encode("centro1"),"centroTrasfusioni"));
         centroTrasf.save(new CentroTrasfusione("centro2",bcryptEncoder.encode("cetro1"),"centroTrasfusioni"));
         Timestamp ts1 = Timestamp.valueOf("2020-08-14 11:00:00");

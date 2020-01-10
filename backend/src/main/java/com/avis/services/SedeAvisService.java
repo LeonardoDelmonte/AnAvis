@@ -24,8 +24,8 @@ public class SedeAvisService {
 
     public Set<String> getRegioni(){
         string = new HashSet<>();
-        //sedeAvisRepository.findAll().stream().forEach(e->string.add(e.getRegione()));
-        string.add("marche");
+        sedeAvisRepository.findAll().stream().forEach(e->string.add(e.getRegione()));
+        // string.add("marche");
         return string;
     }
     public Set<String> getProvince(String regione){

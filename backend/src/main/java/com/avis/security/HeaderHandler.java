@@ -9,6 +9,7 @@ import java.io.IOException;
 @Component
 public class HeaderHandler {
 
+    static final String ALLOW_METHODS = "Access-Control-Allow-Methods";
     static final String ALLOW_ORIGIN = "Access-Control-Allow-Origin";
     static final String ALLOW_CREDENTIALS = "Access-Control-Allow-Credentials";
     static final String ALLOW_HEADERS = "Access-Control-Allow-Headers";
@@ -22,6 +23,7 @@ public class HeaderHandler {
         response.setHeader(ALLOW_ORIGIN, STAR);
         response.setHeader(ALLOW_CREDENTIALS, TRUE);
         response.setHeader(ALLOW_HEADERS,  request.getHeader(REQUEST_HEADERS));
+        response.setHeader(ALLOW_METHODS, "POST, GET, PUT, OPTIONS, DELETE");
         if (request.getMethod().equals(OPTIONS)) {
             response.getWriter().print(OK);
             response.getWriter().flush();

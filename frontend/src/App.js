@@ -11,13 +11,17 @@ import './css/App.css';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 //-----components-----
 import Login from './components/Login';
+import Register from './components/Register';
 import Home from './components/Home';
 import FormPrenota from './components/FormPrenota';
 import InsertDate from './components/InsertDate';
 import TopMenu from './components/TopMenu';
+import LogOut from './components/LogOut';
+
 
 
 class App extends Component {
+
   render() {
     return (
       <>
@@ -28,9 +32,11 @@ class App extends Component {
             <Switch>
               <Route path="/" exact component={Login} />
               <Route path="/login" exact component={Login} />
+              <Route path="/register" exact component={Register} />
               <Route path="/home" exact component={Home} />
               <Route path="/prenota" exact component={FormPrenota} />
               <Route path="/insertDate" exact component={InsertDate} />
+              <Route path="/logOut" exact component={LogOut} />
             </Switch>
           </Router>
 

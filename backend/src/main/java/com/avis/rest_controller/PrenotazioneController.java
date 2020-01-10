@@ -46,6 +46,7 @@ public class PrenotazioneController{
 
     @PutMapping("/prenotazione/donatore") // donatore
     public ResponseEntity<String> prenotaData(@RequestBody Long idDataLibera, HttpServletRequest req){
+        System.out.println(idDataLibera);
         Long idDonatore = jwtTokenUtil.getIdFromToken(req.getHeader(jwtHeader));
         if(!prenotazioniService.prenotaData(idDataLibera,idDonatore)){
             return new ResponseEntity<String>("Prenotazione non effettuata", HttpStatus.NO_CONTENT);
@@ -68,6 +69,7 @@ public class PrenotazioneController{
     }   
     @PostMapping("/prenotazione/getProvince")
     public ResponseEntity<Set<String>> searchProvince(@RequestBody String regione){
+        System.out.println(regione);
         return new ResponseEntity<Set<String>>(sedeAvisService.getProvince(regione), HttpStatus.OK);
     }
     @PostMapping("/prenotazione/getComuni")

@@ -7,6 +7,7 @@ import "react-datepicker/dist/react-datepicker.css";
 import ListFreeDate from './ListFreeDate';
 import PrenotaService from '../utils/PrenotaService';
 
+
 class FormPrenota extends Component {
 
     constructor(props) {
@@ -96,6 +97,7 @@ class FormPrenota extends Component {
     }
 
     componentDidMount() {
+
         this.setState({ regioni: [] });
         PrenotaService.getRegioni()
             .then(
