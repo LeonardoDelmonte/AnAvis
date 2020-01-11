@@ -5,6 +5,7 @@ public class DateDto {
 
     private Timestamp dataIniziale;
     private Timestamp dataFinale;
+    private String comune;
     
     public Timestamp getDataIniziale() {
         return dataIniziale;
@@ -25,5 +26,13 @@ public class DateDto {
     public DateDto(Timestamp dataIniziale, Timestamp dataFinale) {
         this.dataIniziale = dataIniziale;
         this.dataFinale = dataFinale;
+    }
+
+    public String getComune() {
+        return comune;
+    }
+
+    public void setComune(String comune) {
+        this.comune = comune;
     }
 }

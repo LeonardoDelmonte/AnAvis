@@ -1,5 +1,6 @@
 package com.avis.repositories;
 
+import java.sql.Timestamp;
 import java.util.List;
 import java.util.Optional;
 
@@ -13,5 +14,8 @@ import org.springframework.stereotype.Repository;
 public interface PrenotazioniRepository extends JpaRepository<Prenotazione,Long> {
 
 	Optional<List<Prenotazione>> findByIdSedeAvis(SedeAvis sede);
+
+	Optional<List<Prenotazione>> findByIdSedeAvisAndDateBetween(SedeAvis sede, Timestamp dataIniziale,
+			Timestamp dataFinale);
 
 }

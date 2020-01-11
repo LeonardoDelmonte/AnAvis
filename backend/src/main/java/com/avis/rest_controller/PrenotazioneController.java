@@ -32,7 +32,7 @@ public class PrenotazioneController {
     private SedeAvisService sedeAvisService;
 
     @PostMapping("/prenotazione")
-    public ResponseEntity<List<Prenotazione>> getDateLibere(@RequestBody String comune) {
+    public ResponseEntity<List<Prenotazione>> getDateLibere(@RequestBody DateDto comune) {
         List<Prenotazione> dateLibere = prenotazioniService.getDateLibere(comune);
         if (dateLibere == null || dateLibere.isEmpty()) {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
@@ -40,6 +40,8 @@ public class PrenotazioneController {
         return new ResponseEntity<List<Prenotazione>>(dateLibere, HttpStatus.OK);
     }
 
+    //questo va bene per sede e donatore, basta che se è una sede lorenzo
+    //aggiunge il campo email al dto
     @PutMapping("/prenotazione/donatore")
     public ResponseEntity<String> prenotaData(@RequestBody PrenotazioneDto prenotazione) {
         Utente utente = (Utente) SecurityContextHolder.getContext().getAuthentication().getPrincipal();

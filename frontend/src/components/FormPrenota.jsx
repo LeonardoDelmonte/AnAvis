@@ -30,9 +30,14 @@ class FormPrenota extends Component {
 
     }
 
-    SearchFreeDate = comune => {
+    SearchFreeDate = (comune,dataInit,dataEnd) => {
         this.setState({ freeDate: [] })
-        PrenotaService.search(comune)
+        var getDateDto = {
+            "comune" : comune,
+            "dataIniziale":dataInit,
+            "dataFinale":dataEnd
+        }
+        PrenotaService.search(getDateDto)
             .then(
                 response => {
                     this.setState({ freeDate: response.data })
@@ -153,7 +158,9 @@ class FormPrenota extends Component {
                     
                     {this.state.startDate && this.state.endDate && this.state.comune &&
                         <div className="col-sm-12 col-md-12 col-lg-4 col-xl-4 align-self-end" >
-                            <button type="button" className="btn btn-primary btn-block " onClick={() => this.SearchFreeDate(this.state.comune)}>Cerca</button>
+                            <button type="button" className="btn btn-primary btn-block " onClick={() => 
+                                    this.SearchFreeDate(this.state.comune,
+                                    this.state.startDate,this.state.endDate)}>Cerca</button>                                              
                         </div>
                     }
                 </div>

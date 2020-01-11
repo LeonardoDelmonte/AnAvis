@@ -67,9 +67,10 @@ public class PrenotazioniService{
 		return true;
 	}
 
-	public List<Prenotazione> getDateLibere(String comune) {
-        SedeAvis sede = sedeAvisRepository.findByComune(comune);
-        Optional<List<Prenotazione>> dateLibere = prenotazioniRepository.findByIdSedeAvis(sede);
+	public List<Prenotazione> getDateLibere(DateDto dto) {
+        SedeAvis sede = sedeAvisRepository.findByComune(dto.getComune());
+        Optional<List<Prenotazione>> dateLibere = prenotazioniRepository.
+                findByIdSedeAvisAndDateBetween(sede,dto.getDataIniziale(),dto.getDataFinale());
         if (!dateLibere.isPresent()){
             return null;
         }

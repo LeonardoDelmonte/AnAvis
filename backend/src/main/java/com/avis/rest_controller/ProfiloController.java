@@ -35,28 +35,32 @@ public class ProfiloController {
         return new ResponseEntity<String>("Modulo modificato", HttpStatus.OK);
     }
 
-    @PutMapping("/profilo/modificaCredenziali")
-    public ResponseEntity<String> modificaCredenziali(@RequestBody Donatore donatore, SedeAvis sede,
-            CentroTrasfusione centro) {
-        Utente u = (Utente) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        Boolean bool;
-        switch (u.getRuolo()) {
-        case "donatore":
-            bool = profiloService.modificaCredenziali(donatore);
-            break;
-        case "sedeAvis":
-            bool = profiloService.modificaCredenziali(sede);
-            break;
-        case "centroTrasfusione":
-            bool = profiloService.modificaCredenziali(centro);
-            break;
-        default:
-            bool = false;
-        }
-        if (bool)
+
+    //ok... non funzionava con tre requestBody
+    @PutMapping("/profilo/modificaCredenziali/sedeAvis")
+    public ResponseEntity<String> modificaCredenziali(@RequestBody SedeAvis sede) {
+        if(profiloService.modificaCredenziali(sede))
             return new ResponseEntity<String>("Credenziali modificate", HttpStatus.OK);
         return new ResponseEntity<String>("Credenziali non modificate", HttpStatus.NO_CONTENT);
     }
+
+    //ok... non funzionava con tre requestBody
+    @PutMapping("/profilo/modificaCredenziali/donatore")
+    public ResponseEntity<String> modificaCredenziali(@RequestBody Donatore donatore){
+        if(profiloService.modificaCredenziali(donatore))
+            return new ResponseEntity<String>("Credenziali modificate", HttpStatus.OK);
+        return new ResponseEntity<String>("Credenziali non modificate", HttpStatus.NO_CONTENT);
+    }
+
+    //ok... non funzionava con tre requestBody
+    @PutMapping("/profilo/modificaCredenziali/centroTrasfusione")
+    public ResponseEntity<String> modificaCredenziali(@RequestBody CentroTrasfusione centro){
+        if(profiloService.modificaCredenziali(centro))
+            return new ResponseEntity<String>("Credenziali modificate", HttpStatus.OK);
+        return new ResponseEntity<String>("Credenziali non modificate", HttpStatus.NO_CONTENT);
+    }
+
+
 
     @PostMapping("/profilo/showInfo")
     public ResponseEntity<Utente> showInfo() {

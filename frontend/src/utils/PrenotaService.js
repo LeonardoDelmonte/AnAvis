@@ -4,13 +4,14 @@ const API_URL = 'http://localhost:8080'
 
 class PrenotaService {
 
-    search(comune) {
+    search(getDateDto) {
         var config = {
-            headers: { 'Authorization': localStorage.getItem('Authorization'), 'Content-Type': 'application/json' }
+            headers: { 'Authorization': localStorage.getItem('Authorization'), 
+                    'Content-Type': 'application/json' }
         };
         return axios.post(
             API_URL + '/prenotazione/',
-            comune,
+            getDateDto,
             config
         );
     }

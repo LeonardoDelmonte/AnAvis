@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-
+import handlerDate from "../utils/handlerDate"
 import DatePicker from "react-datepicker";
 import 'react-datepicker/dist/react-datepicker-cssmodules.css';
 import "react-datepicker/dist/react-datepicker.css";
@@ -26,6 +26,17 @@ class InsertDate extends Component {
 
     setEndTime = date => {
         this.setState({ endTime: date }, () => { console.log(date) })
+    }
+
+    insertDate = () =>{
+        var dateDto = {
+            "dataIniziale":this.state.startTime,
+            "dataFinale":this.state.endTime
+        }
+        handlerDate.insert(dateDto)
+            .then(response => {                                            
+                    console.log(response)                    
+                });             
     }
 
     render() {
@@ -82,7 +93,7 @@ class InsertDate extends Component {
                         />
                     </div>
                     <div className="col-sm-12 col-md-12 col-lg-3 col-xl-3 align-self-end" >
-                        <button type="button" className="btn btn-primary btn-block " /* onClick={() => this.SearchFreeDate(this.state.comune)} */>Inserisci</button>
+                        <button type="button" className="btn btn-primary btn-block " onClick={() => this.insertDate()} >Inserisci</button>
                     </div>
                 </div>
 
