@@ -23,7 +23,6 @@ public class RegisterController {
     //Annotation @Valid
     @RequestMapping(value = "public/register", method = RequestMethod.POST)
     public ResponseEntity<String> register(@RequestBody Utente utente) {
-        // la pw la devo ricevere già criptata dal frontend
         utente.setPw(bcryptEncoder.encode(utente.getPassword()));
         if (!authService.save(utente)) {
             return new ResponseEntity<String>("Utente non registrato", HttpStatus.BAD_REQUEST);

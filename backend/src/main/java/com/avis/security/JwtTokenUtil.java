@@ -63,8 +63,6 @@ public class JwtTokenUtil implements Serializable {
 		claims.put("id",utente.getId());
 		claims.put("sub", utente.getEmail());
 		claims.put("aud", utente.getRuolo());
-		//List<String> auth = 
-		//utente.getAuthorities().stream().map(role-> role.getAuthority()).collect(Collectors.toList());
         claims.put("roles", utente.getAuthorities()); 
 		return doGenerateToken(claims);
 	}

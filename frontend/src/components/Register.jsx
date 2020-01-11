@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import LoginService from '../utils/LoginService';
-
+import base64 from "base-64";
+import utf8 from "utf8";
 
 class Register extends Component {
 
@@ -46,7 +47,7 @@ class Register extends Component {
         var registerDto = {
             'ruolo': this.state.ruolo,
             'email': this.state.email,
-            'pw': this.state.password
+            'pw': base64.encode(utf8.encode(this.state.password))
         }
 
         const reg = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*])(?=.{8,})/;
@@ -63,16 +64,14 @@ class Register extends Component {
 
 
 
-        // LoginService.login(loginDto)
-        //     .then(
-        //         response => {
-        //             console.log(response);
-        //             localStorage.removeItem('Authorization');
-        //             localStorage.setItem('Authorization', response.data);
-        //         }
-        //     ).catch(err => {
-        //         console.log(err);
-        //     })
+        LoginService.register(registerDto)
+            .then(
+                response => {
+                    console.log(response);
+                }
+            ).catch(err => {
+                console.log(err);
+            })
 
         
     }

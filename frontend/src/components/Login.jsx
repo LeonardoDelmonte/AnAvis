@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import LoginService from '../utils/LoginService';
+import base64 from "base-64";
+import utf8 from "utf8";
 
 
 class Login extends Component {
@@ -34,7 +36,7 @@ class Login extends Component {
         console.log(this.state.password);
         var loginDto = {
             'email': this.state.email,
-            'pw': this.state.password
+            'pw': base64.encode(utf8.encode(this.state.password))
         }
 
         LoginService.login(loginDto)

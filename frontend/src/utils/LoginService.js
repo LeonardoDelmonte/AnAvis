@@ -10,6 +10,13 @@ class LoginService{
         {headers: {"Content-Type": "application/json"}
         });       
     }
+
+    register(registerDto){
+        return axios.post(API_URL+'/public/register',
+        registerDto,
+        {headers: {"Content-Type": "application/json"}
+        });       
+    }
 }
 
 export default new LoginService()
