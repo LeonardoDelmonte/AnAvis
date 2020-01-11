@@ -2,10 +2,8 @@ package com.avis.rest_controller;
 
 import javax.servlet.http.HttpServletRequest;
 
-import com.avis.models.CentroTrasfusione;
-import com.avis.models.Donatore;
+import com.avis.dto.CredenzialiDto;
 import com.avis.models.Modulo;
-import com.avis.models.SedeAvis;
 import com.avis.models.Utente;
 import com.avis.services.ProfiloService;
 
@@ -35,32 +33,28 @@ public class ProfiloController {
         return new ResponseEntity<String>("Modulo modificato", HttpStatus.OK);
     }
 
-
-    //ok... non funzionava con tre requestBody
-    @PutMapping("/profilo/modificaCredenziali/sedeAvis")
-    public ResponseEntity<String> modificaCredenziali(@RequestBody SedeAvis sede) {
-        if(profiloService.modificaCredenziali(sede))
+    @PutMapping("/profilo/modificaCredenziali")
+    public ResponseEntity<String> modificaCredenziali(@RequestBody CredenzialiDto credenziali) {
+        Utente u = (Utente) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        Boolean bool;
+        switch(u.getRuolo()){
+            case "donatore":
+                bool = profiloService.modificaCredenziali(credenziali.getDonatore());
+                break;
+            case "sedeAvis":
+                bool = profiloService.modificaCredenziali(credenziali.getSede());
+                break;
+            case "centroTrasfusione":
+                bool = profiloService.modificaCredenziali(credenziali.getCentro());
+                break;
+            default:
+                bool = false;
+        }
+        if (bool)
             return new ResponseEntity<String>("Credenziali modificate", HttpStatus.OK);
         return new ResponseEntity<String>("Credenziali non modificate", HttpStatus.NO_CONTENT);
     }
-
-    //ok... non funzionava con tre requestBody
-    @PutMapping("/profilo/modificaCredenziali/donatore")
-    public ResponseEntity<String> modificaCredenziali(@RequestBody Donatore donatore){
-        if(profiloService.modificaCredenziali(donatore))
-            return new ResponseEntity<String>("Credenziali modificate", HttpStatus.OK);
-        return new ResponseEntity<String>("Credenziali non modificate", HttpStatus.NO_CONTENT);
-    }
-
-    //ok... non funzionava con tre requestBody
-    @PutMapping("/profilo/modificaCredenziali/centroTrasfusione")
-    public ResponseEntity<String> modificaCredenziali(@RequestBody CentroTrasfusione centro){
-        if(profiloService.modificaCredenziali(centro))
-            return new ResponseEntity<String>("Credenziali modificate", HttpStatus.OK);
-        return new ResponseEntity<String>("Credenziali non modificate", HttpStatus.NO_CONTENT);
-    }
-
-
+    
 
     @PostMapping("/profilo/showInfo")
     public ResponseEntity<Utente> showInfo() {

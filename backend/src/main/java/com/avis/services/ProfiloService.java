@@ -59,17 +59,30 @@ public class ProfiloService {
         }
     }
     
-
+    
     public boolean modificaCredenziali(Donatore donatore) {
-        donatoreRepository.save(donatore);
-        return true;
+        if(donatore!=null){
+            donatoreRepository.save(donatore);
+            return true;
+        }else{
+            return false;
+        }
     }
+
     public boolean modificaCredenziali(SedeAvis sede) {
-        sedeAvisRepository.save(sede);
-        return true;
+        if(sede!=null){
+            sedeAvisRepository.save(sede);
+            return true;
+        }else{
+            return false;
+        }
     }
     public boolean modificaCredenziali(CentroTrasfusione centro) {
-        centroRepository.save(centro);
-        return true;
+        if(centro!=null){
+            centroRepository.save(centro);
+            return true;
+        }else{
+            return false;
+        }
     }      
 }

@@ -1,7 +1,5 @@
 package com.avis.rest_controller;
 
-import javax.servlet.http.HttpServletRequest;
-
 import com.avis.models.Utente;
 import com.avis.services.EmergenzaService;
 
@@ -23,7 +21,7 @@ public class EmergenzaController {
     private EmergenzaService emergenzaService;
 
     @PostMapping("/requestEmerg/insert")
-    public ResponseEntity<String> insertEmergenza(@RequestBody String gruppo, HttpServletRequest req) {
+    public ResponseEntity<String> insertEmergenza(@RequestBody String gruppo) {
         Utente utente = (Utente) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         if (!emergenzaService.save(gruppo, utente.getId())) {
             return new ResponseEntity<String>("Emergenza non inviata", HttpStatus.BAD_REQUEST);

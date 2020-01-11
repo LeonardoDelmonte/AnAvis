@@ -15,6 +15,8 @@ import org.springframework.security.web.authentication.WebAuthenticationDetailsS
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
 
+//questa classe è un filter custom che scatta prima di quello standard di javaSecurity
+
 @Component
 public class JwtAuthenticationTokenFilter extends OncePerRequestFilter {
 
@@ -23,26 +25,28 @@ public class JwtAuthenticationTokenFilter extends OncePerRequestFilter {
 	@Value("${jwt.header}")
 	private String jwtHeader;
 
-
 	@Override
 	protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain chain)
 			throws ServletException, IOException {
-
-
+		//controllo se cè il token nella richiesta
 		String jwtToken = request.getHeader(jwtHeader);
 		Utente utente = null;
 		if (jwtToken!= null) {
+			//se il token è presente creo gli userDetails
 			utente = jwtTokenUtil.getUserDetails(jwtToken);			
 		}
-		// Once we get the token validate it.
+		//se ho gli userDetails e la sessione non esiste controllo la validità del token
 		if (utente != null && SecurityContextHolder.getContext().getAuthentication() == null) {
+			//validateToken secondo me non ha senso con il controllo della email
 			if (jwtTokenUtil.validateToken(jwtToken, utente)) {
+				//token valido! setto l'authenticationToken e creo la sessione corrente
                 UsernamePasswordAuthenticationToken usernamePasswordAuthenticationToken = 
                 new UsernamePasswordAuthenticationToken(utente,null, utente.getAuthorities());           
 				usernamePasswordAuthenticationToken.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));						
 				SecurityContextHolder.getContext().setAuthentication(usernamePasswordAuthenticationToken);
 			}
 		}
+		//parte il filter di javaSecurity
 		chain.doFilter(request, response);
 	}
 }

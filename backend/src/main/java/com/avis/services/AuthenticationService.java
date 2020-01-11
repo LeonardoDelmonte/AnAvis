@@ -40,9 +40,11 @@ public class AuthenticationService implements UserDetailsService{
             case "sedeAvis":
                 sedeAvisRepository.save(
                     new SedeAvis(utente.getEmail(), utente.getPassword(), utente.getRuolo()));
+                    return true;
             case "centroTrasfusioni":
                 centroRepository.save(     
                     new CentroTrasfusione(utente.getEmail(), utente.getPassword(), utente.getRuolo()));
+                    return true;
             default:
                 return false;
         }

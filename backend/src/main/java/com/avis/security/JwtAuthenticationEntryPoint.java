@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.Serializable;
 
+//questa classe scatta quando cè un errore nell'Authentication 
 @Component
 public class JwtAuthenticationEntryPoint implements AuthenticationEntryPoint, Serializable {
 
@@ -21,7 +22,7 @@ public class JwtAuthenticationEntryPoint implements AuthenticationEntryPoint, Se
     public void commence(HttpServletRequest request,
                          HttpServletResponse response,
                          AuthenticationException authException) throws IOException {
-                         // Questo metodo e' invocato quando un utente tenta di accedere ad un endpoint non pubblico senza credenziali corrette
+        //gestisco le CROS policy
         headerHandler.process(request,response);
         response.sendError(HttpServletResponse.SC_UNAUTHORIZED, "Unauthorized");
     }

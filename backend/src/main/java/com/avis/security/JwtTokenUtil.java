@@ -10,6 +10,8 @@ import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 
+//questa classe si occupa di creare/scomporre un token 
+
 @Component
 public class JwtTokenUtil implements Serializable {
 

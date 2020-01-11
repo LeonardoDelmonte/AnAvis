@@ -6,6 +6,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
+//questa classe si occupa di gestire le CROS policy, chiamata prima di mandare una response 
 @Component
 public class HeaderHandler {
 
@@ -16,7 +17,7 @@ public class HeaderHandler {
     static final String OPTIONS = "OPTIONS";
     static final String OK = "OK";
     static final String REQUEST_HEADERS = "Access-Control-Request-Headers";
-    static final String STAR = "*"; //* or origin as you prefer
+    static final String STAR = "*";
     static final String TRUE = "true";
 
     public void process(HttpServletRequest request, HttpServletResponse response) throws IOException {

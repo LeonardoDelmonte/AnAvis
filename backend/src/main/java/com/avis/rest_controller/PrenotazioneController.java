@@ -32,8 +32,8 @@ public class PrenotazioneController {
     private SedeAvisService sedeAvisService;
 
     @PostMapping("/prenotazione")
-    public ResponseEntity<List<Prenotazione>> getDateLibere(@RequestBody DateDto comune) {
-        List<Prenotazione> dateLibere = prenotazioniService.getDateLibere(comune);
+    public ResponseEntity<List<Prenotazione>> getDateLibere(@RequestBody DateDto dto) {
+        List<Prenotazione> dateLibere = prenotazioniService.getDateLibere(dto);
         if (dateLibere == null || dateLibere.isEmpty()) {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }
@@ -54,22 +54,6 @@ public class PrenotazioneController {
         return new ResponseEntity<String>("Prenotazione effettuata", HttpStatus.OK);
     }
 
-    @PostMapping("/prenotazione/getRegioni")
-    public ResponseEntity<Set<String>> searchRegioni() {
-        return new ResponseEntity<Set<String>>(sedeAvisService.getRegioni(), HttpStatus.OK);
-    }
-
-    @PostMapping("/prenotazione/getProvince")
-    public ResponseEntity<Set<String>> searchProvince(@RequestBody String regione) {
-        System.out.println(regione);
-        return new ResponseEntity<Set<String>>(sedeAvisService.getProvince(regione), HttpStatus.OK);
-    }
-
-    @PostMapping("/prenotazione/getComuni")
-    public ResponseEntity<Set<String>> searchComuni(@RequestBody String provincia) {
-        return new ResponseEntity<Set<String>>(sedeAvisService.getComuni(provincia), HttpStatus.OK);
-    }
-
     @PostMapping("/handlerDate/insert")
     public ResponseEntity<String> inserisciDate(@RequestBody DateDto dateLibere, HttpServletRequest req) {
         Utente utente = (Utente) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
@@ -86,5 +70,21 @@ public class PrenotazioneController {
         }
         return new ResponseEntity<String>("Data rimossa correttamente", HttpStatus.OK);
     }
+
+
+
+    @PostMapping("/prenotazione/getRegioni")
+    public ResponseEntity<Set<String>> searchRegioni() {
+        return new ResponseEntity<Set<String>>(sedeAvisService.getRegioni(), HttpStatus.OK);
+    }
+    @PostMapping("/prenotazione/getProvince")
+    public ResponseEntity<Set<String>> searchProvince(@RequestBody String regione) {
+        return new ResponseEntity<Set<String>>(sedeAvisService.getProvince(regione), HttpStatus.OK);
+    }
+    @PostMapping("/prenotazione/getComuni")
+    public ResponseEntity<Set<String>> searchComuni(@RequestBody String provincia) {
+        return new ResponseEntity<Set<String>>(sedeAvisService.getComuni(provincia), HttpStatus.OK);
+    }
+
 
 }
