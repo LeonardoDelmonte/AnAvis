@@ -56,7 +56,7 @@ class Register extends Component {
             this.setState({easyPw: true})
             return;
         }
-        if (this.state.password != this.state.rpassword) {
+        if (this.state.password !== this.state.rpassword) {
             this.setState({errorPw: true})
             return;
         }
@@ -76,12 +76,11 @@ class Register extends Component {
         
     }
 
-
     render() {
 
         return (
-            <div>
-                <h1>Registrazione</h1>
+            <div className="login-form">
+                <h2 className="text-center"> Registrazione</h2>
                 { this.state.easyPw ?
                     <div className="alert alert-danger" role="alert">
                         La password deve essere composta da almeno 8 caratteri, una lettera minuscola, una lettera maiuscola, un numero e un carattere speciale
@@ -113,8 +112,9 @@ class Register extends Component {
                         <input type="password" className="form-control" id="rpassword" name="rpassword" value={this.state.rpassword} onChange={this.handleChange}>
                         </input>
                     </div>
-                    <button type="submit" className="btn btn-primary">Registrati</button>
+                    <button type="submit" className="btn btn-primary btn-block">Registrati</button>
                 </form>
+                <p className="text-center"><a href="/login">Clicca qui se hai già un account</a></p>
             </div>
         );
     }

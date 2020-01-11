@@ -22,18 +22,14 @@ class Login extends Component {
         const value = target.value;
         const name = target.name;
 
-        console.log(value);
-
-
-
         this.setState({
             [name]: value
         });
     }
 
     handleSubmit(event) {
-        console.log(this.state.email);
-        console.log(this.state.password);
+        event.preventDefault();
+
         var loginDto = {
             'email': this.state.email,
             'pw': base64.encode(utf8.encode(this.state.password))
@@ -45,34 +41,36 @@ class Login extends Component {
                     console.log(response);
                     localStorage.removeItem('Authorization');
                     localStorage.setItem('Authorization', response.data);
+                    this.props.history.push('/home')
                 }
             ).catch(err => {
                 console.log(err);
             })
-
-        event.preventDefault();
     }
 
 
     render() {
 
         return (
-            <div>
-                <h1>Login</h1>
-                <form onSubmit={this.handleSubmit}>
-                    <div className="form-group">
-                        <label>Email address:</label>
-                        <input type="text" className="form-control" id="email" name="email" value={this.state.email} onChange={this.handleChange}>
-                        </input>
-                    </div>
-                    <div className="form-group">
-                        <label>Password:</label>
-                        <input type="password" className="form-control" id="password" name="password" value={this.state.password} onChange={this.handleChange}>
-                        </input>
-                    </div>
-                    <button type="submit" className="btn btn-primary">Login</button>
-                </form>
-            </div>
+            <div className="login-form">
+
+                    <h2 className="text-center"> Entra nel portale AnAvis</h2>
+                    <form onSubmit={this.handleSubmit}>
+                        <div className="form-group">
+                            <label>Email:</label>
+                            <input type="text" className="form-control" id="email" name="email" value={this.state.email} onChange={this.handleChange}>
+                            </input>
+                        </div>
+                        <div className="form-group">
+                            <label>Password:</label>
+                            <input type="password" className="form-control" id="password" name="password" value={this.state.password} onChange={this.handleChange}>
+                            </input>
+                        </div>
+                        <button type="submit" className="btn btn-primary btn-block">Accedi</button>
+                    </form>
+                    <p className="text-center"><a href="/register">Clicca qui se non sei ancora Registrato</a></p>
+
+            </div >
         );
     }
 }
