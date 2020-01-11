@@ -20,14 +20,13 @@ public class RegisterController {
     @Autowired
     private PasswordEncoder bcryptEncoder;
 
-    //Annotation @Valid
     @RequestMapping(value = "public/register", method = RequestMethod.POST)
     public ResponseEntity<String> register(@RequestBody Utente utente) {
         utente.setPw(bcryptEncoder.encode(utente.getPassword()));
         if (!authService.save(utente)) {
             return new ResponseEntity<String>("Utente non registrato", HttpStatus.BAD_REQUEST);
         }
-        return new ResponseEntity<String>("Utente registrato correttamente", HttpStatus.OK);
+        return new ResponseEntity<String>("Utente registrato correttamente", HttpStatus.CREATED);
     }
 
 }

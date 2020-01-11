@@ -40,7 +40,6 @@ public class ProfiloService {
             donatoreRepository.save(donatore.get());
             return true;
         } else {
-            newModulo.setId(idDonatore);
             moduloRepository.save(newModulo);
             return true;
         }

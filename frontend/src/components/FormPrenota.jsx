@@ -118,9 +118,9 @@ class FormPrenota extends Component {
                 <h1>Prenota Donazione</h1>
 
                 <div className="row m-3" >
-                    <SelectSearchDate dati={this.state.regioni} onSelected={this.selectedRegione} text={"Seleziona una regione"} />
-                    {this.state.regione && <SelectSearchDate dati={this.state.provincie} onSelected={this.selectedProvincia} text={"Seleziona una Provincia"} />}
-                    {this.state.provincia && <SelectSearchDate dati={this.state.comuni} onSelected={this.selectedComune} text={"Seleziona un Comune"} />}
+                    <SelectSearchDate dati={this.state.regioni} onSelected={this.selectedRegione} value={"Seleziona una regione"} />
+                    {this.state.regione && <SelectSearchDate dati={this.state.provincie} onSelected={this.selectedProvincia} value={"Seleziona una Provincia"} />}
+                    {this.state.provincia && <SelectSearchDate dati={this.state.comuni} onSelected={this.selectedComune} value={"Seleziona un Comune"} />}
                 </div>
                 <div className="row m-3">
               
@@ -177,7 +177,7 @@ class SelectSearchDate extends Component {
                     onChange={this.props.onSelected}
                     options={this.props.dati}
                     isClearable
-                    placeholder="Cerca"
+                    placeholder={this.props.value}
                     isClearablea
                     noOptionsMessage={() => "Nessun Risultato"}
                 />

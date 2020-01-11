@@ -7,11 +7,9 @@ import com.avis.models.Donatore;
 import com.avis.models.Modulo;
 import com.avis.models.SedeAvis;
 import com.avis.models.Utente;
-import com.avis.security.JwtTokenUtil;
 import com.avis.services.ProfiloService;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -27,50 +25,44 @@ public class ProfiloController {
 
     @Autowired
     private ProfiloService profiloService;
-    @Autowired
-    private JwtTokenUtil jwtTokenUtil;
-    @Value("${jwt.header}")
-    private String jwtHeader;
 
     @PutMapping("/profilo/modificaModulo")
     public ResponseEntity<String> modificaModulo(@RequestBody Modulo modulo, HttpServletRequest req) {
-        Long idDonatore = jwtTokenUtil.getIdFromToken(req.getHeader(jwtHeader));
-        if (!profiloService.modificaModulo(modulo, idDonatore)) {
+        Utente utente = (Utente) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        if (!profiloService.modificaModulo(modulo, utente.getId())) {
             return new ResponseEntity<String>("Modulo non modificato", HttpStatus.NO_CONTENT);
         }
         return new ResponseEntity<String>("Modulo modificato", HttpStatus.OK);
     }
 
-
     @PutMapping("/profilo/modificaCredenziali")
-    public ResponseEntity<String> modificaCredenziali(@RequestBody Donatore donatore,SedeAvis sede,CentroTrasfusione centro) {
-        Utente u = (Utente)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+    public ResponseEntity<String> modificaCredenziali(@RequestBody Donatore donatore, SedeAvis sede,
+            CentroTrasfusione centro) {
+        Utente u = (Utente) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         Boolean bool;
-        switch(u.getRuolo()){
-            case "donatore":
-                bool = profiloService.modificaCredenziali(donatore);
-                break;
-            case "sedeAvis":
-                bool = profiloService.modificaCredenziali(sede);
-                break;
-            case "centroTrasfusione":
-                bool = profiloService.modificaCredenziali(centro);
-                break;
-            default:
-                bool = false;
+        switch (u.getRuolo()) {
+        case "donatore":
+            bool = profiloService.modificaCredenziali(donatore);
+            break;
+        case "sedeAvis":
+            bool = profiloService.modificaCredenziali(sede);
+            break;
+        case "centroTrasfusione":
+            bool = profiloService.modificaCredenziali(centro);
+            break;
+        default:
+            bool = false;
         }
-        if(bool)
+        if (bool)
             return new ResponseEntity<String>("Credenziali modificate", HttpStatus.OK);
         return new ResponseEntity<String>("Credenziali non modificate", HttpStatus.NO_CONTENT);
     }
 
-
-    //show modulo non serve perchè questo ritorna pure il modulo
     @PostMapping("/profilo/showInfo")
     public ResponseEntity<Utente> showInfo() {
-        Utente utente = (Utente)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        Utente utente = (Utente) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         utente = profiloService.showInfo(utente);
-        if(utente==null){
+        if (utente == null) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
         return new ResponseEntity<Utente>(utente, HttpStatus.OK);
