@@ -8,13 +8,12 @@ class Register extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            ruolo: '',
+            ruolo: 'donatore',
             email: '',
             password: '',
             rpassword: '',
-
-            easyPw: false,
-            errorPw: false
+            errorRegister: '',
+            registerOK: ''
         };
 
         this.handleChange = this.handleChange.bind(this);
@@ -29,20 +28,16 @@ class Register extends Component {
         this.setState({
             [name]: value
         });
+
     }
 
-    handleSubmit(event) {
-        event.preventDefault();
+    handleSubmit(e) {
+        e.preventDefault();
 
         this.setState({
-            easyPw: false,
-            errorPw: false
+            errorRegister: '',
+            registerOK: ''
         })
-
-        console.log(this.state.ruolo);
-        console.log(this.state.email);
-        console.log(this.state.password);
-        console.log(this.state.rpassword);
 
         var registerDto = {
             'ruolo': this.state.ruolo,
@@ -53,27 +48,38 @@ class Register extends Component {
         const reg = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*])(?=.{8,})/;
         const test = reg.test(this.state.password);
         if (!test) {
-            this.setState({easyPw: true})
+            this.setState({ errorRegister: 'La password deve essere composta da almeno 8 caratteri, una lettera minuscola, una lettera maiuscola, un numero e un carattere speciale' })
             return;
         }
         if (this.state.password !== this.state.rpassword) {
-            this.setState({errorPw: true})
+            this.setState({ errorRegister: 'Le due password non corrispondono' })
             return;
         }
-        alert("BONOOOOOOOO")
-
-
 
         LoginService.register(registerDto)
-            .then(
-                response => {
-                    console.log(response);
+            .then(() => {
+                this.setState({ registerOK: 'Registrazione effettuata con successo, torna alla pagina di login per autenticarti' });
+                this.setState({
+                    ruolo: 'donatore',
+                    email: '',
+                    password: '',
+                    rpassword: '',
+                })
+            }
+            ).catch(error => {
+                if (!error.response) {
+                    this.setState({ errorRegister: 'Errore del server, contattare l\'amministratore. ' })
                 }
-            ).catch(err => {
-                console.log(err);
+                else {
+                    if (error.response.status === 500) {
+                        this.setState({ errorRegister: 'Questo utente è già registrato' })
+                    } else {
+                        this.setState({ errorRegister: 'Si è verificato un errore.' })
+                    }
+                }
             })
 
-        
+
     }
 
     render() {
@@ -81,36 +87,36 @@ class Register extends Component {
         return (
             <div className="login-form">
                 <h2 className="text-center"> Registrazione</h2>
-                { this.state.easyPw ?
+                {this.state.errorRegister &&
                     <div className="alert alert-danger" role="alert">
-                        La password deve essere composta da almeno 8 caratteri, una lettera minuscola, una lettera maiuscola, un numero e un carattere speciale
+                        {this.state.errorRegister}
                     </div>
-                : null }
-                { this.state.errorPw ?
-                    <div className="alert alert-danger" role="alert">
-                        Le due password non corrispondono
+                }
+                {this.state.registerOK &&
+                    <div className="alert alert-success" role="alert">
+                        {this.state.registerOK}
                     </div>
-                : null }
-                <form onSubmit={this.handleSubmit}>
+                }
+                <form onSubmit={this.handleSubmit} id="RegisterForm">
                     <div className="form-group">
                         <label>Ruolo:</label>
-                        <input type="text" className="form-control" id="ruolo" name="ruolo" value={this.state.ruolo} onChange={this.handleChange} required>
-                        </input>
+                        <select className="form-control" id="ruolo" name="ruolo" value={this.state.ruolo} onChange={this.handleChange}>
+                            <option value="donatore">Donatore</option>
+                            <option value="sedeAvis">Sede avis</option>
+                            <option value="centroTrasfusioni">Centro trasfusioni</option>
+                        </select>
                     </div>
                     <div className="form-group">
                         <label>Email:</label>
-                        <input type="text" className="form-control" id="email" name="email" value={this.state.email} onChange={this.handleChange} required>
-                        </input>
+                        <input type="text" className="form-control" id="email" name="email" value={this.state.email} onChange={this.handleChange} required />
                     </div>
                     <div className="form-group">
                         <label>Password:</label>
-                        <input type="password" className="form-control" id="password" name="password" value={this.state.password} onChange={this.handleChange}>
-                        </input>
+                        <input type="password" className="form-control" id="password" name="password" value={this.state.password} onChange={this.handleChange} />
                     </div>
                     <div className="form-group">
                         <label>Ripeti Password:</label>
-                        <input type="password" className="form-control" id="rpassword" name="rpassword" value={this.state.rpassword} onChange={this.handleChange}>
-                        </input>
+                        <input type="password" className="form-control" id="rpassword" name="rpassword" value={this.state.rpassword} onChange={this.handleChange} />
                     </div>
                     <button type="submit" className="btn btn-primary btn-block">Registrati</button>
                 </form>

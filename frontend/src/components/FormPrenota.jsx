@@ -12,6 +12,12 @@ class FormPrenota extends Component {
 
     constructor(props) {
         super(props)
+
+        const myDate1 = new Date()
+        const myDate2 = new Date()
+        myDate1.setHours(0,0,0,0)
+        myDate2.setHours(23,59, 0, 0)
+
         this.state = {
             regioni: [],
             provincie: [],
@@ -21,8 +27,8 @@ class FormPrenota extends Component {
             provincia: null,
             comune: null,
 
-            startDate: new Date(),
-            endDate: new Date(),
+            startDate: myDate1,
+            endDate: myDate2,
 
             searched: false,
             freeDate: [],

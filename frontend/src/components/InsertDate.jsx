@@ -8,36 +8,64 @@ class InsertDate extends Component {
 
     constructor(props) {
         super(props)
+
+        const myDate = new Date()
+        myDate.setMinutes(0)
+
         this.state = {
-            date: new Date(),
-            startTime: new Date(),
-            endTime: new Date(),
+            date: myDate,
+            startTime: myDate,
+            endTime: myDate
         }
+        this.handleSubmit = this.handleSubmit.bind(this);
+    }
+
+    handleSubmit(e) {
+        e.preventDefault();
+
+        const Startdate = new Date(this.state.date.getFullYear(), this.state.date.getMonth(), this.state.date.getDate(), this.state.startTime.getHours(), this.state.startTime.getMinutes(), 0, 0);
+        const EndDate = new Date(this.state.date.getFullYear(), this.state.date.getMonth(), this.state.date.getDate(), this.state.endTime.getHours(), this.state.endTime.getMinutes(), 0, 0);
+        console.log(Startdate);
+        console.log(EndDate);
+
+        var dateDto = {
+            "dataIniziale": Startdate,
+            "dataFinale": EndDate
+        }
+
+        handlerDate.insert(dateDto)
+            .then(response => {
+                console.log(response)
+            });
 
     }
 
     selectedDate = date => {
-        this.setState({ date: date }, () => { console.log(date) })
+        this.setState({ date: date })
     }
 
     setStartTime = date => {
-        this.setState({ startTime: date }, () => { console.log(date) })
+        this.setState({ startTime: date })
     }
 
     setEndTime = date => {
-        this.setState({ endTime: date }, () => { console.log(date) })
+        this.setState({ endTime: date })
     }
 
-    insertDate = () =>{
-        var dateDto = {
-            "dataIniziale":this.state.startTime,
-            "dataFinale":this.state.endTime
-        }
-        handlerDate.insert(dateDto)
-            .then(response => {                                            
-                    console.log(response)                    
-                });             
+    componentDidMount() {
+
     }
+
+    // insertDate = () => {
+    //     var dateDto = {
+    //         "dataIniziale": this.state.startTime,
+    //         "dataFinale": this.state.endTime
+    //     }
+    //     handlerDate.insert(dateDto)
+    //         .then(response => {
+    //             console.log(response)
+    //         });
+    // }
 
     render() {
         const date = this.state.date;
@@ -47,55 +75,59 @@ class InsertDate extends Component {
         return (
             <div>
                 <h1>Scegli data</h1>
-                <div className="row m-3">
-                    <div className="col-sm-12 col-md-12 col-lg-3 col-xl-3" >
-                        <label>Seleziona la data da inserire</label>
-                        <DatePicker
-                            selectsStart
-                            selected={date}
-                            onChange={date => this.selectedDate(date)}
-                            startDate={date}
-                            minDate={new Date()}
-                            dateFormat="dd/MM/yyyy"
-                        />
-                    </div>
-                    <div className="col-sm-12 col-md-12 col-lg-3 col-xl-3" >
-                        <label>Ora di inizo</label>
-                        <DatePicker
-                            selected={startTime}
-                            onChange={date => this.setStartTime(date)}
-                            showTimeSelect
-                            showTimeSelectOnly
-                            timeIntervals={15}
-                            timeCaption="Time"
-                            dateFormat="h:mm aa"
-                            minTime={new Date().setHours(0, 0, 0, 0)}
-                            maxTime={endTime}
-                            selectsStart
-                            startDate={date}
+                <form onSubmit={this.handleSubmit} id="RegisterForm">
+                    <div className="row m-3">
+                        <div className="col-sm-12 col-md-12 col-lg-3 col-xl-3" >
+                            <label>Seleziona la data da inserire</label>
+                            <DatePicker
+                                onChange={this.selectedDate}
+                                selectsStart
+                                selected={date}
+                                startDate={date}
+                                minDate={new Date()}
+                                dateFormat="dd/MM/yyyy"
+                            />
+                        </div>
+                        <div className="col-sm-12 col-md-12 col-lg-3 col-xl-3" >
+                            <label>Ora di inizo</label>
+                            <DatePicker
+                                onChange={this.setStartTime}
+                                selected={startTime}
+                                showTimeSelect
+                                showTimeSelectOnly
+                                timeIntervals={15}
+                                timeCaption="Time"
+                                dateFormat="h:mm aa"
+                                minTime={new Date().setHours(0, 0, 0, 0)}
+                                maxTime={endTime}
+                                selectsStart
+                                startDate={date}
+                                disabledKeyboardNavigation
 
-                        />
+                            />
+                        </div>
+                        <div className="col-sm-12 col-md-12 col-lg-3 col-xl-3" >
+                            <label>Ora di fine</label>
+                            <DatePicker
+                                onChange={this.setEndTime}
+                                selected={endTime}
+                                showTimeSelect
+                                showTimeSelectOnly
+                                timeIntervals={15}
+                                timeCaption="Time"
+                                dateFormat="h:mm aa"
+                                minTime={startTime}
+                                maxTime={new Date().setHours(23, 45, 0, 0)}
+                                selectsEnd
+                                endDate={date}
+                            />
+                        </div>
+                        <div className="col-sm-12 col-md-12 col-lg-3 col-xl-3 align-self-end" >
+                            <button type="submit" className="btn btn-primary btn-block" >Inserisci</button>
+                        </div>
                     </div>
-                    <div className="col-sm-12 col-md-12 col-lg-3 col-xl-3" >
-                        <label>Ora di fine</label>
-                        <DatePicker
-                            selected={endTime}
-                            onChange={date => this.setEndTime(date)}
-                            showTimeSelect
-                            showTimeSelectOnly
-                            timeIntervals={15}
-                            timeCaption="Time"
-                            dateFormat="h:mm aa"
-                            minTime={startTime}
-                            maxTime={new Date().setHours(23, 45, 0, 0)}
-                            selectsEnd
-                            endDate={date}
-                        />
-                    </div>
-                    <div className="col-sm-12 col-md-12 col-lg-3 col-xl-3 align-self-end" >
-                        <button type="button" className="btn btn-primary btn-block " onClick={() => this.insertDate()} >Inserisci</button>
-                    </div>
-                </div>
+
+                </form>
 
 
             </div>
