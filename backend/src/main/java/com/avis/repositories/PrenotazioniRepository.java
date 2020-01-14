@@ -4,6 +4,7 @@ import java.sql.Timestamp;
 import java.util.List;
 import java.util.Optional;
 
+import com.avis.models.Donatore;
 import com.avis.models.Prenotazione;
 import com.avis.models.SedeAvis;
 
@@ -17,5 +18,7 @@ public interface PrenotazioniRepository extends JpaRepository<Prenotazione,Long>
 
 	Optional<List<Prenotazione>> findByIdSedeAvisAndDateBetween(SedeAvis sede, Timestamp dataIniziale,
 			Timestamp dataFinale);
+
+	Optional<List<Prenotazione>> findByIdDonatore(Donatore donatore);
 
 }

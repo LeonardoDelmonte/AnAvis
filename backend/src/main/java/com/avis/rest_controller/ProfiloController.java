@@ -36,7 +36,8 @@ public class ProfiloController {
     public ResponseEntity<String> modificaCredenziali(@RequestBody CredenzialiDto credenziali) {
         Utente u = (Utente) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         Boolean bool;
-        switch(u.getRuolo()){
+        bool = profiloService.modificaCredenziali(credenziali,u.getId(),u.getRuolo());
+        /* switch(u.getRuolo()){
             case "donatore":
                 bool = profiloService.modificaCredenziali(credenziali.getDonatore(),u.getId());
                 break;
@@ -48,7 +49,7 @@ public class ProfiloController {
                 break;
             default:
                 bool = false;
-        }
+        } */
         if (bool)
             return new ResponseEntity<String>("Credenziali modificate", HttpStatus.OK);
         return new ResponseEntity<String>("Credenziali non modificate", HttpStatus.NO_CONTENT);

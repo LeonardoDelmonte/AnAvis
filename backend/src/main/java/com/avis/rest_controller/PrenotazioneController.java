@@ -1,5 +1,6 @@
 package com.avis.rest_controller;
 
+import java.sql.Timestamp;
 import java.util.List;
 import java.util.Set;
 import javax.servlet.http.HttpServletRequest;
@@ -11,7 +12,6 @@ import com.avis.services.PrenotazioniService;
 import com.avis.services.SedeAvisService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -40,8 +40,8 @@ public class PrenotazioneController {
         return new ResponseEntity<List<Prenotazione>>(dateLibere, HttpStatus.OK);
     }
 
-    //questo va bene per sede e donatore, basta che se è una sede lorenzo
-    //aggiunge il campo email al dto
+    // questo va bene per sede e donatore, basta che se è una sede lorenzo
+    // aggiunge il campo email al dto
     @PutMapping("/prenotazione/donatore")
     public ResponseEntity<String> prenotaData(@RequestBody PrenotazioneDto prenotazione) {
         Utente utente = (Utente) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
@@ -55,12 +55,13 @@ public class PrenotazioneController {
     }
 
     @PostMapping("/handlerDate/insert")
-    public ResponseEntity<String> inserisciDate(@RequestBody DateDto dateLibere, HttpServletRequest req) {
+    public ResponseEntity<List<Timestamp>> inserisciDate(@RequestBody DateDto dateLibere, HttpServletRequest req) {
         Utente utente = (Utente) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        if (!prenotazioniService.save(dateLibere, utente.getId())) {
-            return new ResponseEntity<String>("Data non inserita", HttpStatus.BAD_REQUEST);
+        List<Timestamp> list = prenotazioniService.save(dateLibere, utente.getId());
+        if (list==null) {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
-        return new ResponseEntity<String>("Data inserita correttamente", HttpStatus.CREATED);
+        return new ResponseEntity<List<Timestamp>>(list, HttpStatus.CREATED);
     }
 
     @DeleteMapping("/handlerDate/remove")
@@ -71,22 +72,20 @@ public class PrenotazioneController {
         return new ResponseEntity<String>("Data rimossa correttamente", HttpStatus.OK);
     }
 
-
-
-    
-    @GetMapping(value="/prenotazione/getRegioni")
+    @GetMapping(value = "/prenotazione/getRegioni")
     public @ResponseBody ResponseEntity<Set<String>> searchRegioni() {
         System.out.println(sedeAvisService.getRegioni());
         return new ResponseEntity<Set<String>>(sedeAvisService.getRegioni(), HttpStatus.OK);
     }
+
     @GetMapping("/prenotazione/getProvince/{regione}")
     public @ResponseBody ResponseEntity<Set<String>> searchProvince(@PathVariable String regione) {
         return new ResponseEntity<Set<String>>(sedeAvisService.getProvince(regione), HttpStatus.OK);
     }
+
     @GetMapping("/prenotazione/getComuni/{provincia}")
     public @ResponseBody ResponseEntity<Set<String>> searchComuni(@PathVariable String provincia) {
         return new ResponseEntity<Set<String>>(sedeAvisService.getComuni(provincia), HttpStatus.OK);
     }
-
 
 }

@@ -2,6 +2,7 @@ package com.avis.services;
 
 import java.util.Optional;
 
+import com.avis.dto.CredenzialiDto;
 import com.avis.models.CentroTrasfusione;
 import com.avis.models.Donatore;
 import com.avis.models.Modulo;
@@ -37,6 +38,7 @@ public class ProfiloService {
             newModulo.setId(idDonatore);
             moduloRepository.save(newModulo);
             donatore.get().setModulo(newModulo);
+            donatore.get().setAbilitazioneDonazione((byte)1);
             donatoreRepository.save(donatore.get());
             return true;
         } else {
@@ -52,7 +54,7 @@ public class ProfiloService {
             return donatoreRepository.findById(utente.getId()).get();
         case "sedeAvis":
             return sedeAvisRepository.findById(utente.getId()).get();
-        case "centroTrasfusioni":
+        case "centroTrasfusione":
             return centroRepository.findById(utente.getId()).get();
         default:
             return null;
@@ -60,7 +62,7 @@ public class ProfiloService {
     }
     
     
-    public boolean modificaCredenziali(Donatore donatore,Long id) {
+    /* public boolean modificaCredenziali(Donatore donatore,Long id) {
         if(donatore==null)
             return false;
         if(id==donatore.getId()){
@@ -89,5 +91,36 @@ public class ProfiloService {
         }else{
             return false;
         }
-    }      
+    } */
+
+
+	public Boolean modificaCredenziali(CredenzialiDto credenziali, long id, String ruolo) {
+        switch(ruolo){
+            case "donatore":
+                Donatore don = credenziali.getDonatore();
+                if(don!=null && id==don.getId()){
+                    donatoreRepository.save(don);
+                    return true;
+                }
+                break;
+            case "sedeAvis":
+                SedeAvis sede = credenziali.getSede();
+                if(sede!=null && id==sede.getId()){
+                    sedeAvisRepository.save(sede);
+                    return true;
+                }
+                break;
+            case "centroTrasfusione":
+                CentroTrasfusione centro = credenziali.getCentro();
+                if(centro!=null && id==centro.getId()){
+                    centroRepository.save(centro);
+                    return true;
+                }
+                break;
+            default:
+                return false;
+        }
+        return false;
+		
+	}      
 }

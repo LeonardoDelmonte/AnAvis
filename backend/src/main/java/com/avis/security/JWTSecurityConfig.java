@@ -1,7 +1,5 @@
 package com.avis.security;
 
-import java.util.Arrays;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -36,7 +34,7 @@ public class JWTSecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Autowired
 	public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
-		//configurazione AuthenticationManager
+		// configurazione AuthenticationManager
 		auth.userDetailsService(authService).passwordEncoder(passwordEncoder());
 	}
 
@@ -56,30 +54,29 @@ public class JWTSecurityConfig extends WebSecurityConfigurerAdapter {
 		CorsConfiguration configuration = new CorsConfiguration();
 		configuration.setAllowCredentials(true);
 		configuration.addAllowedOrigin("*");
-		configuration.addAllowedHeader("*");		
-        configuration.addAllowedMethod("*");
+		configuration.addAllowedHeader("*");
+		configuration.addAllowedMethod("*");
 		UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
 		source.registerCorsConfiguration("/**", configuration);
 		return source;
 	}
-	
 
 	@Override
 	protected void configure(HttpSecurity httpSecurity) throws Exception {
 		httpSecurity.csrf().disable().cors().and()
-				//non chiedere autorizzazione per queste richieste 
+				// non chiedere autorizzazione per queste richieste
 				.authorizeRequests().antMatchers("/public/**").permitAll().and()
-				//chiedi autorizzazione per queste richieste
-				.authorizeRequests().antMatchers("/prenotazione/**").hasAuthority("donare").and()
-				.authorizeRequests().antMatchers("/profilo/**").hasAuthority("profilo").and()
-				.authorizeRequests().antMatchers("/handlerDate/**").hasAuthority("handlerDate").and()
-				.authorizeRequests().antMatchers("/requestEmerg/**").hasAuthority("requestEmerg").and()
-				.authorizeRequests().antMatchers("/admin/**").hasAuthority("admin").and()
-				//definisco un ExceptionEntryPoint custom		
+				// chiedi autorizzazione per queste richieste
+				.authorizeRequests().antMatchers("/prenotazione/**").hasAuthority("donare").and().authorizeRequests()
+				.antMatchers("/profilo/**").hasAuthority("profilo").and().authorizeRequests()
+				.antMatchers("/handlerDate/**").hasAuthority("handlerDate").and().authorizeRequests()
+				.antMatchers("/requestEmerg/**").hasAuthority("requestEmerg").and().authorizeRequests()
+				.antMatchers("/admin/**").hasAuthority("admin").and()
+				// definisco un ExceptionEntryPoint custom
 				.exceptionHandling().authenticationEntryPoint(jwtAuthenticationEntryPoint).and()
-				//assicuro un server-side stateless
+				// assicuro un server-side stateless
 				.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
-		//definisco la classe filter che javaSecurity deve usare prima della sua
+		// definisco la classe filter che javaSecurity deve usare prima della sua
 		httpSecurity.addFilterBefore(jwtAuthTokenFilter, UsernamePasswordAuthenticationFilter.class);
 	}
 }
