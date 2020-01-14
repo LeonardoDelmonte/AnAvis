@@ -36,9 +36,8 @@ class PrenotaService {
         var config = {
             headers: { 'Authorization': localStorage.getItem('Authorization') }
         };
-        return axios.post(
+        return axios.get(
             API_URL + '/prenotazione/getRegioni',
-            null,
             config
         )
     }
@@ -47,9 +46,8 @@ class PrenotaService {
         var config = {
             headers: { 'Authorization': localStorage.getItem('Authorization'), 'Content-Type': 'application/json' }
         };
-        return axios.post(
-            API_URL + '/prenotazione/getProvince',
-            regione,
+        return axios.get(
+            API_URL + '/prenotazione/getProvince/'+regione,
             config
         );
     }
@@ -58,9 +56,8 @@ class PrenotaService {
         var config = {
             headers: { 'Authorization': localStorage.getItem('Authorization'), 'Content-Type': 'application/json' }
         };
-        return axios.post(
-            API_URL + '/prenotazione/getComuni',
-            provincia,
+        return axios.get(
+            API_URL + '/prenotazione/getComuni/'+provincia,
             config
         );
     }

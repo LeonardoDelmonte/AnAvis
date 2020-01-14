@@ -2,9 +2,7 @@ package com.avis.rest_controller;
 
 import java.util.List;
 import java.util.Set;
-
 import javax.servlet.http.HttpServletRequest;
-
 import com.avis.dto.DateDto;
 import com.avis.dto.PrenotazioneDto;
 import com.avis.models.Prenotazione;
@@ -13,17 +11,19 @@ import com.avis.services.PrenotazioniService;
 import com.avis.services.SedeAvisService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@CrossOrigin(origins = { "*" })
 public class PrenotazioneController {
 
     @Autowired
@@ -73,16 +73,18 @@ public class PrenotazioneController {
 
 
 
-    @PostMapping("/prenotazione/getRegioni")
-    public ResponseEntity<Set<String>> searchRegioni() {
+    
+    @GetMapping(value="/prenotazione/getRegioni")
+    public @ResponseBody ResponseEntity<Set<String>> searchRegioni() {
+        System.out.println(sedeAvisService.getRegioni());
         return new ResponseEntity<Set<String>>(sedeAvisService.getRegioni(), HttpStatus.OK);
     }
-    @PostMapping("/prenotazione/getProvince")
-    public ResponseEntity<Set<String>> searchProvince(@RequestBody String regione) {
+    @GetMapping("/prenotazione/getProvince/{regione}")
+    public @ResponseBody ResponseEntity<Set<String>> searchProvince(@PathVariable String regione) {
         return new ResponseEntity<Set<String>>(sedeAvisService.getProvince(regione), HttpStatus.OK);
     }
-    @PostMapping("/prenotazione/getComuni")
-    public ResponseEntity<Set<String>> searchComuni(@RequestBody String provincia) {
+    @GetMapping("/prenotazione/getComuni/{provincia}")
+    public @ResponseBody ResponseEntity<Set<String>> searchComuni(@PathVariable String provincia) {
         return new ResponseEntity<Set<String>>(sedeAvisService.getComuni(provincia), HttpStatus.OK);
     }
 

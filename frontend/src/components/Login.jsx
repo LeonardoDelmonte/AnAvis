@@ -37,7 +37,7 @@ class Login extends Component {
 
         var loginDto = {
             'email': this.state.email,
-            'pw': base64.encode(utf8.encode(this.state.password))
+            'pw': this.state.password
         }
 
         LoginService.login(loginDto)

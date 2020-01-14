@@ -15,15 +15,10 @@ public class JwtAuthenticationEntryPoint implements AuthenticationEntryPoint, Se
 
     private static final long serialVersionUID = -8970718410437077606L;
 
-    @Autowired
-    HeaderHandler headerHandler;
-
     @Override
     public void commence(HttpServletRequest request,
                          HttpServletResponse response,
                          AuthenticationException authException) throws IOException {
-        //gestisco le CROS policy
-        headerHandler.process(request,response);
         response.sendError(HttpServletResponse.SC_UNAUTHORIZED, "Unauthorized");
     }
 }

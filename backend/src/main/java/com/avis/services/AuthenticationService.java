@@ -1,9 +1,6 @@
 package com.avis.services;
-
+import com.avis.dto.CredenzialiDto;
 import com.avis.dto.JwtRequest;
-import com.avis.models.CentroTrasfusione;
-import com.avis.models.Donatore;
-import com.avis.models.SedeAvis;
 import com.avis.models.Utente;
 import com.avis.repositories.AuthenticationRepository;
 import com.avis.repositories.CentroTrasfusioneRepository;
@@ -15,6 +12,7 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -30,24 +28,31 @@ public class AuthenticationService implements UserDetailsService{
     private CentroTrasfusioneRepository centroRepository;
     @Autowired
     private AuthenticationManager authenticationManager;
+    //@Autowired
+    //private PasswordEncoder bcryptEncoder;
   
-    public boolean save(Utente utente) {
-        switch (utente.getRuolo()) {
-            case "donatore":
-                donatoreRepository.save(
-                    new Donatore(utente.getEmail(), utente.getPassword(), utente.getRuolo()));
-                    return true;
-            case "sedeAvis":
-                sedeAvisRepository.save(
-                    new SedeAvis(utente.getEmail(), utente.getPassword(), utente.getRuolo()));
-                    return true;
-            case "centroTrasfusioni":
-                centroRepository.save(     
-                    new CentroTrasfusione(utente.getEmail(), utente.getPassword(), utente.getRuolo()));
-                    return true;
-            default:
-                return false;
+    public boolean save(CredenzialiDto utente) {
+        if(utente.getDonatore()!=null){
+            encode(utente.getDonatore());
+            donatoreRepository.save(utente.getDonatore()); 
+            return true;
         }
+        if(utente.getSede()!=null){
+            encode(utente.getSede());
+            sedeAvisRepository.save(utente.getSede()); 
+            return true;
+        }
+        if(utente.getCentro()!=null){
+            encode(utente.getCentro());
+            centroRepository.save(utente.getCentro()); 
+            return true;
+        }
+        return false;
+    }
+
+
+    private void encode(Utente utente){
+        //utente.setPw(bcryptEncoder.encode(utente.getPassword()));
     }
 
     

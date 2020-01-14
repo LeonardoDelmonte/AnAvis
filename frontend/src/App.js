@@ -19,6 +19,7 @@ import FormPrenota from './components/FormPrenota';
 import InsertDate from './components/InsertDate';
 import TopMenu from './components/TopMenu';
 import LogOut from './components/LogOut';
+import ProfiloUtente from './components/ProfiloUtente';
 
 const Auth = {
   isLogged() {
@@ -87,6 +88,7 @@ class App extends Component {
             {/* Pagine Condivise */}
             <PrivateRoute path="/home" exact component={Home} />
             <PrivateRoute path="/prenota" exact component={FormPrenota} />
+            <PrivateRoute path="/profilo" exact component={ProfiloUtente} />
 
             {/* Pagine Solo Donatore */}
 

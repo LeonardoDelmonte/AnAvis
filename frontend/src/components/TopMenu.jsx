@@ -24,6 +24,9 @@ class TopMenu extends Component {
                             {this.props.isLogged && <a className="nav-link" href="prenota">Prenota</a>}
                         </li>
                         <li className="nav-item">
+                            {this.props.isLogged && <a className="nav-link" href="profilo">Profilo</a>}
+                        </li>
+                        <li className="nav-item">
                             {this.props.isLogged && this.props.isSede && <a className="nav-link" href="InsertDate">Inserisci data</a>}
                         </li>
                     </ul>

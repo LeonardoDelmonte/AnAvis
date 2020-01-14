@@ -39,11 +39,17 @@ class Register extends Component {
             registerOK: ''
         })
 
-        var registerDto = {
-            'ruolo': this.state.ruolo,
-            'email': this.state.email,
-            'pw': base64.encode(utf8.encode(this.state.password))
-        }
+        
+
+        var registerDto = JSON.stringify({
+            "donatore" : {
+                'ruolo': this.state.ruolo,
+                'email': this.state.email,
+                'pw': this.state.password,
+                'nome' : 'leonardo',
+                'cognome' : 'leonardo'
+            }
+        })
 
         const reg = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*])(?=.{8,})/;
         const test = reg.test(this.state.password);

@@ -11,13 +11,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-@CrossOrigin(origins = { "*" })
+
 @RestController
 public class ProfiloController {
 
@@ -39,13 +38,13 @@ public class ProfiloController {
         Boolean bool;
         switch(u.getRuolo()){
             case "donatore":
-                bool = profiloService.modificaCredenziali(credenziali.getDonatore());
+                bool = profiloService.modificaCredenziali(credenziali.getDonatore(),u.getId());
                 break;
             case "sedeAvis":
-                bool = profiloService.modificaCredenziali(credenziali.getSede());
+                bool = profiloService.modificaCredenziali(credenziali.getSede(),u.getId());
                 break;
             case "centroTrasfusione":
-                bool = profiloService.modificaCredenziali(credenziali.getCentro());
+                bool = profiloService.modificaCredenziali(credenziali.getCentro(),u.getId());
                 break;
             default:
                 bool = false;
@@ -56,7 +55,7 @@ public class ProfiloController {
     }
     
 
-    @PostMapping("/profilo/showInfo")
+    @GetMapping("/profilo/showInfo")
     public ResponseEntity<Utente> showInfo() {
         Utente utente = (Utente) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         utente = profiloService.showInfo(utente);

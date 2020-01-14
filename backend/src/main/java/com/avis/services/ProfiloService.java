@@ -60,25 +60,30 @@ public class ProfiloService {
     }
     
     
-    public boolean modificaCredenziali(Donatore donatore) {
-        if(donatore!=null){
+    public boolean modificaCredenziali(Donatore donatore,Long id) {
+        if(donatore==null)
+            return false;
+        if(id==donatore.getId()){
             donatoreRepository.save(donatore);
-            return true;
+            return true;           
         }else{
             return false;
         }
     }
-
-    public boolean modificaCredenziali(SedeAvis sede) {
-        if(sede!=null){
+    public boolean modificaCredenziali(SedeAvis sede,Long id) {
+        if(sede==null)
+            return false;
+        if(id==sede.getId()){
             sedeAvisRepository.save(sede);
             return true;
         }else{
             return false;
         }
     }
-    public boolean modificaCredenziali(CentroTrasfusione centro) {
-        if(centro!=null){
+    public boolean modificaCredenziali(CentroTrasfusione centro,Long id) {
+        if(centro==null)
+            return false;
+        if(id==centro.getId()){
             centroRepository.save(centro);
             return true;
         }else{
