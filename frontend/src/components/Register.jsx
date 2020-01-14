@@ -8,10 +8,11 @@ class Register extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            ruolo: 'donatore',
-            email: '',
-            password: '',
-            rpassword: '',
+
+            utente: {
+                ruolo: 'donatore'
+            },
+
             errorRegister: '',
             registerOK: ''
         };
@@ -25,10 +26,21 @@ class Register extends Component {
         const value = target.value;
         const name = target.name;
 
-        this.setState({
-            [name]: value
-        });
-
+        if(target.name === "ruolo"){
+            document.getElementById("RegisterForm").reset();
+            this.setState({
+                utente:{
+                    ruolo:value
+                }
+            })
+        }else{
+            this.setState(prevState => ({
+                utente: {
+                    ...prevState.utente,
+                    [name]: value
+                }
+            }));
+        }
     }
 
     handleSubmit(e) {
@@ -39,38 +51,28 @@ class Register extends Component {
             registerOK: ''
         })
 
-        
-
-        var registerDto = JSON.stringify({
-            "donatore" : {
-                'ruolo': this.state.ruolo,
-                'email': this.state.email,
-                'pw': this.state.password,
-                'nome' : 'leonardo',
-                'cognome' : 'leonardo'
-            }
-        })
+        var registerDto = { [this.state.utente.ruolo] : this.state.utente }
+        console.log(registerDto)
 
         const reg = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*])(?=.{8,})/;
-        const test = reg.test(this.state.password);
+        const test = reg.test(this.state.utente.password);
         if (!test) {
             this.setState({ errorRegister: 'La password deve essere composta da almeno 8 caratteri, una lettera minuscola, una lettera maiuscola, un numero e un carattere speciale' })
             return;
         }
-        if (this.state.password !== this.state.rpassword) {
+        if (this.state.utente.password !== this.state.utente.rpassword) {
             this.setState({ errorRegister: 'Le due password non corrispondono' })
             return;
         }
 
         LoginService.register(registerDto)
             .then(() => {
-                this.setState({ registerOK: 'Registrazione effettuata con successo, torna alla pagina di login per autenticarti' });
-                this.setState({
-                    ruolo: 'donatore',
-                    email: '',
-                    password: '',
-                    rpassword: '',
-                })
+                this.setState({ 
+                    registerOK: 'Registrazione effettuata con successo, torna alla pagina di login per autenticarti',
+                    utente: {
+                        ruolo: 'donatore'
+                    }
+                });
             }
             ).catch(error => {
                 if (!error.response) {
@@ -103,15 +105,58 @@ class Register extends Component {
                         {this.state.registerOK}
                     </div>
                 }
+
                 <form onSubmit={this.handleSubmit} id="RegisterForm">
                     <div className="form-group">
                         <label>Ruolo:</label>
-                        <select className="form-control" id="ruolo" name="ruolo" value={this.state.ruolo} onChange={this.handleChange}>
+                        <select className="form-control" id="ruolo" name="ruolo" value={this.state.utente.ruolo} onChange={this.handleChange}>
                             <option value="donatore">Donatore</option>
                             <option value="sedeAvis">Sede avis</option>
-                            <option value="centroTrasfusioni">Centro trasfusioni</option>
+                            <option value="centroTrasfusione">Centro trasfusioni</option>
                         </select>
                     </div>
+                    {/*campi solo donatore */}
+                    {
+                        this.state.utente.ruolo === "donatore" &&
+                        <div>
+                            <div className="form-group">
+                                <label>Nome:</label>
+                                <input type="text" className="form-control" id="nome" name="nome" value={this.state.email} onChange={this.handleChange} required />
+                            </div>
+                            <div className="form-group">
+                                <label>Cognome:</label>
+                                <input type="text" className="form-control" id="cognome" name="cognome" value={this.state.email} onChange={this.handleChange} required />
+                            </div>
+                        </div>
+                    }
+                    {/*--------------------*/}
+                    {/*campi SedeAvis e centroTrasfusione */}
+                    {
+                        (this.state.utente.ruolo === "sedeAvis" || this.state.utente.ruolo === "centroTrasfusione")  &&
+                        <div>
+                            <div className="form-group">
+                                <label>Denominazione:</label>
+                                <input type="text" className="form-control" id="denominazione" name="denominazione" value={this.state.email} onChange={this.handleChange} required />
+                            </div>
+                            <div className="form-group">
+                                <label>Indirizzo:</label>
+                                <input type="text" className="form-control" id="indirizzo" name="indirizzo" value={this.state.email} onChange={this.handleChange} required />
+                            </div>
+                            <div className="form-group">
+                                <label>Regione:</label>
+                                <input type="text" className="form-control" id="regione" name="regione" value={this.state.email} onChange={this.handleChange} required />
+                            </div>
+                            <div className="form-group">
+                                <label>Provincia:</label>
+                                <input type="text" className="form-control" id="provincia" name="provincia" value={this.state.email} onChange={this.handleChange} required />
+                            </div>
+                            <div className="form-group">
+                                <label>Comune:</label>
+                                <input type="text" className="form-control" id="comune" name="comune" value={this.state.email} onChange={this.handleChange} required />
+                            </div>
+                        </div>
+                    }
+                    {/*--------------------*/}
                     <div className="form-group">
                         <label>Email:</label>
                         <input type="text" className="form-control" id="email" name="email" value={this.state.email} onChange={this.handleChange} required />

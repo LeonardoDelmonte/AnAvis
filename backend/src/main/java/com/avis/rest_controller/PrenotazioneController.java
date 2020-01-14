@@ -53,6 +53,7 @@ public class PrenotazioneController {
         }
         return new ResponseEntity<String>("Prenotazione effettuata", HttpStatus.OK);
     }
+    
 
     @PostMapping("/handlerDate/insert")
     public ResponseEntity<List<Timestamp>> inserisciDate(@RequestBody DateDto dateLibere, HttpServletRequest req) {

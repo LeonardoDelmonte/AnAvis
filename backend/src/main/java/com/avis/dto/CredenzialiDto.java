@@ -7,8 +7,9 @@ import com.avis.models.SedeAvis;
 public class CredenzialiDto {
 
     private Donatore donatore;
-    private CentroTrasfusione centro;
-    private SedeAvis sede;
+    private CentroTrasfusione centroTrasfusione;
+    private SedeAvis sedeAvis;
+
 
     public Donatore getDonatore() {
         return donatore;
@@ -18,21 +19,23 @@ public class CredenzialiDto {
         this.donatore = donatore;
     }
 
-    public CentroTrasfusione getCentro() {
-        return centro;
+    public CentroTrasfusione getCentroTrasfusione() {
+        return centroTrasfusione;
     }
 
-    public void setCentro(CentroTrasfusione centro) {
-        this.centro = centro;
+    public void setCentroTrasfusione(CentroTrasfusione centroTrasfusione) {
+        this.centroTrasfusione = centroTrasfusione;
     }
 
-    public SedeAvis getSede() {
-        return sede;
+    public SedeAvis getSedeAvis() {
+        return sedeAvis;
     }
 
-    public void setSede(SedeAvis sede) {
-        this.sede = sede;
+    public void setSedeAvis(SedeAvis sedeAvis) {
+        this.sedeAvis = sedeAvis;
     }
+
+
 
 }
     
