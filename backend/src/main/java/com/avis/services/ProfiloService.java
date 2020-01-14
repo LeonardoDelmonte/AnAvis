@@ -104,14 +104,14 @@ public class ProfiloService {
                 }
                 break;
             case "sedeAvis":
-                SedeAvis sede = credenziali.getSede();
+                SedeAvis sede = credenziali.getSedeAvis();
                 if(sede!=null && id==sede.getId()){
                     sedeAvisRepository.save(sede);
                     return true;
                 }
                 break;
             case "centroTrasfusione":
-                CentroTrasfusione centro = credenziali.getCentro();
+                CentroTrasfusione centro = credenziali.getCentroTrasfusione();
                 if(centro!=null && id==centro.getId()){
                     centroRepository.save(centro);
                     return true;

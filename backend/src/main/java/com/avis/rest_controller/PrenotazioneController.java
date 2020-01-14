@@ -73,7 +73,7 @@ public class PrenotazioneController {
         return new ResponseEntity<String>("Data rimossa correttamente", HttpStatus.OK);
     }
 
-    @GetMapping(value = "/prenotazione/getRegioni")
+    @GetMapping("/prenotazione/getRegioni")
     public @ResponseBody ResponseEntity<Set<String>> searchRegioni() {
         System.out.println(sedeAvisService.getRegioni());
         return new ResponseEntity<Set<String>>(sedeAvisService.getRegioni(), HttpStatus.OK);
