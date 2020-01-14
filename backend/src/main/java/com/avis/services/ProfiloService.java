@@ -52,7 +52,7 @@ public class ProfiloService {
             return donatoreRepository.findById(utente.getId()).get();
         case "sedeAvis":
             return sedeAvisRepository.findById(utente.getId()).get();
-        case "centroTrasfusioni":
+        case "centroTrasfusione":
             return centroRepository.findById(utente.getId()).get();
         default:
             return null;

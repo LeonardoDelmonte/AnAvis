@@ -28,8 +28,8 @@ public class AuthenticationService implements UserDetailsService{
     private CentroTrasfusioneRepository centroRepository;
     @Autowired
     private AuthenticationManager authenticationManager;
-    //@Autowired
-    //private PasswordEncoder bcryptEncoder;
+    @Autowired
+    private PasswordEncoder bcryptEncoder;
   
     public boolean save(CredenzialiDto utente) {
         if(utente.getDonatore()!=null){
@@ -37,14 +37,14 @@ public class AuthenticationService implements UserDetailsService{
             donatoreRepository.save(utente.getDonatore()); 
             return true;
         }
-        if(utente.getSede()!=null){
-            encode(utente.getSede());
-            sedeAvisRepository.save(utente.getSede()); 
+        if(utente.getSedeAvis()!=null){
+            encode(utente.getSedeAvis());
+            sedeAvisRepository.save(utente.getSedeAvis()); 
             return true;
         }
-        if(utente.getCentro()!=null){
-            encode(utente.getCentro());
-            centroRepository.save(utente.getCentro()); 
+        if(utente.getCentroTrasfusione()!=null){
+            encode(utente.getCentroTrasfusione());
+            centroRepository.save(utente.getCentroTrasfusione()); 
             return true;
         }
         return false;
@@ -52,7 +52,7 @@ public class AuthenticationService implements UserDetailsService{
 
 
     private void encode(Utente utente){
-        //utente.setPw(bcryptEncoder.encode(utente.getPassword()));
+        utente.setPw(bcryptEncoder.encode(utente.getPassword()));
     }
 
     

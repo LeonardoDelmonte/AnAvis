@@ -84,7 +84,7 @@ public class Utente implements UserDetails {
             authoritiesDonatore.add(new SimpleGrantedAuthority("donare"));
             authoritiesDonatore.add(new SimpleGrantedAuthority("handlerDate"));
             return authoritiesDonatore;
-        case "centroTrasfusioni":
+        case "centroTrasfusione":
             authoritiesDonatore.add(new SimpleGrantedAuthority("requestEmerg"));
             return authoritiesDonatore;
         }

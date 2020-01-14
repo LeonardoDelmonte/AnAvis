@@ -41,10 +41,10 @@ public class ProfiloController {
                 bool = profiloService.modificaCredenziali(credenziali.getDonatore(),u.getId());
                 break;
             case "sedeAvis":
-                bool = profiloService.modificaCredenziali(credenziali.getSede(),u.getId());
+                bool = profiloService.modificaCredenziali(credenziali.getSedeAvis(),u.getId());
                 break;
             case "centroTrasfusione":
-                bool = profiloService.modificaCredenziali(credenziali.getCentro(),u.getId());
+                bool = profiloService.modificaCredenziali(credenziali.getCentroTrasfusione(),u.getId());
                 break;
             default:
                 bool = false;

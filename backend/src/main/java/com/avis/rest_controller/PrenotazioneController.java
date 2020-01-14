@@ -11,7 +11,6 @@ import com.avis.services.PrenotazioniService;
 import com.avis.services.SedeAvisService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -53,6 +52,7 @@ public class PrenotazioneController {
         }
         return new ResponseEntity<String>("Prenotazione effettuata", HttpStatus.OK);
     }
+    
 
     @PostMapping("/handlerDate/insert")
     public ResponseEntity<String> inserisciDate(@RequestBody DateDto dateLibere, HttpServletRequest req) {
@@ -74,7 +74,7 @@ public class PrenotazioneController {
 
 
     
-    @GetMapping(value="/prenotazione/getRegioni")
+    @GetMapping("/prenotazione/getRegioni")
     public @ResponseBody ResponseEntity<Set<String>> searchRegioni() {
         System.out.println(sedeAvisService.getRegioni());
         return new ResponseEntity<Set<String>>(sedeAvisService.getRegioni(), HttpStatus.OK);
