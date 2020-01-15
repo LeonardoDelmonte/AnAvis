@@ -16,9 +16,7 @@ import com.avis.models.SedeAvis;
 import com.avis.repositories.DonatoreRepository;
 import com.avis.repositories.PrenotazioniRepository;
 import com.avis.repositories.SedeAvisRepository;
-
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Example;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -63,56 +61,20 @@ public class PrenotazioniService {
 
     public List<Timestamp> save(DateDto dateLibere, Long idSede) {
         Optional<SedeAvis> sedeAvis = sedeAvisRepository.findById(idSede);
-        if (!sedeAvis.isPresent()) {
-            return null;
-        }
-        Timestamp data1 = dateLibere.getDataIniziale();
-        List<Timestamp> list = new ArrayList<>();
-        boolean check = false;     
-        do {// se non è presenta la salvo, aggiorno la data e continuo
-            Prenotazione prenotazione = new Prenotazione(sedeAvis.get(), data1);
-            if (!prenotazioniRepository.findOne(Example.of(prenotazione)).isPresent()) {
-                prenotazioniRepository.save(prenotazione);
-                // se al primo giro le date sono uguali termino
-                if (!check || data1.compareTo(dateLibere.getDataFinale()) == 0)
-                    return list;
-                data1 = new Timestamp(data1.getTime() + TimeUnit.MINUTES.toMillis(15));
-                continue;
-            } // altrimenti aggiorno la lista
-            list.add(data1);
-            // se al primo giro le date sono uguali termino
-            if (!check && data1.compareTo(dateLibere.getDataFinale()) == 0) {
-                return list;
-            } // e aggiorno la data
-            data1 = new Timestamp(data1.getTime() + TimeUnit.MINUTES.toMillis(15));
-            check = true;
-        } while (data1.compareTo(dateLibere.getDataFinale()) != 0);
-        return list;
-    }
-
-
-    /*public List<Timestamp> save(DateDto dateLibere, Long idSede) {
-        Optional<SedeAvis> sedeAvis = sedeAvisRepository.findById(idSede);
         if (!sedeAvis.isPresent())
             return null;  
         Timestamp data1 = dateLibere.getDataIniziale();
         List<Timestamp> listError = new ArrayList<>();
-        boolean isLast = false;
-        while(!isLast){
-            if(data1.compareTo(dateLibere.getDataFinale()) == 0)
-                isLast = true;
-            // se non è presenta la salvo, aggiorno la data e continuo
-            Prenotazione prenotazione = new Prenotazione(sedeAvis.get(), data1);
-            if (!prenotazioniRepository.findOne(Example.of(prenotazione)).isPresent()) {
-                    prenotazioniRepository.save(prenotazione);
-                    data1 = new Timestamp(data1.getTime() + TimeUnit.MINUTES.toMillis(15));
-                    continue;
-            }// altrimenti aggiorno la lista, aggiorno la data e continuo
-            listError.add(data1);
+        while(data1.compareTo(dateLibere.getDataFinale()) != 0){
+            if (!prenotazioniRepository.findByIdSedeAvisAndDate(sedeAvis.get(), data1).isPresent()) {
+                    prenotazioniRepository.save(new Prenotazione(sedeAvis.get(), data1));
+            }else{
+                listError.add(data1);
+            }
             data1 = new Timestamp(data1.getTime() + TimeUnit.MINUTES.toMillis(15));
         }
         return listError;     
-    }*/
+    }
 
 
     public boolean delete(long id) {

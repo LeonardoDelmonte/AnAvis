@@ -21,4 +21,6 @@ public interface PrenotazioniRepository extends JpaRepository<Prenotazione,Long>
 
 	Optional<List<Prenotazione>> findByIdDonatore(Donatore donatore);
 
+	Optional<Prenotazione> findByIdSedeAvisAndDate(SedeAvis sedeAvis, Timestamp data1);
+
 }
