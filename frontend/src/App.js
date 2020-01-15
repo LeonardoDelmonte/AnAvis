@@ -39,6 +39,12 @@ const Auth = {
       return true;
     }
     return false;
+  },
+  isCentro() {
+    if (this.isLogged() && jwt(localStorage.getItem('Authorization')).aud === "centroTrasfusioni") {
+      return true;
+    }
+    return false;
   }
 }
 
@@ -52,7 +58,7 @@ const PrivateRoute = ({ component: Component, ...rest }) => (
 
 const DonatoreRoute = ({ component: Component, ...rest }) => (
   <Route {...rest} render={(props) => (
-    Auth.isDonatore() === true
+    Auth.isDonatore()
       ? <Component {...props} />
       : <Redirect to='/Login' />
   )} />
@@ -60,7 +66,23 @@ const DonatoreRoute = ({ component: Component, ...rest }) => (
 
 const SedeRoute = ({ component: Component, ...rest }) => (
   <Route {...rest} render={(props) => (
-    Auth.isSede() === true
+    Auth.isSede()
+      ? <Component {...props} />
+      : <Redirect to='/Login' />
+  )} />
+)
+
+const SedeDonatoreRoute = ({ component: Component, ...rest }) => (
+  <Route {...rest} render={(props) => (
+    (Auth.isSede() || Auth.isDonatore())
+      ? <Component {...props} />
+      : <Redirect to='/Login' />
+  )} />
+)
+
+const CentroRoute = ({ component: Component, ...rest }) => (
+  <Route {...rest} render={(props) => (
+    Auth.isDonatore()
       ? <Component {...props} />
       : <Redirect to='/Login' />
   )} />
@@ -76,7 +98,7 @@ class App extends Component {
       <Router>
         <div>
 
-          <Route path="/" component={() => <TopMenu isLogged={Auth.isLogged()} isDonatore={Auth.isDonatore()} isSede={Auth.isSede()} />} />
+          <Route path="/" component={() => <TopMenu isLogged={Auth.isLogged()} isDonatore={Auth.isDonatore()} isSede={Auth.isSede()} isCentro={Auth.isCentro()}/>} />
 
           <div className="container">
             {/* Pagine non Protette */}
@@ -87,13 +109,17 @@ class App extends Component {
 
             {/* Pagine Condivise */}
             <PrivateRoute path="/home" exact component={Home} />
-            <PrivateRoute path="/prenota" exact component={FormPrenota} />
             <PrivateRoute path="/profilo" exact component={ProfiloUtente} />
+
+            {/* Pagine Solo Donatore & Sede */}
+            <SedeDonatoreRoute path="/prenota" exact component={FormPrenota} />
 
             {/* Pagine Solo Donatore */}
 
             {/* Pagine Solo Sede */}
             <SedeRoute path="/insertDate" exact component={InsertDate} />
+
+            {/* Pagine Solo Centro */}
 
           </div>
         </div>

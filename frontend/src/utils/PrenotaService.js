@@ -16,14 +16,14 @@ class PrenotaService {
         );
     }
 
-    prenota(idPrenotazione) {
+    prenota(idPrenotazione, donatore) {
         var config = {
             headers: { 'Authorization': localStorage.getItem('Authorization'), 'Content-Type': 'application/json' }
         };
         //non sapevo dove metterla, veditela tu <3
         var prenotazioneDto = {
             'idDataLibera': idPrenotazione,
-            'emailDonatore': ""
+            'emailDonatore': donatore
         }
         return axios.put(
             API_URL + '/prenotazione/donatore',

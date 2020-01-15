@@ -6,6 +6,7 @@ import 'react-datepicker/dist/react-datepicker-cssmodules.css';
 import "react-datepicker/dist/react-datepicker.css";
 import ListFreeDate from './ListFreeDate';
 import PrenotaService from '../utils/PrenotaService';
+import jwt from 'jwt-decode'
 
 
 class FormPrenota extends Component {
@@ -15,8 +16,9 @@ class FormPrenota extends Component {
 
         const myDate1 = new Date()
         const myDate2 = new Date()
-        myDate1.setHours(0,0,0,0)
-        myDate2.setHours(23,59, 0, 0)
+        myDate1.setHours(0, 0, 0, 0)
+        myDate2.setHours(23, 59, 0, 0)
+
 
         this.state = {
             regioni: [],
@@ -32,29 +34,48 @@ class FormPrenota extends Component {
 
             searched: false,
             freeDate: [],
-        }
 
+            isSede: jwt(localStorage.getItem('Authorization')).aud == "sedeAvis",
+        }
+        this.handlerDonatore = this.handlerDonatore.bind(this);
     }
 
-    SearchFreeDate = (comune,dataInit,dataEnd) => {
+    handlerDonatore(e){
+        this.setState({
+            donatore: e.target.value
+        })
+    }
+
+    SearchFreeDate = (comune, dataInit, dataEnd) => {
         this.setState({ freeDate: [] })
         var getDateDto = {
-            "comune" : comune,
-            "dataIniziale":dataInit,
-            "dataFinale":dataEnd
+            "comune": comune,
+            "dataIniziale": dataInit,
+            "dataFinale": dataEnd
         }
         PrenotaService.search(getDateDto)
             .then(
                 response => {
+                    if (!response.data) {
+                        response.data = []
+                    } else {
+                        response.data.map(
+                            (x) => {
+                                const myDate = new Date(x.date);
+                                delete x["date"];
+                                x["day"] = myDate.getDate() + "/" + myDate.getMonth() + 1 + "/" + myDate.getFullYear();
+                                x["time"] = myDate.getHours() + ":" + myDate.getMinutes();
+                            }
+                        )
+                    }
                     this.setState({ freeDate: response.data })
                     this.setState({ searched: true })
-                    console.log(response);
                 }
             )
     }
 
     selectedRegione = selectedRegione => {
-        this.setState({ regione: null, provincia: null, comune: null}, () => {
+        this.setState({ regione: null, provincia: null, comune: null }, () => {
             if (selectedRegione) {
                 this.setState({ provincie: [] });
                 PrenotaService.getProvince(selectedRegione.value)
@@ -91,9 +112,8 @@ class FormPrenota extends Component {
     };
 
     selectedComune = selectedComune => {
-        this.setState({ comune: null}, () => {
+        this.setState({ comune: null }, () => {
             if (selectedComune) {
-                // this.SearchFreeDate(selectedComune.value)
                 this.setState({ comune: selectedComune.value })
             }
         });
@@ -108,7 +128,6 @@ class FormPrenota extends Component {
     }
 
     componentDidMount() {
-
         this.setState({ regioni: [] });
         PrenotaService.getRegioni()
             .then(
@@ -127,52 +146,55 @@ class FormPrenota extends Component {
         return (
             <div>
                 <h1>Prenota Donazione</h1>
+                {this.state.isSede &&
+                    <div className="row m-3">
+                        <div className="col-sm-12 col-md-12 col-lg-12 col-xl-12" >
+                            <label>Seleziona un utente per prenotare una donazione</label>
+                            <input className="form-control" type="text" name="donatore" id="donatore" onChange={this.handlerDonatore} placeholder="Email donatore"/>
+                        </div>
+                    </div>
+                }
 
                 <div className="row m-3" >
-                    <SelectSearchDate dati={this.state.regioni} onSelected={this.selectedRegione} value={"Seleziona una regione"} />
-                    {this.state.regione && <SelectSearchDate dati={this.state.provincie} onSelected={this.selectedProvincia} value={"Seleziona una Provincia"} />}
-                    {this.state.provincia && <SelectSearchDate dati={this.state.comuni} onSelected={this.selectedComune} value={"Seleziona un Comune"} />}
+                    <SelectSearchDate dati={this.state.regioni} onSelected={this.selectedRegione} value={"Seleziona una regione"} text={"Regione"} />
+                    {this.state.regione && <SelectSearchDate dati={this.state.provincie} onSelected={this.selectedProvincia} value={"Seleziona una Provincia"} text={"Provincia"}/>}
+                    {this.state.provincia && <SelectSearchDate dati={this.state.comuni} onSelected={this.selectedComune} value={"Seleziona un Comune"} text={"Comune"}/>}
                 </div>
                 <div className="row m-3">
-              
-                        <div className="col-sm-12 col-md-12 col-lg-4 col-xl-4" >
-                            <label>Dalla data</label>
-                            <DatePicker
-                                selectsStart
-                                maxDate={endDate}
-                                selected={startDate}
-                                onChange={startDate => this.selectedStartDate(startDate)}
-                                startDate={startDate}
-                                endDate={endDate}
-                                dateFormat="dd/MM/yyyy"
-                            />
-                        </div>
-                    
-            
-                        <div className="col-sm-12 col-md-12 col-lg-4 col-xl-4" >
-                            <label>Alla data</label>
-                            <DatePicker
-                                selectsEnd
-                                minDate={startDate}
-                                selected={endDate}
-                                onChange={endDate => this.selectedEndDate(endDate)}
-                                startDate={startDate}
-                                endDate={endDate}
-                                dateFormat="dd/MM/yyyy"
-                            />
-                        </div>
-                    
+                    <div className="col-sm-12 col-md-12 col-lg-4 col-xl-4" >
+                        <label>Dalla data</label>
+                        <DatePicker
+                            selectsStart
+                            maxDate={endDate}
+                            selected={startDate}
+                            onChange={startDate => this.selectedStartDate(startDate)}
+                            startDate={startDate}
+                            endDate={endDate}
+                            dateFormat="dd/MM/yyyy"
+                        />
+                    </div>
+                    <div className="col-sm-12 col-md-12 col-lg-4 col-xl-4" >
+                        <label>Alla data</label>
+                        <DatePicker
+                            selectsEnd
+                            minDate={startDate}
+                            selected={endDate}
+                            onChange={endDate => this.selectedEndDate(endDate)}
+                            startDate={startDate}
+                            endDate={endDate}
+                            dateFormat="dd/MM/yyyy"
+                        />
+                    </div>
+
                     {this.state.startDate && this.state.endDate && this.state.comune &&
                         <div className="col-sm-12 col-md-12 col-lg-4 col-xl-4 align-self-end" >
-                            <button type="button" className="btn btn-primary btn-block " onClick={() => 
-                                    this.SearchFreeDate(this.state.comune,
-                                    this.state.startDate,this.state.endDate)}>Cerca</button>                                              
+                            <button type="button" className="mt-3 btn btn-primary btn-block " onClick={() =>
+                                this.SearchFreeDate(this.state.comune,
+                                    this.state.startDate, this.state.endDate)}>Cerca</button>
                         </div>
                     }
                 </div>
-                {this.state.searched && 
-                    <ListFreeDate freeDate={this.state.freeDate} 
-                />}
+                {this.state.searched && <ListFreeDate freeDate={this.state.freeDate} donatore={this.state.donatore}/>}
 
             </div>
         );

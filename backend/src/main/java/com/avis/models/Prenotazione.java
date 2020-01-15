@@ -18,7 +18,7 @@ public class Prenotazione {
     @Column(name = "id")
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long idPrenotazione;
+    private long idPrenotazione;
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "idDonatore", referencedColumnName = "id")
     private Donatore idDonatore;
