@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
 import LoginService from '../utils/LoginService';
-import base64 from "base-64";
-import utf8 from "utf8";
 
 class Register extends Component {
 
@@ -45,7 +43,8 @@ class Register extends Component {
 
     handleSubmit(e) {
         e.preventDefault();
-
+        window.scrollTo({top: 0, left: 0, behavior: 'smooth' });
+        
         this.setState({
             errorRegister: '',
             registerOK: ''
@@ -67,6 +66,7 @@ class Register extends Component {
 
         LoginService.register(registerDto)
             .then(() => {
+                document.getElementById("RegisterForm").reset();
                 this.setState({ 
                     registerOK: 'Registrazione effettuata con successo, torna alla pagina di login per autenticarti',
                     utente: {
@@ -86,8 +86,6 @@ class Register extends Component {
                     }
                 }
             })
-
-
     }
 
     render() {

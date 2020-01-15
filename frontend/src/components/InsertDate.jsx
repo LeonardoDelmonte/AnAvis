@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
 import handlerDate from "../utils/handlerDate"
 import DatePicker from "react-datepicker";
+import FailedInserDate from './FailedInserDate';
 import 'react-datepicker/dist/react-datepicker-cssmodules.css';
 import "react-datepicker/dist/react-datepicker.css";
+
 
 class InsertDate extends Component {
 
@@ -35,9 +37,11 @@ class InsertDate extends Component {
 
         handlerDate.insert(dateDto)
             .then(response => {
-                console.log(response)
+                console.log(response.data)
+                this.setState({
+                    failedDate : response.data
+                })
             });
-
     }
 
     selectedDate = date => {
@@ -56,17 +60,6 @@ class InsertDate extends Component {
 
     }
 
-    // insertDate = () => {
-    //     var dateDto = {
-    //         "dataIniziale": this.state.startTime,
-    //         "dataFinale": this.state.endTime
-    //     }
-    //     handlerDate.insert(dateDto)
-    //         .then(response => {
-    //             console.log(response)
-    //         });
-    // }
-
     render() {
         const date = this.state.date;
         const startTime = this.state.startTime;
@@ -77,7 +70,7 @@ class InsertDate extends Component {
                 <h1>Scegli data</h1>
                 <form onSubmit={this.handleSubmit} id="RegisterForm">
                     <div className="row m-3">
-                        <div className="col-sm-12 col-md-12 col-lg-3 col-xl-3" >
+                        <div className="col-sm-12 col-md-12 col-lg-3 col-xl-3 align-self-end" >
                             <label>Seleziona la data da inserire</label>
                             <DatePicker
                                 onChange={this.selectedDate}
@@ -88,7 +81,7 @@ class InsertDate extends Component {
                                 dateFormat="dd/MM/yyyy"
                             />
                         </div>
-                        <div className="col-sm-12 col-md-12 col-lg-3 col-xl-3" >
+                        <div className="col-sm-12 col-md-12 col-lg-3 col-xl-3 align-self-end" >
                             <label>Ora di inizo</label>
                             <DatePicker
                                 onChange={this.setStartTime}
@@ -106,7 +99,7 @@ class InsertDate extends Component {
 
                             />
                         </div>
-                        <div className="col-sm-12 col-md-12 col-lg-3 col-xl-3" >
+                        <div className="col-sm-12 col-md-12 col-lg-3 col-xl-3  align-self-end" >
                             <label>Ora di fine</label>
                             <DatePicker
                                 onChange={this.setEndTime}
@@ -123,9 +116,10 @@ class InsertDate extends Component {
                             />
                         </div>
                         <div className="col-sm-12 col-md-12 col-lg-3 col-xl-3 align-self-end" >
-                            <button type="submit" className="btn btn-primary btn-block" >Inserisci</button>
+                            <button type="submit" className="mt-3 btn btn-primary btn-block" >Inserisci</button>
                         </div>
                     </div>
+                    {this.state.failedDate && <FailedInserDate failedDate={this.state.failedDate}/>}
 
                 </form>
 

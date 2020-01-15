@@ -31,8 +31,13 @@ const columns = memoize(clickHandler => [
         sortable: true,
     },
     {
-        name: 'date',
-        selector: 'date',
+        name: 'Giorno',
+        selector: 'day',
+        sortable: true,
+    },
+    {
+        name: 'Orario',
+        selector: 'time',
         sortable: true,
     },
     {
@@ -52,7 +57,7 @@ class ListFreeDate extends PureComponent {
 
     handleButtonClick = (state) => {
 
-        PrenotaService.prenota(state.target.id).then(
+        PrenotaService.prenota(state.target.id, this.props.donatore).then(
             response => {
                console.log(response)
                if(response.data){
