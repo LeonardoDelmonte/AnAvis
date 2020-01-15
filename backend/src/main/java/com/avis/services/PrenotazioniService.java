@@ -26,10 +26,8 @@ public class PrenotazioniService {
 
     @Autowired
     private PrenotazioniRepository prenotazioniRepository;
-
     @Autowired
     private SedeAvisRepository sedeAvisRepository;
-
     @Autowired
     private DonatoreRepository donatoreRepository;
 
@@ -37,8 +35,8 @@ public class PrenotazioniService {
         Donatore donatore = donatoreRepository.findByEmail(prenotazioneDto.getEmailDonatore());
         if (donatore == null)
             return false;
-        /* if(!checkAbilitazione(donatore))
-            return false; */
+        if(!checkAbilitazione(donatore))
+            return false;
         Optional<Prenotazione> prenotazione = prenotazioniRepository.findById(prenotazioneDto.getIdDataLibera());
         if (!prenotazione.isPresent() || prenotazione.get().getIdDonatore() != null) {
             return false;
@@ -49,10 +47,10 @@ public class PrenotazioniService {
         donatoreRepository.save(donatore);
         return true;
     }
+
     // da provare
     private boolean checkAbilitazione(Donatore donatore) {
-        Long date = new Date().getTime();
-        Long last;
+        Long date = new Date().getTime();Long last;       
         Optional<List<Prenotazione>> list = prenotazioniRepository.findByIdDonatore(donatore);
         if(!list.isPresent())
             return true;
@@ -62,21 +60,21 @@ public class PrenotazioniService {
         return false;
     }
 
+
     public List<Timestamp> save(DateDto dateLibere, Long idSede) {
-        Timestamp data1 = dateLibere.getDataIniziale();
-        List<Timestamp> list = new ArrayList<>();
-        Prenotazione prenotazione;
-        boolean check = false;
         Optional<SedeAvis> sedeAvis = sedeAvisRepository.findById(idSede);
         if (!sedeAvis.isPresent()) {
             return null;
         }
+        Timestamp data1 = dateLibere.getDataIniziale();
+        List<Timestamp> list = new ArrayList<>();
+        boolean check = false;     
         do {// se non è presenta la salvo, aggiorno la data e continuo
-            prenotazione = new Prenotazione(sedeAvis.get(), data1);
+            Prenotazione prenotazione = new Prenotazione(sedeAvis.get(), data1);
             if (!prenotazioniRepository.findOne(Example.of(prenotazione)).isPresent()) {
                 prenotazioniRepository.save(prenotazione);
                 // se al primo giro le date sono uguali termino
-                if (!check && data1.compareTo(dateLibere.getDataFinale()) == 0)
+                if (!check || data1.compareTo(dateLibere.getDataFinale()) == 0)
                     return list;
                 data1 = new Timestamp(data1.getTime() + TimeUnit.MINUTES.toMillis(15));
                 continue;
@@ -92,6 +90,31 @@ public class PrenotazioniService {
         return list;
     }
 
+
+    /*public List<Timestamp> save(DateDto dateLibere, Long idSede) {
+        Optional<SedeAvis> sedeAvis = sedeAvisRepository.findById(idSede);
+        if (!sedeAvis.isPresent())
+            return null;  
+        Timestamp data1 = dateLibere.getDataIniziale();
+        List<Timestamp> listError = new ArrayList<>();
+        boolean isLast = false;
+        while(!isLast){
+            if(data1.compareTo(dateLibere.getDataFinale()) == 0)
+                isLast = true;
+            // se non è presenta la salvo, aggiorno la data e continuo
+            Prenotazione prenotazione = new Prenotazione(sedeAvis.get(), data1);
+            if (!prenotazioniRepository.findOne(Example.of(prenotazione)).isPresent()) {
+                    prenotazioniRepository.save(prenotazione);
+                    data1 = new Timestamp(data1.getTime() + TimeUnit.MINUTES.toMillis(15));
+                    continue;
+            }// altrimenti aggiorno la lista, aggiorno la data e continuo
+            listError.add(data1);
+            data1 = new Timestamp(data1.getTime() + TimeUnit.MINUTES.toMillis(15));
+        }
+        return listError;     
+    }*/
+
+
     public boolean delete(long id) {
         Optional<Prenotazione> prenotazione = prenotazioniRepository.findById(id);
         if (!prenotazione.isPresent()) {
@@ -103,8 +126,8 @@ public class PrenotazioniService {
 
     public List<Prenotazione> getDateLibere(DateDto dto) {
         SedeAvis sede = sedeAvisRepository.findByComune(dto.getComune());
-        Optional<List<Prenotazione>> dateLibere = prenotazioniRepository.findByIdSedeAvisAndDateBetween(sede,
-                dto.getDataIniziale(), dto.getDataFinale());
+        Optional<List<Prenotazione>> dateLibere = prenotazioniRepository.findByIdSedeAvisAndDateBetween(
+            sede,dto.getDataIniziale(), dto.getDataFinale());
         if (!dateLibere.isPresent()) {
             return null;
         }

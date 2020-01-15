@@ -35,21 +35,10 @@ public class ProfiloController {
     @PutMapping("/profilo/modificaCredenziali")
     public ResponseEntity<String> modificaCredenziali(@RequestBody CredenzialiDto credenziali) {
         Utente u = (Utente) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        Boolean bool;
-        bool = profiloService.modificaCredenziali(credenziali,u.getId(),u.getRuolo());
-        /* switch(u.getRuolo()){
-            case "donatore":
-                bool = profiloService.modificaCredenziali(credenziali.getDonatore(),u.getId());
-                break;
-            case "sedeAvis":
-                bool = profiloService.modificaCredenziali(credenziali.getSedeAvis(),u.getId());
-                break;
-            case "centroTrasfusione":
-                bool = profiloService.modificaCredenziali(credenziali.getCentroTrasfusione(),u.getId());
-                break;
-            default:
-                bool = false;
-        } */
+        //se ai metodi come questo do parametri a mano posso bypassare la poca sicurezza che cè =(
+        //quindi o facciamo un qualcosa di provato che controlla la sessione e nessuno 
+        //può chiamare dall'esterno oppure diamo per scontato che ci passeranno sempre cose buone.
+        boolean bool = profiloService.modificaCredenziali(credenziali,u.getId(),u.getRuolo());
         if (bool)
             return new ResponseEntity<String>("Credenziali modificate", HttpStatus.OK);
         return new ResponseEntity<String>("Credenziali non modificate", HttpStatus.NO_CONTENT);

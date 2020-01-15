@@ -60,38 +60,6 @@ public class ProfiloService {
             return null;
         }
     }
-    
-    
-    /* public boolean modificaCredenziali(Donatore donatore,Long id) {
-        if(donatore==null)
-            return false;
-        if(id==donatore.getId()){
-            donatoreRepository.save(donatore);
-            return true;           
-        }else{
-            return false;
-        }
-    }
-    public boolean modificaCredenziali(SedeAvis sede,Long id) {
-        if(sede==null)
-            return false;
-        if(id==sede.getId()){
-            sedeAvisRepository.save(sede);
-            return true;
-        }else{
-            return false;
-        }
-    }
-    public boolean modificaCredenziali(CentroTrasfusione centro,Long id) {
-        if(centro==null)
-            return false;
-        if(id==centro.getId()){
-            centroRepository.save(centro);
-            return true;
-        }else{
-            return false;
-        }
-    } */
 
 
 	public Boolean modificaCredenziali(CredenzialiDto credenziali, long id, String ruolo) {
@@ -102,25 +70,23 @@ public class ProfiloService {
                     donatoreRepository.save(don);
                     return true;
                 }
-                break;
+                return false;
             case "sedeAvis":
                 SedeAvis sede = credenziali.getSedeAvis();
                 if(sede!=null && id==sede.getId()){
                     sedeAvisRepository.save(sede);
                     return true;
                 }
-                break;
+                return false;
             case "centroTrasfusione":
                 CentroTrasfusione centro = credenziali.getCentroTrasfusione();
                 if(centro!=null && id==centro.getId()){
                     centroRepository.save(centro);
                     return true;
                 }
-                break;
+                return false;
             default:
                 return false;
         }
-        return false;
-		
 	}      
 }
