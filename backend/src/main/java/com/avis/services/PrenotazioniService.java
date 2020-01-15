@@ -3,7 +3,9 @@ package com.avis.services;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
@@ -28,12 +30,15 @@ public class PrenotazioniService {
     private SedeAvisRepository sedeAvisRepository;
     @Autowired
     private DonatoreRepository donatoreRepository;
+    @Autowired
+    private ProfiloService profilo;
 
     public boolean prenotaData(PrenotazioneDto prenotazioneDto) {
         Donatore donatore = donatoreRepository.findByEmail(prenotazioneDto.getEmailDonatore());
         if (donatore == null)
             return false;
-        if(!checkAbilitazione(donatore))
+        profilo.checkAbilitazione(donatore.getId());
+        if (donatore.getAbilitazioneDonazione()==0)
             return false;
         Optional<Prenotazione> prenotazione = prenotazioniRepository.findById(prenotazioneDto.getIdDataLibera());
         if (!prenotazione.isPresent() || prenotazione.get().getIdDonatore() != null) {
@@ -46,36 +51,27 @@ public class PrenotazioniService {
         return true;
     }
 
-    // da provare
-    private boolean checkAbilitazione(Donatore donatore) {
-        Long date = new Date().getTime();Long last;       
-        Optional<List<Prenotazione>> list = prenotazioniRepository.findByIdDonatore(donatore);
-        if(!list.isPresent())
-            return true;
-        last = list.get().get(list.get().size()-1).getDate().getTime();
-        if(date-last>7884008640L)
-            return true;
-        return false;
-    }
-
-
-    public List<Timestamp> save(DateDto dateLibere, Long idSede) {
+    public Map<String,List<Timestamp>> save(DateDto dateLibere, Long idSede) {
         Optional<SedeAvis> sedeAvis = sedeAvisRepository.findById(idSede);
         if (!sedeAvis.isPresent())
             return null;  
         Timestamp data1 = dateLibere.getDataIniziale();
         List<Timestamp> listError = new ArrayList<>();
+        List<Timestamp> listOK = new ArrayList<>();
         while(data1.compareTo(dateLibere.getDataFinale()) != 0){
             if (!prenotazioniRepository.findByIdSedeAvisAndDate(sedeAvis.get(), data1).isPresent()) {
                     prenotazioniRepository.save(new Prenotazione(sedeAvis.get(), data1));
+                    listOK.add(data1);
             }else{
                 listError.add(data1);
             }
             data1 = new Timestamp(data1.getTime() + TimeUnit.MINUTES.toMillis(15));
         }
-        return listError;     
+        Map<String,List<Timestamp>> map = new HashMap<>();
+        map.put("listOK",listOK);
+        map.put("listError",listError);
+        return map;
     }
-
 
     public boolean delete(long id) {
         Optional<Prenotazione> prenotazione = prenotazioniRepository.findById(id);
@@ -88,8 +84,8 @@ public class PrenotazioniService {
 
     public List<Prenotazione> getDateLibere(DateDto dto) {
         SedeAvis sede = sedeAvisRepository.findByComune(dto.getComune());
-        Optional<List<Prenotazione>> dateLibere = prenotazioniRepository.findByIdSedeAvisAndDateBetween(
-            sede,dto.getDataIniziale(), dto.getDataFinale());
+        Optional<List<Prenotazione>> dateLibere = prenotazioniRepository.findByIdSedeAvisAndDateBetween(sede,
+                dto.getDataIniziale(), dto.getDataFinale());
         if (!dateLibere.isPresent()) {
             return null;
         }

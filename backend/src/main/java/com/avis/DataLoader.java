@@ -50,11 +50,13 @@ public class DataLoader implements ApplicationRunner {
         sedeAvis.save(sede1); sedeAvis.save(sede2);
         centroTrasf.save(new CentroTrasfusione("centro1",bcryptEncoder.encode("centro1"),"centroTrasfusione"));
         centroTrasf.save(new CentroTrasfusione("centro2",bcryptEncoder.encode("cetro1"),"centroTrasfusione"));
-        Timestamp ts1 = Timestamp.valueOf("2020-08-14 11:00:00");
-        Timestamp ts2 = Timestamp.valueOf("2020-08-14 12:00:00");
-        Timestamp ts5 = Timestamp.valueOf("2020-08-14 11:30:00");
-        Timestamp ts4 = Timestamp.valueOf("2020-08-14 12:30:00");
-        Timestamp ts3 = Timestamp.valueOf("2020-08-14 13:00:00");
+        Timestamp ts1 = Timestamp.valueOf("2020-01-13 11:00:00");
+        Timestamp ts2 = Timestamp.valueOf("2020-01-13 12:00:00");
+        Timestamp ts5 = Timestamp.valueOf("2020-01-13 11:30:00");
+        Timestamp ts4 = Timestamp.valueOf("2020-01-13 12:30:00");
+        Timestamp ts3 = Timestamp.valueOf("2020-01-13 13:00:00");
+        profilo.modificaModulo(new Modulo("B", "no"), (long)1);
+        profilo.modificaModulo(new Modulo("A", "si"), (long)2);
         prenotazione.save(new DateDto(ts1,ts2), (long)3);
         prenotazione.save(new DateDto(ts5,ts4), (long)3);
         prenotazione.save(new DateDto(ts2,ts3), (long)4);
@@ -62,8 +64,7 @@ public class DataLoader implements ApplicationRunner {
         prenotazione.prenotaData(new PrenotazioneDto((long)6, "leo"));
         emergenza.save("A", (long)5);
         emergenza.save("00", (long)6);
-        profilo.modificaModulo(new Modulo("B", "no"), (long)1);
-        profilo.modificaModulo(new Modulo("A", "si"), (long)2);
+        
 
     }
 

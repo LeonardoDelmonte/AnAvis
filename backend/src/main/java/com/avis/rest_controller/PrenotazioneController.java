@@ -2,6 +2,7 @@ package com.avis.rest_controller;
 
 import java.sql.Timestamp;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 import javax.servlet.http.HttpServletRequest;
 import com.avis.dto.DateDto;
@@ -56,13 +57,14 @@ public class PrenotazioneController {
     
 
     @PostMapping("/handlerDate/insert")
-    public ResponseEntity<List<Timestamp>> inserisciDate(@RequestBody DateDto dateLibere, HttpServletRequest req) {
+    public ResponseEntity<Map<String,List<Timestamp>>> inserisciDate(@RequestBody DateDto dateLibere, HttpServletRequest req) {
         Utente utente = (Utente) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        List<Timestamp> list = prenotazioniService.save(dateLibere, utente.getId());
-        if (list==null) {
+        Map<String,List<Timestamp>> map = prenotazioniService.save(dateLibere, utente.getId());
+        if (map==null) {
+            //sedeAvis non esistente
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
-        return new ResponseEntity<List<Timestamp>>(list, HttpStatus.CREATED);
+        return new ResponseEntity<Map<String,List<Timestamp>>>(map, HttpStatus.CREATED);
     }
 
     @DeleteMapping("/handlerDate/remove")

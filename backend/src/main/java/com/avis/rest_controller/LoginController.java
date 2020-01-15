@@ -1,5 +1,6 @@
 package com.avis.rest_controller;
 import com.avis.services.AuthenticationService;
+import com.avis.services.ProfiloService;
 import com.avis.security.JwtTokenUtil;
 import com.avis.dto.JwtRequest;
 import org.springframework.security.core.AuthenticationException;
@@ -23,6 +24,8 @@ public class LoginController {
     private JwtTokenUtil jwtTokenUtil;
     @Autowired
     private AuthenticationService authService;
+    @Autowired
+    private ProfiloService profilo;
 
     @RequestMapping(value = "public/login", method = RequestMethod.POST)
     public ResponseEntity<String> createAuthenticationToken(
@@ -31,6 +34,8 @@ public class LoginController {
             authService.authenticate(authenticationRequest);
             Utente utente = (Utente) authService.loadUserByUsername(authenticationRequest.getEmail());
             final String token = jwtTokenUtil.generateToken(utente);
+            if(utente.getRuolo().compareTo("donatore")==0)
+                profilo.checkAbilitazione(utente.getId());
             return new ResponseEntity<>(token, HttpStatus.OK);
         } catch (DisabledException e) {
             return new ResponseEntity<>("Login fallito, utente disabilitato", HttpStatus.UNAUTHORIZED);
