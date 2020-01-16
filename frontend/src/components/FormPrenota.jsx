@@ -17,7 +17,9 @@ class FormPrenota extends Component {
         const myDate1 = new Date()
         const myDate2 = new Date()
         myDate1.setHours(0, 0, 0, 0)
+        myDate2.setDate(myDate2.getDate() + 7);
         myDate2.setHours(23, 59, 0, 0)
+
 
 
         this.state = {
@@ -165,6 +167,7 @@ class FormPrenota extends Component {
                         <label>Dalla data</label>
                         <DatePicker
                             selectsStart
+                            minDate={new Date()}
                             maxDate={endDate}
                             selected={startDate}
                             onChange={startDate => this.selectedStartDate(startDate)}

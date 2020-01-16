@@ -20,12 +20,16 @@ class TopMenu extends Component {
                         <li className="nav-item">
                             {!this.props.isLogged && <a className="nav-link" href="register">Registrazione</a>}
                         </li>
+
                         <li className="nav-item">
                             {this.props.isLogged && (this.props.isSede || this.props.isDonatore) && <a className="nav-link" href="prenota">Prenota</a>}
                         </li>
-
                         <li className="nav-item">
                             {this.props.isLogged && this.props.isSede && <a className="nav-link" href="InsertDate">Inserisci data</a>}
+                        </li>
+
+                        <li className="nav-item">
+                            {this.props.isLogged && this.props.isCentro && <a className="nav-link" href="EmergenzaSangue">Emergenza sangue</a>}
                         </li>
                     </ul>
 

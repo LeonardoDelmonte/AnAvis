@@ -20,6 +20,8 @@ import InsertDate from './components/InsertDate';
 import TopMenu from './components/TopMenu';
 import LogOut from './components/LogOut';
 import ProfiloUtente from './components/ProfiloUtente';
+import Footer from './components/Footer';
+import EmergenzaSangue from './components/EmergenzaSangue';
 
 const Auth = {
   isLogged() {
@@ -41,7 +43,7 @@ const Auth = {
     return false;
   },
   isCentro() {
-    if (this.isLogged() && jwt(localStorage.getItem('Authorization')).aud === "centroTrasfusioni") {
+    if (this.isLogged() && jwt(localStorage.getItem('Authorization')).aud === "centroTrasfusione") {
       return true;
     }
     return false;
@@ -82,7 +84,7 @@ const SedeDonatoreRoute = ({ component: Component, ...rest }) => (
 
 const CentroRoute = ({ component: Component, ...rest }) => (
   <Route {...rest} render={(props) => (
-    Auth.isDonatore()
+    Auth.isCentro()
       ? <Component {...props} />
       : <Redirect to='/Login' />
   )} />
@@ -90,40 +92,45 @@ const CentroRoute = ({ component: Component, ...rest }) => (
 
 class App extends Component {
 
-  componentDidMount() {
-    Auth.isDonatore();
-  }
   render() {
     return (
+
       <Router>
-        <div>
+        <Route path="/" component={() => <TopMenu isLogged={Auth.isLogged()} isDonatore={Auth.isDonatore()} isSede={Auth.isSede()} isCentro={Auth.isCentro()} />} />
+      
+          <div id="page-content">
+            <div className="container">
 
-          <Route path="/" component={() => <TopMenu isLogged={Auth.isLogged()} isDonatore={Auth.isDonatore()} isSede={Auth.isSede()} isCentro={Auth.isCentro()}/>} />
+              {/* Pagine non Protette */}
+              <Route path="/" exact component={Login} />
+              <Route path='/login' exact component={Login} />
+              <Route path='/register' exact component={Register} />
+              <Route path="/logOut" exact component={LogOut} />
 
-          <div className="container">
-            {/* Pagine non Protette */}
-            <Route path="/" exact component={Login} />
-            <Route path='/login' exact component={Login} />
-            <Route path='/register' exact component={Register} />
-            <Route path="/logOut" exact component={LogOut} />
+              {/* Pagine Condivise */}
+              <PrivateRoute path="/home" exact component={Home} />
+              <PrivateRoute path="/profilo" exact component={ProfiloUtente} />
 
-            {/* Pagine Condivise */}
-            <PrivateRoute path="/home" exact component={Home} />
-            <PrivateRoute path="/profilo" exact component={ProfiloUtente} />
+              {/* Pagine Solo Donatore & Sede */}
+              <SedeDonatoreRoute path="/prenota" exact component={FormPrenota} />
 
-            {/* Pagine Solo Donatore & Sede */}
-            <SedeDonatoreRoute path="/prenota" exact component={FormPrenota} />
+              {/* Pagine Solo Donatore */}
 
-            {/* Pagine Solo Donatore */}
+              {/* Pagine Solo Sede */}
+              <SedeRoute path="/insertDate" exact component={InsertDate} />
 
-            {/* Pagine Solo Sede */}
-            <SedeRoute path="/insertDate" exact component={InsertDate} />
+              {/* Pagine Solo Centro */}
+              <CentroRoute path="/EmergenzaSangue" exact component={EmergenzaSangue} />
 
-            {/* Pagine Solo Centro */}
 
+            </div>
           </div>
-        </div>
+    
+
+        <Route path="/" component={() => <Footer />} />
       </Router>
+
+
     );
   }
 }

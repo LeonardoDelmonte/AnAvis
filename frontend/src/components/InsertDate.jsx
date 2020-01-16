@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import handlerDate from "../utils/handlerDate"
 import DatePicker from "react-datepicker";
-import FailedInserDate from './FailedInserDate';
+import ResultInserDate from './ResultInserDate';
 import 'react-datepicker/dist/react-datepicker-cssmodules.css';
 import "react-datepicker/dist/react-datepicker.css";
 
@@ -38,8 +38,10 @@ class InsertDate extends Component {
         handlerDate.insert(dateDto)
             .then(response => {
                 console.log(response.data)
+
                 this.setState({
-                    failedDate : response.data
+                    listError : response.data.listError,
+                    listOK : response.data.listOK
                 })
             });
     }
@@ -71,7 +73,7 @@ class InsertDate extends Component {
                 <form onSubmit={this.handleSubmit} id="RegisterForm">
                     <div className="row m-3">
                         <div className="col-sm-12 col-md-12 col-lg-3 col-xl-3 align-self-end" >
-                            <label>Seleziona la data da inserire</label>
+                            <label>Seleziona data</label>
                             <DatePicker
                                 onChange={this.selectedDate}
                                 selectsStart
@@ -119,10 +121,9 @@ class InsertDate extends Component {
                             <button type="submit" className="mt-3 btn btn-primary btn-block" >Inserisci</button>
                         </div>
                     </div>
-                    {this.state.failedDate && <FailedInserDate failedDate={this.state.failedDate}/>}
-
                 </form>
-
+                
+                <ResultInserDate listError={this.state.listError} listOK={this.state.listOK}/>
 
             </div>
         );
