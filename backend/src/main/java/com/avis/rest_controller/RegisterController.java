@@ -2,6 +2,8 @@ package com.avis.rest_controller;
 
 import com.avis.dto.CredenzialiDto;
 import com.avis.services.AuthenticationService;
+import com.avis.utils.ApiResponse;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -17,11 +19,11 @@ public class RegisterController {
     private AuthenticationService authService;
 
     @RequestMapping(value = "public/register", method = RequestMethod.POST)
-    public ResponseEntity<String> register(@RequestBody CredenzialiDto utente) {
+    public ResponseEntity<Object> register(@RequestBody CredenzialiDto utente) {
         if (!authService.save(utente)) {
-            return new ResponseEntity<String>("Utente non registrato", HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<>(new ApiResponse("Utente non registrato"), HttpStatus.BAD_REQUEST);
         }
-        return new ResponseEntity<String>("Utente registrato correttamente", HttpStatus.CREATED);
+        return new ResponseEntity<>(new ApiResponse("Utente registrato con successo"), HttpStatus.CREATED);
     }
 
 }

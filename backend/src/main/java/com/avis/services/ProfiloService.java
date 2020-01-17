@@ -34,10 +34,10 @@ public class ProfiloService {
     @Autowired
     private PrenotazioniRepository prenotazioneRepository;
 
-    public boolean modificaModulo(Modulo newModulo, Long idDonatore) {
+    public Utente modificaModulo(Modulo newModulo, Long idDonatore) {
         Optional<Donatore> donatore = donatoreRepository.findById(idDonatore);
         if (!donatore.isPresent()) {
-            return false;
+            return null;
         }
         Optional<Modulo> oldModulo = moduloRepository.findById(idDonatore);
         if (!oldModulo.isPresent()) {
@@ -46,17 +46,18 @@ public class ProfiloService {
             donatore.get().setModulo(newModulo);
             donatore.get().setAbilitazioneDonazione((byte) 1);
             donatoreRepository.save(donatore.get());
-            return true;
+            return donatore.get();
         } else {
             moduloRepository.save(newModulo);
-            return true;
+            return donatore.get();
         }
     }
 
     public Utente showInfo(Utente utente) {
+        //check exception
         switch (utente.getRuolo()) {
         case "donatore":
-            return donatoreRepository.findById(utente.getId()).get();
+            return donatoreRepository.findById(Long.valueOf(15)).get();
         case "sedeAvis":
             return sedeAvisRepository.findById(utente.getId()).get();
         case "centroTrasfusione":
@@ -66,38 +67,37 @@ public class ProfiloService {
         }
     }
 
-    public Boolean modificaCredenziali(CredenzialiDto credenziali, long id, String ruolo) {
-        switch (ruolo) {
+    public Utente modificaCredenziali(CredenzialiDto credenziali, Utente utente) {
+        switch (utente.getRuolo()) {
         case "donatore":
             Donatore don = credenziali.getDonatore();
-            if (don != null && id == don.getId()) {
+            if (don != null && utente.getId() == don.getId()) {
                 donatoreRepository.save(don);
-                return true;
+                return don;
             }
-            return false;
+            return null;
         case "sedeAvis":
             SedeAvis sede = credenziali.getSedeAvis();
-            if (sede != null && id == sede.getId()) {
+            if (sede != null && utente.getId() == sede.getId()) {
                 sedeAvisRepository.save(sede);
-                return true;
+                return sede;
             }
-            return false;
+            return null;
         case "centroTrasfusione":
             CentroTrasfusione centro = credenziali.getCentroTrasfusione();
-            if (centro != null && id == centro.getId()) {
+            if (centro != null && utente.getId() == centro.getId()) {
                 centroRepository.save(centro);
-                return true;
+                return centro;
             }
-            return false;
+            return null;
         default:
-            return false;
+            return null;
         }
     }
 
     public Donatore checkAbilitazione(String email) {
+        //check exception
         Donatore donatore = donatoreRepository.findByEmail(email);
-        if (donatore == null)
-            return null;
         if (donatore.getModulo() == null)
             return donatore;
         Long date = new Date().getTime();
@@ -105,10 +105,11 @@ public class ProfiloService {
         Optional<List<Prenotazione>> list = prenotazioneRepository.findByIdDonatore(donatore);
         if (list.isPresent())
             last = list.get().get(list.get().size() - 1).getDate().getTime();
-        if (date > last && date - last > 120000L) {
+        // 
+        if (date - last > 7884008640L){
             donatore.setAbilitazioneDonazione((byte) 1);
             donatoreRepository.save(donatore);
         }
-        return donatore;
+        return donatore;   
     }
 }

@@ -2,6 +2,7 @@ package com.avis.rest_controller;
 
 import com.avis.models.Utente;
 import com.avis.services.EmergenzaService;
+import com.avis.utils.ApiResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -19,20 +20,20 @@ public class EmergenzaController {
     private EmergenzaService emergenzaService;
 
     @PostMapping("/requestEmerg/insert")
-    public ResponseEntity<String> insertEmergenza(@RequestBody String gruppo) {
+    public ResponseEntity<Object> insertEmergenza(@RequestBody String gruppo) {
         Utente utente = (Utente) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         if (!emergenzaService.save(gruppo, utente.getId())) {
-            return new ResponseEntity<String>("Emergenza non inviata", HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<>(new ApiResponse("Emergenza non inviata"), HttpStatus.BAD_REQUEST);
         }
-        return new ResponseEntity<String>("Emergenza inviata correttamente", HttpStatus.CREATED);
+        return new ResponseEntity<>(new ApiResponse("Emergenza inviata correttamente"), HttpStatus.CREATED);
     }
 
     @DeleteMapping("/requestEmerg/remove")
-    public ResponseEntity<String> deleteEmergenza(@RequestBody long emergenza) {
+    public ResponseEntity<Object> deleteEmergenza(@RequestBody long emergenza) {
         if (!emergenzaService.delete(emergenza)) {
-            new ResponseEntity<String>("Emergenza non cancellata", HttpStatus.BAD_REQUEST);
+            new ResponseEntity<>(new ApiResponse("Emergenza non cancellata"), HttpStatus.BAD_REQUEST);
         }
-        return new ResponseEntity<String>("Emergenza cancellata", HttpStatus.OK);
+        return new ResponseEntity<>(new ApiResponse("Emergenza cancellata"), HttpStatus.OK);
     }
 
 }

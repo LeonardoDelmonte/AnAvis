@@ -28,8 +28,8 @@ public class AuthenticationService implements UserDetailsService{
     private CentroTrasfusioneRepository centroRepository;
     @Autowired
     private AuthenticationManager authenticationManager;
-    //@Autowired
-    //private PasswordEncoder bcryptEncoder;
+    @Autowired
+    private PasswordEncoder bcryptEncoder;
   
     public boolean save(CredenzialiDto utente) {
         if(utente.getDonatore()!=null){
@@ -52,7 +52,7 @@ public class AuthenticationService implements UserDetailsService{
 
 
     private void encode(Utente utente){
-        //utente.setPw(bcryptEncoder.encode(utente.getPassword()));
+        utente.setPw(bcryptEncoder.encode(utente.getPassword()));
     }
 
     

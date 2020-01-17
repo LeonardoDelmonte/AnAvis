@@ -1,15 +1,14 @@
 package com.avis.rest_controller;
 import com.avis.services.AuthenticationService;
 import com.avis.services.ProfiloService;
+import com.avis.utils.ApiResponse;
 import com.avis.security.JwtTokenUtil;
 import com.avis.dto.JwtRequest;
-import org.springframework.security.core.AuthenticationException;
 import com.avis.models.Utente;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.authentication.DisabledException;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -28,25 +27,39 @@ public class LoginController {
     private ProfiloService profilo;
 
     @RequestMapping(value = "public/login", method = RequestMethod.POST)
-    public ResponseEntity<String> createAuthenticationToken(
-        @RequestBody JwtRequest authenticationRequest)throws Exception { 
-        try {
-            authService.authenticate(authenticationRequest);
-            Utente utente = (Utente) authService.loadUserByUsername(authenticationRequest.getEmail());
-            final String token = jwtTokenUtil.generateToken(utente);
-            if(utente.getRuolo().compareTo("donatore")==0)
-                profilo.checkAbilitazione(utente.getEmail());
-            return new ResponseEntity<>(token, HttpStatus.OK);
-        } catch (DisabledException e) {
-            return new ResponseEntity<>("Login fallito, utente disabilitato", HttpStatus.UNAUTHORIZED);
-        } catch (AuthenticationException e){
-            return new ResponseEntity<>("Login fallito, credenziali errate", HttpStatus.UNAUTHORIZED);
-        }
-        
+    public ResponseEntity<Object> createAuthenticationToken(
+        @RequestBody JwtRequest authenticationRequest) throws Exception {
+
+        authService.authenticate(authenticationRequest);
+
+        Utente utente = (Utente) authService.loadUserByUsername(authenticationRequest.getEmail());
+        final String token = jwtTokenUtil.generateToken(utente);
+
+        if(utente.getRuolo().compareTo("donatore")==0)
+            utente = profilo.checkAbilitazione(utente.getEmail());
+
+        return new ResponseEntity<>(new ApiResponse(utente, token), HttpStatus.OK);
     }
-
-
-    //refreshed Token(){
-        //
-    //}
 }
+
+
+        
+    
+
+
+      //refresho un token che sta per scadere, solo un utente autenticato piò arrivare qui
+   // @RequestMapping(value = "protected/refresh-token", method = RequestMethod.GET)
+   // public ResponseEntity<?> refreshAndGetAuthenticationToken(HttpServletRequest request, HttpServletResponse response) {
+   //     String token = request.getHeader(tokenHeader);
+   //     UserDetails userDetails =
+   //             (UserDetails)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+//
+   //     if (jwtTokenUtil.canTokenBeRefreshed(token)) {
+   //         String refreshedToken = jwtTokenUtil.refreshToken(token);
+   //         response.setHeader(tokenHeader,refreshedToken);
+//
+   //         return ResponseEntity.ok(new JwtAuthenticationResponse(userDetails.getUsername(),userDetails.getAuthorities()));
+   //     } else {
+   //         return ResponseEntity.badRequest().body(null);
+   //     }
+   // }
