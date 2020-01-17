@@ -2,7 +2,6 @@ package com.avis.services;
 
 import java.sql.Timestamp;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -34,11 +33,8 @@ public class PrenotazioniService {
     private ProfiloService profilo;
 
     public boolean prenotaData(PrenotazioneDto prenotazioneDto) {
-        Donatore donatore = donatoreRepository.findByEmail(prenotazioneDto.getEmailDonatore());
-        if (donatore == null)
-            return false;
-        profilo.checkAbilitazione(donatore.getId());
-        if (donatore.getAbilitazioneDonazione()==0)
+        Donatore donatore = profilo.checkAbilitazione(prenotazioneDto.getEmailDonatore());
+        if (donatore == null || donatore.getAbilitazioneDonazione() == 0)
             return false;
         Optional<Prenotazione> prenotazione = prenotazioniRepository.findById(prenotazioneDto.getIdDataLibera());
         if (!prenotazione.isPresent() || prenotazione.get().getIdDonatore() != null) {
@@ -51,25 +47,25 @@ public class PrenotazioniService {
         return true;
     }
 
-    public Map<String,List<Timestamp>> save(DateDto dateLibere, Long idSede) {
+    public Map<String, List<Timestamp>> save(DateDto dateLibere, Long idSede) {
         Optional<SedeAvis> sedeAvis = sedeAvisRepository.findById(idSede);
         if (!sedeAvis.isPresent())
-            return null;  
+            return null;
         Timestamp data1 = dateLibere.getDataIniziale();
         List<Timestamp> listError = new ArrayList<>();
         List<Timestamp> listOK = new ArrayList<>();
-        while(data1.compareTo(dateLibere.getDataFinale()) != 0){
+        while (data1.compareTo(dateLibere.getDataFinale()) != 0) {
             if (!prenotazioniRepository.findByIdSedeAvisAndDate(sedeAvis.get(), data1).isPresent()) {
-                    prenotazioniRepository.save(new Prenotazione(sedeAvis.get(), data1));
-                    listOK.add(data1);
-            }else{
+                prenotazioniRepository.save(new Prenotazione(sedeAvis.get(), data1));
+                listOK.add(data1);
+            } else {
                 listError.add(data1);
             }
             data1 = new Timestamp(data1.getTime() + TimeUnit.MINUTES.toMillis(15));
         }
-        Map<String,List<Timestamp>> map = new HashMap<>();
-        map.put("listOK",listOK);
-        map.put("listError",listError);
+        Map<String, List<Timestamp>> map = new HashMap<>();
+        map.put("listOK", listOK);
+        map.put("listError", listError);
         return map;
     }
 

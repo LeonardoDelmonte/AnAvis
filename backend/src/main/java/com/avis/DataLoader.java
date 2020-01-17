@@ -60,8 +60,8 @@ public class DataLoader implements ApplicationRunner {
         prenotazione.save(new DateDto(ts1,ts2), (long)3);
         prenotazione.save(new DateDto(ts5,ts4), (long)3);
         prenotazione.save(new DateDto(ts2,ts3), (long)4);
-        prenotazione.prenotaData(new PrenotazioneDto((long)3, "marco"));
-        prenotazione.prenotaData(new PrenotazioneDto((long)6, "leo"));
+        //prenotazione.prenotaData(new PrenotazioneDto((long)3, "marco"));
+        //prenotazione.prenotaData(new PrenotazioneDto((long)6, "leo"));
         emergenza.save("A", (long)5);
         emergenza.save("00", (long)6);
         

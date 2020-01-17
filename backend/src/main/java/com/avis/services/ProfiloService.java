@@ -94,20 +94,21 @@ public class ProfiloService {
         }
     }
 
-    public void checkAbilitazione(long id) {
-        Optional<Donatore> donatore = donatoreRepository.findById(id);
-        if (!donatore.isPresent() || donatore.get().getModulo() == null)
-            return;
+    public Donatore checkAbilitazione(String email) {
+        Donatore donatore = donatoreRepository.findByEmail(email);
+        if (donatore == null)
+            return null;
+        if (donatore.getModulo() == null)
+            return donatore;
         Long date = new Date().getTime();
         Long last = 0L;
-        Optional<List<Prenotazione>> list = prenotazioneRepository.findByIdDonatore(donatore.get());
+        Optional<List<Prenotazione>> list = prenotazioneRepository.findByIdDonatore(donatore);
         if (list.isPresent())
             last = list.get().get(list.get().size() - 1).getDate().getTime();
-        // 
-        if (date - last > 7884008640L){
-            donatore.get().setAbilitazioneDonazione((byte) 1);
-            donatoreRepository.save(donatore.get());
+        if (date > last && date - last > 120000L) {
+            donatore.setAbilitazioneDonazione((byte) 1);
+            donatoreRepository.save(donatore);
         }
-            
+        return donatore;
     }
 }

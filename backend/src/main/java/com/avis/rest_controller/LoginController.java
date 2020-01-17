@@ -35,7 +35,7 @@ public class LoginController {
             Utente utente = (Utente) authService.loadUserByUsername(authenticationRequest.getEmail());
             final String token = jwtTokenUtil.generateToken(utente);
             if(utente.getRuolo().compareTo("donatore")==0)
-                profilo.checkAbilitazione(utente.getId());
+                profilo.checkAbilitazione(utente.getEmail());
             return new ResponseEntity<>(token, HttpStatus.OK);
         } catch (DisabledException e) {
             return new ResponseEntity<>("Login fallito, utente disabilitato", HttpStatus.UNAUTHORIZED);

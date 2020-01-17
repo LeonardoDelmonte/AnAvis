@@ -4,6 +4,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 import java.sql.Timestamp;
+import java.util.Optional;
 
 import com.avis.models.CentroTrasfusione;
 import com.avis.models.Donatore;
@@ -23,18 +24,18 @@ import com.avis.repositories.SedeAvisRepository;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
-import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase.Replace;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
-import org.springframework.test.context.ActiveProfiles;
+import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
+import org.springframework.context.annotation.PropertySource;
 import org.springframework.test.context.junit4.SpringRunner;
 
 @RunWith(SpringRunner.class)
 @DataJpaTest
-@ActiveProfiles("test")
-@AutoConfigureTestDatabase(replace = Replace.NONE)
+@PropertySource(value = "classpath:application-test.properties")
 public class RepositoryTest {
 
+    @Autowired
+    private TestEntityManager manager;
     @Autowired
     private AuthenticationRepository utenteRep;
     @Autowired
@@ -49,68 +50,78 @@ public class RepositoryTest {
     private ModuloRepository moduloRep;
     @Autowired
     private EmergenzaRepository emergenzaRep;
-    
+
     @Test
-    public void donatoreTest(){
-        Donatore don= donatoreRep.save(new Donatore("ric","ric","donatore"));
-        Utente utente = utenteRep.findByEmail("ric");
-        assertTrue(utente!=null);
+    public void donatoreTest() {
+        Donatore don = manager.persist(new Donatore("ric", "ric", "donatore"));
+        Utente utente = utenteRep.findByEmail(don.getEmail());
+        Donatore test = donatoreRep.findByEmail(don.getEmail());
+        assertTrue(utente != null);
+        assertTrue(test != null);
+        assertEquals(test.getId(), utente.getId());
         assertEquals(don.getId(), utente.getId());
         assertEquals(don.getEmail(), utente.getEmail());
         assertEquals(don.getRuolo(), utente.getRuolo());
     }
 
     @Test
-    public void sedeAvisTest(){
-        SedeAvis sede = sedeAvisRep.save(new SedeAvis("leo","leo","sedeAvis"));
-        Utente utente = utenteRep.findByEmail("leo");
-        assertTrue(utente!=null);
+    public void sedeAvisTest() {
+        SedeAvis sede = manager.persist(new SedeAvis("leo", "leo", "sedeAvis"));
+        Utente utente = utenteRep.findByEmail(sede.getEmail());
+        Optional<SedeAvis> test = sedeAvisRep.findById(sede.getId());
+        assertTrue(utente != null);
+        assertTrue(test.isPresent());
+        assertEquals(test.get().getId(), utente.getId());
         assertEquals(sede.getId(), utente.getId());
         assertEquals(sede.getPassword(), utente.getPassword());
         assertEquals(sede.getRuolo(), utente.getRuolo());
     }
 
     @Test
-    public void CentroTest(){
-        CentroTrasfusione centro = centroRep.save(new CentroTrasfusione("lore","lore","centro"));
-        Utente utente = utenteRep.findByEmail("lore");
-        assertTrue(utente!=null);
+    public void CentroTest() {
+        CentroTrasfusione centro = manager.persist(new CentroTrasfusione("lore", "lore", "centro"));
+        Utente utente = utenteRep.findByEmail(centro.getEmail());
+        Optional<CentroTrasfusione> test = centroRep.findById(centro.getId());
+        assertTrue(test.isPresent());
+        assertTrue(utente != null);
+        assertEquals(test.get().getId(), utente.getId());
         assertEquals(centro.getId(), utente.getId());
         assertEquals(centro.getEmail(), utente.getEmail());
         assertEquals(centro.getRuolo(), utente.getRuolo());
     }
 
     @Test
-    public void PrenotazioneTest(){
+    public void PrenotazioneTest() {
         Timestamp time = Timestamp.valueOf("2020-08-14 11:00:00");
-        SedeAvis sede =sedeAvisRep.save(new SedeAvis("pippo","pippo","sedeAvis"));
-        Prenotazione prenotazione = prenotazioniRep.save(new Prenotazione(sedeAvisRep.getOne(sede.getId()), time));
-        Prenotazione found = prenotazioniRep.getOne(1L);
-        assertTrue(prenotazione!=null);
+        SedeAvis sede = manager.persist(new SedeAvis("pippo", "pippo", "sedeAvis"));
+        Prenotazione prenotazione = manager.persist(new Prenotazione(sedeAvisRep.getOne(sede.getId()), time));
+        Prenotazione found = prenotazioniRep.getOne(prenotazione.getIdPrenotazione());
+        assertTrue(prenotazione != null);
         assertEquals(found.getIdPrenotazione(), prenotazione.getIdPrenotazione());
         assertEquals(sede.getId(), prenotazione.getIdSedeAvis().getId());
         assertEquals(time.toString(), prenotazione.getDate().toString());
     }
 
     @Test
-    public void ModuloTest(){
+    public void ModuloTest() {
         Modulo modulo = new Modulo("A", "no");
         modulo.setId(1L);
-        moduloRep.save(modulo);
+        manager.persist(modulo);
         Modulo found = moduloRep.getOne(modulo.getId());
-        assertTrue(found!=null);
-        assertEquals(found.getGruppoSanguigno(),modulo.getGruppoSanguigno());
-        assertEquals(found.getFumatore(),modulo.getFumatore());
+        assertTrue(found != null);
+        assertEquals(found.getId(), modulo.getId());
+        assertEquals(found.getGruppoSanguigno(), modulo.getGruppoSanguigno());
+        assertEquals(found.getFumatore(), modulo.getFumatore());
     }
 
     @Test
-    public void EmergenzaTest(){
-        CentroTrasfusione centro =centroRep.save(new CentroTrasfusione("mar","mar","centro"));
-        Emergenza emergenza = emergenzaRep.save(new Emergenza(centro, "A"));
+    public void EmergenzaTest() {
+        CentroTrasfusione centro = manager.persist(new CentroTrasfusione("mar", "mar", "centro"));
+        Emergenza emergenza = manager.persist(new Emergenza(centro, "A"));
         Emergenza found = emergenzaRep.getOne(emergenza.getId());
-        assertTrue(found!=null);
-        assertEquals(found.getGruppoSanguigno(),emergenza.getGruppoSanguigno());
-        assertEquals(found.getIdCentroTrasfusione().getId(),centro.getId());
+        assertTrue(found != null);
+        assertEquals(found.getGruppoSanguigno(), "A");
+        assertEquals(found.getIdCentroTrasfusione().getId(), centro.getId());
         assertEquals(emergenza.getId(), found.getId());
     }
 }
