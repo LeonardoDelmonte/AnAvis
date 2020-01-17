@@ -31,20 +31,29 @@ class EmergenzaSangue extends Component {
         console.log(this.state.gruppoSanguigno)
 
         CentroTrasfusioneService.inviaEmergenza(this.state.gruppoSanguigno)
-            .then(() => {
+            .then(response => {
                 document.getElementById("EmergencyForm").reset();
                 this.setState({ 
-                    invioOK: 'Richiesta emergenza inviata con successo',
+                    invioOK: response.data.message,
                     gruppoSanguigno: '0 Rh-',
                 });
             }
             ).catch(error => {
                 if (!error.response) {
-                    this.setState({ 
-                        errorRegister: 'Errore del server, contattare l\'amministratore. ',
-                    })
+                    this.setState(
+                        {errorRegister: 'Errore del server, contattare l\'amministratore. '}
+                    )
+                }else{   
+                    if(!error.response.data.message){
+                        this.setState({errorRegister: 'Errore del server, contattare l\'amministratore. '}
+                        )
+                    }else{
+                       this.setState({errorRegister: error.response.data.message}
+                        )
+                    }
                 }
-            })
+            }
+        )
     }
 
     render() {

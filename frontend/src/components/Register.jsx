@@ -65,24 +65,24 @@ class Register extends Component {
         }
 
         LoginService.register(registerDto)
-            .then(() => {
+            .then(response => {
                 document.getElementById("RegisterForm").reset();
                 this.setState({ 
-                    registerOK: 'Registrazione effettuata con successo, torna alla pagina di login per autenticarti',
+                    registerOK: response.data.message,
                     utente: {
                         ruolo: 'donatore'
                     }
                 });
-            }
-            ).catch(error => {
+            })
+            .catch(error => {
                 if (!error.response) {
                     this.setState({ errorRegister: 'Errore del server, contattare l\'amministratore. ' })
                 }
                 else {
-                    if (error.response.status === 500) {
-                        this.setState({ errorRegister: 'Questo utente è già registrato' })
+                    if (!error.response.data.message) {
+                        this.setState({ errorRegister: 'Errore del server, contattare l\'amministratore' })
                     } else {
-                        this.setState({ errorRegister: 'Si è verificato un errore.' })
+                        this.setState({ errorRegister: error.response.data.message })
                     }
                 }
             })

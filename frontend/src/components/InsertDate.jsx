@@ -38,10 +38,9 @@ class InsertDate extends Component {
         handlerDate.insert(dateDto)
             .then(response => {
                 console.log(response.data)
-
                 this.setState({
-                    listError : response.data.listError,
-                    listOK : response.data.listOK
+                    listError : response.data.map.listError,
+                    listOK : response.data.map.listOK
                 })
             });
     }

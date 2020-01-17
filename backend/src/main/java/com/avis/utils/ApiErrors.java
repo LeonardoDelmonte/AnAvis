@@ -7,7 +7,7 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 
 import org.springframework.http.HttpStatus;
 
-class ApiError {
+class ApiError implements InterfaceApi{
 
     private HttpStatus status;
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy hh:mm:ss")

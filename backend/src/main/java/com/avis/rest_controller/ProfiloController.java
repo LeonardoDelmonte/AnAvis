@@ -7,6 +7,7 @@ import com.avis.models.Modulo;
 import com.avis.models.Utente;
 import com.avis.services.ProfiloService;
 import com.avis.utils.ApiResponse;
+import com.avis.utils.InterfaceApi;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -25,7 +26,7 @@ public class ProfiloController {
     private ProfiloService profiloService;
 
     @PutMapping("/profilo/modificaModulo")
-    public ResponseEntity<Object> modificaModulo(@RequestBody Modulo modulo, HttpServletRequest req) {
+    public ResponseEntity<InterfaceApi> modificaModulo(@RequestBody Modulo modulo, HttpServletRequest req) {
         Utente utente = (Utente) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         utente = profiloService.modificaModulo(modulo, utente.getId());
         if(utente!=null)
@@ -34,7 +35,7 @@ public class ProfiloController {
     }
 
     @PutMapping("/profilo/modificaCredenziali")
-    public ResponseEntity<Object> modificaCredenziali(@RequestBody CredenzialiDto credenziali) {
+    public ResponseEntity<InterfaceApi> modificaCredenziali(@RequestBody CredenzialiDto credenziali) {
         Utente utente = (Utente) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         utente = profiloService.modificaCredenziali(credenziali,utente);
         if (utente!=null)
@@ -44,7 +45,7 @@ public class ProfiloController {
     
 
     @GetMapping("/profilo/showInfo")
-    public ResponseEntity<Object> showInfo() {
+    public ResponseEntity<InterfaceApi> showInfo() {
         Utente utente = (Utente) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         utente = profiloService.showInfo(utente);
         if (utente == null) {

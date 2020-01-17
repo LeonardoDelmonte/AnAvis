@@ -72,7 +72,7 @@ public class JWTSecurityConfig extends WebSecurityConfigurerAdapter {
 				.antMatchers("/handlerDate/**").hasAuthority("handlerDate").and().authorizeRequests()
 				.antMatchers("/requestEmerg/**").hasAuthority("requestEmerg").and().authorizeRequests()
 				.antMatchers("/admin/**").hasAuthority("admin").and()
-				// definisco un ExceptionEntryPoint custom
+				// definisco un ExceptionEntryPoint 
 				.exceptionHandling().authenticationEntryPoint(jwtAuthenticationEntryPoint).and()
 				// assicuro un server-side stateless
 				.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);

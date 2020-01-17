@@ -45,7 +45,7 @@ class Login extends Component {
                 response => {
                     console.log(response);
                     localStorage.removeItem('Authorization');
-                    localStorage.setItem('Authorization', response.data);
+                    localStorage.setItem('Authorization', response.data.token);
                     this.props.history.push('/home')
                 }
             ).catch(error => {
@@ -53,10 +53,10 @@ class Login extends Component {
                     this.setState({ errLogin: 'Errore del server, contattare l\'amministratore. ' })
                 }
                 else {
-                    if (error.response.status === 401) {
-                        this.setState({ errLogin: 'Username o password errate' })
+                    if (!error.response.data.message) {
+                        this.setState({ errLogin: 'Errore del server, contattare l\'amministratore.' })
                     } else {
-                        this.setState({ errLogin: 'Si è verificato un errore.' })
+                        this.setState({ errLogin: error.response.data.message })
                     }
                 }
             })

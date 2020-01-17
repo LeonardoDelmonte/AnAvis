@@ -58,10 +58,10 @@ class FormPrenota extends Component {
         PrenotaService.search(getDateDto)
             .then(
                 response => {
-                    if (!response.data) {
+                    if (!response.data.listPrenotazione) {
                         response.data = []
                     } else {
-                        response.data.map(
+                        response.data.listPrenotazione.map(
                             (x) => {
                                 const myDate = new Date(x.date);
                                 delete x["date"];
@@ -70,7 +70,7 @@ class FormPrenota extends Component {
                             }
                         )
                     }
-                    this.setState({ freeDate: response.data })
+                    this.setState({ freeDate: response.data.listPrenotazione })
                     this.setState({ searched: true })
                 }
             )
@@ -83,7 +83,7 @@ class FormPrenota extends Component {
                 PrenotaService.getProvince(selectedRegione.value)
                     .then(
                         response => {
-                            response.data.map(
+                            response.data.set.map(
                                 v =>
                                     this.state.provincie.push({ value: v, label: v })
                             )
@@ -102,7 +102,7 @@ class FormPrenota extends Component {
                 PrenotaService.getComuni(selectedProvincia.value)
                     .then(
                         response => {
-                            response.data.map(
+                            response.data.set.map(
                                 v =>
                                     this.state.comuni.push({ value: v, label: v })
                             )
@@ -134,7 +134,7 @@ class FormPrenota extends Component {
         PrenotaService.getRegioni()
             .then(
                 response => {
-                    response.data.map(
+                    response.data.set.map(
                         v =>
                             this.state.regioni.push({ value: v, label: v })
                     )

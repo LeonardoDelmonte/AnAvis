@@ -16,9 +16,10 @@ class ProfiloUtente extends Component {
         ProfiloService.loadProfilo()
            .then(
                response => {
-                   this.setState({res : response.data})
-                   this.setState({email: response.data.email})
-                   this.setState({ruolo: response.data.ruolo})
+                   console.log(response.data)
+                   this.setState({res : response.data.utente})
+                   this.setState({email: response.data.utente.email})
+                   this.setState({ruolo: response.data.utente.ruolo})
                }
            )
     }

@@ -54,10 +54,9 @@ public class ProfiloService {
     }
 
     public Utente showInfo(Utente utente) {
-        //check exception
         switch (utente.getRuolo()) {
         case "donatore":
-            return donatoreRepository.findById(Long.valueOf(15)).get();
+            return donatoreRepository.findById(utente.getId()).get();
         case "sedeAvis":
             return sedeAvisRepository.findById(utente.getId()).get();
         case "centroTrasfusione":

@@ -1,7 +1,9 @@
 package com.avis.rest_controller;
+
 import com.avis.services.AuthenticationService;
 import com.avis.services.ProfiloService;
 import com.avis.utils.ApiResponse;
+import com.avis.utils.InterfaceApi;
 import com.avis.security.JwtTokenUtil;
 import com.avis.dto.JwtRequest;
 import com.avis.models.Utente;
@@ -27,7 +29,7 @@ public class LoginController {
     private ProfiloService profilo;
 
     @RequestMapping(value = "public/login", method = RequestMethod.POST)
-    public ResponseEntity<Object> createAuthenticationToken(
+    public ResponseEntity<InterfaceApi> createAuthenticationToken(
         @RequestBody JwtRequest authenticationRequest) throws Exception {
 
         authService.authenticate(authenticationRequest);

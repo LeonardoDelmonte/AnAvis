@@ -8,6 +8,7 @@ import com.avis.models.Utente;
 import com.avis.services.PrenotazioniService;
 import com.avis.services.SedeAvisService;
 import com.avis.utils.ApiResponse;
+import com.avis.utils.InterfaceApi;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -31,7 +32,7 @@ public class PrenotazioneController {
     private SedeAvisService sedeAvisService;
 
     @PostMapping("/prenotazione")
-    public ResponseEntity<Object> getDateLibere(@RequestBody DateDto dto) {
+    public ResponseEntity<InterfaceApi> getDateLibere(@RequestBody DateDto dto) {
         List<Prenotazione> dateLibere = prenotazioniService.getDateLibere(dto);
         if (dateLibere == null || dateLibere.isEmpty()) {
             return new ResponseEntity<>(new ApiResponse
@@ -42,7 +43,7 @@ public class PrenotazioneController {
 
 
     @PutMapping("/prenotazione/donatore")
-    public ResponseEntity<Object> prenotaData(@RequestBody PrenotazioneDto prenotazione) {
+    public ResponseEntity<InterfaceApi> prenotaData(@RequestBody PrenotazioneDto prenotazione) {
         Utente utente = (Utente) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         if (utente.getRuolo().equals("donatore")) {
             prenotazione.setEmailDonatore(utente.getEmail());
@@ -53,14 +54,14 @@ public class PrenotazioneController {
     
 
     @PostMapping("/handlerDate/insert")
-    public ResponseEntity<Object> inserisciDate(@RequestBody DateDto dateLibere) {
+    public ResponseEntity<InterfaceApi> inserisciDate(@RequestBody DateDto dateLibere) {
         Utente utente = (Utente) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         ApiResponse response = prenotazioniService.save(dateLibere, utente.getId());
         return new ResponseEntity<>(response,response.getStatus());
     }
 
     @DeleteMapping("/handlerDate/remove")
-    public ResponseEntity<Object> deleteDate(@RequestBody long prenotazione) {
+    public ResponseEntity<InterfaceApi> deleteDate(@RequestBody long prenotazione) {
         if (!prenotazioniService.delete(prenotazione)) {
             return new ResponseEntity<>(new ApiResponse("Data non cancellata"), HttpStatus.BAD_REQUEST);
         }
@@ -69,19 +70,19 @@ public class PrenotazioneController {
 
 
     @GetMapping("/prenotazione/getRegioni")
-    public @ResponseBody ResponseEntity<Object> searchRegioni() {
+    public @ResponseBody ResponseEntity<InterfaceApi> searchRegioni() {
         System.out.println(sedeAvisService.getRegioni());
-        return new ResponseEntity<>(sedeAvisService.getRegioni(), HttpStatus.OK);
+        return new ResponseEntity<>(new ApiResponse(sedeAvisService.getRegioni()), HttpStatus.OK);
     }
 
     @GetMapping("/prenotazione/getProvince/{regione}")
-    public @ResponseBody ResponseEntity<Object> searchProvince(@PathVariable String regione) {
-        return new ResponseEntity<>(sedeAvisService.getProvince(regione), HttpStatus.OK);
+    public @ResponseBody ResponseEntity<InterfaceApi> searchProvince(@PathVariable String regione) {
+        return new ResponseEntity<>(new ApiResponse(sedeAvisService.getProvince(regione)), HttpStatus.OK);
     }
 
     @GetMapping("/prenotazione/getComuni/{provincia}")
-    public @ResponseBody ResponseEntity<Object> searchComuni(@PathVariable String provincia) {
-        return new ResponseEntity<>(sedeAvisService.getComuni(provincia), HttpStatus.OK);
+    public @ResponseBody ResponseEntity<InterfaceApi> searchComuni(@PathVariable String provincia) {
+        return new ResponseEntity<>(new ApiResponse(sedeAvisService.getComuni(provincia)), HttpStatus.OK);
     }
 
 }

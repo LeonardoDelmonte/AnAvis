@@ -4,6 +4,7 @@ import java.sql.Timestamp;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import com.avis.models.Prenotazione;
 import com.avis.models.Utente;
@@ -15,7 +16,7 @@ import org.springframework.http.HttpStatus;
 /**
  * ApiResponse
  */
-public class ApiResponse {
+public class ApiResponse implements InterfaceApi{
 
     private Utente utente;
     private String token,message;
@@ -23,6 +24,7 @@ public class ApiResponse {
     private List<Prenotazione> listPrenotazione;
     private Map<String,List<Timestamp>> map;
     private HttpStatus status;
+    private Set<String> set;
 
     //per il login
     public ApiResponse(Utente utente , String token) {
@@ -68,10 +70,15 @@ public class ApiResponse {
     }
 
 
+    public ApiResponse(Set<String> set) {
+        this.set=set;
+	}
 
 
 
-    public Utente getUtente() {
+
+
+	public Utente getUtente() {
         return utente;
     }
 
@@ -125,6 +132,14 @@ public class ApiResponse {
 
     public void setStatus(HttpStatus status) {
         this.status = status;
+    }
+
+    public Set<String> getSet() {
+        return set;
+    }
+
+    public void setSet(Set<String> set) {
+        this.set = set;
     }
     
 }
