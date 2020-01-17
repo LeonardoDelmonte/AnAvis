@@ -1,5 +1,7 @@
 package com.avis.services;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 import com.avis.models.CentroTrasfusione;
@@ -20,7 +22,7 @@ public class EmergenzaService {
 
     public boolean delete(long idEmergenza) {
         Optional<Emergenza> emergenza = emergenzaRepository.findById(idEmergenza);
-        if (!emergenza.isPresent()){
+        if (!emergenza.isPresent()) {
             return false;
         }
         emergenzaRepository.delete(emergenza.get());
@@ -29,11 +31,20 @@ public class EmergenzaService {
 
     public boolean save(String gruppo, Long idCentro) {
         Optional<CentroTrasfusione> centro = centroRepository.findById(idCentro);
-        if (!centro.isPresent()){
+        if (!centro.isPresent()) {
             return false;
         }
         emergenzaRepository.save(new Emergenza(centro.get(), gruppo));
         return true;
     }
+
+    public ArrayList<Emergenza> getEmergenze(Long id) {
+        ArrayList<Emergenza> list = new ArrayList<>();
+        Optional<List<Emergenza>> emergenze = emergenzaRepository.findByIdCentroTrasfusione(id);
+        if(!emergenze.isPresent())
+            return list;
+        emergenze.get().forEach(e->list.add(e));
+        return list;
+	}
 
 }
