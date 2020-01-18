@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
 
-
-
 class LogOut extends Component {
 
     componentDidMount() {
@@ -12,7 +10,7 @@ class LogOut extends Component {
     render() {
 
         return (
-            <div><h4>Disconnessione...</h4></div>
+            <div></div>
         );
     }
 }

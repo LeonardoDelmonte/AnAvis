@@ -1,12 +1,9 @@
 import React, { Component } from 'react';
 
-
 class TopMenu extends Component {
-
 
     render() {
         return (
-
             <nav className="navbar navbar-expand-md navbar-dark bg-dark">
                 <a className="navbar-brand" href="/home">AnAvis</a>
                 <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">

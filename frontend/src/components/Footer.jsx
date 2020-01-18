@@ -1,11 +1,7 @@
 import React, { Component } from 'react';
 
-
-
 class Footer extends Component {
-
     render() {
-
         return (
             <footer className="footer bg-dark">
                 <div className="container">
@@ -15,5 +11,4 @@ class Footer extends Component {
         );
     }
 }
-
 export default Footer

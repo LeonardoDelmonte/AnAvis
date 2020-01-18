@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import FormInput from './FormComponent/FormInput';
 import FormSelect from './FormComponent/FormSelect';
 import FormAlert from './FormComponent/FormAlert';
+import FormButton from './FormComponent/FormButton';
 //Services
 import LoginService from '../utils/LoginService';
 
@@ -11,7 +12,7 @@ class Register extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            utente: {
+            fields: {
                 ruolo: 'donatore'
             },
         };
@@ -19,12 +20,12 @@ class Register extends Component {
 
     controllPassword(){
         const reg = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*])(?=.{8,})/;
-        const test = reg.test(this.state.utente.password);
+        const test = reg.test(this.state.fields.password);
         if (!test) {
             this.setState({alert: { message: 'La password deve essere composta da almeno 8 caratteri, una lettera minuscola, una lettera maiuscola, un numero e un carattere speciale', type: "danger"} });
             return false;
         }
-        if (this.state.utente.password !== this.state.utente.rpassword) {
+        if (this.state.fields.password !== this.state.fields.rpassword) {
             this.setState({alert: { message: 'Le due password non corrispondono', type: "danger"} });
             return false;
         }
@@ -34,7 +35,7 @@ class Register extends Component {
     handleChangeSelect = data => {
         document.getElementById("RegisterForm").reset();
         this.setState({
-            utente: {
+            fields: {
                 ruolo: data.value
             }
         })
@@ -46,8 +47,8 @@ class Register extends Component {
         const name = target.name;
 
         this.setState(prevState => ({
-            utente: {
-                ...prevState.utente,
+            fields: {
+                ...prevState.fields,
                 [name]: value
             }
         }));
@@ -62,20 +63,17 @@ class Register extends Component {
         if(!this.controllPassword())
             return;
 
-        var registerDto = { [this.state.utente.ruolo]: this.state.utente }
+        var registerDto = { [this.state.fields.ruolo]: this.state.fields }
 
         LoginService.register(registerDto)
             .then((response) => {
                 document.getElementById("RegisterForm").reset();
-                this.setState({ alert: {message: response.data.message, type: "success" },utente: {ruolo: 'donatore'}});}
+                this.setState({ alert: {message: response.data.message, type: "success" },fields: {ruolo: 'donatore'}});}
             ).catch(error => {
                 if (!error.response)
                     this.setState({alert: { message:"Errore del server", type: "danger"} });
                 else {
-                    if (error.response.status === 500) 
-                        this.setState({alert: { message: error.response.data.message, type: "danger"} });
-                    else 
-                        this.setState({alert: { message: error.response.data.message, type: "danger"} });
+                    this.setState({alert: { message: error.response.data.message, type: "danger"} });
                 }
             })
     }
@@ -90,34 +88,33 @@ class Register extends Component {
             <div className="login-form">
                 <h2 className="text-center"> Registrazione</h2>
                 {this.state.alert &&
-                    <FormAlert message={this.state.alert.message} type={this.state.alert.type} />
+                    <FormAlert message={this.state.alert.message} colorType={this.state.alert.type} />
                 }
                 <form onSubmit={this.handleSubmit} id="RegisterForm">
-                    <FormSelect label="Ruolo" id="ruolo" name="ruolo" options={optionsRuoli} value={this.state.utente.ruolo} onChange={this.handleChangeSelect} isSearchable={false} defaultValue={optionsRuoli[0]} />
+                    <FormSelect label="Ruolo" id="ruolo" name="ruolo" options={optionsRuoli} value={this.state.fields.ruolo} onChange={this.handleChangeSelect} isSearchable={false} defaultValue={optionsRuoli[0]} />
                     {/*campi solo donatore */}
                     {
-                        this.state.utente.ruolo === "donatore" &&
+                        this.state.fields.ruolo === "donatore" &&
                         <div>
-                            <FormInput label="Nome" type="text" className="form-control" id="nome" name="nome" value={this.state.email} onChange={this.handleChange} required="true" />
-                            <FormInput label="Cognome" type="text" className="form-control" id="cognome" name="cognome" value={this.state.email} onChange={this.handleChange} required />
+                            <FormInput label="Nome" type="text" id="nome" name="nome" value={this.state.fields.nome} onChange={this.handleChange} required />
+                            <FormInput label="Cognome" type="text" id="cognome" name="cognome" value={this.state.fields.cognome} onChange={this.handleChange} required />
                         </div>
                     }
                     {/*campi SedeAvis e centroTrasfusione */}
                     {
-                        (this.state.utente.ruolo === "sedeAvis" || this.state.utente.ruolo === "centroTrasfusione") &&
+                        (this.state.fields.ruolo === "sedeAvis" || this.state.fields.ruolo === "centroTrasfusione") &&
                         <div>
-                            <FormInput label="Denominazione" type="text" className="form-control" id="denominazione" name="denominazione" value={this.state.email} onChange={this.handleChange} required />
-                            <FormInput label="Indirizzo" type="text" className="form-control" id="indirizzo" name="indirizzo" value={this.state.email} onChange={this.handleChange} required />
-                            <FormInput label="Regione" type="text" className="form-control" id="regione" name="regione" value={this.state.email} onChange={this.handleChange} required />
-                            <FormInput label="Provincia" type="text" className="form-control" id="provincia" name="provincia" value={this.state.email} onChange={this.handleChange} required />
-                            <FormInput label="Comune" type="text" className="form-control" id="comune" name="comune" value={this.state.email} onChange={this.handleChange} required />
+                            <FormInput label="Denominazione" type="text" id="denominazione" name="denominazione" value={this.state.fields.denominazione} onChange={this.handleChange} required />
+                            <FormInput label="Indirizzo" type="text" id="indirizzo" name="indirizzo" value={this.state.fields.indirizzo} onChange={this.handleChange} required />
+                            <FormInput label="Regione" type="text" id="regione" name="regione" value={this.state.fields.regione} onChange={this.handleChange} required />
+                            <FormInput label="Provincia" type="text" id="provincia" name="provincia" value={this.state.fields.provincia} onChange={this.handleChange} required />
+                            <FormInput label="Comune" type="text" id="comune" name="comune" value={this.state.fields.comune} onChange={this.handleChange} required />
                         </div>
                     }
-                    <FormInput label="Email" type="text" id="email" name="email" value={this.state.email} onChange={this.handleChange} required />
-                    <FormInput label="Password" type="password" id="password" name="password" value={this.state.password} onChange={this.handleChange} />
-                    <FormInput label="Ripeti Password" type="password" className="form-control" id="rpassword" name="rpassword" value={this.state.rpassword} onChange={this.handleChange} />
-
-                    <button type="submit" className="btn btn-primary btn-block">Registrati</button>
+                    <FormInput label="Email" type="text" id="email" name="email" value={this.state.fields.email} onChange={this.handleChange} required />
+                    <FormInput label="Password" type="password" id="password" name="password" value={this.state.fields.password} onChange={this.handleChange} />
+                    <FormInput label="Ripeti Password" type="password" id="rpassword" name="rpassword" value={this.state.fields.rpassword} onChange={this.handleChange} />
+                    <FormButton type="submit" value="Registrati" colorType="primary"/>
                 </form>
                 <p className="text-center"><a href="/login">Clicca qui se hai già un account</a></p>
             </div>

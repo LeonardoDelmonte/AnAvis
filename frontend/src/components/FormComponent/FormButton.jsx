@@ -11,16 +11,16 @@ import React, { Component } from 'react';
 //light         --> Bianco
 //dark          --> Grigio
 
-class FormAlert extends Component {
+class FormInput extends Component {
 
     render() {
 
         return (
-            <div className={"alert alert-" + this.props.colorType} role="alert">
-                {this.props.message}
+            <div className="form-group">
+                <button type="this.props.type" className={"btn btn-block btn-" + this.props.colorType}>{this.props.value}</button> 
             </div>
         );
     }
 }
 
-export default FormAlert
+export default FormInput

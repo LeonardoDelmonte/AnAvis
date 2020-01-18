@@ -4,12 +4,7 @@ import React, { Component } from 'react';
 
 class ResultInserDate extends Component {
 
-    constructor(props) {
-        super(props)
-    }
-
     render() {
-
         return (
             <div>
                 {this.props.listError && this.props.listOK &&
@@ -18,7 +13,6 @@ class ResultInserDate extends Component {
                     <br />
                     Date inserite correttamente: <b>{this.props.listOK.length}</b></p>
                 }
-
                 {this.props.listError &&
                     this.props.listError.map(
                         (x, i) => {
@@ -51,11 +45,8 @@ class ResultInserDate extends Component {
                         }
                     )
                 }
-
             </div>
-
         );
     }
 }
-
 export default ResultInserDate

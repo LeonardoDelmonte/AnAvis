@@ -25,6 +25,7 @@ class PrenotaService {
             'idDataLibera': idPrenotazione,
             'emailDonatore': donatore
         }
+        console.log(prenotazioneDto)
         return axios.put(
             API_URL + '/prenotazione/donatore',
             prenotazioneDto,

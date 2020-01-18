@@ -58,13 +58,13 @@ const PrivateRoute = ({ component: Component, ...rest }) => (
   )} />
 )
 
-const DonatoreRoute = ({ component: Component, ...rest }) => (
-  <Route {...rest} render={(props) => (
-    Auth.isDonatore()
-      ? <Component {...props} />
-      : <Redirect to='/Login' />
-  )} />
-)
+// const DonatoreRoute = ({ component: Component, ...rest }) => (
+//   <Route {...rest} render={(props) => (
+//     Auth.isDonatore()
+//       ? <Component {...props} />
+//       : <Redirect to='/Login' />
+//   )} />
+// )
 
 const SedeRoute = ({ component: Component, ...rest }) => (
   <Route {...rest} render={(props) => (

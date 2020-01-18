@@ -1,13 +1,14 @@
 import React, { Component } from 'react';
-import Select from 'react-select';
-
-import DatePicker from "react-datepicker";
-import 'react-datepicker/dist/react-datepicker-cssmodules.css';
-import "react-datepicker/dist/react-datepicker.css";
+//Components
+import FormInput from './FormComponent/FormInput';
+import FormSelect from './FormComponent/FormSelect';
+import FormButton from './FormComponent/FormButton';
+import FormDatePicker from './FormComponent/FormDatePicker';
 import ListFreeDate from './ListFreeDate';
+//Services
 import PrenotaService from '../utils/PrenotaService';
+//other
 import jwt from 'jwt-decode'
-
 
 class FormPrenota extends Component {
 
@@ -20,40 +21,35 @@ class FormPrenota extends Component {
         myDate2.setDate(myDate2.getDate() + 7);
         myDate2.setHours(23, 59, 0, 0)
 
-
-
         this.state = {
-            regioni: [],
-            provincie: [],
-            comuni: [],
-
-            regione: null,
-            provincia: null,
-            comune: null,
-
             startDate: myDate1,
             endDate: myDate2,
-
-            searched: false,
-            freeDate: [],
-
-            isSede: jwt(localStorage.getItem('Authorization')).aud == "sedeAvis",
+            isSede: jwt(localStorage.getItem('Authorization')).aud === "sedeAvis",
+            fields: {
+            },
         }
-        this.handlerDonatore = this.handlerDonatore.bind(this);
     }
 
-    handlerDonatore(e){
-        this.setState({
-            donatore: e.target.value
-        })
+    handleChange = event => {
+        const target = event.target;
+        const value = target.value;
+        const name = target.name;
+
+        this.setState(prevState => ({
+            fields: {
+                ...prevState.fields,
+                [name]: value
+            }
+        }));
     }
 
-    SearchFreeDate = (comune, dataInit, dataEnd) => {
+    handleSubmit = (e) => {
+        e.preventDefault();
         this.setState({ freeDate: [] })
         var getDateDto = {
-            "comune": comune,
-            "dataIniziale": dataInit,
-            "dataFinale": dataEnd
+            "comune": this.state.comune,
+            "dataIniziale": this.state.startDate,
+            "dataFinale": this.state.endDate
         }
         PrenotaService.search(getDateDto)
             .then(
@@ -61,7 +57,7 @@ class FormPrenota extends Component {
                     if (!response.data.listPrenotazione) {
                         response.data = []
                     } else {
-                        response.data.listPrenotazione.map(
+                        response.data.listPrenotazione.forEach (
                             (x) => {
                                 const myDate = new Date(x.date);
                                 delete x["date"];
@@ -76,57 +72,56 @@ class FormPrenota extends Component {
             )
     }
 
-    selectedRegione = selectedRegione => {
+    handleRegione = regione => {
         this.setState({ regione: null, provincia: null, comune: null }, () => {
-            if (selectedRegione) {
+            if (regione) {
                 this.setState({ provincie: [] });
-                PrenotaService.getProvince(selectedRegione.value)
+                PrenotaService.getProvince(regione.value)
                     .then(
                         response => {
                             response.data.set.map(
                                 v =>
                                     this.state.provincie.push({ value: v, label: v })
                             )
-                            console.log(response)
-                            this.setState({ regione: selectedRegione.value })
+                            this.setState({ regione: regione.value })
                         }
                     )
             }
         });
     };
 
-    selectedProvincia = selectedProvincia => {
+    handleProvincia = provincia => {
         this.setState({ comune: null, provincia: null }, () => {
-            if (selectedProvincia) {
+            if (provincia) {
                 this.setState({ comuni: [] });
-                PrenotaService.getComuni(selectedProvincia.value)
+                PrenotaService.getComuni(provincia.value)
                     .then(
                         response => {
                             response.data.set.map(
                                 v =>
                                     this.state.comuni.push({ value: v, label: v })
                             )
-                            this.setState({ provincia: selectedProvincia.value })
+                            this.setState({ provincia: provincia.value })
                         }
                     )
             }
         });
     };
 
-    selectedComune = selectedComune => {
+    handleComune = comune => {
         this.setState({ comune: null }, () => {
-            if (selectedComune) {
-                this.setState({ comune: selectedComune.value })
+            if (comune) {
+                this.setState({ comune: comune.value })
             }
         });
     };
 
-    selectedStartDate = date => {
-        this.setState({ startDate: date }, () => { console.log(date) })
+    handleStartDate = date => {
+        this.setState({ startDate: date })
     }
 
-    selectedEndDate = date => {
-        this.setState({ endDate: date }, () => { console.log(date) })
+    handleEndDate = date => {
+        this.setState({ endDate: date })
     }
 
     componentDidMount() {
@@ -148,83 +143,67 @@ class FormPrenota extends Component {
         return (
             <div>
                 <h1>Prenota Donazione</h1>
-                {this.state.isSede &&
-                    <div className="row m-3">
-                        <div className="col-sm-12 col-md-12 col-lg-12 col-xl-12" >
-                            <label>Seleziona un utente per prenotare una donazione</label>
-                            <input className="form-control" type="text" name="donatore" id="donatore" onChange={this.handlerDonatore} placeholder="Email donatore"/>
-                        </div>
-                    </div>
-                }
-
-                <div className="row m-3" >
-                    <SelectSearchDate dati={this.state.regioni} onSelected={this.selectedRegione} value={"Seleziona una regione"} text={"Regione"} />
-                    {this.state.regione && <SelectSearchDate dati={this.state.provincie} onSelected={this.selectedProvincia} value={"Seleziona una Provincia"} text={"Provincia"}/>}
-                    {this.state.provincia && <SelectSearchDate dati={this.state.comuni} onSelected={this.selectedComune} value={"Seleziona un Comune"} text={"Comune"}/>}
-                </div>
-                <div className="row m-3">
-                    <div className="col-sm-12 col-md-12 col-lg-4 col-xl-4" >
-                        <label>Dalla data</label>
-                        <DatePicker
-                            selectsStart
-                            minDate={new Date()}
-                            maxDate={endDate}
-                            selected={startDate}
-                            onChange={startDate => this.selectedStartDate(startDate)}
-                            startDate={startDate}
-                            endDate={endDate}
-                            dateFormat="dd/MM/yyyy"
-                        />
-                    </div>
-                    <div className="col-sm-12 col-md-12 col-lg-4 col-xl-4" >
-                        <label>Alla data</label>
-                        <DatePicker
-                            selectsEnd
-                            minDate={startDate}
-                            selected={endDate}
-                            onChange={endDate => this.selectedEndDate(endDate)}
-                            startDate={startDate}
-                            endDate={endDate}
-                            dateFormat="dd/MM/yyyy"
-                        />
-                    </div>
-
-                    {this.state.startDate && this.state.endDate && this.state.comune &&
-                        <div className="col-sm-12 col-md-12 col-lg-4 col-xl-4 align-self-end" >
-                            <button type="button" className="mt-3 btn btn-primary btn-block " onClick={() =>
-                                this.SearchFreeDate(this.state.comune,
-                                    this.state.startDate, this.state.endDate)}>Cerca</button>
+                <form onSubmit={this.handleSubmit} id="PrenotaForm">
+                    {this.state.isSede &&
+                        <div className="row m-3">
+                            <div className="col-sm-12 col-md-12 col-lg-12 col-xl-12">
+                                <FormInput label="Seleziona un utente per prenotare una donazione" type="text" id="donatore" name="donatore" value={this.state.fields.donatore} onChange={this.handleChange} placeholder="Email donatore" />
+                            </div>
                         </div>
                     }
-                </div>
-                {this.state.searched && <ListFreeDate freeDate={this.state.freeDate} donatore={this.state.donatore}/>}
+                    <div className="row m-3" >
+                        <div className="col-sm-12 col-md-12 col-lg-4 col-xl-4">
+                            <FormSelect label={"Seleziona una regione"} id="regione" name="regione" options={this.state.regioni} onChange={this.handleRegione} isSearchable isClearable />
+                        </div>
+                        {this.state.regione &&
+                            <div className="col-sm-12 col-md-12 col-lg-4 col-xl-4">
+                                <FormSelect label={"Seleziona una Provincia"} id="provincia" name="provincia" options={this.state.provincie} onChange={this.handleProvincia} isSearchable isClearable />
+                            </div>
+                        }
+                        {this.state.provincia &&
+                            <div className="col-sm-12 col-md-12 col-lg-4 col-xl-4">
+                                <FormSelect label={"Seleziona un Comune"} id="comune" name="comune" options={this.state.comuni} onChange={this.handleComune} isSearchable isClearable />
+                            </div>
+                        }
+                    </div>
+                    <div className="row m-3">
+                        <div className="col-sm-12 col-md-12 col-lg-4 col-xl-4" >
+                            <FormDatePicker
+                                label="Dalla data"
+                                selectsStart
+                                minDate={new Date()}
+                                maxDate={endDate}
+                                selected={startDate}
+                                onChange={this.handleStartDate}
+                                startDate={startDate}
+                                endDate={endDate}
+                                dateFormat="dd/MM/yyyy"
+                            />
+                        </div>
+                        <div className="col-sm-12 col-md-12 col-lg-4 col-xl-4" >
+                            <FormDatePicker
+                                label="Alla data"
+                                selectsEnd
+                                minDate={startDate}
+                                selected={endDate}
+                                onChange={this.handleEndDate}
+                                startDate={startDate}
+                                endDate={endDate}
+                                dateFormat="dd/MM/yyyy"
+                            />
+                        </div>
 
+                        {this.state.startDate && this.state.endDate && this.state.comune &&
+                            <div className="col-sm-12 col-md-12 col-lg-4 col-xl-4 align-self-end" >
+                                <FormButton type="submit" value="Cerca" colorType="primary" />
+                            </div>
+                        }
+                    </div>
+                </form>
+                {this.state.searched && <ListFreeDate freeDate={this.state.freeDate} donatore={this.state.fields.donatore} />}
             </div>
         );
     }
 }
-
-
-class SelectSearchDate extends Component {
-
-    render() {
-        return (
-            <div className="col-sm-12 col-md-12 col-lg-4 col-xl-4">
-                <label>{this.props.text}</label>
-                <Select
-                    onChange={this.props.onSelected}
-                    options={this.props.dati}
-                    isClearable
-                    placeholder={this.props.value}
-                    isClearablea
-                    noOptionsMessage={() => "Nessun Risultato"}
-                />
-            </div>
-        );
-    }
-}
-
-
-
 
 export default FormPrenota

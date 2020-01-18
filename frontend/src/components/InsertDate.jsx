@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
-import handlerDate from "../utils/handlerDate"
-import DatePicker from "react-datepicker";
+//Components
+import FormDatePicker from './FormComponent/FormDatePicker';
+import FormButton from './FormComponent/FormButton';
 import ResultInserDate from './ResultInserDate';
-import 'react-datepicker/dist/react-datepicker-cssmodules.css';
-import "react-datepicker/dist/react-datepicker.css";
+//Services
+import handlerDate from "../utils/handlerDate"
 
 
 class InsertDate extends Component {
@@ -19,16 +20,13 @@ class InsertDate extends Component {
             startTime: myDate,
             endTime: myDate
         }
-        this.handleSubmit = this.handleSubmit.bind(this);
     }
 
-    handleSubmit(e) {
+    handleSubmit = e => {
         e.preventDefault();
 
         const Startdate = new Date(this.state.date.getFullYear(), this.state.date.getMonth(), this.state.date.getDate(), this.state.startTime.getHours(), this.state.startTime.getMinutes(), 0, 0);
         const EndDate = new Date(this.state.date.getFullYear(), this.state.date.getMonth(), this.state.date.getDate(), this.state.endTime.getHours(), this.state.endTime.getMinutes(), 0, 0);
-        console.log(Startdate);
-        console.log(EndDate);
 
         var dateDto = {
             "dataIniziale": Startdate,
@@ -37,93 +35,80 @@ class InsertDate extends Component {
 
         handlerDate.insert(dateDto)
             .then(response => {
-                console.log(response.data)
                 this.setState({
-                    listError : response.data.map.listError,
-                    listOK : response.data.map.listOK
+                    listError: response.data.map.listError,
+                    listOK: response.data.map.listOK
                 })
             });
     }
 
-    selectedDate = date => {
+    handleDate = date => {
         this.setState({ date: date })
     }
 
-    setStartTime = date => {
+    handleStartTime = date => {
         this.setState({ startTime: date })
     }
 
-    setEndTime = date => {
+    handleEndDate = date => {
         this.setState({ endTime: date })
     }
 
-    componentDidMount() {
-
-    }
-
     render() {
+        const timeIntervals = 15
+        const minDate = new Date().setHours(0, 0, 0, 0);
+        const maxDate = new Date().setHours(23, 45, 0, 0);
         const date = this.state.date;
         const startTime = this.state.startTime;
         const endTime = this.state.endTime;
-
         return (
             <div>
                 <h1>Scegli data</h1>
                 <form onSubmit={this.handleSubmit} id="RegisterForm">
                     <div className="row m-3">
                         <div className="col-sm-12 col-md-12 col-lg-3 col-xl-3 align-self-end" >
-                            <label>Seleziona data</label>
-                            <DatePicker
-                                onChange={this.selectedDate}
-                                selectsStart
+                            <FormDatePicker
+                                label="Seleziona data"
+                                onChange={this.handleDate}
                                 selected={date}
-                                startDate={date}
-                                minDate={new Date()}
+                                minDate={minDate}
                                 dateFormat="dd/MM/yyyy"
                             />
                         </div>
                         <div className="col-sm-12 col-md-12 col-lg-3 col-xl-3 align-self-end" >
-                            <label>Ora di inizo</label>
-                            <DatePicker
-                                onChange={this.setStartTime}
+                            <FormDatePicker
+                                label="Ora di inizo"
+                                onChange={this.handleStartTime}
                                 selected={startTime}
                                 showTimeSelect
                                 showTimeSelectOnly
-                                timeIntervals={15}
-                                timeCaption="Time"
+                                timeIntervals={timeIntervals}
                                 dateFormat="h:mm aa"
-                                minTime={new Date().setHours(0, 0, 0, 0)}
-                                maxTime={endTime}
-                                selectsStart
                                 startDate={date}
-                                disabledKeyboardNavigation
-
+                                minTime={minDate}
+                                maxTime={endTime}   
                             />
                         </div>
                         <div className="col-sm-12 col-md-12 col-lg-3 col-xl-3  align-self-end" >
-                            <label>Ora di fine</label>
-                            <DatePicker
-                                onChange={this.setEndTime}
+                            <FormDatePicker
+                                label="Ora di inizo"
+                                onChange={this.handleEndDate}
                                 selected={endTime}
                                 showTimeSelect
                                 showTimeSelectOnly
-                                timeIntervals={15}
-                                timeCaption="Time"
+                                timeIntervals={timeIntervals}
                                 dateFormat="h:mm aa"
-                                minTime={startTime}
-                                maxTime={new Date().setHours(23, 45, 0, 0)}
-                                selectsEnd
                                 endDate={date}
+                                minTime={startTime}
+                                maxTime={maxDate}
                             />
                         </div>
                         <div className="col-sm-12 col-md-12 col-lg-3 col-xl-3 align-self-end" >
-                            <button type="submit" className="mt-3 btn btn-primary btn-block" >Inserisci</button>
+                            <FormButton type="Inserisci" value="Inserisci" colorType="primary"/>
                         </div>
                     </div>
                 </form>
-                
-                <ResultInserDate listError={this.state.listError} listOK={this.state.listOK}/>
-
+                <ResultInserDate listError={this.state.listError} listOK={this.state.listOK} />
             </div>
         );
     }

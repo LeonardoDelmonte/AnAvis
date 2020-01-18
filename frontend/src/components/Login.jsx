@@ -1,43 +1,42 @@
 import React, { Component } from 'react';
+//Components
+import FormInput from './FormComponent/FormInput';
+import FormAlert from './FormComponent/FormAlert';
+import FormButton from './FormComponent/FormButton';
+//Services
 import LoginService from '../utils/LoginService';
-import base64 from "base-64";
-import utf8 from "utf8";
-
 
 class Login extends Component {
 
     constructor(props) {
         super(props);
         this.state = {
-            email: '',
-            password: '',
-            errLogin: ''
+            fields: {
+            },
         };
-
-        this.handleChange = this.handleChange.bind(this);
-        this.handleSubmit = this.handleSubmit.bind(this);
     }
 
-    handleChange(event) {
+    handleChange = event => {
         const target = event.target;
         const value = target.value;
         const name = target.name;
 
-        this.setState({
-            [name]: value
-        });
+        this.setState(prevState => ({
+            fields: {
+                ...prevState.fields,
+                [name]: value
+            }
+        }));
     }
 
-    handleSubmit(event) {
+    handleSubmit = event => {
         event.preventDefault();
 
-        this.setState({
-            errLogin: ''
-        })
+        this.setState({alert: { message:'', type: ''} });
 
         var loginDto = {
-            'email': this.state.email,
-            'pw': this.state.password
+            'email': this.state.fields.email,
+            'pw': this.state.fields.password
         }
 
         LoginService.login(loginDto)
@@ -53,39 +52,23 @@ class Login extends Component {
                     this.setState({ errLogin: 'Errore del server, contattare l\'amministratore. ' })
                 }
                 else {
-                    if (!error.response.data.message) {
-                        this.setState({ errLogin: 'Errore del server, contattare l\'amministratore.' })
-                    } else {
-                        this.setState({ errLogin: error.response.data.message })
-                    }
+                    this.setState({alert: { message: error.response.data.message, type: "danger"} });
                 }
             })
     }
 
-
     render() {
-
         return (
             <div className="login-form">
 
                 <h2 className="text-center"> Entra nel portale AnAvis</h2>
-                {this.state.errLogin &&
-                    <div className="alert alert-danger" role="alert">
-                        {this.state.errLogin}
-                    </div>
+                {this.state.alert &&
+                    <FormAlert message={this.state.alert.message} colorType={this.state.alert.type} />
                 }
                 <form onSubmit={this.handleSubmit}>
-                    <div className="form-group">
-                        <label>Email:</label>
-                        <input type="text" className="form-control" id="email" name="email" value={this.state.email} onChange={this.handleChange}>
-                        </input>
-                    </div>
-                    <div className="form-group">
-                        <label>Password:</label>
-                        <input type="password" className="form-control" id="password" name="password" value={this.state.password} onChange={this.handleChange}>
-                        </input>
-                    </div>
-                    <button type="submit" className="btn btn-primary btn-block">Accedi</button>
+                    <FormInput label="Email" type="text" className="form-control" id="email" name="email" value={this.state.fields.email} onChange={this.handleChange} />
+                    <FormInput label="Password" type="password" id="password" name="password" value={this.state.fields.password} onChange={this.handleChange} />
+                    <FormButton type="submit" value="Invia" colorType="primary"/>
                 </form>
                 <p className="text-center"><a href="/register">Clicca qui se non sei ancora Registrato</a></p>
 

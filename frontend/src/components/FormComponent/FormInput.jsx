@@ -15,9 +15,10 @@ class FormInput extends Component {
                         className="form-control" 
                         id={this.props.id} 
                         name={this.props.name} 
-                        value={this.props.value} 
+                        value={this.props.value || ""} 
                         onChange={this.props.onChange} 
                         required={this.props.required ? true : ""} 
+                        placeholder={this.props.placeholder}
                     />
                 </div>
             </div>

@@ -3,7 +3,6 @@ import PrenotaService from '../utils/PrenotaService';
 import DataTable from 'react-data-table-component';
 import memoize from 'memoize-one';
 
-
 const columns = memoize(clickHandler => [
     {
         name: 'ID',
@@ -50,27 +49,22 @@ const columns = memoize(clickHandler => [
 ]);
 
 class ListFreeDate extends PureComponent {
-    constructor(props) {
-        super(props)
-
-    }
 
     handleButtonClick = (state) => {
-
-        PrenotaService.prenota(state.target.id, this.props.donatore).then(
+        PrenotaService.prenota(state.target.id, this.props.donatore)
+        .then(
             response => {
-               console.log(response)
                if(response.data){
                    alert("Prenotazione effettuata con successo")
                    window.location.reload();
                }
             }
         )
-
-    }
-
-    componentDidMount() {
-        console.log(this.props.freeDate)
+        .catch(
+            error => {
+                alert(error.response.data.message)
+            }
+        )
     }
 
     render() {
