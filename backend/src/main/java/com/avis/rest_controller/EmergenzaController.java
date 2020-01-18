@@ -10,8 +10,10 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -35,6 +37,12 @@ public class EmergenzaController {
             new ResponseEntity<>(new ApiResponse("Emergenza non cancellata"), HttpStatus.BAD_REQUEST);
         }
         return new ResponseEntity<>(new ApiResponse("Emergenza cancellata"), HttpStatus.OK);
+    }
+
+    @GetMapping("/requestEmerg/getEmergenze")
+    public @ResponseBody ResponseEntity<InterfaceApi> getEmergenze() {
+        Utente utente = (Utente) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        return new ResponseEntity<>(new ApiResponse(emergenzaService.getEmergenze(utente.getId())), HttpStatus.OK);
     }
 
 }
