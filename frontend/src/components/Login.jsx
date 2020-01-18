@@ -45,6 +45,8 @@ class Login extends Component {
                     console.log(response);
                     localStorage.removeItem('Authorization');
                     localStorage.setItem('Authorization', response.data.token);
+                    localStorage.setItem('nome',response.data.utente.nome);
+                     localStorage.setItem('cognome',response.data.utente.cognome);
                     this.props.history.push('/home')
                 }
             ).catch(error => {

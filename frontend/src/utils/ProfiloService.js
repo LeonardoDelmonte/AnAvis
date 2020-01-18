@@ -13,14 +13,14 @@ class ProfiloService {
         );
     }
 
-    modificaProfilo(res){
+    updateProfilo(utente){
         var config = {
             headers: {'Authorization': localStorage.getItem('Authorization')}
         };
         
         return axios.put(
             API_URL + '/profilo/modificaCredenziali',
-            res,
+            utente,
             config
         );
     }
