@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import ProfiloService from '../utils/ProfiloService';
-import FormInput from './FormComponent/FormInput';
-import FormSelect from './FormComponent/FormSelect';
-import FormAlert from './FormComponent/FormAlert';
+import ProfiloService from '../../utils/ProfiloService';
+import FormInput from '../FormComponents/FormInput';
+import FormSelect from '../FormComponents/FormSelect';
+import FormAlert from '../FormComponents/FormAlert';
 import Modulo from './Modulo';
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -28,8 +28,11 @@ class ProfiloUtente extends Component {
            .then(
                response => {
                    this.setState({fields : response.data.utente})              
-               }
-           )
+               })
+            .catch(error => {
+                console.log("nessuna risposta dal server");
+            })
+           
     }
 
     handleChange = e =>{

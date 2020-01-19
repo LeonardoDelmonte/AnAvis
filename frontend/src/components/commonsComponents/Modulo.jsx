@@ -1,5 +1,5 @@
 import React from 'react';
-import FormInput from './FormComponent/FormInput';
+import FormInput from '../FormComponents/FormInput';
 
 
 const Modulo = props =>  {

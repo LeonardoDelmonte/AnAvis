@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 //Components
-import FormSelect from './FormComponent/FormSelect';
-import FormAlert from './FormComponent/FormAlert';
-import FormButton from './FormComponent/FormButton';
+import FormSelect from '../FormComponents/FormSelect';
+import FormAlert from '../FormComponents/FormAlert';
+import FormButton from '../FormComponents/FormButton';
 //Services
-import CentroTrasfusioneService from '../utils/CentroTrasfusioneService';
+import CentroTrasfusioneService from '../../utils/CentroTrasfusioneService';
 
 class EmergenzaSangue extends Component {
 
@@ -21,10 +21,9 @@ class EmergenzaSangue extends Component {
         })
     }
 
-    handleChange = e => {
-        const target = e.target;
-        const value = target.value;
-        const name = target.name;
+    handleChange = event => { 
+        const value = event.target.value;
+        const name = event.target.name;
 
         this.setState({
             [name]: value
@@ -49,8 +48,7 @@ class EmergenzaSangue extends Component {
                 else {
                     this.setState({ alert: { message: error.response.data.message, type: "danger" } });
                 }
-            }
-            )
+            })   
     }
 
     render() {

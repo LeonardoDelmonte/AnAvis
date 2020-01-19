@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 //Components
-import FormDatePicker from './FormComponent/FormDatePicker';
-import FormButton from './FormComponent/FormButton';
+import FormDatePicker from '../FormComponents/FormDatePicker';
+import FormButton from '../FormComponents/FormButton';
 import ResultInserDate from './ResultInserDate';
 //Services
-import handlerDate from "../utils/handlerDate"
+import handlerDate from "../../utils/handlerDate"
 
 
 class InsertDate extends Component {

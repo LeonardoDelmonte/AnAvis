@@ -8,21 +8,15 @@ class Home extends Component {
     }
 
     componentDidMount(){
-        this.setState({nome:localStorage.getItem('nome')})
-        this.setState({cognome:localStorage.getItem('cognome')})
+        
     }
 
     
     render() {
         return (
-        <div>
             <div>
-                <h1><b>Benvenuto </b>{this.state.nome} {this.state.cognome}</h1> 
+                <h1>Benvenuto</h1> 
             </div>
-            <div>
-    
-            </div>
-        </div>
         );
     }
 }

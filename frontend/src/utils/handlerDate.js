@@ -1,20 +1,10 @@
-import axios from 'axios'
+import axiosInstance from './interceptor'
 
-const API_URL = 'http://localhost:8080'
+class handlerDate{
 
-class LoginService{
-
-    insert(dateDto) {
-        var config = {
-            headers: { 'Authorization': localStorage.getItem('Authorization'), 
-                    'Content-Type': 'application/json' }
-        };
-        return axios.post(
-            API_URL + '/handlerDate/insert',
-            dateDto,
-            config
-        );
+    async insert(dateDto) {
+        return await axiosInstance.post('/handlerDate/insert',dateDto)
     }
 }
 
-export default new LoginService()
+export default new handlerDate()

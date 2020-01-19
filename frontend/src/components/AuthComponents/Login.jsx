@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 //Components
-import FormInput from './FormComponent/FormInput';
-import FormAlert from './FormComponent/FormAlert';
-import FormButton from './FormComponent/FormButton';
+import FormInput from '../FormComponents/FormInput';
+import FormAlert from '../FormComponents/FormAlert';
+import FormButton from '../FormComponents/FormButton';
 //Services
-import LoginService from '../utils/LoginService';
+import AuthService from '../../utils/AuthService';
 
 class Login extends Component {
 
@@ -17,9 +17,8 @@ class Login extends Component {
     }
 
     handleChange = event => {
-        const target = event.target;
-        const value = target.value;
-        const name = target.name;
+        const value = event.target.value;
+        const name = event.target.name;
 
         this.setState(prevState => ({
             fields: {
@@ -32,21 +31,15 @@ class Login extends Component {
     handleSubmit = event => {
         event.preventDefault();
 
-        this.setState({alert: { message:'', type: ''} });
-
         var loginDto = {
             'email': this.state.fields.email,
             'pw': this.state.fields.password
         }
 
-        LoginService.login(loginDto)
+        AuthService.login(loginDto)
             .then(
                 response => {
-                    console.log(response);
-                    localStorage.removeItem('Authorization');
-                    localStorage.setItem('Authorization', response.data.token);
-                    localStorage.setItem('nome',response.data.utente.nome);
-                     localStorage.setItem('cognome',response.data.utente.cognome);
+                    console.log("login success")
                     this.props.history.push('/home')
                 }
             ).catch(error => {
@@ -58,6 +51,7 @@ class Login extends Component {
                 }
             })
     }
+
 
     render() {
         return (

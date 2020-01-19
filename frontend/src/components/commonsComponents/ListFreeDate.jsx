@@ -1,5 +1,5 @@
 import React, { PureComponent } from 'react'
-import PrenotaService from '../utils/PrenotaService';
+import PrenotaService from '../../utils/PrenotaService';
 import DataTable from 'react-data-table-component';
 import memoize from 'memoize-one';
 
@@ -51,7 +51,11 @@ const columns = memoize(clickHandler => [
 class ListFreeDate extends PureComponent {
 
     handleButtonClick = (state) => {
-        PrenotaService.prenota(state.target.id, this.props.donatore)
+        var prenotazioneDto = {
+            'idDataLibera': state.target.id,
+            'emailDonatore': this.props.donatore
+        }
+        PrenotaService.prenota(prenotazioneDto)
         .then(
             response => {
                if(response.data){

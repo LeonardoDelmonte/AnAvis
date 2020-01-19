@@ -1,31 +1,15 @@
-import axios from 'axios'
-const API_URL = 'http://localhost:8080'
+import axiosInstance from './interceptor'
 
 class ProfiloService {
 
-    loadProfilo() {
-        var config = {
-            headers: {'Authorization': localStorage.getItem('Authorization')}
-        };
-        return axios.get(
-            API_URL + '/profilo/showInfo',
-            config
-        );
+    async loadProfilo() {
+        return await axiosInstance.get('/profilo/showInfo')
     }
 
-    updateProfilo(utente){
-        var config = {
-            headers: {'Authorization': localStorage.getItem('Authorization')}
-        };
-        
-        return axios.put(
-            API_URL + '/profilo/modificaCredenziali',
-            utente,
-            config
-        );
+    async updateProfilo(utente){
+        return await axiosInstance.put('/profilo/modificaCredenziali',utente)       
     }
 
-   
 }
 
 export default new ProfiloService()

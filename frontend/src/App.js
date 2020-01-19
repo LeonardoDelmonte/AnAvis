@@ -12,16 +12,16 @@ import { BrowserRouter as Router, Route, Redirect } from 'react-router-dom';
 //-----JWT-----
 import jwt from 'jwt-decode'
 //-----components-----
-import Login from './components/Login';
-import Register from './components/Register';
-import Home from './components/Home';
-import FormPrenota from './components/FormPrenota';
-import InsertDate from './components/InsertDate';
-import TopMenu from './components/TopMenu';
-import LogOut from './components/LogOut';
-import ProfiloUtente from './components/ProfiloUtente';
-import Footer from './components/Footer';
-import EmergenzaSangue from './components/EmergenzaSangue';
+import Login from './components/AuthComponents/Login';
+import Register from './components/AuthComponents/Register';
+import Home from './components/commonsComponents/Home';
+import FormPrenota from './components/commonsComponents/FormPrenota';
+import InsertDate from './components/sedeAvisComponents/InsertDate';
+import TopMenu from './components/PersistentComponents/TopMenu';
+import LogOut from './components/AuthComponents/LogOut';
+import ProfiloUtente from './components/commonsComponents/ProfiloUtente';
+import Footer from './components/PersistentComponents/Footer';
+import EmergenzaSangue from './components/CentroTrasfComponents/EmergenzaSangue';
 
 const Auth = {
   isLogged() {

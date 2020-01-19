@@ -25,6 +25,12 @@ public class HandlerException extends ResponseEntityExceptionHandler {
         return buildResponseEntity(new ApiError(HttpStatus.BAD_REQUEST, error, ex));   
     }
        
+    @ExceptionHandler(NullPointerException.class)
+    protected ResponseEntity<InterfaceApi> NullPointerException(NullPointerException ex) {
+        String error ="email non valida!";
+        return buildResponseEntity(new ApiError(HttpStatus.BAD_REQUEST, error, ex));   
+    }
+
     @ExceptionHandler(DataIntegrityViolationException.class)
     protected ResponseEntity<InterfaceApi> DataIntegrityViolationException(DataIntegrityViolationException ex) { 
         String error ="email già registrata";

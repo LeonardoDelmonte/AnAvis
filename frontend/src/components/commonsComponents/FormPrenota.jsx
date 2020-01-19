@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 //Components
-import FormInput from './FormComponent/FormInput';
-import FormSelect from './FormComponent/FormSelect';
-import FormButton from './FormComponent/FormButton';
-import FormDatePicker from './FormComponent/FormDatePicker';
+import FormInput from '../FormComponents/FormInput';
+import FormSelect from '../FormComponents/FormSelect';
+import FormButton from '../FormComponents/FormButton';
+import FormDatePicker from '../FormComponents/FormDatePicker';
 import ListFreeDate from './ListFreeDate';
 //Services
-import PrenotaService from '../utils/PrenotaService';
+import PrenotaService from '../../utils/PrenotaService';
 //other
 import jwt from 'jwt-decode'
 
@@ -31,9 +31,8 @@ class FormPrenota extends Component {
     }
 
     handleChange = event => {
-        const target = event.target;
-        const value = target.value;
-        const name = target.name;
+        const value = event.target.value;
+        const name = event.target.name;
 
         this.setState(prevState => ({
             fields: {

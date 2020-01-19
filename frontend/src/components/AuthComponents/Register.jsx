@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 //Components
-import FormInput from './FormComponent/FormInput';
-import FormSelect from './FormComponent/FormSelect';
-import FormAlert from './FormComponent/FormAlert';
-import FormButton from './FormComponent/FormButton';
+import FormInput from '../FormComponents/FormInput';
+import FormSelect from '../FormComponents/FormSelect';
+import FormAlert from '../FormComponents/FormAlert';
+import FormButton from '../FormComponents/FormButton';
 //Services
-import LoginService from '../utils/LoginService';
+import AuthService from '../../utils/AuthService';
 
 class Register extends Component {
 
@@ -41,10 +41,9 @@ class Register extends Component {
         })
     }
 
-    handleChange = event => {
-        const target = event.target;
-        const value = target.value;
-        const name = target.name;
+    handleChange = event => {    
+        const value = event.target.value;
+        const name = event.target.name;
 
         this.setState(prevState => ({
             fields: {
@@ -58,14 +57,12 @@ class Register extends Component {
         e.preventDefault();
         window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
 
-        this.setState({alert: { message:'', type: ''} });
-
         if(!this.controllPassword())
             return;
 
         var registerDto = { [this.state.fields.ruolo]: this.state.fields }
 
-        LoginService.register(registerDto)
+        AuthService.register(registerDto)
             .then((response) => {
                 document.getElementById("RegisterForm").reset();
                 this.setState({ alert: {message: response.data.message, type: "success" },fields: {ruolo: 'donatore'}});}
@@ -111,6 +108,7 @@ class Register extends Component {
                             <FormInput label="Comune" type="text" id="comune" name="comune" value={this.state.fields.comune} onChange={this.handleChange} required />
                         </div>
                     }
+                    {/*campi in comune */}
                     <FormInput label="Email" type="text" id="email" name="email" value={this.state.fields.email} onChange={this.handleChange} required />
                     <FormInput label="Password" type="password" id="password" name="password" value={this.state.fields.password} onChange={this.handleChange} />
                     <FormInput label="Ripeti Password" type="password" id="rpassword" name="rpassword" value={this.state.fields.rpassword} onChange={this.handleChange} />
