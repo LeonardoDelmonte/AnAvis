@@ -1,4 +1,5 @@
 package com.avis.services;
+
 import com.avis.dto.CredenzialiDto;
 import com.avis.dto.JwtRequest;
 import com.avis.models.Utente;
@@ -16,7 +17,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 @Service
-public class AuthenticationService implements UserDetailsService{
+public class AuthenticationService implements UserDetailsService {
 
     @Autowired
     private AuthenticationRepository authRepository;
@@ -30,36 +31,33 @@ public class AuthenticationService implements UserDetailsService{
     private AuthenticationManager authenticationManager;
     @Autowired
     private PasswordEncoder bcryptEncoder;
-  
+
     public boolean save(CredenzialiDto utente) {
-        if(utente.getDonatore()!=null){
+        if (utente.getDonatore() != null) {
             encode(utente.getDonatore());
-            donatoreRepository.save(utente.getDonatore()); 
+            donatoreRepository.save(utente.getDonatore());
             return true;
         }
-        if(utente.getSedeAvis()!=null){
+        if (utente.getSedeAvis() != null) {
             encode(utente.getSedeAvis());
-            sedeAvisRepository.save(utente.getSedeAvis()); 
+            sedeAvisRepository.save(utente.getSedeAvis());
             return true;
         }
-        if(utente.getCentroTrasfusione()!=null){
+        if (utente.getCentroTrasfusione() != null) {
             encode(utente.getCentroTrasfusione());
-            centroRepository.save(utente.getCentroTrasfusione()); 
+            centroRepository.save(utente.getCentroTrasfusione());
             return true;
         }
         return false;
     }
 
-
-    private void encode(Utente utente){
-        utente.setPw(bcryptEncoder.encode(utente.getPassword()));
+    private void encode(Utente utente) {
+        utente.setPassword(bcryptEncoder.encode(utente.getPassword()));
     }
 
-    
     public void authenticate(JwtRequest credentials) throws Exception {
-        authenticationManager.authenticate(
-            new UsernamePasswordAuthenticationToken(
-                credentials.getEmail(), credentials.getPw()));
+        authenticationManager
+                .authenticate(new UsernamePasswordAuthenticationToken(credentials.getEmail(), credentials.getPw()));
     }
 
     @Override
@@ -67,5 +65,4 @@ public class AuthenticationService implements UserDetailsService{
         return authRepository.findByEmail(email);
     }
 
-    
 }

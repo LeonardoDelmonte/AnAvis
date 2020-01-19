@@ -40,7 +40,7 @@ public class LoginController {
         if(utente.getRuolo().compareTo("donatore")==0)
             utente = profilo.checkAbilitazione(utente.getEmail());
 
-        return new ResponseEntity<>(new ApiResponse(utente, token), HttpStatus.OK);
+        return new ResponseEntity<>(new ApiResponse<>(utente, token), HttpStatus.OK);
     }
 }
 

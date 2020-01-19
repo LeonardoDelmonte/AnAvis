@@ -38,13 +38,11 @@ public class EmergenzaService {
         return true;
     }
 
-    public ArrayList<Emergenza> getEmergenze(Long id) {
-        ArrayList<Emergenza> list = new ArrayList<>();
+    public List<Emergenza> getEmergenze(Long id) {
         Optional<List<Emergenza>> emergenze = emergenzaRepository.findByIdCentroTrasfusione(id);
         if(!emergenze.isPresent())
-            return list;
-        emergenze.get().forEach(e->list.add(e));
-        return list;
+            return new ArrayList<>();
+        return emergenze.get();
 	}
 
 }

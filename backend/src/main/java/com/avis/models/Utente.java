@@ -17,6 +17,9 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import lombok.Data;
+
+@Data
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
 public class Utente implements UserDetails {
@@ -36,37 +39,9 @@ public class Utente implements UserDetails {
     public Utente() {
     }
 
-    public Utente(String email, String pw, String ruolo) {
+    public Utente(@NotNull String email, @NotNull String password, @NotNull String ruolo) {
         this.email = email;
-        this.password = pw;
-        this.ruolo = ruolo;
-    }
-
-    public long getId() {
-        return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public void setPw(String pw) {
-        this.password = pw;
-    }
-
-    public String getRuolo() {
-        return ruolo;
-    }
-
-    public void setRuolo(String ruolo) {
+        this.password = password;
         this.ruolo = ruolo;
     }
 

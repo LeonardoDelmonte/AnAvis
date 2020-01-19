@@ -40,15 +40,12 @@ public class DataLoader implements ApplicationRunner {
 
         //password -> marco
 
-        donatore.save(new Donatore("marco","$2a$10$x1VGNaJf8AHJAslOnPsh1e9OufSxWor0OwSDfORdD98GDlXzwMDN6","donatore"));
-        donatore.save(new Donatore("leo","$2a$10$x1VGNaJf8AHJAslOnPsh1e9OufSxWor0OwSDfORdD98GDlXzwMDN6","donatore"));
-        SedeAvis sede1 = new SedeAvis("sede1","$2a$10$x1VGNaJf8AHJAslOnPsh1e9OufSxWor0OwSDfORdD98GDlXzwMDN6","sedeAvis");
-        sede1.setRegione("marche");sede1.setProvincia("macerata");sede1.setComune("morrovalle");
-        SedeAvis sede2 = new SedeAvis("sede2","$2a$10$x1VGNaJf8AHJAslOnPsh1e9OufSxWor0OwSDfORdD98GDlXzwMDN6","sedeAvis");
-        sede2.setRegione("marche");sede2.setProvincia("macerata");sede2.setComune("montecosaro");
-        sedeAvis.save(sede1); sedeAvis.save(sede2);
-        centroTrasf.save(new CentroTrasfusione("centro1","$2a$10$x1VGNaJf8AHJAslOnPsh1e9OufSxWor0OwSDfORdD98GDlXzwMDN6","centroTrasfusione"));
-        centroTrasf.save(new CentroTrasfusione("centro2","$2a$10$x1VGNaJf8AHJAslOnPsh1e9OufSxWor0OwSDfORdD98GDlXzwMDN6","centroTrasfusione"));
+        donatore.save(new Donatore("marco","$2a$10$x1VGNaJf8AHJAslOnPsh1e9OufSxWor0OwSDfORdD98GDlXzwMDN6","donatore", "marco", "scarpa"));
+        donatore.save(new Donatore("leo","$2a$10$x1VGNaJf8AHJAslOnPsh1e9OufSxWor0OwSDfORdD98GDlXzwMDN6","donatore","leo", "del"));
+        sedeAvis.save(new SedeAvis("sede1","$2a$10$x1VGNaJf8AHJAslOnPsh1e9OufSxWor0OwSDfORdD98GDlXzwMDN6","sedeAvis","marche","macerata","morrovalle"));
+        sedeAvis.save(new SedeAvis("sede2","$2a$10$x1VGNaJf8AHJAslOnPsh1e9OufSxWor0OwSDfORdD98GDlXzwMDN6","sedeAvis","marche","macerata","montecosaro"));
+        centroTrasf.save(new CentroTrasfusione("centro1","$2a$10$x1VGNaJf8AHJAslOnPsh1e9OufSxWor0OwSDfORdD98GDlXzwMDN6","centroTrasfusione","marche","pesaro","tavullia"));
+        centroTrasf.save(new CentroTrasfusione("centro2","$2a$10$x1VGNaJf8AHJAslOnPsh1e9OufSxWor0OwSDfORdD98GDlXzwMDN6","centroTrasfusione","marche","pesaro","fano"));
         Timestamp ts1 = Timestamp.valueOf("2020-01-13 11:00:00");
         Timestamp ts2 = Timestamp.valueOf("2020-01-13 12:00:00");
         Timestamp ts5 = Timestamp.valueOf("2020-01-13 11:30:00");
@@ -59,11 +56,10 @@ public class DataLoader implements ApplicationRunner {
         prenotazione.save(new DateDto(ts1,ts2), (long)3);
         prenotazione.save(new DateDto(ts5,ts4), (long)3);
         prenotazione.save(new DateDto(ts2,ts3), (long)4);
-        prenotazione.prenotaData(new PrenotazioneDto((long)3, "marco"));
+        //prenotazione.prenotaData(new PrenotazioneDto((long)3, "marco"));
         prenotazione.prenotaData(new PrenotazioneDto((long)6, "leo"));
         emergenza.save("A", (long)5);
-        emergenza.save("00", (long)6);
-        
+        emergenza.save("00", (long)6);    
 
     }
 

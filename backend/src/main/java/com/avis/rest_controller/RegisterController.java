@@ -22,9 +22,9 @@ public class RegisterController {
     @RequestMapping(value = "public/register", method = RequestMethod.POST)
     public ResponseEntity<InterfaceApi> register(@RequestBody CredenzialiDto utente) {
         if (!authService.save(utente)) {
-            return new ResponseEntity<>(new ApiResponse("Utente non registrato"), HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<>(new ApiResponse<>("Utente non registrato"), HttpStatus.BAD_REQUEST);
         }
-        return new ResponseEntity<>(new ApiResponse("Utente registrato con successo"), HttpStatus.CREATED);
+        return new ResponseEntity<>(new ApiResponse<>("Utente registrato con successo"), HttpStatus.CREATED);
     }
 
 }

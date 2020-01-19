@@ -1,5 +1,6 @@
 package com.avis.rest_controller;
 
+import com.avis.models.Emergenza;
 import com.avis.models.Utente;
 import com.avis.services.EmergenzaService;
 import com.avis.utils.ApiResponse;
@@ -26,23 +27,23 @@ public class EmergenzaController {
     public ResponseEntity<InterfaceApi> insertEmergenza(@RequestBody String gruppo) {
         Utente utente = (Utente) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         if (!emergenzaService.save(gruppo, utente.getId())) {
-            return new ResponseEntity<>(new ApiResponse("Emergenza non inviata"), HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<>(new ApiResponse<>("Emergenza non inviata"), HttpStatus.BAD_REQUEST);
         }
-        return new ResponseEntity<>(new ApiResponse("Emergenza inviata correttamente"), HttpStatus.CREATED);
+        return new ResponseEntity<>(new ApiResponse<>("Emergenza inviata correttamente"), HttpStatus.CREATED);
     }
 
     @DeleteMapping("/requestEmerg/remove")
     public ResponseEntity<InterfaceApi> deleteEmergenza(@RequestBody long emergenza) {
         if (!emergenzaService.delete(emergenza)) {
-            new ResponseEntity<>(new ApiResponse("Emergenza non cancellata"), HttpStatus.BAD_REQUEST);
+            new ResponseEntity<>(new ApiResponse<>("Emergenza non cancellata"), HttpStatus.BAD_REQUEST);
         }
-        return new ResponseEntity<>(new ApiResponse("Emergenza cancellata"), HttpStatus.OK);
+        return new ResponseEntity<>(new ApiResponse<>("Emergenza cancellata"), HttpStatus.OK);
     }
 
     @GetMapping("/requestEmerg/getEmergenze")
     public @ResponseBody ResponseEntity<InterfaceApi> getEmergenze() {
         Utente utente = (Utente) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        return new ResponseEntity<>(new ApiResponse(emergenzaService.getEmergenze(utente.getId())), HttpStatus.OK);
+        return new ResponseEntity<>(new ApiResponse<Emergenza>(emergenzaService.getEmergenze(utente.getId())), HttpStatus.OK);
     }
 
 }

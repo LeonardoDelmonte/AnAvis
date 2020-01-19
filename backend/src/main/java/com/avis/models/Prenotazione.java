@@ -12,6 +12,9 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotNull;
 
+import lombok.Data;
+
+@Data
 @Entity
 public class Prenotazione {
 
@@ -34,40 +37,8 @@ public class Prenotazione {
 
     }
 
-    public Prenotazione(SedeAvis sedeAvis, Timestamp date) {
+    public Prenotazione(@NotNull SedeAvis sedeAvis, @NotNull Timestamp date) {
         this.idSedeAvis = sedeAvis;
-        this.date = date;
-    }
-
-    public long getIdPrenotazione() {
-        return idPrenotazione;
-    }
-
-    public void setIdPrenotazione(long idPrenotazione) {
-        this.idPrenotazione = idPrenotazione;
-    }
-
-    public Donatore getIdDonatore() {
-        return idDonatore;
-    }
-
-    public void setIdDonatore(Donatore idDonatore) {
-        this.idDonatore = idDonatore;
-    }
-
-    public SedeAvis getIdSedeAvis() {
-        return idSedeAvis;
-    }
-
-    public void setIdSedeAvis(SedeAvis idSedeAvis) {
-        this.idSedeAvis = idSedeAvis;
-    }
-
-    public Timestamp getDate() {
-        return date;
-    }
-
-    public void setDate(Timestamp date) {
         this.date = date;
     }
 

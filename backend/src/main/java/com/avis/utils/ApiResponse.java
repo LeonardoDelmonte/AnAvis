@@ -1,13 +1,11 @@
 package com.avis.utils;
 
 import java.sql.Timestamp;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import com.avis.models.Emergenza;
 import com.avis.models.Prenotazione;
 import com.avis.models.Utente;
 
@@ -15,18 +13,18 @@ import org.springframework.http.HttpStatus;
 
 /**
  * ApiResponse
+ * 
+ * @param <T>
  */
-public class ApiResponse implements InterfaceApi {
+public class ApiResponse<T> implements InterfaceApi {
 
     private Utente utente;
     private String token, message;
     private Prenotazione prenotazione;
-    private List<Prenotazione> listPrenotazione;
+    private List<T> list;
     private Map<String, List<Timestamp>> map;
     private HttpStatus status;
     private Set<String> set;
-    // sta cosa credo non vada bene, non si può mettere list per la type erasure :(
-    private ArrayList<Emergenza> listEmergenze;
 
     // per il login
     public ApiResponse(Utente utente, String token) {
@@ -55,14 +53,9 @@ public class ApiResponse implements InterfaceApi {
         this.status = HttpStatus.OK;
     }
 
-    // get date libere
-    public ApiResponse(List<Prenotazione> list) {
-        this.listPrenotazione = list;
-    }
-
-    // get emergenze
-    public ApiResponse(ArrayList<Emergenza> listEmergenze) {
-        this.listEmergenze = listEmergenze;
+    // get date libere, get emergenza
+    public ApiResponse(List<T> list) {
+        this.list = list;
     }
 
     // response info
@@ -95,12 +88,12 @@ public class ApiResponse implements InterfaceApi {
         this.token = token;
     }
 
-    public List<Prenotazione> getListPrenotazione() {
-        return listPrenotazione;
+    public List<T> getList() {
+        return list;
     }
 
-    public void setListPrenotazione(List<Prenotazione> listPrenotazione) {
-        this.listPrenotazione = listPrenotazione;
+    public void setListPrenotazione(List<T> list) {
+        this.list = list;
     }
 
     public HttpStatus getStatus() {
@@ -141,14 +134,6 @@ public class ApiResponse implements InterfaceApi {
 
     public void setSet(Set<String> set) {
         this.set = set;
-    }
-
-    public ArrayList<Emergenza> getListEmergenze() {
-        return listEmergenze;
-    }
-
-    public void setListEmergenze(ArrayList<Emergenza> listEmergenze) {
-        this.listEmergenze = listEmergenze;
     }
 
 }

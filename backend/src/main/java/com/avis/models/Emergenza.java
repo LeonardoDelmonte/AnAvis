@@ -13,6 +13,9 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotNull;
 
+import lombok.Data;
+
+@Data
 @Entity
 public class Emergenza {
 
@@ -34,43 +37,11 @@ public class Emergenza {
 
     }
 
-    public Emergenza(CentroTrasfusione centro, String gruppo) {
+    public Emergenza(@NotNull CentroTrasfusione centro, @NotNull String gruppo) {
         this.idCentroTrasfusione = centro;
         this.gruppoSanguigno = gruppo;
         Date date = new Date();
         this.dataEmergenza = new Timestamp(date.getTime());
-    }
-
-    public long getId() {
-        return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
-    }
-
-    public CentroTrasfusione getIdCentroTrasfusione() {
-        return idCentroTrasfusione;
-    }
-
-    public void setIdCentroTrasfusione(CentroTrasfusione idCentroTrasfusione) {
-        this.idCentroTrasfusione = idCentroTrasfusione;
-    }
-
-    public String getGruppoSanguigno() {
-        return gruppoSanguigno;
-    }
-
-    public void setGruppoSanguigno(String gruppoSanguigno) {
-        this.gruppoSanguigno = gruppoSanguigno;
-    }
-
-    public Timestamp getDataEmergenza() {
-        return dataEmergenza;
-    }
-
-    public void setDataEmergenza(Timestamp dataEmergenza) {
-        this.dataEmergenza = dataEmergenza;
     }
 
 }
