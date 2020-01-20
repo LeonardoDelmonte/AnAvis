@@ -17,6 +17,4 @@ public interface SedeAvisRepository extends JpaRepository<SedeAvis, Long>{
 
 	Optional<List<SedeAvis>> findByProvincia(String provincia);
 
-	Optional<SedeAvis> findById(long i);
-
 }

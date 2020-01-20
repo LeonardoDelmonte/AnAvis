@@ -2,6 +2,7 @@ package com.avis.services;
 
 import java.sql.Timestamp;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 import java.util.concurrent.TimeUnit;
@@ -66,7 +67,7 @@ public class PrenotazioniService {
             }
             data1 = new Timestamp(data1.getTime() + TimeUnit.MINUTES.toMillis(15));
         }
-        return new ApiResponse<>(listOK,listError);       
+        return new ApiResponse<>("listOK",listOK,"listError",listError);       
     }
 
     public boolean delete(long id) {
@@ -88,5 +89,27 @@ public class PrenotazioniService {
         }
         return dateLibere.get().stream().filter(e -> e.getIdDonatore() == null).collect(Collectors.toList());
     }
+
+	public ApiResponse<Prenotazione> getPrenotazioni(long id) {
+        Optional<SedeAvis> sedeAvis = sedeAvisRepository.findById(id);
+        if (!sedeAvis.isPresent())
+            return new ApiResponse<>("sessione danneggiata, riloggare",HttpStatus.BAD_REQUEST); 
+        List<Prenotazione> listPrenotate = new ArrayList<>();
+        List<Prenotazione> listLibere = new ArrayList<>();
+        Optional<List<Prenotazione>> listPrenotazioni = prenotazioniRepository.findByIdSedeAvis(sedeAvis.get());
+        if(!listPrenotazioni.isPresent())
+            return new ApiResponse<Prenotazione>("listaPrenotate", listPrenotate, "listaLibere", listLibere);
+        Long date = new Date().getTime();  
+        for (Prenotazione prenotazione : listPrenotazioni.get()) {
+            if(date<prenotazione.getDate().getTime()){
+                if (prenotazione.getIdDonatore()==null) {
+                    listLibere.add(prenotazione);                
+                } else {
+                    listPrenotate.add(prenotazione);                
+                }
+            }
+        }
+		return new ApiResponse<Prenotazione>("listaPrenotate", listPrenotate, "listaLibere", listLibere);
+	}
 
 }

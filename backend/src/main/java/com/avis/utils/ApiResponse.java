@@ -1,6 +1,5 @@
 package com.avis.utils;
 
-import java.sql.Timestamp;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -22,7 +21,7 @@ public class ApiResponse<T> implements InterfaceApi {
     private String token, message;
     private Prenotazione prenotazione;
     private List<T> list;
-    private Map<String, List<Timestamp>> map;
+    private Map<String, List<T>> map;
     private HttpStatus status;
     private Set<String> set;
 
@@ -45,11 +44,11 @@ public class ApiResponse<T> implements InterfaceApi {
         this.status = HttpStatus.OK;
     }
 
-    // insert date
-    public ApiResponse(List<Timestamp> listOK, List<Timestamp> listError) {
+    // insert date - getPrenotazioni
+    public ApiResponse(String str1, List<T> list1, String str2, List<T> list2) {
         this.map = new HashMap<>();
-        map.put("listOK", listOK);
-        map.put("listError", listError);
+        map.put(str1, list1);
+        map.put(str2, list2);
         this.status = HttpStatus.OK;
     }
 
@@ -116,11 +115,11 @@ public class ApiResponse<T> implements InterfaceApi {
         this.prenotazione = prenotazione;
     }
 
-    public Map<String, List<Timestamp>> getMap() {
+    public Map<String, List<T>> getMap() {
         return map;
     }
 
-    public void setMap(Map<String, List<Timestamp>> map) {
+    public void setMap(Map<String, List<T>> map) {
         this.map = map;
     }
 

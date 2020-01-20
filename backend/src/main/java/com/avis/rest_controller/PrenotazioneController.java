@@ -67,6 +67,13 @@ public class PrenotazioneController {
         return new ResponseEntity<>(new ApiResponse<>("Data rimossa correttamente"), HttpStatus.OK);
     }
 
+    @GetMapping("/handlerDate/getPrenotazioni")
+    public ResponseEntity<InterfaceApi> getPrenotazioni() {
+        Utente utente = (Utente) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        ApiResponse<Prenotazione> response = prenotazioniService.getPrenotazioni(utente.getId());
+        return new ResponseEntity<>(response, response.getStatus());
+    }
+
     @GetMapping("/prenotazione/getRegioni")
     public @ResponseBody ResponseEntity<InterfaceApi> searchRegioni() {
         System.out.println(sedeAvisService.getRegioni());
