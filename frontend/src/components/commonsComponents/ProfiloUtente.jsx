@@ -1,105 +1,120 @@
-import React, { Component } from 'react';
-import ProfiloService from '../../utils/ProfiloService';
-import FormInput from '../FormComponents/FormInput';
-import FormSelect from '../FormComponents/FormSelect';
-import FormAlert from '../FormComponents/FormAlert';
-import Modulo from './Modulo';
-import { library } from '@fortawesome/fontawesome-svg-core'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import {faClipboardList } from '@fortawesome/free-solid-svg-icons';
-library.add(faClipboardList)
-
-
+import React, { Component } from "react";
+import ProfiloService from "../../utils/ProfiloService";
+import FormInput from "../FormComponents/FormInput";
+import FormAlert from "../FormComponents/FormAlert";
+import FormModulo from "../FormComponents/FormModulo";
+import FormProfilo from "../FormComponents/FormProfilo";
+import FormHistory from "../FormComponents/FormHistory";
+import FormListPrenotazioni from '../FormComponents/FormListPrenotazioni'
+import FormListEmergenze from '../FormComponents/FormListEmergenze'
+import jwt from "jwt-decode";
 
 class ProfiloUtente extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      aud: "",
+      stringa: ""
+    };
+  }
 
-    constructor(props) {
-        super(props)
-        this.state = {
-            bool : false,
-            fields : {
+  componentDidMount() {
+    var ruolo = jwt(localStorage.getItem("Authorization")).aud;
 
-            }
-        }   
-    }
+    if (ruolo === "donatore")
+      this.setState({ stringa: "MODULO" });
+    else if (ruolo=== "sedeAvis")
+      this.setState({ stringa: "LISTA PRENOTAZIONI" });
+    else if (ruolo=== "centroTrasfusione")
+      this.setState({ stringa: "LISTA EMERGENZE" });
+    this.setState({aud:ruolo});
+  }
 
-    componentDidMount() {
-        ProfiloService.loadProfilo()
-           .then(
-               response => {
-                   this.setState({fields : response.data.utente})              
-               })
-            .catch(error => {
-                console.log("nessuna risposta dal server");
-            })
-           
-    }
+  //non posso caricare lo state poi creare i componenti figli??? =(
 
-    handleChange = e =>{
-       const value = e.target.value;
-       const name = e.target.name;
-
-       this.setState(prevState => ({
-           fields: {
-               ...prevState.fields,
-               [name]: value
-           }
-       }));
-   }
-
-    handleSubmit = e => {
-        e.preventDefault();
-        var utente = { [this.state.fields.ruolo] : this.state.fields }
-        console.log(utente);
-        ProfiloService.updateProfilo(utente)
-            .then(response=>{
-                this.setState({message:response.data.message , type:"success"})
-            }).catch(error => {
-                this.setState({message:error.response.data.message , type:"danger"})
-            })
-    }
-    
-    handleModuleClick=e=>{
-        this.setState({bool:true})
-    }
-
-    render() {
-        return (
-            
-            <div>
-                <h1>PROFILO</h1> 
-                <FormAlert message={this.state.message} colorType={this.state.type} />
-                    <form onSubmit={this.handleSubmit} id="ProfiloForm">
-                    <div className="row m-3">
-                        <div className="col-sm-12 col-md-12 col-lg-4 col-xl-4">
-                            <FormInput label="Nome" type="text" id="nome" name="nome" value={this.state.fields.nome} onChange={this.handleChange} required />
-                        </div>
-                        <div className="col-sm-12 col-md-12 col-lg-4 col-xl-4">
-                            <FormInput label="Cognome" type="text" id="cognome" name="cognome" value={this.state.fields.cognome} onChange={this.handleChange} required />
-                        </div>
-                        <div className="col-sm-12 col-md-12 col-lg-4 col-xl-4">
-                            <FormInput label="Email" type="text" id="email" name="email" value={this.state.fields.email} onChange={this.handleChange} required />                       
-                        </div>
-                        <div className="col-sm-12 col-md-12 col-lg-4 col-xl-4">
-                            <button type="submit" className="btn btn-primary btn-block">modifica Profilo</button>
-                        </div>
-                        <div className="col-sm-11 col-md-11 col-lg-3 col-xl-3">
-                            <button type="button" className="btn btn-success btn-block" onClick={this.handleModuleClick}> 
-                                <FontAwesomeIcon icon="clipboard-list" size="1x" className="glyphicon glyphicon-align-left icon-button"/>                           
-                            Visualizza Modulo</button>
-                        </div>
-                        <div>
-                        {this.state.bool && <Modulo value={this.state.fields}/>}
-                        </div>
-                    </div>
-                    </form>
-
+  render() {
+    return (
+      <div id="accordion" className="mt-2">
+        <div className="card">
+          <div className="card-header" id="profilo">
+            <h5 className="mb-0">
+              <button
+                className="btn btn-link collapsed"
+                data-toggle="collapse"
+                data-target="#collapseProfilo"
+                aria-expanded="false"
+                aria-controls="collapseProfilo"
+              >
+                PROFILO
+              </button>
+            </h5>
+          </div>
+          <div
+            id="collapseProfilo"
+            className="collapse show"
+            aria-labelledby="profilo"
+            data-parent="#accordion"
+          >
+            <div className="card-body">
+              <FormProfilo />
             </div>
-        );
-    }
-
-
+          </div>
+        </div>
+        <div className="card">
+          <div className="card-header" id="modulo">
+            <h5 className="mb-0">
+              <button
+                className="btn btn-link collapsed"
+                data-toggle="collapse"
+                data-target="#collapsemodulo"
+                aria-expanded="false"
+                aria-controls="collapsemodulo"
+              >
+                {this.state.stringa}
+              </button>
+            </h5>
+          </div>
+          <div
+            id="collapsemodulo"
+            className="collapse"
+            aria-labelledby="modulo"
+            data-parent="#accordion"
+          >
+            <div className="card-body">
+              {this.state.aud==="donatore" && <FormModulo />}
+              {this.state.aud==="sedeAvis" && <FormListPrenotazioni />}
+              {this.state.aud==="centroTrasfusione" && <FormListEmergenze />}
+            </div>
+          </div>
+        </div>
+        <div className="card">
+          <div className="card-header" id="history">
+            <h5 className="mb-0">
+              <button
+                className="btn btn-link collapsed"
+                data-toggle="collapse"
+                data-target="#collapsehistory"
+                aria-expanded="false"
+                aria-controls="collapsehistory"
+              >
+                HISTORY
+              </button>
+            </h5>
+          </div>
+          <div
+            id="collapsehistory"
+            className="collapse"
+            aria-labelledby="history"
+            data-parent="#accordion"
+          >
+            <div className="card-body">
+              <FormHistory />
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  }
 }
 
-
-export default ProfiloUtente
+export default ProfiloUtente;
