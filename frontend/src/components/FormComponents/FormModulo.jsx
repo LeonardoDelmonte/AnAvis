@@ -78,7 +78,7 @@ class FormModulo extends Component {
                 options={optionsGruppoSanguigno}
                 onChange={this.handleChangeSelect}
                 isSearchable={false}
-                defaultValue={optionsGruppoSanguigno[0]}             
+                value={this.state.fields.gruppoSanguigno}             
               />
             </div>
             <div className="col-sm-12 col-md-12 col-lg-12 col-xl-12">
