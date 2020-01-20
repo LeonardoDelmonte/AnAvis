@@ -30,8 +30,8 @@ public class ProfiloController {
         Utente utente = (Utente) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         utente = profiloService.modificaModulo(modulo, utente.getId());
         if(utente!=null)
-            return new ResponseEntity<>(new ApiResponse<>("Modulo non modificato"), HttpStatus.NO_CONTENT);
-        return new ResponseEntity<>(new ApiResponse<>("Modulo modificato",utente), HttpStatus.OK);
+            return new ResponseEntity<>(new ApiResponse<>("Modulo modificato",utente), HttpStatus.OK);
+        return new ResponseEntity<>(new ApiResponse<>("Modulo non modificato"), HttpStatus.NO_CONTENT);
     }
 
     @PutMapping("/profilo/modificaCredenziali")

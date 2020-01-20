@@ -27,8 +27,12 @@ function TopMenu(props) {
                 </ul>
                 <ul className="navbar-nav ml-auto">
                     <li className="nav-item">
+                        <a className="nav-link" href="news">News</a>
+
+                    </li>
+                    <li className="nav-item">
                         {props.isLogged && <a className="nav-link" href="profilo">Profilo</a>}
-                        
+
                     </li>
                     <li className="nav-item">
                         {props.isLogged && <a className="nav-link" href="LogOut">Esci</a>}

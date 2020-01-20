@@ -72,6 +72,20 @@ body {
   margin-right: 15px;
 }
 
+.card-news{
+  height: 450px;
+}
+
+.card-img-top {
+  width: 100%;
+  height: 15vw;
+  object-fit: cover;
+}
+
+.loader{
+  margin-top:50px;
+}
+
 
 
 
