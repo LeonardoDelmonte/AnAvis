@@ -1,26 +1,33 @@
 import React, { Component } from "react";
 import FormInput from "../FormComponents/FormInput";
-import FormAlert from '../FormComponents/FormAlert'
+import FormAlert from "../FormComponents/FormAlert";
+import FormSelect from '../FormComponents/FormSelect'
 import ProfiloService from "../../utils/ProfiloService";
 
 class FormModulo extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      fields: {},
+      fields: {
+      },
       isEnabled: false
     };
   }
 
   componentDidMount() {
-    ProfiloService.loadProfilo()
-      .then(response => {
-        this.setState({ fields: response.data.utente.modulo });
-      })
-      .catch(error => {
-        console.log("nessuna risposta dal server");
-      });
+    if(this.props.value)
+      this.setState({ fields: this.props.value });
   }
+
+  handleChangeSelect = data => {
+        this.setState(prevState =>({
+          fields:{
+            ...prevState.fields,
+            ["gruppoSanguigno"]:data.value
+          },isEnabled:true
+         })); 
+              console.log(this.state)            
+    };
 
   handlerChange = e => {
     const value = e.target.value;
@@ -43,32 +50,42 @@ class FormModulo extends Component {
       .catch(err => {
         this.setState({ message: err.response.data.message, type: "danger" });
       });
-      this.setState({isEnabled:false})
+    this.setState({ isEnabled: false });
+    console.log(this.state)
   };
 
-
   render() {
-    return (
+    const optionsGruppoSanguigno = [
+      { value: '0 Rh-', label: '0 Rh-' },
+      { value: '0 Rh+', label: '0 Rh+' },
+      { value: 'A Rh-', label: 'A Rh-' },
+      { value: 'A Rh+', label: 'A Rh+' },
+      { value: 'B Rh-', label: 'B Rh-' },
+      { value: 'B Rh+', label: 'B Rh+' },
+      { value: 'AB Rh-', label: 'AB Rh-' },
+      { value: 'AB Rh+', label: 'AB Rh+' }
+    ]
+    return ( 
       <div>
-      <FormAlert message={this.state.message} colorType={this.state.type} />
+        <FormAlert message={this.state.message} colorType={this.state.type} />
         <form id="ModuloForm" onSubmit={this.handlerSubmit}>
           <div className="row m-3">
             <div className="col-sm-12 col-md-12 col-lg-12 col-xl-12">
-              <FormInput
-                label="GruppoSanguigno"
-                type="text"
+              <FormSelect
+                label="Seleziona gruppo sanguigno:"
                 id="gruppoSanguigno"
                 name="gruppoSanguigno"
-                value={this.state.fields.gruppoSanguigno}
-                onChange={this.handlerChange}
-                required
+                options={optionsGruppoSanguigno}
+                onChange={this.handleChangeSelect}
+                isSearchable={false}
+                defaultValue={optionsGruppoSanguigno[0]}             
               />
             </div>
             <div className="col-sm-12 col-md-12 col-lg-12 col-xl-12">
               <FormInput
                 label="Fumatore"
                 type="text"
-                id="fumatoreome"
+                id="fumatore"
                 name="fumatore"
                 value={this.state.fields.fumatore}
                 onChange={this.handlerChange}
@@ -76,7 +93,11 @@ class FormModulo extends Component {
               />
             </div>
             <div className="col-sm-12 col-md-12 col-lg-12 col-xl-12">
-              <button type="submit" className="btn btn-primary btn-block" disabled={!this.state.isEnabled}>
+              <button
+                type="submit"
+                className="btn btn-primary btn-block"
+                disabled={!this.state.isEnabled}
+              >
                 modifica Modulo
               </button>
             </div>

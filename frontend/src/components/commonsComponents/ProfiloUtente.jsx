@@ -1,36 +1,35 @@
-import React, { Component } from "react";
-import ProfiloService from "../../utils/ProfiloService";
-import FormInput from "../FormComponents/FormInput";
-import FormAlert from "../FormComponents/FormAlert";
-import FormModulo from "../FormComponents/FormModulo";
-import FormProfilo from "../FormComponents/FormProfilo";
-import FormHistory from "../FormComponents/FormHistory";
+import React, { Component } from "react"
+import ProfiloService from "../../utils/ProfiloService"
+import FormModulo from "../FormComponents/FormModulo"
+import FormProfilo from "../FormComponents/FormProfilo"
+import FormHistory from "../FormComponents/FormHistory"
 import FormListPrenotazioni from '../FormComponents/FormListPrenotazioni'
 import FormListEmergenze from '../FormComponents/FormListEmergenze'
-import jwt from "jwt-decode";
 
 class ProfiloUtente extends Component {
   constructor(props) {
     super(props);
-    this.state = {
+
+    this.state = {      
+      fields:{},
       aud: "",
       stringa: ""
     };
   }
+  
+  
 
   componentDidMount() {
-    var ruolo = jwt(localStorage.getItem("Authorization")).aud;
-
-    if (ruolo === "donatore")
-      this.setState({ stringa: "MODULO" });
-    else if (ruolo=== "sedeAvis")
-      this.setState({ stringa: "LISTA PRENOTAZIONI" });
-    else if (ruolo=== "centroTrasfusione")
-      this.setState({ stringa: "LISTA EMERGENZE" });
-    this.setState({aud:ruolo});
+    ProfiloService.loadProfilo()
+      .then(response => {
+        this.setState({ fields: response.data.utente });
+        this.setState({ aud: response.data.utente.ruolo });
+      })
+      .catch(error => {
+        console.log("nessuna risposta dal server");
+      });
   }
 
-  //non posso caricare lo state poi creare i componenti figli??? =(
 
   render() {
     return (
@@ -56,7 +55,7 @@ class ProfiloUtente extends Component {
             data-parent="#accordion"
           >
             <div className="card-body">
-              <FormProfilo />
+              {this.state.fields.id && <FormProfilo value={this.state.fields}/>}
             </div>
           </div>
         </div>
@@ -70,7 +69,9 @@ class ProfiloUtente extends Component {
                 aria-expanded="false"
                 aria-controls="collapsemodulo"
               >
-                {this.state.stringa}
+                {this.state.aud==="donatore" && "MODULO"}
+                {this.state.aud==="sedeAvis" && "LISTA PRENOTAZIONI"}
+                {this.state.aud==="centroTrasfusione" && "LISTA EMERGENZE"}
               </button>
             </h5>
           </div>
@@ -81,9 +82,9 @@ class ProfiloUtente extends Component {
             data-parent="#accordion"
           >
             <div className="card-body">
-              {this.state.aud==="donatore" && <FormModulo />}
-              {this.state.aud==="sedeAvis" && <FormListPrenotazioni />}
-              {this.state.aud==="centroTrasfusione" && <FormListEmergenze />}
+              {this.state.aud==="donatore" && this.state.fields.id && <FormModulo value={this.state.fields.modulo}/>}
+              {this.state.aud==="sedeAvis" && this.state.fields.id && <FormListPrenotazioni value={this.state.fields}/>}
+              {this.state.aud==="centroTrasfusione" && this.state.fields.id && <FormListEmergenze value={this.state.fields}/>}
             </div>
           </div>
         </div>

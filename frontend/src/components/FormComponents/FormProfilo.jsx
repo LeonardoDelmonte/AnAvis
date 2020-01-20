@@ -13,13 +13,7 @@ class FormProfilo extends Component {
   }
 
   componentDidMount() {
-    ProfiloService.loadProfilo()
-      .then(response => {
-        this.setState({ fields: response.data.utente });
-      })
-      .catch(error => {
-        console.log("nessuna risposta dal server");
-      });
+    this.setState({fields:this.props.value})
   }
 
   handleChange = e => {
@@ -38,7 +32,6 @@ class FormProfilo extends Component {
   handleSubmit = e => {
     e.preventDefault();
     var utente = { [this.state.fields.ruolo]: this.state.fields };
-    console.log(utente);
     ProfiloService.updateProfilo(utente)
       .then(response => {
         this.setState({ message: response.data.message, type: "success" });

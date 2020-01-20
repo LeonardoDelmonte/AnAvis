@@ -15,7 +15,7 @@ function FormInput (props) {
                     value={props.value || ""} 
                     onChange={props.onChange} 
                     required={props.required ? true : ""} 
-                    placeholder={props.placeholder}
+                    placeholder={props.placeholder}                
                 />
             </div>
         </div>
