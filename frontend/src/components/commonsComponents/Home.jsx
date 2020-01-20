@@ -4,15 +4,12 @@ import Areogramma from '../GraphicsComponents/Areogramma';
 import Cartesiano from '../GraphicsComponents/Cartesiano';
 import Istogramma from '../GraphicsComponents/Istogramma';
 
+
 class Home extends Component {
 
     constructor(props) {
         super(props)
         this.state = {  }
-    }
-
-    componentDidMount(){
-        
     }
     
     render() {

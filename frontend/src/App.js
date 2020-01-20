@@ -22,6 +22,7 @@ import LogOut from './components/AuthComponents/LogOut';
 import ProfiloUtente from './components/commonsComponents/ProfiloUtente';
 import Footer from './components/PersistentComponents/Footer';
 import EmergenzaSangue from './components/CentroTrasfComponents/EmergenzaSangue';
+import News from './components/NewsComponents/News';
 
 const Auth = {
   isLogged() {
@@ -106,6 +107,7 @@ class App extends Component {
               <Route path='/login' exact component={Login} />
               <Route path='/register' exact component={Register} />
               <Route path="/logOut" exact component={LogOut} />
+              <Route path="/news" exact component={News} />
 
               {/* Pagine Condivise */}
               <PrivateRoute path="/home" exact component={Home} />
