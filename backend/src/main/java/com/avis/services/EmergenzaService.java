@@ -39,7 +39,7 @@ public class EmergenzaService {
     }
 
     public List<Emergenza> getEmergenze(Long id) {
-        Optional<List<Emergenza>> emergenze = emergenzaRepository.findByIdCentroTrasfusione(id);
+        Optional<List<Emergenza>> emergenze = emergenzaRepository.findByIdCentroTrasfusione(centroRepository.findById(id).get());
         if(!emergenze.isPresent())
             return new ArrayList<>();
         return emergenze.get();

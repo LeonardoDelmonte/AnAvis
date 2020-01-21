@@ -16,14 +16,24 @@ public class Modulo {
     private Long id;
     @Column
     @NotNull
-    private String gruppoSanguigno, fumatore;
+    private String codiceFiscale, indirizzo, telefono, gruppoSanguigno, fumatore, malattie, vaccinazioni, allergie,
+            farmaci;
 
     public Modulo() {
     }
 
-    public Modulo(@NotNull String gruppoSanguigno, @NotNull String fumatore) {
+    public Modulo(@NotNull String codiceFiscale, @NotNull String indirizzo, @NotNull String telefono,
+            @NotNull String gruppoSanguigno, @NotNull String fumatore, @NotNull String malattie,
+            @NotNull String vaccinazioni, @NotNull String allergie, @NotNull String farmaci) {
+        this.codiceFiscale = codiceFiscale;
+        this.indirizzo = indirizzo;
+        this.telefono = telefono;
         this.gruppoSanguigno = gruppoSanguigno;
         this.fumatore = fumatore;
+        this.malattie = malattie;
+        this.vaccinazioni = vaccinazioni;
+        this.allergie = allergie;
+        this.farmaci = farmaci;
     }
 
 }

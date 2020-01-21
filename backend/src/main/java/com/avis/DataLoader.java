@@ -53,16 +53,16 @@ public class DataLoader implements ApplicationRunner {
         Timestamp ts3 = Timestamp.valueOf("2020-02-13 13:00:00");
         Timestamp ts8 = Timestamp.valueOf("2020-01-13 13:00:00");
         Timestamp ts9 = Timestamp.valueOf("2020-01-13 16:00:00");
-        profilo.modificaModulo(new Modulo("B", "no"), (long)1);
+        profilo.modificaModulo(new Modulo("scrmrc", "via roma 3", "333-2211", "00", "no", "no", "si", "si", "no"), (long)1);
+        profilo.modificaModulo(new Modulo("lnrdlm", "via cascia 99", "444-3232", "AA", "no", "si", "si", "no", "no"), (long)2);
         prenotazione.save(new DateDto(ts1,ts2), (long)3);
         prenotazione.save(new DateDto(ts5,ts4), (long)3);
         prenotazione.save(new DateDto(ts2,ts3), (long)4);
         prenotazione.save(new DateDto(ts8,ts9), (long)3);
         //prenotazione.prenotaData(new PrenotazioneDto((long)3, "marco"));
         //prenotazione.prenotaData(new PrenotazioneDto((long)6, "leo"));
-        //emergenza.save("A", (long)5);
-        //emergenza.save("00", (long)6);    
-
+        emergenza.save("A", (long)5);
+        emergenza.save("00", (long)6);   
     }
 
 }

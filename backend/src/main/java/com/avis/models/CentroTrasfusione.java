@@ -19,7 +19,7 @@ public class CentroTrasfusione extends Utente {
     @NotNull
     private String regione, provincia, comune;
     @Column
-    private String indirizzo, denominazione;
+    private String indirizzo, direttore, ospedaleRiferimento;
 
     public CentroTrasfusione() {
     }
