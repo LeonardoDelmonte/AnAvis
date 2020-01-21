@@ -52,11 +52,11 @@ class FormPrenota extends Component {
         }
         PrenotaService.search(getDateDto)
             .then(
-                response => {
-                    if (!response.data.listPrenotazione) {
+                response => {console.log(response)
+                    if (!response.data.list) {
                         response.data = []
                     } else {
-                        response.data.listPrenotazione.forEach (
+                        response.data.list.forEach (
                             (x) => {
                                 const myDate = new Date(x.date);
                                 delete x["date"];
@@ -65,7 +65,8 @@ class FormPrenota extends Component {
                             }
                         )
                     }
-                    this.setState({ freeDate: response.data.listPrenotazione })
+                    
+                    this.setState({ freeDate: response.data.list })
                     this.setState({ searched: true })
                 }
             )

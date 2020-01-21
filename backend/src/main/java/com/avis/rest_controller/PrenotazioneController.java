@@ -39,7 +39,7 @@ public class PrenotazioneController {
             return new ResponseEntity<>(new ApiResponse<>("nessuna data disponibile con questi criteri di ricerca"),
                     HttpStatus.OK);
         }
-        return new ResponseEntity<>(new ApiResponse<Prenotazione>(dateLibere), HttpStatus.OK);
+        return new ResponseEntity<>(new ApiResponse<>(dateLibere), HttpStatus.OK);
     }
 
     @PutMapping("/prenotazione/donatore")

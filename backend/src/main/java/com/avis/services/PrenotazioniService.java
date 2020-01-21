@@ -96,19 +96,16 @@ public class PrenotazioniService {
             return new ApiResponse<>("sessione danneggiata, riloggare",HttpStatus.BAD_REQUEST); 
         List<Prenotazione> listPrenotate = new ArrayList<>();
         List<Prenotazione> listLibere = new ArrayList<>();
-        Optional<List<Prenotazione>> listPrenotazioni = prenotazioniRepository.findByIdSedeAvis(sedeAvis.get());
+        Optional<List<Prenotazione>> listPrenotazioni = prenotazioniRepository
+                .findByIdSedeAvisAndDateAfter(sedeAvis.get(),new Timestamp(new Date().getTime()));
         if(!listPrenotazioni.isPresent())
             return new ApiResponse<Prenotazione>("listaPrenotate", listPrenotate, "listaLibere", listLibere);
-        Long date = new Date().getTime();  
         for (Prenotazione prenotazione : listPrenotazioni.get()) {
-            if(date<prenotazione.getDate().getTime()){
-                if (prenotazione.getIdDonatore()==null) {
+                if (prenotazione.getIdDonatore()==null) 
                     listLibere.add(prenotazione);                
-                } else {
-                    listPrenotate.add(prenotazione);                
-                }
+                else 
+                    listPrenotate.add(prenotazione);                 
             }
-        }
 		return new ApiResponse<Prenotazione>("listaPrenotate", listPrenotate, "listaLibere", listLibere);
 	}
 

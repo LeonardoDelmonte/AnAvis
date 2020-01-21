@@ -13,7 +13,7 @@ function FormSelect(props) {
                     options={props.options}
                     isSearchable={props.isSearchable}
                     placeholder="seleziona"
-                    value={props.options.filter(option => option.label === props.value)}
+                    value={props.value && props.options.filter(option => option.label === props.value)}
                     defaultValue={props.defaultValue}
                     isClearable={props.isClearable}
                     noOptionsMessage={() => "Nessun Risultato"}
