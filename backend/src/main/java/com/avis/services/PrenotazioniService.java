@@ -70,7 +70,7 @@ public class PrenotazioniService {
         return new ApiResponse<>("listOK",listOK,"listError",listError);       
     }
 
-    public boolean delete(long id) {
+    public boolean deleteDate(long id) {
         Optional<Prenotazione> prenotazione = prenotazioniRepository.findById(id);
         if (!prenotazione.isPresent()) {
             return false;
@@ -78,6 +78,16 @@ public class PrenotazioniService {
         prenotazioniRepository.delete(prenotazione.get());
         return true;
     }
+
+    public boolean deletePrenotazione(long id) {
+        Optional<Prenotazione> prenotazione = prenotazioniRepository.findById(id);
+        if (!prenotazione.isPresent()) {
+            return false;
+        }
+        prenotazione.get().setIdDonatore(null);
+        prenotazioniRepository.save(prenotazione.get());
+		return true;
+	}
 
     public List<Prenotazione> getDateLibere(DateDto dto) {
         //check exception

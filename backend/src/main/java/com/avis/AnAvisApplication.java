@@ -7,10 +7,12 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
 public class AnAvisApplication {
+	
 	private static final Logger logger = LoggerFactory.getLogger(AnAvisApplication.class);
+
 	public static void main(String[] args) {
 		
-		logger.warn("pluto");
+		logger.warn("Start");
 		SpringApplication.run(AnAvisApplication.class, args);
 	}
 

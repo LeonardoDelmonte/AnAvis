@@ -25,7 +25,7 @@ public class ProfiloController {
     @Autowired
     private ProfiloService profiloService;
 
-    @PutMapping("/profilo/modificaModulo")
+    @PutMapping("/profilo/modulo")
     public ResponseEntity<InterfaceApi> modificaModulo(@RequestBody Modulo modulo, HttpServletRequest req) {
         Utente utente = (Utente) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         utente = profiloService.modificaModulo(modulo, utente.getId());
@@ -34,7 +34,7 @@ public class ProfiloController {
         return new ResponseEntity<>(new ApiResponse<>("Modulo non modificato"), HttpStatus.NO_CONTENT);
     }
 
-    @PutMapping("/profilo/modificaCredenziali")
+    @PutMapping("/profilo/credenziali")
     public ResponseEntity<InterfaceApi> modificaCredenziali(@RequestBody CredenzialiDto credenziali) {
         Utente utente = (Utente) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         utente = profiloService.modificaCredenziali(credenziali,utente);
@@ -44,7 +44,7 @@ public class ProfiloController {
     }
     
 
-    @GetMapping("/profilo/showInfo")
+    @GetMapping("/profilo/info")
     public ResponseEntity<InterfaceApi> showInfo() {
         Utente utente = (Utente) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         utente = profiloService.showInfo(utente);
