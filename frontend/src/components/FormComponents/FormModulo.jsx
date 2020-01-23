@@ -45,7 +45,7 @@ class FormModulo extends Component {
     e.preventDefault();
     ProfiloService.modificaModulo(this.state.fields)
       .then(res => {
-        this.setState({ message: res.data.message, type: "success" });
+        this.setState({ message: res.data.message, type: "success", fields: res.data.utente.modulo });
       })
       .catch(err => {
         this.setState({ message: err.response.data.message, type: "danger" });
@@ -88,6 +88,83 @@ class FormModulo extends Component {
                 id="fumatore"
                 name="fumatore"
                 value={this.state.fields.fumatore}
+                onChange={this.handlerChange}
+                required
+              />
+            </div>
+            <div className="col-sm-12 col-md-12 col-lg-12 col-xl-12">
+              <FormInput
+                label="Codice Fiscale"
+                type="text"
+                id="codiceFiscale"
+                name="codiceFiscale"
+                value={this.state.fields.codiceFiscale}
+                onChange={this.handlerChange}
+                required
+              />
+            </div>
+            <div className="col-sm-12 col-md-12 col-lg-12 col-xl-12">
+              <FormInput
+                label="Indirizzo"
+                type="text"
+                id="indirizzo"
+                name="indirizzo"
+                value={this.state.fields.indirizzo}
+                onChange={this.handlerChange}
+                required
+              />
+            </div>
+            <div className="col-sm-12 col-md-12 col-lg-12 col-xl-12">
+              <FormInput
+                label="Telefono"
+                type="text"
+                id="telefono"
+                name="telefono"
+                value={this.state.fields.telefono}
+                onChange={this.handlerChange}
+                required
+              />
+            </div>
+            <div className="col-sm-12 col-md-12 col-lg-12 col-xl-12">
+              <FormInput
+                label="Malattie"
+                type="text"
+                id="malattie"
+                name="malattie"
+                value={this.state.fields.malattie}
+                onChange={this.handlerChange}
+                required
+              />
+            </div>
+            <div className="col-sm-12 col-md-12 col-lg-12 col-xl-12">
+              <FormInput
+                label="Vaccinazioni"
+                type="text"
+                id="vaccinazioni"
+                name="vaccinazioni"
+                value={this.state.fields.vaccinazioni}
+                onChange={this.handlerChange}
+                required
+              />
+            </div>
+            <div className="col-sm-12 col-md-12 col-lg-12 col-xl-12">
+              <FormInput
+                label="Allergie"
+                type="text"
+                id="allergie"
+                name="allergie"
+                value={this.state.fields.allergie}
+                onChange={this.handlerChange}
+                required
+              />
+            </div>
+            <div className="col-sm-12 col-md-12 col-lg-12 col-xl-12">
+              <FormInput
+                label="Farmaci"
+                type="text"
+                id="farmaci"
+                name="farmaci"
+                value={this.state.fields.farmaci}
                 onChange={this.handlerChange}
                 required
               />

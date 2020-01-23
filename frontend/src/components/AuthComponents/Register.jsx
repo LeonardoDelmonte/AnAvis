@@ -83,12 +83,12 @@ class Register extends Component {
         ]
         return (
             <div className="login-form">
-                <h2 className="text-center"> Registrazione</h2>
+                <h2 className="text-center"> Registrazione {this.state.fields.ruolo} </h2>
                 {this.state.alert &&
                     <FormAlert message={this.state.alert.message} colorType={this.state.alert.type} />
                 }
                 <form onSubmit={this.handleSubmit} id="RegisterForm">
-                    <FormSelect label="Ruolo" id="ruolo" name="ruolo" options={optionsRuoli} value={this.state.fields.ruolo} onChange={this.handleChangeSelect} isSearchable={false} defaultValue={optionsRuoli[0]} />
+                    <FormSelect label="Ruolo" id="ruolo" name="ruolo" options={optionsRuoli} value={this.state.fields.ruolo} onChange={this.handleChangeSelect} isSearchable={false} />
                     {/*campi solo donatore */}
                     {
                         this.state.fields.ruolo === "donatore" &&
