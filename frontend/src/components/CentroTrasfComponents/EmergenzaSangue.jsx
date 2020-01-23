@@ -3,6 +3,7 @@ import React, { Component } from "react";
 import FormSelect from "../FormComponents/FormSelect";
 import FormAlert from "../FormComponents/FormAlert";
 import FormButton from "../FormComponents/FormButton";
+import TableEmergenzeSangue from "./TableEmergenzeSangue";
 //Services
 import CentroTrasfusioneService from "../../utils/CentroTrasfusioneService";
 
@@ -39,6 +40,7 @@ class EmergenzaSangue extends Component {
           alert: { message: response.data.message, type: "success" },
           gruppoSanguigno: "0 Rh-"
         });
+        this.getEmergenze()
       })
       .catch(error => {
         console.log(error);
@@ -53,6 +55,25 @@ class EmergenzaSangue extends Component {
         }
       });
   };
+
+  getEmergenze = () =>{
+    CentroTrasfusioneService.getEmergency()
+    .then(response => {
+        response.data.list.forEach (
+            (x) => {
+                const myDate = new Date(x.dataEmergenza);
+                x["dataEmergenza"] = myDate.getDate() + "/" + myDate.getMonth() + 1 + "/" + myDate.getFullYear();
+            }
+        )
+        this.setState({
+            emergenze: response.data.list
+        });
+      })
+  }
+
+  componentDidMount(){
+    this.getEmergenze()
+  }
 
   render() {
     const optionsGruppoSanguigno = [
@@ -93,6 +114,7 @@ class EmergenzaSangue extends Component {
             </div>
           </div>
         </form>
+        <TableEmergenzeSangue data={this.state.emergenze}/>
       </div>
     );
   }

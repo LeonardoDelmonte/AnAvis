@@ -9,6 +9,14 @@ class CentroTrasfusioneService {
     async getEmergency(){
         return await axiosInstance.get('/requestEmerg/getEmergenze')
     }
+
+    async deleteEmergenze(emergenza){
+        return await axiosInstance.delete('/requestEmerg/remove', 
+                
+                { data: { emergenza: emergenza } }
+         
+          )
+    }
 }
 
 export default new CentroTrasfusioneService()
