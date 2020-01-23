@@ -11,10 +11,8 @@ class CentroTrasfusioneService {
     }
 
     async deleteEmergenze(emergenza){
-        return await axiosInstance.delete('/requestEmerg/remove', 
-                
-                { data: { emergenza: emergenza } }
-         
+        return await axiosInstance.delete('/requestEmerg/remove',
+                { data:emergenza } 
           )
     }
 }

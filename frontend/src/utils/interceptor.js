@@ -15,7 +15,10 @@ const isHandlerEnabled = (config={}) => {
 const requestHandler = (request) => {
   if (isHandlerEnabled(request)) {
     // Modify request here
-    request.headers['Authorization'] = localStorage.getItem('Authorization')
+    if(request.method=="delete"){
+      request.headers['data']=request.data
+    }
+      request.headers['Authorization'] = localStorage.getItem('Authorization')
   }
   return request
 }

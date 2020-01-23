@@ -1,5 +1,7 @@
 package com.avis.rest_controller;
 
+import javax.servlet.http.HttpServletRequest;
+
 import com.avis.models.Emergenza;
 import com.avis.models.Utente;
 import com.avis.services.EmergenzaService;
@@ -33,8 +35,9 @@ public class EmergenzaController {
     }
 
     @DeleteMapping("/requestEmerg/remove")
-    public ResponseEntity<InterfaceApi> deleteEmergenza(@RequestBody long emergenza) {
-        if (!emergenzaService.delete(emergenza)) {
+    public ResponseEntity<InterfaceApi> deleteEmergenza(HttpServletRequest req) {
+
+        if (!emergenzaService.delete(Long.valueOf(req.getHeader("data")))) {
             new ResponseEntity<>(new ApiResponse<>("Emergenza non cancellata"), HttpStatus.BAD_REQUEST);
         }
         return new ResponseEntity<>(new ApiResponse<>("Emergenza cancellata"), HttpStatus.OK);
