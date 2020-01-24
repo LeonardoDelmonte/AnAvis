@@ -25,9 +25,9 @@ public class SedeAvisService {
     public Set<String> getRegioni(){
         string = new HashSet<>();
         sedeAvisRepository.findAll().stream().forEach(e->string.add(e.getRegione()));
-        // string.add("marche");
         return string;
     }
+
     public Set<String> getProvince(String regione){
         string = new HashSet<>();
         Optional<List<SedeAvis>> listasedi = sedeAvisRepository.findByRegione(regione);
@@ -35,13 +35,9 @@ public class SedeAvisService {
             return string;
         }
         listasedi.get().forEach(e->string.add(e.getProvincia()));
-        /* List<SedeAvis> list = new ArrayList<SedeAvis>();
-        list=sedeAvisRepository.findAll();
-        list.stream().filter(e->e.getRegione().compareTo(regione)==0);
-        list.stream().forEach(e->string.add(e.getProvincia())); */
         return string;
-        
     }
+    
     public Set<String> getComuni(String provincia){
         string = new HashSet<>();
         Optional<List<SedeAvis>> listasedi = sedeAvisRepository.findByProvincia(provincia);
@@ -49,11 +45,6 @@ public class SedeAvisService {
             return string;
         }
         listasedi.get().forEach(e->string.add(e.getComune()));
-        /* List<String> string = new ArrayList<String>();
-        List<SedeAvis> list = new ArrayList<SedeAvis>();
-        list=sedeAvisRepository.findAll();
-        list.stream().filter(e->e.getProvincia().compareTo(provincia)==0);
-        list.stream().forEach(e->string.add(e.getComune())); */
         return string;
     }
 
