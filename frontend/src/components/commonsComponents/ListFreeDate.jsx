@@ -1,7 +1,15 @@
 import React, { PureComponent } from 'react'
 import PrenotaService from '../../utils/PrenotaService';
+import $ from 'jquery';
+import { confirmAlert } from 'react-confirm-alert';
+import 'react-confirm-alert/src/react-confirm-alert.css'
+import FormModulo from '../FormComponents/FormModulo'
+import ProfiloService from "../../utils/ProfiloService"
+
 import DataTable from 'react-data-table-component';
 import memoize from 'memoize-one';
+
+
 
 const columns = memoize(clickHandler => [
     {
@@ -49,38 +57,125 @@ const columns = memoize(clickHandler => [
 ]);
 
 class ListFreeDate extends PureComponent {
+    constructor(props) {
+        super(props)
+
+        this.state = {
+
+        }
+    }
+
+    concludiDonazione = () => {
+
+        PrenotaService.prenota(this.state.prenotazioneDto)
+            .then(
+                response => {
+                    if (response.data) {
+                        confirmAlert({
+                            message: response.data.message,
+                            buttons: [
+                                {
+                                    label: 'Ok',
+                                    onClick: () => window.location.reload()
+                                },
+                            ],
+                            closeOnClickOutside: false,
+                        });
+
+                    }
+                }
+            )
+            .catch(
+                error => {
+                    confirmAlert({
+                        message: error.response.data.message,
+                        buttons: [
+                            {
+                                label: 'Ok',
+                            },
+                        ],
+                    });
+                }
+            )
+    }
+
+    modificaModulo = () => {
+        $("#myModal").modal()
+    }
 
     handleButtonClick = (state) => {
-        var prenotazioneDto = {
-            'idDataLibera': state.target.id,
-            'emailDonatore': this.props.donatore
-        }
-        PrenotaService.prenota(prenotazioneDto)
-        .then(
-            response => {
-               if(response.data){
-                   alert("Prenotazione effettuata con successo")
-                   window.location.reload();
-               }
+        this.setState({
+            prenotazioneDto : {
+                'idDataLibera': state.target.id,
+                'emailDonatore': this.props.donatore
             }
-        )
-        .catch(
-            error => {
-                alert(error.response.data.message)
-            }
-        )
+        })
+        
+
+        confirmAlert({
+            title: 'Modifica Modulo',
+            message: 'Vuoi modificare il modulo prima di concludere la prenotazione?',
+            buttons: [
+                {
+                    label: 'Modifica Modulo',
+                    onClick: () => { this.modificaModulo() }
+                },
+                {
+                    label: 'Concludi la donazione senza modificare il modulo',
+                    onClick: () => this.concludiDonazione()
+                }
+            ],
+            closeOnClickOutside: false,
+        });
+    };
+
+    componentDidMount() {
+        ProfiloService.loadProfilo()
+            .then(response => {
+                this.setState({ fields: response.data.utente }, () => {console.log(this.state)});
+                this.setState({ aud: response.data.utente.ruolo });
+            })
+            .catch(error => {
+                console.log("nessuna risposta dal server");
+            });
     }
 
     render() {
         return (
-            <div className="container">
-                <DataTable
-                    title="Date disponibili"
-                    columns={columns(this.handleButtonClick)}
-                    data={this.props.freeDate}
-                    defaultSortField="title"
-                />
+            <div>
+                <div className="container">
+                    <DataTable
+                        title="Date disponibili"
+                        columns={columns(this.handleButtonClick)}
+                        data={this.props.freeDate}
+                        defaultSortField="title"
+                    />
+
+                </div>
+
+                <div className="modal" id="myModal">
+                    <div className="modal-dialog">
+                        <div className="modal-content">
+
+                            <div className="modal-header">
+                                <h4 className="modal-title">Modifica modulo</h4>
+                                <button type="button" className="close" data-dismiss="modal">&times;</button>
+                            </div>
+
+                            <div className="modal-body">
+                            {this.state.aud==="donatore" && this.state.fields.id && <FormModulo value={this.state.fields.modulo}/>}
+                            </div>
+
+                            <div className="modal-footer">
+                                <button type="button" className="btn btn-success" data-dismiss="modal" onClick={this.concludiDonazione}>Concludi Prenotazione</button>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
             </div>
+
         )
     }
 }
