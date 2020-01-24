@@ -1,5 +1,7 @@
 package com.avis.rest_controller;
 
+import java.util.logging.Logger;
+
 import javax.servlet.http.HttpServletRequest;
 
 import com.avis.models.Emergenza;
@@ -31,6 +33,7 @@ public class EmergenzaController {
         if (!emergenzaService.save(gruppo, utente.getId())) {
             return new ResponseEntity<>(new ApiResponse<>("Emergenza non inviata"), HttpStatus.BAD_REQUEST);
         }
+        Logger.getGlobal().info("un emergenza è stata inviata");
         return new ResponseEntity<>(new ApiResponse<>("Emergenza inviata correttamente"), HttpStatus.CREATED);
     }
 
@@ -38,8 +41,10 @@ public class EmergenzaController {
     public ResponseEntity<InterfaceApi> deleteEmergenza(HttpServletRequest req) {
 
         if (!emergenzaService.delete(Long.valueOf(req.getHeader("data")))) {
+            Logger.getGlobal().warning("fallimento cancellazione emergenza");
             new ResponseEntity<>(new ApiResponse<>("Emergenza non cancellata"), HttpStatus.BAD_REQUEST);
         }
+        Logger.getGlobal().info("un emergenza è stata cancellata");
         return new ResponseEntity<>(new ApiResponse<>("Emergenza cancellata"), HttpStatus.OK);
     }
 

@@ -1,8 +1,11 @@
 package com.avis.security;
+
 import java.io.Serializable;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.logging.Logger;
+
 import com.avis.models.Utente;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
@@ -51,6 +54,7 @@ public class JwtTokenUtil implements Serializable {
 		claims.put("jti",utente.getId());
 		claims.put("sub", utente.getEmail());
 		claims.put("aud", utente.getRuolo());
+		Logger.getGlobal().info("nuovo token generato");
 		return doGenerateToken(claims);
 	}
 

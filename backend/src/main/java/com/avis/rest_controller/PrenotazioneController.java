@@ -2,6 +2,8 @@ package com.avis.rest_controller;
 
 import java.sql.Timestamp;
 import java.util.List;
+import java.util.logging.Logger;
+
 import com.avis.dto.DateDto;
 import com.avis.dto.PrenotazioneDto;
 import com.avis.models.Prenotazione;
@@ -49,6 +51,7 @@ public class PrenotazioneController {
             prenotazione.setEmailDonatore(utente.getEmail());
         }
         ApiResponse<String> response = prenotazioniService.prenotaData(prenotazione);
+        Logger.getGlobal().info("nuova data prenotata");
         return new ResponseEntity<>(response, response.getStatus());
     }
 
@@ -57,6 +60,7 @@ public class PrenotazioneController {
         if (!prenotazioniService.deletePrenotazione(prenotazione)) {
             return new ResponseEntity<>(new ApiResponse<>("Prenotazione non cancellata"), HttpStatus.BAD_REQUEST);
         }
+        Logger.getGlobal().info("una prenotazione è stata cancellata");
         return new ResponseEntity<>(new ApiResponse<>("Prenotazione rimossa correttamente"), HttpStatus.OK);
     }
 
@@ -64,6 +68,7 @@ public class PrenotazioneController {
     public ResponseEntity<InterfaceApi> insertDate(@RequestBody DateDto dateLibere) {
         Utente utente = (Utente) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         ApiResponse<Timestamp> response = prenotazioniService.save(dateLibere, utente.getId());
+        Logger.getGlobal().info("nuove date inserite");
         return new ResponseEntity<>(response, response.getStatus());
     }
 
@@ -72,6 +77,7 @@ public class PrenotazioneController {
         if (!prenotazioniService.deleteDate(prenotazione)) {
             return new ResponseEntity<>(new ApiResponse<>("Data non cancellata"), HttpStatus.BAD_REQUEST);
         }
+        Logger.getGlobal().info("una data è stata cancellata");
         return new ResponseEntity<>(new ApiResponse<>("Data rimossa correttamente"), HttpStatus.OK);
     }
 

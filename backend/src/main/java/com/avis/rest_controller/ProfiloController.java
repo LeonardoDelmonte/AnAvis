@@ -1,5 +1,7 @@
 package com.avis.rest_controller;
 
+import java.util.logging.Logger;
+
 import javax.servlet.http.HttpServletRequest;
 
 import com.avis.dto.CredenzialiDto;
@@ -31,6 +33,7 @@ public class ProfiloController {
         utente = profiloService.modificaModulo(modulo, utente.getId());
         if(utente!=null)
             return new ResponseEntity<>(new ApiResponse<>("Modulo modificato",utente), HttpStatus.OK);
+        Logger.getGlobal().info("modulo non modificato");
         return new ResponseEntity<>(new ApiResponse<>("Modulo non modificato"), HttpStatus.NO_CONTENT);
     }
 
@@ -40,6 +43,7 @@ public class ProfiloController {
         utente = profiloService.modificaCredenziali(credenziali,utente);
         if (utente!=null)
             return new ResponseEntity<>(new ApiResponse<>("Credenziali modificate",utente), HttpStatus.OK);
+        Logger.getGlobal().info("credenziali non modificate");
         return new ResponseEntity<>(new ApiResponse<>("Credenziali non modificate"), HttpStatus.NO_CONTENT);
     }
     
@@ -49,6 +53,7 @@ public class ProfiloController {
         Utente utente = (Utente) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         utente = profiloService.showInfo(utente);
         if (utente == null) {
+            Logger.getGlobal().warning("sessione danneggiata");
             return new ResponseEntity<>(new ApiResponse<>("sessione danneggiata, riloggare"),HttpStatus.BAD_REQUEST);
         }
         return new ResponseEntity<>(new ApiResponse<>(utente,""), HttpStatus.OK);

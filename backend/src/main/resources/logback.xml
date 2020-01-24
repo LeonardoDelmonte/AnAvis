@@ -6,15 +6,15 @@
       </encoder>
    </appender>
    <timestamp key="bySecond" datePattern="yyyyMMdd'T'HHmmss"/>
-   <!-- <appender name = "FILE" class = "ch.qos.logback.core.FileAppender">
+   <appender name = "FILE" class = "ch.qos.logback.core.FileAppender">
       <File>log/${bySecond}.log</File>
       <encoder>
          <pattern>%d{dd-MM-yyyy HH:mm:ss.SSS} %magenta([%thread]) %highlight(%-5level) %logger{36}.%M - %n     %msg%n</pattern>
       </encoder>
-   </appender> -->
+   </appender>
    
    <root level = "INFO">
-      <!-- <appender-ref ref = "FILE"/> -->
+         <appender-ref ref = "FILE"/>
       <appender-ref ref = "STDOUT"/> 
    </root>
 </configuration>

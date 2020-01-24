@@ -37,7 +37,7 @@ public class JwtAuthenticationTokenFilter extends OncePerRequestFilter {
 		}
 		//se ho gli userDetails e la sessione non esiste controllo la validità del token
 		if (utente != null && SecurityContextHolder.getContext().getAuthentication() == null) {
-			//validateToken secondo me non ha senso con il controllo della email
+			//validateToken
 			if (jwtTokenUtil.validateToken(jwtToken, utente)) {
 				//token valido! setto l'authenticationToken e creo la sessione corrente
                 UsernamePasswordAuthenticationToken usernamePasswordAuthenticationToken = 

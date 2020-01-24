@@ -5,6 +5,9 @@ import com.avis.services.ProfiloService;
 import com.avis.utils.ApiResponse;
 import com.avis.utils.InterfaceApi;
 import com.avis.security.JwtTokenUtil;
+
+import java.util.logging.Logger;
+
 import com.avis.dto.JwtRequest;
 import com.avis.models.Utente;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,7 +42,7 @@ public class LoginController {
 
         if(utente.getRuolo().compareTo("donatore")==0)
             utente = profilo.checkAbilitazione(utente.getEmail());
-
+        Logger.getGlobal().info("utente appena autenticato");
         return new ResponseEntity<>(new ApiResponse<>(utente, token), HttpStatus.OK);
     }
 }
