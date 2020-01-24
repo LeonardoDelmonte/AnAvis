@@ -36,38 +36,36 @@ public class PrenotazioniService {
 
     public ApiResponse<String> prenotaData(PrenotazioneDto prenotazioneDto) {
         Donatore donatore = profilo.checkAbilitazione(prenotazioneDto.getEmailDonatore());
-        if (donatore.getAbilitazioneDonazione()==0)
-            return new ApiResponse<>("non sei abilitato a donare",HttpStatus.FORBIDDEN);
+        if (donatore.getAbilitazioneDonazione() == 0)
+            return new ApiResponse<>("non sei abilitato a donare", HttpStatus.FORBIDDEN);
         Optional<Prenotazione> prenotazione = prenotazioniRepository.findById(prenotazioneDto.getIdDataLibera());
         if (!prenotazione.isPresent() || prenotazione.get().getIdDonatore() != null) {
-            return new ApiResponse<>("la data scelta non è più disponibile",HttpStatus.CONFLICT);
+            return new ApiResponse<>("la data scelta non è più disponibile", HttpStatus.CONFLICT);
         }
         prenotazione.get().setIdDonatore(donatore);
         prenotazioniRepository.save(prenotazione.get());
         donatore.setAbilitazioneDonazione((byte) 0);
         donatoreRepository.save(donatore);
-        return new ApiResponse<>("data prenotata con successo",prenotazione.get());
+        return new ApiResponse<>("data prenotata con successo", prenotazione.get());
     }
-
-    
 
     public ApiResponse<Timestamp> save(DateDto dateLibere, Long idSede) {
         Optional<SedeAvis> sedeAvis = sedeAvisRepository.findById(idSede);
         if (!sedeAvis.isPresent())
-            return new ApiResponse<>("sessione danneggiata, riloggare",HttpStatus.BAD_REQUEST);  
+            return new ApiResponse<>("sessione danneggiata, riloggare", HttpStatus.BAD_REQUEST);
         Timestamp data1 = dateLibere.getDataIniziale();
         List<Timestamp> listError = new ArrayList<>();
         List<Timestamp> listOK = new ArrayList<>();
-        while(data1.compareTo(dateLibere.getDataFinale()) != 0){
-            if (!prenotazioniRepository.findByIdSedeAvisAndDate(sedeAvis.get(), data1).isPresent()) {
-                    prenotazioniRepository.save(new Prenotazione(sedeAvis.get(), data1));
-                    listOK.add(data1);
-            }else{
+        while (data1.compareTo(dateLibere.getDataFinale()) != 0) {
+            if (prenotazioniRepository.findByIdSedeAvisAndDate(sedeAvis.get(), data1).isEmpty()) {
+                prenotazioniRepository.save(new Prenotazione(sedeAvis.get(), data1));
+                listOK.add(data1);
+            } else {
                 listError.add(data1);
             }
             data1 = new Timestamp(data1.getTime() + TimeUnit.MINUTES.toMillis(15));
         }
-        return new ApiResponse<>("listOK",listOK,"listError",listError);       
+        return new ApiResponse<>("listOK", listOK, "listError", listError);
     }
 
     public boolean deleteDate(long id) {
@@ -86,37 +84,34 @@ public class PrenotazioniService {
         }
         prenotazione.get().setIdDonatore(null);
         prenotazioniRepository.save(prenotazione.get());
-		return true;
-	}
-
-    public List<Prenotazione> getDateLibere(DateDto dto) {
-        //check exception
-        SedeAvis sede = sedeAvisRepository.findByComune(dto.getComune());
-        Optional<List<Prenotazione>> dateLibere = prenotazioniRepository
-            .findByIdSedeAvisAndDateBetween(sede, dto.getDataIniziale(), dto.getDataFinale());      
-        if (!dateLibere.isPresent()) {
-            return null;
-        }
-        return dateLibere.get().stream().filter(e -> e.getIdDonatore() == null).collect(Collectors.toList());
+        return true;
     }
 
-	public ApiResponse<Prenotazione> getPrenotazioni(long id) {
+    public List<Prenotazione> getDateLibere(DateDto dto) {
+        // check exception
+        SedeAvis sede = sedeAvisRepository.findByComune(dto.getComune());
+        List<Prenotazione> dateLibere = prenotazioniRepository.findByIdSedeAvisAndDateBetween(sede,
+                dto.getDataIniziale(), dto.getDataFinale());
+        return dateLibere.stream().filter(e -> e.getIdDonatore() == null).collect(Collectors.toList());
+    }
+
+    public ApiResponse<Prenotazione> getPrenotazioni(long id) {
         Optional<SedeAvis> sedeAvis = sedeAvisRepository.findById(id);
         if (!sedeAvis.isPresent())
-            return new ApiResponse<>("sessione danneggiata, riloggare",HttpStatus.BAD_REQUEST); 
+            return new ApiResponse<>("sessione danneggiata, riloggare", HttpStatus.BAD_REQUEST);
         List<Prenotazione> listPrenotate = new ArrayList<>();
         List<Prenotazione> listLibere = new ArrayList<>();
-        Optional<List<Prenotazione>> listPrenotazioni = prenotazioniRepository
-                .findByIdSedeAvisAndDateAfter(sedeAvis.get(),new Timestamp(new Date().getTime()));
-        if(!listPrenotazioni.isPresent())
+        List<Prenotazione> listPrenotazioni = prenotazioniRepository.findByIdSedeAvisAndDateAfter(sedeAvis.get(),
+                new Timestamp(new Date().getTime()));
+        if (listPrenotazioni.isEmpty())
             return new ApiResponse<Prenotazione>("listaPrenotate", listPrenotate, "listaLibere", listLibere);
-        for (Prenotazione prenotazione : listPrenotazioni.get()) {
-                if (prenotazione.getIdDonatore()==null) 
-                    listLibere.add(prenotazione);                
-                else 
-                    listPrenotate.add(prenotazione);                 
-            }
-		return new ApiResponse<Prenotazione>("listaPrenotate", listPrenotate, "listaLibere", listLibere);
-	}
+        for (Prenotazione prenotazione : listPrenotazioni) {
+            if (prenotazione.getIdDonatore() == null)
+                listLibere.add(prenotazione);
+            else
+                listPrenotate.add(prenotazione);
+        }
+        return new ApiResponse<Prenotazione>("listaPrenotate", listPrenotate, "listaLibere", listLibere);
+    }
 
 }

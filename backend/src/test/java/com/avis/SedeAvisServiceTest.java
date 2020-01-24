@@ -4,7 +4,6 @@ import static org.junit.Assert.assertTrue;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 import java.util.Set;
 
 import com.avis.models.SedeAvis;
@@ -49,9 +48,8 @@ public class SedeAvisServiceTest {
         list.add(sedeAvis);
         sedeAvisRepository.save(sedeAvis);
         Mockito.when(sedeAvisRepository.findAll()).thenReturn(list);
-        Optional<List<SedeAvis>> listOptional = Optional.of(list);
-        Mockito.when(sedeAvisRepository.findByRegione("Marche")).thenReturn(listOptional);
-        Mockito.when(sedeAvisRepository.findByProvincia("Macerata")).thenReturn(listOptional);
+        Mockito.when(sedeAvisRepository.findByRegione("Marche")).thenReturn(list);
+        Mockito.when(sedeAvisRepository.findByProvincia("Macerata")).thenReturn(list);
     }
 
     @Test
@@ -61,7 +59,6 @@ public class SedeAvisServiceTest {
         assertTrue(sedeAvis.contains(regione));
     }
 
-
     @Test
     public void findSedeAvis_checkProvincia() {
         String regione = "Marche";
@@ -69,7 +66,6 @@ public class SedeAvisServiceTest {
         Set<String> sedeAvis = sedeAvisService.getProvince(regione);
         assertTrue(sedeAvis.contains(provincia));
     }
-
 
     @Test
     public void findSedeAvis_checkComuni() {
@@ -80,14 +76,13 @@ public class SedeAvisServiceTest {
     }
 
     @Test
-    public void findSedeAvis_checkParameters(){
+    public void findSedeAvis_checkParameters() {
         List<SedeAvis> listSedeAvis = sedeAvisRepository.findAll();
         SedeAvis sedeAvis = listSedeAvis.get(0);
-        assertTrue(sedeAvis.getId()==0);
-        assertTrue(sedeAvis.getRuolo()=="sedeAvis");
-        assertTrue(sedeAvis.getEmail()=="sede@avis.it");
-        assertTrue(sedeAvis.getPassword()=="123123");
+        assertTrue(sedeAvis.getId() == 0);
+        assertTrue(sedeAvis.getRuolo() == "sedeAvis");
+        assertTrue(sedeAvis.getEmail() == "sede@avis.it");
+        assertTrue(sedeAvis.getPassword() == "123123");
     }
 
-    
 }

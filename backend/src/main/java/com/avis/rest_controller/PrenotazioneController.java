@@ -37,7 +37,7 @@ public class PrenotazioneController {
     @PostMapping("/prenotazione/date-libere")
     public ResponseEntity<InterfaceApi> getDateLibere(@RequestBody DateDto dto) {
         List<Prenotazione> dateLibere = prenotazioniService.getDateLibere(dto);
-        if (dateLibere == null || dateLibere.isEmpty()) {
+        if (dateLibere.isEmpty()) {
             return new ResponseEntity<>(new ApiResponse<>("nessuna data disponibile con questi criteri di ricerca"),
                     HttpStatus.OK);
         }

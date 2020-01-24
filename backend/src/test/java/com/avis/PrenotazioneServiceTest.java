@@ -4,6 +4,7 @@ import static org.junit.Assert.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 
 import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
@@ -76,19 +77,16 @@ public class PrenotazioneServiceTest {
         Timestamp ts1 = Timestamp.valueOf("2020-02-13 11:00:00");
         Timestamp ts2 = Timestamp.valueOf("2020-02-13 11:15:00");
         Timestamp ts3 = Timestamp.valueOf("2020-02-13 11:30:00");
-        Timestamp ts4 = Timestamp.valueOf("2020-02-13 11:45:00");
-        DateDto date = new DateDto(ts1, ts3);
         Prenotazione p1 = new Prenotazione(sedeAvis, ts1);
         Prenotazione p2 = new Prenotazione(sedeAvis, ts2);
-        Mockito.when(prenotazioniRepository.findByIdSedeAvisAndDate(sedeAvis, ts1)).thenReturn(Optional.of(Arrays.asList(p1)));
-        Mockito.when(prenotazioniRepository.findByIdSedeAvisAndDate(sedeAvis, ts2)).thenReturn(Optional.of(Arrays.asList(p2)));
-        Mockito.when(prenotazioniRepository.findByIdSedeAvisAndDate(sedeAvis, ts3)).thenReturn(Optional.ofNullable(null));
+        Mockito.when(prenotazioniRepository.findByIdSedeAvisAndDate(sedeAvis, ts1)).thenReturn(Arrays.asList(p1));
+        Mockito.when(prenotazioniRepository.findByIdSedeAvisAndDate(sedeAvis, ts2)).thenReturn(Arrays.asList(p2));
+        Mockito.when(prenotazioniRepository.findByIdSedeAvisAndDate(sedeAvis, ts3)).thenReturn(new ArrayList<>());
         Optional<Prenotazione> p3 = Optional.of(p1);
         Mockito.when(prenotazioniRepository.findById(0L)).thenReturn(p3);
         Mockito.when(prenotazioniRepository.findById(1L)).thenReturn(Optional.ofNullable(null));
         Mockito.when(sedeRepository.findByComune("Morrovalle")).thenReturn(sedeAvis);
-        Optional<List<Prenotazione>> list = Optional.of(Arrays.asList(p1,p2));
-        Mockito.when(prenotazioniRepository.findByIdSedeAvisAndDateBetween(sedeAvis, ts1, ts2)).thenReturn(list);
+        Mockito.when(prenotazioniRepository.findByIdSedeAvisAndDateBetween(sedeAvis, ts1, ts2)).thenReturn(Arrays.asList(p1,p2));
 
 
     

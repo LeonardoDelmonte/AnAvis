@@ -62,66 +62,60 @@ public class ProfiloServiceTest {
     @MockBean
     private PrenotazioniRepository prenotazioneRepository;
 
-
     @Before
     public void setup() {
-        Donatore donatore = new Donatore("donatore@don.it","123123","donatore","leonardo","rossi");
-        Optional<Donatore> optionalDonatore =  Optional.of(donatore);
-        Modulo modulo = new Modulo("A","A","A","A","A","A","A","A","A");
+        Donatore donatore = new Donatore("donatore@don.it", "123123", "donatore", "leonardo", "rossi");
+        Optional<Donatore> optionalDonatore = Optional.of(donatore);
+        Modulo modulo = new Modulo("A", "A", "A", "A", "A", "A", "A", "A", "A");
         Optional<Modulo> optionalModulo = Optional.of(modulo);
         SedeAvis sedeAvis = new SedeAvis("sede@avis.it", "123123", "sedeAvis", "Marche", "Macerata", "Morrovalle");
         Optional<SedeAvis> optionalSede = Optional.of(sedeAvis);
-        CentroTrasfusione centroTrasfusione = new CentroTrasfusione("centro@trasfusione.it", "123123", "centroTrasfusione", "Marche", "Macerata", "Morrovalle");
+        CentroTrasfusione centroTrasfusione = new CentroTrasfusione("centro@trasfusione.it", "123123",
+                "centroTrasfusione", "Marche", "Macerata", "Morrovalle");
         Optional<CentroTrasfusione> optionalCentro = Optional.of(centroTrasfusione);
         Prenotazione prenotazione = new Prenotazione(sedeAvis, new Timestamp(430430430));
-        List<Prenotazione> listPrenotazioni = new ArrayList<>(); listPrenotazioni.add(prenotazione);
-        long id = 0; String emailDonatore = "donatore@don.it";
-        Optional<List<Prenotazione>> optionalListPrenotazioni = Optional.of(listPrenotazioni);
+        List<Prenotazione> listPrenotazioni = new ArrayList<>();
+        listPrenotazioni.add(prenotazione);
+        long id = 0;
+        String emailDonatore = "donatore@don.it";
         Mockito.when(donatoreRepository.findById(id)).thenReturn(optionalDonatore);
         Mockito.when(sedeAvisRepository.findById(id)).thenReturn(optionalSede);
         Mockito.when(centroRepository.findById(id)).thenReturn(optionalCentro);
         Mockito.when(donatoreRepository.findByEmail(emailDonatore)).thenReturn(donatore);
         Mockito.when(moduloRepository.findById(id)).thenReturn(optionalModulo);
-        Mockito.when(prenotazioneRepository.findByIdDonatore(donatore)).thenReturn(optionalListPrenotazioni);
+        Mockito.when(prenotazioneRepository.findByIdDonatore(donatore)).thenReturn(listPrenotazioni);
     }
 
-    
     @Test
-    public void showInfoTest(){
+    public void showInfoTest() {
 
-        Utente utente = profiloService.showInfo(new Utente("donatore@don.it","123123","donatore"));
+        Utente utente = profiloService.showInfo(new Utente("donatore@don.it", "123123", "donatore"));
         assertTrue(utente instanceof Donatore);
         Donatore donatore = (Donatore) utente;
-        assertTrue(donatore.getNome()=="leonardo");
-        assertTrue(donatore.getCognome()=="rossi");
-        utente = profiloService.showInfo(new Utente("sede@avis.it","123123","sedeAvis"));
+        assertTrue(donatore.getNome() == "leonardo");
+        assertTrue(donatore.getCognome() == "rossi");
+        utente = profiloService.showInfo(new Utente("sede@avis.it", "123123", "sedeAvis"));
         assertTrue(utente instanceof SedeAvis);
         SedeAvis sedeAvis = (SedeAvis) utente;
-        assertTrue(sedeAvis.getRegione()=="Marche");
-        assertTrue(sedeAvis.getProvincia()=="Macerata");
-        assertTrue(sedeAvis.getComune()=="Morrovalle");
-        utente = profiloService.showInfo(new Utente("centro@trasfusione.it","123123","centroTrasfusione"));
+        assertTrue(sedeAvis.getRegione() == "Marche");
+        assertTrue(sedeAvis.getProvincia() == "Macerata");
+        assertTrue(sedeAvis.getComune() == "Morrovalle");
+        utente = profiloService.showInfo(new Utente("centro@trasfusione.it", "123123", "centroTrasfusione"));
         assertTrue(utente instanceof CentroTrasfusione);
         CentroTrasfusione centroTrasfusione = (CentroTrasfusione) utente;
-        assertTrue(centroTrasfusione.getRegione()=="Marche");
-        assertTrue(centroTrasfusione.getProvincia()=="Macerata");
-        assertTrue(centroTrasfusione.getComune()=="Morrovalle");
-        utente = profiloService.showInfo(new Utente("e@e.it","1212","null"));
+        assertTrue(centroTrasfusione.getRegione() == "Marche");
+        assertTrue(centroTrasfusione.getProvincia() == "Macerata");
+        assertTrue(centroTrasfusione.getComune() == "Morrovalle");
+        utente = profiloService.showInfo(new Utente("e@e.it", "1212", "null"));
         assertTrue(utente == null);
     }
 
     @Test
-    public void modificaCredenzialiTest(){
+    public void modificaCredenzialiTest() {
         CredenzialiDto credenzialiDto = new CredenzialiDto();
-        //cambiata meail e cognome
-        credenzialiDto.setDonatore(new Donatore("don@donatore.it","123123","donatore","leonardo","bianchi"));
-        profiloService.modificaCredenziali(credenzialiDto, new Utente("donatore@don.it","123123","donatore"));
+        // cambiata meail e cognome
+        credenzialiDto.setDonatore(new Donatore("don@donatore.it", "123123", "donatore", "leonardo", "bianchi"));
+        profiloService.modificaCredenziali(credenzialiDto, new Utente("donatore@don.it", "123123", "donatore"));
     }
-
-
-
-
-
-
 
 }

@@ -1,6 +1,5 @@
 package com.avis.services;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -39,10 +38,8 @@ public class EmergenzaService {
     }
 
     public List<Emergenza> getEmergenze(Long id) {
-        Optional<List<Emergenza>> emergenze = emergenzaRepository.findByIdCentroTrasfusione(centroRepository.findById(id).get());
-        if(!emergenze.isPresent())
-            return new ArrayList<>();
-        return emergenze.get();
-	}
+        List<Emergenza> emergenze = emergenzaRepository.findByIdCentroTrasfusione(centroRepository.findById(id).get());
+        return emergenze;
+    }
 
 }
