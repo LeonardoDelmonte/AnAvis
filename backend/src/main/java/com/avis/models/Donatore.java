@@ -34,6 +34,7 @@ public class Donatore extends Utente {
         super(email, pw, ruolo);
         this.nome = nome;
         this.cognome = cognome;
+        this.modulo = new Modulo();
     }
 
 }

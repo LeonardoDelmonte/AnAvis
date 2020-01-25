@@ -11,6 +11,7 @@ import com.avis.models.Modulo;
 import com.avis.models.Prenotazione;
 import com.avis.models.SedeAvis;
 import com.avis.models.Utente;
+import com.avis.repositories.AuthenticationRepository;
 import com.avis.repositories.CentroTrasfusioneRepository;
 import com.avis.repositories.DonatoreRepository;
 import com.avis.repositories.ModuloRepository;
@@ -33,24 +34,16 @@ public class ProfiloService {
     private CentroTrasfusioneRepository centroRepository;
     @Autowired
     private PrenotazioniRepository prenotazioneRepository;
+    @Autowired
+    private AuthenticationRepository authRepository;
 
-    public Utente modificaModulo(Modulo newModulo, Long idDonatore) {
-        Optional<Donatore> donatore = donatoreRepository.findById(idDonatore);
-        if (!donatore.isPresent()) {
-            return null;
-        }
-        Optional<Modulo> oldModulo = moduloRepository.findById(idDonatore);
-        if (!oldModulo.isPresent()) {
-            newModulo.setId(idDonatore);
-            moduloRepository.save(newModulo);
-            donatore.get().setModulo(newModulo);
-            donatore.get().setAbilitazioneDonazione((byte) 1);
-            donatoreRepository.save(donatore.get());
-            return donatore.get();
-        } else {
-            moduloRepository.save(newModulo);
-            return donatore.get();
-        }
+
+    public Utente modificaModulo(Modulo newModulo, String email) {
+        Donatore donatore = donatoreRepository.findByEmail(email);
+        
+        moduloRepository.save(newModulo);
+        
+        return donatore;
     }
 
     public Utente showInfo(Utente utente) {
@@ -64,6 +57,16 @@ public class ProfiloService {
         default:
             return null;
         }
+    }
+
+    public Modulo showModulo(String email){
+        Utente utente = authRepository.findByEmail(email);
+        Modulo modulo = null; 
+        if(utente.getRuolo().compareTo("donatore")==0){
+            Donatore donatore = (Donatore) utente;
+            modulo = donatore.getModulo();
+        }
+        return modulo;
     }
 
     public Utente modificaCredenziali(CredenzialiDto credenziali, Utente utente) {

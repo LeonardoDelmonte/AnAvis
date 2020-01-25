@@ -40,10 +40,11 @@ public class DataLoader implements ApplicationRunner {
 
         //password -> marco
 
-        donatore.save(new Donatore("marco","$2a$10$x1VGNaJf8AHJAslOnPsh1e9OufSxWor0OwSDfORdD98GDlXzwMDN6","donatore", "marco", "scarpa"));
-        donatore.save(new Donatore("leo","$2a$10$x1VGNaJf8AHJAslOnPsh1e9OufSxWor0OwSDfORdD98GDlXzwMDN6","donatore","leo", "del"));
         sedeAvis.save(new SedeAvis("sede1","$2a$10$x1VGNaJf8AHJAslOnPsh1e9OufSxWor0OwSDfORdD98GDlXzwMDN6","sedeAvis","marche","macerata","morrovalle"));
         sedeAvis.save(new SedeAvis("sede2","$2a$10$x1VGNaJf8AHJAslOnPsh1e9OufSxWor0OwSDfORdD98GDlXzwMDN6","sedeAvis","marche","macerata","montecosaro"));
+ 
+        donatore.save(new Donatore("marco","$2a$10$x1VGNaJf8AHJAslOnPsh1e9OufSxWor0OwSDfORdD98GDlXzwMDN6","donatore", "marco", "scarpa"));
+        donatore.save(new Donatore("leo","$2a$10$x1VGNaJf8AHJAslOnPsh1e9OufSxWor0OwSDfORdD98GDlXzwMDN6","donatore","leo", "del"));
         centroTrasf.save(new CentroTrasfusione("centro1","$2a$10$x1VGNaJf8AHJAslOnPsh1e9OufSxWor0OwSDfORdD98GDlXzwMDN6","centroTrasfusione","marche","pesaro","tavullia"));
         centroTrasf.save(new CentroTrasfusione("centro2","$2a$10$x1VGNaJf8AHJAslOnPsh1e9OufSxWor0OwSDfORdD98GDlXzwMDN6","centroTrasfusione","marche","pesaro","fano"));
         Timestamp ts1 = Timestamp.valueOf("2020-02-13 11:00:00");
@@ -53,8 +54,8 @@ public class DataLoader implements ApplicationRunner {
         Timestamp ts3 = Timestamp.valueOf("2020-02-13 13:00:00");
         Timestamp ts8 = Timestamp.valueOf("2020-01-13 13:00:00");
         Timestamp ts9 = Timestamp.valueOf("2020-01-13 16:00:00");
-        profilo.modificaModulo(new Modulo("scrmrc", "via roma 3", "333-2211", "00", "no", "no", "si", "si", "no"), (long)1);
-        profilo.modificaModulo(new Modulo("lnrdlm", "via cascia 99", "444-3232", "AA", "no", "si", "si", "no", "no"), (long)2);
+        //profilo.modificaModulo(new Modulo("scrmrc", "via roma 3", "333-2211", "00", "no", "no", "si", "si", "no"), (long)1);
+        //profilo.modificaModulo(new Modulo("lnrdlm", "via cascia 99", "444-3232", "AA", "no", "si", "si", "no", "no"), (long)2);
         prenotazione.save(new DateDto(ts1,ts2), (long)3);
         prenotazione.save(new DateDto(ts5,ts4), (long)3);
         prenotazione.save(new DateDto(ts2,ts3), (long)4);

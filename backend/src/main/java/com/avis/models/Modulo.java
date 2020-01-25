@@ -2,6 +2,8 @@ package com.avis.models;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.validation.constraints.NotNull;
 
@@ -13,9 +15,9 @@ public class Modulo {
 
     @Column
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @Column
-    @NotNull
     private String codiceFiscale, indirizzo, telefono, gruppoSanguigno, fumatore, malattie, vaccinazioni, allergie,
             farmaci;
 
