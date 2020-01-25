@@ -100,17 +100,41 @@ class ListFreeDate extends PureComponent {
     }
 
     modificaModulo = () => {
+        console.log(this.state.prenotazioneDto.emailDonatore)
+        {!this.state.prenotazioneDto.emailDonatore &&
+            ProfiloService.loadProfilo()
+                .then(response => {
+                    console.log(response);
+                    this.setState({ fields: response.data.utente }, () => { console.log(this.state) });
+                    this.setState({ aud: response.data.utente.ruolo });
+                })
+                .catch(error => {
+                    console.log("nessuna risposta dal server");
+                });
+        }
+        {this.state.prenotazioneDto.emailDonatore &&
+            ProfiloService.loadModulo(this.state.prenotazioneDto.emailDonatore)
+                .then(response => {
+                    this.setState({ fields: response.data }, () => { console.log(this.state) });
+                    console.log(response)
+                })
+                .catch(error => {
+                    console.log(error)
+                    console.log("nessuna risposta dal serverAAA");
+                });
+        }
+
+
         $("#myModal").modal()
     }
 
     handleButtonClick = (state) => {
         this.setState({
-            prenotazioneDto : {
+            prenotazioneDto: {
                 'idDataLibera': state.target.id,
                 'emailDonatore': this.props.donatore
             }
         })
-        
 
         confirmAlert({
             title: 'Modifica Modulo',
@@ -130,14 +154,7 @@ class ListFreeDate extends PureComponent {
     };
 
     componentDidMount() {
-        ProfiloService.loadProfilo()
-            .then(response => {
-                this.setState({ fields: response.data.utente }, () => {console.log(this.state)});
-                this.setState({ aud: response.data.utente.ruolo });
-            })
-            .catch(error => {
-                console.log("nessuna risposta dal server");
-            });
+
     }
 
     render() {
@@ -163,7 +180,7 @@ class ListFreeDate extends PureComponent {
                             </div>
 
                             <div className="modal-body">
-                            {this.state.aud==="donatore" && this.state.fields.id && <FormModulo value={this.state.fields.modulo}/>}
+                                {this.state.fields && <FormModulo value={this.state.fields.modulo} />}
                             </div>
 
                             <div className="modal-footer">

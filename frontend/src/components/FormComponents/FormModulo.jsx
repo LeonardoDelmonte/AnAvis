@@ -16,7 +16,7 @@ class FormModulo extends Component {
 
   componentDidMount() {
     if(this.props.value)
-      this.setState({ fields: this.props.value });
+      this.setState({ fields: this.props.value, email: this.props.email });
   }
 
   handleChangeSelect = data => {
@@ -43,9 +43,14 @@ class FormModulo extends Component {
 
   handlerSubmit = e => {
     e.preventDefault();
-    ProfiloService.modificaModulo(this.state.fields)
+    var DtoModulo = {
+      modulo: this.state.fields,
+      email: this.state.email
+    }
+    console.log(DtoModulo);
+    ProfiloService.modificaModulo(DtoModulo)
       .then(res => {
-        this.setState({ message: res.data.message, type: "success", fields: res.data.utente.modulo });
+        this.setState({ message: res.data.message, type: "success"});
       })
       .catch(err => {
         this.setState({ message: err.response.data.message, type: "danger" });

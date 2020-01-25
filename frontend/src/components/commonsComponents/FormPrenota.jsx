@@ -26,6 +26,7 @@ class FormPrenota extends Component {
             endDate: myDate2,
             isSede: jwt(localStorage.getItem('Authorization')).aud === "sedeAvis",
             fields: {
+
             },
         }
     }

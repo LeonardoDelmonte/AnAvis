@@ -22,8 +22,8 @@ class ProfiloUtente extends Component {
   componentDidMount() {
     ProfiloService.loadProfilo()
       .then(response => {
-        this.setState({ fields: response.data.utente });
-        this.setState({ aud: response.data.utente.ruolo });
+        this.setState({ fields: response.data.utente }, console.log(this.state));
+        this.setState({ aud: response.data.utente.ruolo }, console.log(this.state));
       })
       .catch(error => {
         console.log("nessuna risposta dal server");

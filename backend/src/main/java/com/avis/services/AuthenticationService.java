@@ -2,6 +2,7 @@ package com.avis.services;
 
 import com.avis.dto.CredenzialiDto;
 import com.avis.dto.JwtRequest;
+import com.avis.models.Modulo;
 import com.avis.models.Utente;
 import com.avis.repositories.AuthenticationRepository;
 import com.avis.repositories.CentroTrasfusioneRepository;
@@ -35,6 +36,7 @@ public class AuthenticationService implements UserDetailsService {
     public boolean save(CredenzialiDto utente) {
         if (utente.getDonatore() != null) {
             encode(utente.getDonatore());
+            utente.getDonatore().setModulo(new Modulo());
             donatoreRepository.save(utente.getDonatore());
             return true;
         }

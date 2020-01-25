@@ -24,7 +24,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-
 @RestController
 public class ProfiloController {
 
@@ -34,11 +33,11 @@ public class ProfiloController {
     @PutMapping("/profilo/modulo")
     public ResponseEntity<InterfaceApi> modificaModulo(@RequestBody ModuloDto moduloDto) {
         Utente utente = (Utente) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        if(utente.getRuolo().compareTo("donatore")==0){
+        if (utente.getRuolo().compareTo("donatore") == 0) {
             moduloDto.setEmail(utente.getEmail());
         }
-        utente = profiloService.modificaModulo(moduloDto.getModulo(),moduloDto.getEmail());
-        if(utente!=null)
+        utente = profiloService.modificaModulo(moduloDto.getModulo(), moduloDto.getEmail());
+        if (utente != null)
             return new ResponseEntity<>(new ApiResponse<>("Modulo modificato"), HttpStatus.OK);
         Logger.getGlobal().info("modulo non modificato");
         return new ResponseEntity<>(new ApiResponse<>("Modulo non modificato"), HttpStatus.NO_CONTENT);
@@ -47,13 +46,12 @@ public class ProfiloController {
     @PutMapping("/profilo/credenziali")
     public ResponseEntity<InterfaceApi> modificaCredenziali(@RequestBody CredenzialiDto credenziali) {
         Utente utente = (Utente) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        utente = profiloService.modificaCredenziali(credenziali,utente);
-        if (utente!=null)
-            return new ResponseEntity<>(new ApiResponse<>("Credenziali modificate",utente), HttpStatus.OK);
+        utente = profiloService.modificaCredenziali(credenziali, utente);
+        if (utente != null)
+            return new ResponseEntity<>(new ApiResponse<>("Credenziali modificate", utente), HttpStatus.OK);
         Logger.getGlobal().info("credenziali non modificate");
         return new ResponseEntity<>(new ApiResponse<>("Credenziali non modificate"), HttpStatus.NO_CONTENT);
     }
-    
 
     @GetMapping("/profilo/info")
     public ResponseEntity<InterfaceApi> showInfo() {
@@ -61,14 +59,14 @@ public class ProfiloController {
         utente = profiloService.showInfo(utente);
         if (utente == null) {
             Logger.getGlobal().warning("sessione danneggiata");
-            return new ResponseEntity<>(new ApiResponse<>("sessione danneggiata, riloggare"),HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<>(new ApiResponse<>("sessione danneggiata, riloggare"), HttpStatus.BAD_REQUEST);
         }
-        return new ResponseEntity<>(new ApiResponse<>(utente,""), HttpStatus.OK);
+        return new ResponseEntity<>(new ApiResponse<>(utente, ""), HttpStatus.OK);
     }
 
-   // @GetMapping("/profilo/info-modulo/{email}")
-   // public @ResponseBody ResponseEntity<InterfaceApi> searchComuni(@PathVariable String email) {
-   //     return new ResponseEntity<>(new ApiResponse<>(profiloService.getModulo(email)), HttpStatus.OK);
-   // }
+    @GetMapping("/profilo/info-modulo/{email}")
+    public @ResponseBody ResponseEntity<InterfaceApi> searchComuni(@PathVariable String email) {
+        return new ResponseEntity<>(new ApiResponse<>(profiloService.showModulo(email)), HttpStatus.OK);
+    }
 
 }

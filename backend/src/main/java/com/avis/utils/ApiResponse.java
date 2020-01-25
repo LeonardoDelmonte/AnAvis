@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import com.avis.models.Modulo;
 import com.avis.models.Prenotazione;
 import com.avis.models.Utente;
 
@@ -24,6 +25,7 @@ public class ApiResponse<T> implements InterfaceApi {
     private Map<String, List<T>> map;
     private HttpStatus status;
     private Set<String> set;
+    private Modulo modulo;
 
     // per il login
     public ApiResponse(Utente utente, String token) {
@@ -57,6 +59,10 @@ public class ApiResponse<T> implements InterfaceApi {
         this.list = list;
     }
 
+    public ApiResponse(Modulo modulo){
+        this.modulo = modulo;
+    }
+    
     // response info
     public ApiResponse(String message, HttpStatus status) {
         this.message = message;
@@ -134,5 +140,16 @@ public class ApiResponse<T> implements InterfaceApi {
     public void setSet(Set<String> set) {
         this.set = set;
     }
+
+    public Modulo getModulo() {
+        return modulo;
+    }
+
+    public void setModulo(Modulo modulo) {
+        this.modulo = modulo;
+    }
+
+
+    
 
 }
