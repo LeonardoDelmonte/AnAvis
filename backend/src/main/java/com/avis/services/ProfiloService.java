@@ -40,9 +40,10 @@ public class ProfiloService {
 
     public Utente modificaModulo(Modulo newModulo, String email) {
         Donatore donatore = donatoreRepository.findByEmail(email);
-        
+        if(donatore.getModulo().getId()!=newModulo.getId())
+            return null;
+        newModulo.setModuloCompilato((byte) 1);
         moduloRepository.save(newModulo);
-        
         return donatore;
     }
 
@@ -61,7 +62,9 @@ public class ProfiloService {
 
     public Modulo showModulo(String email){
         Utente utente = authRepository.findByEmail(email);
-        Modulo modulo = null; 
+        Modulo modulo = null;
+        if(utente==null)
+            return modulo; 
         if(utente.getRuolo().compareTo("donatore")==0){
             Donatore donatore = (Donatore) utente;
             modulo = donatore.getModulo();
@@ -100,7 +103,7 @@ public class ProfiloService {
     public Donatore checkAbilitazione(String email) {
         // check exception
         Donatore donatore = donatoreRepository.findByEmail(email);
-        if (donatore.getModulo() == null)
+        if (donatore.getModulo().getModuloCompilato()==0)
             return donatore;
         Long date = new Date().getTime();
         Long last = 0L;

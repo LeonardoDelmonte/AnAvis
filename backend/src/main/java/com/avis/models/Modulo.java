@@ -18,8 +18,11 @@ public class Modulo {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @Column
+    private byte moduloCompilato = 0;
+    @Column
     private String codiceFiscale, indirizzo, telefono, gruppoSanguigno, fumatore, malattie, vaccinazioni, allergie,
             farmaci;
+    
 
     public Modulo() {
     }
