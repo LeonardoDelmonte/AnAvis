@@ -108,3 +108,21 @@
      nuovo token generato
 25-01-2020 18:23:54.551 [35m[http-nio-8080-exec-7][0;39m [34mINFO [0;39m global.createAuthenticationToken - 
      utente appena autenticato
+25-01-2020 18:24:38.351 [35m[http-nio-8080-exec-9][0;39m [34mINFO [0;39m global.modificaModulo - 
+     modulo non modificato
+25-01-2020 18:24:45.882 [35m[http-nio-8080-exec-1][0;39m [31mWARN [0;39m o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver.logException - 
+     Resolved [java.lang.NullPointerException]
+25-01-2020 18:24:53.913 [35m[http-nio-8080-exec-3][0;39m [31mWARN [0;39m o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver.logException - 
+     Resolved [java.lang.NullPointerException]
+25-01-2020 18:25:18.675 [35m[http-nio-8080-exec-5][0;39m [34mINFO [0;39m global.generateToken - 
+     nuovo token generato
+25-01-2020 18:25:18.678 [35m[http-nio-8080-exec-5][0;39m [34mINFO [0;39m global.createAuthenticationToken - 
+     utente appena autenticato
+25-01-2020 18:25:31.569 [35m[http-nio-8080-exec-9][0;39m [34mINFO [0;39m global.generateToken - 
+     nuovo token generato
+25-01-2020 18:25:31.570 [35m[http-nio-8080-exec-9][0;39m [34mINFO [0;39m global.createAuthenticationToken - 
+     utente appena autenticato
+25-01-2020 18:25:41.605 [35m[http-nio-8080-exec-9][0;39m [31mWARN [0;39m o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver.logException - 
+     Resolved [java.lang.NullPointerException]
+25-01-2020 18:25:51.768 [35m[http-nio-8080-exec-3][0;39m [31mWARN [0;39m o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver.logException - 
+     Resolved [java.lang.NullPointerException]

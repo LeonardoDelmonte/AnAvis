@@ -24,7 +24,7 @@ class FormPrenota extends Component {
         this.state = {
             startDate: myDate1,
             endDate: myDate2,
-            isSede: jwt(localStorage.getItem('Authorization')).aud === "sedeAvis",
+            ruolo: jwt(localStorage.getItem('Authorization')).aud,
             fields: {
 
             },
@@ -145,10 +145,10 @@ class FormPrenota extends Component {
             <div>
                 <h1>Prenota Donazione</h1>
                 <form onSubmit={this.handleSubmit} id="PrenotaForm">
-                    {this.state.isSede &&
+                    {this.state.ruolo  === "sedeAvis" &&
                         <div className="row m-3">
                             <div className="col-sm-12 col-md-12 col-lg-12 col-xl-12">
-                                <FormInput label="Seleziona un utente per prenotare una donazione" type="text" id="donatore" name="donatore" value={this.state.fields.donatore} onChange={this.handleChange} placeholder="Email donatore" />
+                                <FormInput label="Seleziona un utente per prenotare una donazione" type="text" id="emailDonatore" name="emailDonatore" value={this.state.fields.emailDonatore} onChange={this.handleChange} placeholder="Email donatore" />
                             </div>
                         </div>
                     }
@@ -201,7 +201,7 @@ class FormPrenota extends Component {
                         }
                     </div>
                 </form>
-                {this.state.searched && <ListFreeDate freeDate={this.state.freeDate} donatore={this.state.fields.donatore} />}
+                {this.state.searched && <ListFreeDate freeDate={this.state.freeDate} emailDonatore={this.state.fields.emailDonatore} ruolo={this.state.ruolo} />}
             </div>
         );
     }

@@ -61,7 +61,9 @@ public class ProfiloService {
 
     public Modulo showModulo(String email){
         Utente utente = authRepository.findByEmail(email);
-        Modulo modulo = null; 
+        Modulo modulo = null;
+        if(utente==null)
+            return modulo; 
         if(utente.getRuolo().compareTo("donatore")==0){
             Donatore donatore = (Donatore) utente;
             modulo = donatore.getModulo();
