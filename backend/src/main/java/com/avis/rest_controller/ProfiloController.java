@@ -65,10 +65,10 @@ public class ProfiloController {
     }
 
     @GetMapping("/profilo/info-modulo/{email}")
-    public @ResponseBody ResponseEntity<InterfaceApi> getModulo(@PathVariable String email) {
+    public @ResponseBody ResponseEntity<InterfaceApi> searchComuni(@PathVariable String email) {
         Modulo modulo = profiloService.showModulo(email);
         if (modulo == null)
-            return new ResponseEntity<>(new ApiResponse<>("Modulo non trovato"), HttpStatus.NO_CONTENT);
+            return new ResponseEntity<>(new ApiResponse<>("email non valida!"), HttpStatus.BAD_REQUEST);
         return new ResponseEntity<>(new ApiResponse<>(modulo), HttpStatus.OK);
     }
 

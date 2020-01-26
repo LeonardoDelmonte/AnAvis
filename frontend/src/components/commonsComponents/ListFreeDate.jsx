@@ -23,21 +23,6 @@ const columns = memoize(clickHandler => [
         sortable: true,
     },
     {
-        name: 'Regione',
-        selector: 'idSedeAvis.regione',
-        sortable: true,
-    },
-    {
-        name: 'Provincia',
-        selector: 'idSedeAvis.provincia',
-        sortable: true,
-    },
-    {
-        name: 'Comune',
-        selector: 'idSedeAvis.comune',
-        sortable: true,
-    },
-    {
         name: 'Giorno',
         selector: 'day',
         sortable: true,
@@ -49,7 +34,7 @@ const columns = memoize(clickHandler => [
     },
     {
         name: 'Prenota',
-        cell: (row) => <button onClick={clickHandler} id={row.idPrenotazione}>Prenota</button>,
+        cell: (row) => <button type="button" className="btn btn-success" onClick={clickHandler} id={row.idPrenotazione}>Prenota</button>,
         ignoreRowClick: true,
         allowOverflow: true,
         button: true,
@@ -100,42 +85,44 @@ class ListFreeDate extends PureComponent {
     }
 
     modificaModulo = () => {
-        console.log(this.state.prenotazioneDto.emailDonatore)
-        {!this.state.prenotazioneDto.emailDonatore &&
+        {this.props.ruolo === "donatore" &&
             ProfiloService.loadProfilo()
                 .then(response => {
-                    console.log(response);
-                    this.setState({ fields: response.data.utente }, () => { console.log(this.state) });
-                    this.setState({ aud: response.data.utente.ruolo });
+                    this.setState({ modulo: response.data.utente.modulo });
+                    $("#myModal").modal()
                 })
                 .catch(error => {
                     console.log("nessuna risposta dal server");
                 });
         }
-        {this.state.prenotazioneDto.emailDonatore &&
+        {this.props.ruolo === "sedeAvis" &&
             ProfiloService.loadModulo(this.state.prenotazioneDto.emailDonatore)
                 .then(response => {
-                    this.setState({ fields: response.data }, () => { console.log(this.state) });
-                    console.log(response)
+                    this.setState({ modulo: undefined }, () => { console.log(this.state) });
+                    this.setState({ modulo: response.data.modulo }, () => { console.log(this.state) });
+                    $("#myModal").modal()
                 })
                 .catch(error => {
-                    console.log(error)
-                    console.log("nessuna risposta dal serverAAA");
+                    confirmAlert({
+                        message: "email non valida!",
+                        buttons: [
+                            {
+                                label: 'Ok',
+                            },
+                        ],
+                    });
                 });
         }
-
-
-        $("#myModal").modal()
     }
 
     handleButtonClick = (state) => {
         this.setState({
             prenotazioneDto: {
                 'idDataLibera': state.target.id,
-                'emailDonatore': this.props.donatore
+                'emailDonatore': this.props.emailDonatore
             }
-        })
-
+        }, () => {console.log(this.state.prenotazioneDto); console.log(this.props.ruolo)})
+   
         confirmAlert({
             title: 'Modifica Modulo',
             message: 'Vuoi modificare il modulo prima di concludere la prenotazione?',
@@ -152,10 +139,6 @@ class ListFreeDate extends PureComponent {
             closeOnClickOutside: false,
         });
     };
-
-    componentDidMount() {
-
-    }
 
     render() {
         return (
@@ -180,7 +163,7 @@ class ListFreeDate extends PureComponent {
                             </div>
 
                             <div className="modal-body">
-                                {this.state.fields && <FormModulo value={this.state.fields.modulo} />}
+                                {this.state.modulo && <FormModulo value={this.state.modulo} />}
                             </div>
 
                             <div className="modal-footer">
