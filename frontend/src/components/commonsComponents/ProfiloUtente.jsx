@@ -3,37 +3,98 @@ import ProfiloService from "../../utils/ProfiloService"
 import FormModulo from "../FormComponents/FormModulo"
 import FormProfilo from "../FormComponents/FormProfilo"
 import FormHistory from "../FormComponents/FormHistory"
-import FormListPrenotazioni from '../FormComponents/FormListPrenotazioni'
-import FormListEmergenze from '../FormComponents/FormListEmergenze'
+import FormAlert from '../FormComponents/FormAlert'
+import TableEmergenzeSangue from "../CentroTrasfComponents/TableEmergenzeSangue";
+import CentroTrasfusioneService from "../../utils/CentroTrasfusioneService";
+import TableDateLibere from "../sedeAvisComponents/TableDateLibere";
+import TableDatePrenotate from "../sedeAvisComponents/TableDatePrenotate"
 
 class ProfiloUtente extends Component {
   constructor(props) {
     super(props);
 
-    this.state = {      
-      fields:{},
+    this.state = {
+      fields: {},
       aud: "",
       stringa: ""
     };
   }
-  
-  
 
-  componentDidMount() {
+
+  loadProfilo = () => {
     ProfiloService.loadProfilo()
       .then(response => {
-        this.setState({ fields: response.data.utente }, console.log(this.state));
-        this.setState({ aud: response.data.utente.ruolo }, console.log(this.state));
+        this.setState({ fields: response.data.utente });
+        this.setState({ aud: response.data.utente.ruolo });
+        if(this.state.aud === "sedeAvis") this.getPrenotazioni()
+        if(this.state.aud === "centroTrasfusione") this.getEmergency()
       })
       .catch(error => {
         console.log("nessuna risposta dal server");
       });
   }
 
+  getEmergency = () => {
+    CentroTrasfusioneService.getEmergency()
+      .then(response => {
+        response.data.list.forEach(
+          (x) => {
+            const myDate = new Date(x.date);
+            x["dataEmergenza"] = myDate.getDate() + "/" + myDate.getMonth() + 1 + "/" + myDate.getFullYear();
+          }
+        )
+        this.setState({
+          emergenze: response.data.list
+        });
+      })
+  }
+
+  getPrenotazioni = () => {
+    ProfiloService.getPrenotazioni()
+      .then(response => {
+        response.data.map.listaLibere.forEach(
+          (x) => {
+            const myDate = new Date(x.date);
+            x["data"] = myDate.getDate() + "/" + myDate.getMonth() + 1 + "/" + myDate.getFullYear();
+          }
+        )
+        response.data.map.listaPrenotate.forEach(
+          (x) => {
+            const myDate = new Date(x.date);
+            x["data"] = myDate.getDate() + "/" + myDate.getMonth() + 1 + "/" + myDate.getFullYear();
+          }
+        )
+        this.setState({
+          listaPrenotate: response.data.map.listaPrenotate,
+          listaLibere: response.data.map.listaLibere,
+        });
+        console.log(response)
+      })
+      .catch(error => {
+        console.log("nessuna risposta dal server");
+      });
+  }
+
+  componentDidMount() {
+    this.loadProfilo()
+  }
+
 
   render() {
+    let abilitazioneDonazione;
+
+    if (this.state.aud === "donatore") {
+      if (this.state.fields.abilitazioneDonazione === 0) {
+        abilitazioneDonazione = <FormAlert colorType="warning" message="Non sei abilitato a donare" />
+      }
+      if (this.state.fields.abilitazioneDonazione === 1) {
+        abilitazioneDonazione = <FormAlert colorType="success" message="Sei abilitato a donare" />
+      }
+    }
+
     return (
       <div id="accordion" className="mt-2">
+        {abilitazioneDonazione}
         <div className="card">
           <div className="card-header" id="profilo">
             <h5 className="mb-0">
@@ -55,7 +116,7 @@ class ProfiloUtente extends Component {
             data-parent="#accordion"
           >
             <div className="card-body">
-              {this.state.fields.id && <FormProfilo value={this.state.fields}/>}
+              {this.state.fields.id && <FormProfilo value={this.state.fields} />}
             </div>
           </div>
         </div>
@@ -69,9 +130,9 @@ class ProfiloUtente extends Component {
                 aria-expanded="false"
                 aria-controls="collapsemodulo"
               >
-                {this.state.aud==="donatore" && "MODULO"}
-                {this.state.aud==="sedeAvis" && "LISTA PRENOTAZIONI"}
-                {this.state.aud==="centroTrasfusione" && "LISTA EMERGENZE"}
+                {this.state.aud === "donatore" && "MODULO"}
+                {this.state.aud === "sedeAvis" && "LISTA PRENOTAZIONI"}
+                {this.state.aud === "centroTrasfusione" && "LISTA EMERGENZE"}
               </button>
             </h5>
           </div>
@@ -82,9 +143,10 @@ class ProfiloUtente extends Component {
             data-parent="#accordion"
           >
             <div className="card-body">
-              {this.state.aud==="donatore" && this.state.fields.id && <FormModulo value={this.state.fields.modulo}/>}
-              {this.state.aud==="sedeAvis" && this.state.fields.id && <FormListPrenotazioni value={this.state.fields}/>}
-              {this.state.aud==="centroTrasfusione" && this.state.fields.id && <FormListEmergenze value={this.state.fields}/>}
+              {this.state.aud === "donatore" && this.state.fields.id && <FormModulo value={this.state.fields.modulo} />}
+              {this.state.aud === "sedeAvis" && this.state.fields.id && <TableDateLibere data={this.state.listaLibere} />}
+              {this.state.aud === "sedeAvis" && this.state.fields.id && <TableDatePrenotate data={this.state.listaPrenotate} />}
+              {this.state.aud === "centroTrasfusione" && this.state.fields.id && <TableEmergenzeSangue data={this.state.emergenze} />}
             </div>
           </div>
         </div>

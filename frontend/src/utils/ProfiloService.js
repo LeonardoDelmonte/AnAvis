@@ -18,6 +18,16 @@ class ProfiloService {
         return await axiosInstance.put('/profilo/modulo',modulo)
     }
 
+    async getPrenotazioni(){
+        return await axiosInstance.get('/gestione-date/prenotazioni')
+    }
+
+    async deleteDate(Prenotazione){
+        return await axiosInstance.delete('/gestione-date/cancellazione',
+                { data:Prenotazione } 
+          )
+    }
+
 }
 
 export default new ProfiloService()
