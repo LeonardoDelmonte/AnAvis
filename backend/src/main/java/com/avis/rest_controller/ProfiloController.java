@@ -2,11 +2,8 @@ package com.avis.rest_controller;
 
 import java.util.logging.Logger;
 
-import javax.servlet.http.HttpServletRequest;
-
 import com.avis.dto.CredenzialiDto;
 import com.avis.dto.ModuloDto;
-import com.avis.models.Donatore;
 import com.avis.models.Modulo;
 import com.avis.models.Utente;
 import com.avis.services.ProfiloService;

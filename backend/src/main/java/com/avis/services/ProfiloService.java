@@ -2,7 +2,6 @@ package com.avis.services;
 
 import java.util.Date;
 import java.util.List;
-import java.util.Optional;
 
 import com.avis.dto.CredenzialiDto;
 import com.avis.models.CentroTrasfusione;
@@ -37,16 +36,14 @@ public class ProfiloService {
     @Autowired
     private AuthenticationRepository authRepository;
 
-
     public Utente modificaModulo(Modulo newModulo, String email) {
         Donatore donatore = donatoreRepository.findByEmail(email);
-        if(donatore.getModulo().getId()!=newModulo.getId())
+        if (donatore.getModulo().getId() != newModulo.getId())
             return null;
         newModulo.setModuloCompilato((byte) 1);
         moduloRepository.save(newModulo);
         donatore = this.checkAbilitazione(email);
-        donatoreRepository.save(donatore);
-        return donatore;
+        return donatoreRepository.save(donatore);
     }
 
     public Utente showInfo(Utente utente) {
@@ -62,12 +59,12 @@ public class ProfiloService {
         }
     }
 
-    public Modulo showModulo(String email){
+    public Modulo showModulo(String email) {
         Utente utente = authRepository.findByEmail(email);
         Modulo modulo = null;
-        if(utente==null)
-            return modulo; 
-        if(utente.getRuolo().compareTo("donatore")==0){
+        if (utente == null)
+            return modulo;
+        if (utente.getRuolo().compareTo("donatore") == 0) {
             Donatore donatore = (Donatore) utente;
             modulo = donatore.getModulo();
         }
@@ -105,7 +102,7 @@ public class ProfiloService {
     public Donatore checkAbilitazione(String email) {
         // check exception
         Donatore donatore = donatoreRepository.findByEmail(email);
-        if (donatore.getModulo().getModuloCompilato()==0)
+        if (donatore.getModulo().getModuloCompilato() == 0)
             return donatore;
         Long date = new Date().getTime();
         Long last = 0L;
