@@ -4,6 +4,8 @@ import java.sql.Timestamp;
 import java.util.List;
 import java.util.logging.Logger;
 
+import javax.servlet.http.HttpServletRequest;
+
 import com.avis.dto.DateDto;
 import com.avis.dto.PrenotazioneDto;
 import com.avis.models.Prenotazione;
@@ -56,8 +58,8 @@ public class PrenotazioneController {
     }
 
     @DeleteMapping("/donatore/cancella-prenotazione")
-    public ResponseEntity<InterfaceApi> deletePrenotazione(@RequestBody long prenotazione) {
-        if (!prenotazioniService.deletePrenotazione(prenotazione)) {
+    public ResponseEntity<InterfaceApi> deletePrenotazione(HttpServletRequest req) {
+        if (!prenotazioniService.deletePrenotazione(Long.valueOf(req.getHeader("data")))) {
             return new ResponseEntity<>(new ApiResponse<>("Prenotazione non cancellata"), HttpStatus.BAD_REQUEST);
         }
         Logger.getGlobal().info("una prenotazione è stata cancellata");
@@ -73,8 +75,8 @@ public class PrenotazioneController {
     }
 
     @DeleteMapping("/gestione-date/cancellazione")
-    public ResponseEntity<InterfaceApi> deleteDate(@RequestBody long prenotazione) {
-        if (!prenotazioniService.deleteDate(prenotazione)) {
+    public ResponseEntity<InterfaceApi> deleteDate(HttpServletRequest req) {
+        if (!prenotazioniService.deleteDate(Long.valueOf(req.getHeader("data")))) {
             return new ResponseEntity<>(new ApiResponse<>("Data non cancellata"), HttpStatus.BAD_REQUEST);
         }
         Logger.getGlobal().info("una data è stata cancellata");
