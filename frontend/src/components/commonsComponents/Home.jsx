@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import Areogramma from '../GraphicsComponents/Areogramma';
 import Cartesiano from '../GraphicsComponents/Cartesiano';
 import Istogramma from '../GraphicsComponents/Istogramma';
+import Maps from '../commonsComponents/maps';
 
 
 class Home extends Component {
@@ -16,6 +17,7 @@ class Home extends Component {
         return (
             <div>
                 <h1>Benvenuto</h1> 
+                <Maps />
                 <Istogramma />
                 <Areogramma />
                 <Cartesiano />

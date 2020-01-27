@@ -82,3 +82,31 @@
      utente appena autenticato
 26-01-2020 17:12:46.645 [35m[http-nio-8080-exec-2][0;39m [34mINFO [0;39m global.insertDate - 
      nuove date inserite
+26-01-2020 17:37:48.098 [35m[http-nio-8080-exec-3][0;39m [34mINFO [0;39m global.generateToken - 
+     nuovo token generato
+26-01-2020 17:37:48.102 [35m[http-nio-8080-exec-3][0;39m [34mINFO [0;39m global.createAuthenticationToken - 
+     utente appena autenticato
+26-01-2020 17:38:33.877 [35m[http-nio-8080-exec-3][0;39m [34mINFO [0;39m global.generateToken - 
+     nuovo token generato
+26-01-2020 17:38:33.880 [35m[http-nio-8080-exec-3][0;39m [34mINFO [0;39m global.createAuthenticationToken - 
+     utente appena autenticato
+26-01-2020 17:38:46.602 [35m[http-nio-8080-exec-7][0;39m [34mINFO [0;39m global.generateToken - 
+     nuovo token generato
+26-01-2020 17:38:46.603 [35m[http-nio-8080-exec-7][0;39m [34mINFO [0;39m global.createAuthenticationToken - 
+     utente appena autenticato
+26-01-2020 17:55:19.409 [35m[http-nio-8080-exec-1][0;39m [34mINFO [0;39m global.generateToken - 
+     nuovo token generato
+26-01-2020 17:55:19.411 [35m[http-nio-8080-exec-1][0;39m [34mINFO [0;39m global.createAuthenticationToken - 
+     utente appena autenticato
+26-01-2020 17:59:12.239 [35m[http-nio-8080-exec-9][0;39m [34mINFO [0;39m global.prenotaData - 
+     nuova data prenotata
+26-01-2020 18:07:23.728 [35m[Thread-29][0;39m [34mINFO [0;39m o.s.s.c.ThreadPoolTaskExecutor.shutdown - 
+     Shutting down ExecutorService 'applicationTaskExecutor'
+26-01-2020 18:07:23.729 [35m[Thread-29][0;39m [34mINFO [0;39m o.s.o.j.LocalContainerEntityManagerFactoryBean.destroy - 
+     Closing JPA EntityManagerFactory for persistence unit 'default'
+26-01-2020 18:07:23.730 [35m[Thread-29][0;39m [34mINFO [0;39m com.zaxxer.hikari.HikariDataSource.close - 
+     HikariPool-6 - Shutdown initiated...
+26-01-2020 18:07:23.732 [35m[Thread-29][0;39m [34mINFO [0;39m com.zaxxer.hikari.HikariDataSource.close - 
+     HikariPool-6 - Shutdown completed.
+26-01-2020 18:07:24.016 [35m[restartedMain][0;39m [31mWARN [0;39m com.avis.AnAvisApplication.main - 
+     Start

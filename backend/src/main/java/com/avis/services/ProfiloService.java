@@ -44,6 +44,8 @@ public class ProfiloService {
             return null;
         newModulo.setModuloCompilato((byte) 1);
         moduloRepository.save(newModulo);
+        donatore = this.checkAbilitazione(email);
+        donatoreRepository.save(donatore);
         return donatore;
     }
 
