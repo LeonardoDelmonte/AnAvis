@@ -15,14 +15,16 @@ function Spinner(props) {
     return (
         <div>
             {!props.ready &&
-                <div class="d-flex justify-content-center loader">
-                    <div class="spinner-grow text-primary" role="status">
-                        <span class="sr-only">Loading...</span>
+                <div>
+                    <h5 className="text-center mt-5">Caricamento delle news in corso .....</h5>
+                    <div className="d-flex justify-content-center loader">
+                        <div className="spinner-grow text-primary" role="status">
+                            <span className="sr-only">Loading...</span>
+                        </div>
                     </div>
                 </div>
             }
         </div>
-
     );
 }
 

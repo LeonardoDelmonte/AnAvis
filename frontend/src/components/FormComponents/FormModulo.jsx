@@ -15,19 +15,29 @@ class FormModulo extends Component {
   }
 
   componentDidMount() {
-    if(this.props.value)
+    if (this.props.value)
       this.setState({ fields: this.props.value, email: this.props.email });
   }
 
-  handleChangeSelect = data => {
-        this.setState(prevState =>({
-          fields:{
-            ...prevState.fields,
-            ["gruppoSanguigno"]:data.value
-          },isEnabled:true
-         })); 
-              console.log(this.state)            
-    };
+  handleChangeSelectGruppo = data => {
+    this.setState(prevState => ({
+      fields: {
+        ...prevState.fields,
+        "gruppoSanguigno": data.value
+      }, isEnabled: true
+    }));
+    console.log(this.state)
+  };
+
+  handleChangeSelectFumatore = data => {
+    this.setState(prevState => ({
+      fields: {
+        ...prevState.fields,
+        "fumatore": data.value
+      }, isEnabled: true
+    }));
+    console.log(this.state)
+  };
 
   handlerChange = e => {
     const value = e.target.value;
@@ -43,6 +53,7 @@ class FormModulo extends Component {
 
   handlerSubmit = e => {
     e.preventDefault();
+    window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
     var DtoModulo = {
       modulo: this.state.fields,
       email: this.state.email
@@ -50,7 +61,7 @@ class FormModulo extends Component {
     console.log(DtoModulo);
     ProfiloService.modificaModulo(DtoModulo)
       .then(res => {
-        this.setState({ message: res.data.message, type: "success"});
+        this.setState({ message: res.data.message, type: "success" });
       })
       .catch(err => {
         this.setState({ message: err.response.data.message, type: "danger" });
@@ -70,44 +81,15 @@ class FormModulo extends Component {
       { value: 'AB Rh-', label: 'AB Rh-' },
       { value: 'AB Rh+', label: 'AB Rh+' }
     ]
-    return ( 
+    const optionsSiNo = [
+      { value: 'Si', label: 'Si' },
+      { value: 'No', label: 'No' }
+    ]
+    return (
       <div>
         <FormAlert message={this.state.message} colorType={this.state.type} />
         <form id="ModuloForm" onSubmit={this.handlerSubmit}>
           <div className="row m-3">
-            <div className="col-sm-12 col-md-12 col-lg-12 col-xl-12">
-              <FormSelect
-                label="Seleziona gruppo sanguigno:"
-                id="gruppoSanguigno"
-                name="gruppoSanguigno"
-                options={optionsGruppoSanguigno}
-                onChange={this.handleChangeSelect}
-                isSearchable={false}
-                value={this.state.fields.gruppoSanguigno}             
-              />
-            </div>
-            <div className="col-sm-12 col-md-12 col-lg-12 col-xl-12">
-              <FormInput
-                label="Fumatore"
-                type="text"
-                id="fumatore"
-                name="fumatore"
-                value={this.state.fields.fumatore}
-                onChange={this.handlerChange}
-                required
-              />
-            </div>
-            <div className="col-sm-12 col-md-12 col-lg-12 col-xl-12">
-              <FormInput
-                label="Codice Fiscale"
-                type="text"
-                id="codiceFiscale"
-                name="codiceFiscale"
-                value={this.state.fields.codiceFiscale}
-                onChange={this.handlerChange}
-                required
-              />
-            </div>
             <div className="col-sm-12 col-md-12 col-lg-12 col-xl-12">
               <FormInput
                 label="Indirizzo"
@@ -128,6 +110,40 @@ class FormModulo extends Component {
                 value={this.state.fields.telefono}
                 onChange={this.handlerChange}
                 required
+              />
+            </div>
+            <div className="col-sm-12 col-md-12 col-lg-12 col-xl-12">
+              <FormInput
+                label="Codice Fiscale"
+                type="text"
+                id="codiceFiscale"
+                name="codiceFiscale"
+                value={this.state.fields.codiceFiscale}
+                onChange={this.handlerChange}
+                required
+              />
+            </div>
+
+            <div className="col-sm-12 col-md-12 col-lg-12 col-xl-12">
+              <FormSelect
+                label="Seleziona gruppo sanguigno"
+                id="gruppoSanguigno"
+                name="gruppoSanguigno"
+                options={optionsGruppoSanguigno}
+                onChange={this.handleChangeSelectGruppo}
+                isSearchable={false}
+                value={this.state.fields.gruppoSanguigno}
+              />
+            </div>
+            <div className="col-sm-12 col-md-12 col-lg-12 col-xl-12">
+              <FormSelect
+                label="Fumatore"
+                id="fumatore"
+                name="fumatore"
+                options={optionsSiNo}
+                onChange={this.handleChangeSelectFumatore}
+                isSearchable={false}
+                value={this.state.fields.fumatore}
               />
             </div>
             <div className="col-sm-12 col-md-12 col-lg-12 col-xl-12">
