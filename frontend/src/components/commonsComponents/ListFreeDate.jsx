@@ -18,8 +18,8 @@ const columns = memoize(clickHandler => [
         sortable: true,
     },
     {
-        name: 'Denominazione',
-        selector: 'idSedeAvis.denominazione',
+        name: 'Comune',
+        selector: 'idSedeAvis.comune',
         sortable: true,
     },
     {
@@ -163,7 +163,7 @@ class ListFreeDate extends PureComponent {
                             </div>
 
                             <div className="modal-body">
-                                {this.state.modulo && <FormModulo value={this.state.modulo} />}
+                                {this.state.modulo && <FormModulo value={this.state.modulo} email={this.props.emailDonatore} />}
                             </div>
 
                             <div className="modal-footer">

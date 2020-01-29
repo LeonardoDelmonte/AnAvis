@@ -19,7 +19,7 @@ const columns = memoize(clickHandler => [
     },
     {
         name: 'Elimina',
-        cell: (row) => <button type="button" className="btn btn-danger" onClick={clickHandler} id={row.id}>Elimina</button>,
+        cell: (row) => <button type="button" className="btn btn-danger" onClick={clickHandler} id={row.idPrenotazione}>Elimina</button>,
         ignoreRowClick: true,
         allowOverflow: true,
         button: true,
@@ -35,7 +35,7 @@ class TableDateLibere extends Component {
     
     
     handleButtonClick = (state) => {
-        console.log(state.target.id)
+        console.log(state)
         ProfiloService.deleteDate(state.target.id)
         .then(
             response => {

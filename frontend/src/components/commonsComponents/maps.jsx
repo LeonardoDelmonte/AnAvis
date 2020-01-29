@@ -7,6 +7,9 @@ import {
   Marker,
   InfoWindow
 } from "react-google-maps"
+import Geocode from "react-geocode";
+Geocode.setLanguage("it");
+Geocode.setApiKey("AIzaSyCRfaW0Kx2El3bVuYiB4DYZ5i2w_vsKoDM");
 
 const MapWithAMarker = compose(withScriptjs, withGoogleMap)(props => {
 
@@ -42,20 +45,57 @@ export default class ShelterMap extends Component {
       selectedMarker: false
     }
   }
+
   componentDidMount() {
-    fetch("https://api.harveyneeds.org/api/v1/shelters?limit=20")
-      .then(r => 
-          r.json()
-        )
-      .then(data => {
-        this.setState({ shelters: data.shelters })
-        console.log(data);
-      })
+    // fetch("https://api.harveyneeds.org/api/v1/shelters?limit=20")
+    //   .then(r =>
+    //     r.json()
+    //   )
+    //   .then(data => {
+    //     this.setState({ shelters: data.shelters }, () => {
+    //       console.log(this.state.shelters)
+    //     })
+    //     // console.log(data);
+    //   })
+
+    // var aaa = []
+    // aaa[0] = {  id:"0", 
+    //             county:"Italia", 
+    //             shelter:"", 
+    //             address:"via della riviera", 
+    //             city: "Potenza Picena", 
+    //             pets:"", 
+    //             phone:"", 
+    //             accepting:"", 
+    //             updated_by:"",
+    //             notes:"",
+    //             volunteer_needs: "",
+    //             longitude: 1,
+    //             latitude: 1}
+
+
+    // this.setState({ shelters: aaa }, () => {
+    //   console.log(this.state.shelters)
+    // })
+
+    Geocode.fromAddress("Eiffel Tower").then(
+      response => {
+        const { lat, lng } = response.results[0].geometry.location;
+        console.log(lat, lng);
+      },
+      error => {
+        console.error(error);
+      }
+    );
+
+    // console.log(this.state.shelters)
   }
+
   handleClick = (marker, event) => {
     // console.log({ marker })
     this.setState({ selectedMarker: marker })
   }
+
   render() {
     return (
       <MapWithAMarker

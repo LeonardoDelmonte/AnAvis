@@ -99,13 +99,24 @@ class Register extends Component {
                     }
                     {/*campi SedeAvis e centroTrasfusione */}
                     {
-                        (this.state.fields.ruolo === "sedeAvis" || this.state.fields.ruolo === "centroTrasfusione") &&
+                        (this.state.fields.ruolo === "sedeAvis") &&
                         <div>
-                            <FormInput label="Denominazione" type="text" id="denominazione" name="denominazione" value={this.state.fields.denominazione} onChange={this.handleChange} required />
-                            <FormInput label="Indirizzo" type="text" id="indirizzo" name="indirizzo" value={this.state.fields.indirizzo} onChange={this.handleChange} required />
                             <FormInput label="Regione" type="text" id="regione" name="regione" value={this.state.fields.regione} onChange={this.handleChange} required />
                             <FormInput label="Provincia" type="text" id="provincia" name="provincia" value={this.state.fields.provincia} onChange={this.handleChange} required />
                             <FormInput label="Comune" type="text" id="comune" name="comune" value={this.state.fields.comune} onChange={this.handleChange} required />
+                            <FormInput label="Indirizzo" type="text" id="indirizzo" name="indirizzo" value={this.state.fields.indirizzo} onChange={this.handleChange} required />
+                            <FormInput label="Telefono" type="text" id="telefono" name="telefono" value={this.state.fields.telefono} onChange={this.handleChange} required />
+                        </div>
+                    }
+                    {
+                        (this.state.fields.ruolo === "centroTrasfusione") &&
+                        <div>
+                            <FormInput label="Regione" type="text" id="regione" name="regione" value={this.state.fields.regione} onChange={this.handleChange} required />
+                            <FormInput label="Provincia" type="text" id="provincia" name="provincia" value={this.state.fields.provincia} onChange={this.handleChange} required />
+                            <FormInput label="Comune" type="text" id="comune" name="comune" value={this.state.fields.comune} onChange={this.handleChange} required />
+                            <FormInput label="Indirizzo" type="text" id="indirizzo" name="indirizzo" value={this.state.fields.indirizzo} onChange={this.handleChange} required />
+                            <FormInput label="Direttore" type="text" id="direttore" name="direttore" value={this.state.fields.direttore} onChange={this.handleChange} required />
+                            <FormInput label="Ospedale" type="text" id="ospedale" name="ospedale" value={this.state.fields.ospedale} onChange={this.handleChange} required />
                         </div>
                     }
                     {/*campi in comune */}
