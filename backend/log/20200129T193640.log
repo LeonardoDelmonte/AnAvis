@@ -1,0 +1,72 @@
+29-01-2020 19:36:40.205 [35m[restartedMain][0;39m [34mINFO [0;39m com.avis.AnAvisApplication.logStarting - 
+     Starting AnAvisApplication on DESKTOP-V9I5L9F with PID 16484 (C:\Users\Marco\Desktop\AnAvis\backend\target\classes started by Marco in c:\Users\Marco\Desktop\AnAvis\backend)
+29-01-2020 19:36:40.206 [35m[restartedMain][0;39m [34mINFO [0;39m com.avis.AnAvisApplication.logStartupProfileInfo - 
+     No active profile set, falling back to default profiles: default
+29-01-2020 19:36:40.424 [35m[restartedMain][0;39m [34mINFO [0;39m o.s.d.r.c.RepositoryConfigurationDelegate.registerRepositoriesIn - 
+     Bootstrapping Spring Data repositories in DEFAULT mode.
+29-01-2020 19:36:40.469 [35m[restartedMain][0;39m [34mINFO [0;39m o.s.d.r.c.RepositoryConfigurationDelegate.registerRepositoriesIn - 
+     Finished Spring Data repository scanning in 42ms. Found 7 repository interfaces.
+29-01-2020 19:36:40.554 [35m[restartedMain][0;39m [34mINFO [0;39m o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker.postProcessAfterInitialization - 
+     Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+29-01-2020 19:36:40.561 [35m[restartedMain][0;39m [34mINFO [0;39m o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker.postProcessAfterInitialization - 
+     Bean 'org.springframework.security.config.annotation.configuration.ObjectPostProcessorConfiguration' of type [org.springframework.security.config.annotation.configuration.ObjectPostProcessorConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+29-01-2020 19:36:40.562 [35m[restartedMain][0;39m [34mINFO [0;39m o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker.postProcessAfterInitialization - 
+     Bean 'objectPostProcessor' of type [org.springframework.security.config.annotation.configuration.AutowireBeanFactoryObjectPostProcessor] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+29-01-2020 19:36:40.563 [35m[restartedMain][0;39m [34mINFO [0;39m o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker.postProcessAfterInitialization - 
+     Bean 'org.springframework.security.access.expression.method.DefaultMethodSecurityExpressionHandler@617a2e6a' of type [org.springframework.security.access.expression.method.DefaultMethodSecurityExpressionHandler] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+29-01-2020 19:36:40.564 [35m[restartedMain][0;39m [34mINFO [0;39m o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker.postProcessAfterInitialization - 
+     Bean 'org.springframework.security.config.annotation.method.configuration.GlobalMethodSecurityConfiguration' of type [org.springframework.security.config.annotation.method.configuration.GlobalMethodSecurityConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+29-01-2020 19:36:40.564 [35m[restartedMain][0;39m [34mINFO [0;39m o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker.postProcessAfterInitialization - 
+     Bean 'methodSecurityMetadataSource' of type [org.springframework.security.access.method.DelegatingMethodSecurityMetadataSource] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+29-01-2020 19:36:40.594 [35m[restartedMain][0;39m [31mWARN [0;39m o.a.tomcat.util.modeler.Registry.log - 
+     The MBean registry cannot be disabled because it has already been initialised
+29-01-2020 19:36:40.616 [35m[restartedMain][0;39m [34mINFO [0;39m o.s.b.w.e.tomcat.TomcatWebServer.initialize - 
+     Tomcat initialized with port(s): 8080 (http)
+29-01-2020 19:36:40.617 [35m[restartedMain][0;39m [34mINFO [0;39m o.a.coyote.http11.Http11NioProtocol.log - 
+     Initializing ProtocolHandler ["http-nio-8080"]
+29-01-2020 19:36:40.617 [35m[restartedMain][0;39m [34mINFO [0;39m o.a.catalina.core.StandardService.log - 
+     Starting service [Tomcat]
+29-01-2020 19:36:40.618 [35m[restartedMain][0;39m [34mINFO [0;39m o.a.catalina.core.StandardEngine.log - 
+     Starting Servlet engine: [Apache Tomcat/9.0.27]
+29-01-2020 19:36:40.642 [35m[restartedMain][0;39m [34mINFO [0;39m o.a.c.c.C.[Tomcat-2].[localhost].[/].log - 
+     Initializing Spring embedded WebApplicationContext
+29-01-2020 19:36:40.643 [35m[restartedMain][0;39m [34mINFO [0;39m o.s.web.context.ContextLoader.prepareWebApplicationContext - 
+     Root WebApplicationContext: initialization completed in 434 ms
+29-01-2020 19:36:40.682 [35m[restartedMain][0;39m [34mINFO [0;39m o.h.jpa.internal.util.LogHelper.logPersistenceUnitInformation - 
+     HHH000204: Processing PersistenceUnitInfo [name: default]
+29-01-2020 19:36:40.688 [35m[restartedMain][0;39m [34mINFO [0;39m com.zaxxer.hikari.HikariDataSource.getConnection - 
+     HikariPool-16 - Starting...
+29-01-2020 19:36:40.694 [35m[restartedMain][0;39m [34mINFO [0;39m com.zaxxer.hikari.HikariDataSource.getConnection - 
+     HikariPool-16 - Start completed.
+29-01-2020 19:36:40.694 [35m[restartedMain][0;39m [34mINFO [0;39m org.hibernate.dialect.Dialect.<init> - 
+     HHH000400: Using dialect: org.hibernate.dialect.MySQL5InnoDBDialect
+29-01-2020 19:36:41.760 [35m[restartedMain][0;39m [34mINFO [0;39m o.h.e.t.j.p.i.JtaPlatformInitiator.initiateService - 
+     HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+29-01-2020 19:36:41.761 [35m[restartedMain][0;39m [34mINFO [0;39m o.s.o.j.LocalContainerEntityManagerFactoryBean.buildNativeEntityManagerFactory - 
+     Initialized JPA EntityManagerFactory for persistence unit 'default'
+29-01-2020 19:36:41.773 [35m[restartedMain][0;39m [34mINFO [0;39m o.s.b.d.a.OptionalLiveReloadServer.startServer - 
+     LiveReload server is running on port 35729
+29-01-2020 19:36:41.952 [35m[restartedMain][0;39m [31mWARN [0;39m o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration.openEntityManagerInViewInterceptor - 
+     spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+29-01-2020 19:36:41.990 [35m[restartedMain][0;39m [34mINFO [0;39m o.s.s.web.DefaultSecurityFilterChain.<init> - 
+     Creating filter chain: any request, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@75916310, org.springframework.security.web.context.SecurityContextPersistenceFilter@19129cd1, org.springframework.security.web.header.HeaderWriterFilter@3cb89bf5, org.springframework.web.filter.CorsFilter@49cc602d, org.springframework.security.web.authentication.logout.LogoutFilter@7945ea33, com.avis.security.JwtAuthenticationTokenFilter@19d732c4, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@4254fd42, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@3a4bb1ce, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@7917a010, org.springframework.security.web.session.SessionManagementFilter@5d22637d, org.springframework.security.web.access.ExceptionTranslationFilter@67e78f4e, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@4b5b127d]
+29-01-2020 19:36:42.031 [35m[restartedMain][0;39m [34mINFO [0;39m o.s.s.c.ThreadPoolTaskExecutor.initialize - 
+     Initializing ExecutorService 'applicationTaskExecutor'
+29-01-2020 19:36:42.102 [35m[restartedMain][0;39m [34mINFO [0;39m o.a.coyote.http11.Http11NioProtocol.log - 
+     Starting ProtocolHandler ["http-nio-8080"]
+29-01-2020 19:36:42.107 [35m[restartedMain][0;39m [34mINFO [0;39m o.s.b.w.e.tomcat.TomcatWebServer.start - 
+     Tomcat started on port(s): 8080 (http) with context path ''
+29-01-2020 19:36:42.108 [35m[restartedMain][0;39m [34mINFO [0;39m com.avis.AnAvisApplication.logStarted - 
+     Started AnAvisApplication in 1.935 seconds (JVM running for 10296.956)
+29-01-2020 19:36:42.367 [35m[restartedMain][0;39m [34mINFO [0;39m o.s.b.d.a.ConditionEvaluationDeltaLoggingListener.onApplicationEvent - 
+     Condition evaluation unchanged
+29-01-2020 19:42:12.323 [35m[Thread-74][0;39m [34mINFO [0;39m o.s.s.c.ThreadPoolTaskExecutor.shutdown - 
+     Shutting down ExecutorService 'applicationTaskExecutor'
+29-01-2020 19:42:12.325 [35m[Thread-74][0;39m [34mINFO [0;39m o.s.o.j.LocalContainerEntityManagerFactoryBean.destroy - 
+     Closing JPA EntityManagerFactory for persistence unit 'default'
+29-01-2020 19:42:12.328 [35m[Thread-74][0;39m [34mINFO [0;39m com.zaxxer.hikari.HikariDataSource.close - 
+     HikariPool-16 - Shutdown initiated...
+29-01-2020 19:42:12.334 [35m[Thread-74][0;39m [34mINFO [0;39m com.zaxxer.hikari.HikariDataSource.close - 
+     HikariPool-16 - Shutdown completed.
+29-01-2020 19:42:12.867 [35m[restartedMain][0;39m [31mWARN [0;39m com.avis.AnAvisApplication.main - 
+     Start

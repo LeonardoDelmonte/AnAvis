@@ -42,4 +42,9 @@ public class EmergenzaService {
         return emergenze;
     }
 
+    public List<?> countGruppo() {
+        List<?> emergenze = emergenzaRepository.countGruppo();
+        return emergenze;
+    }
+
 }

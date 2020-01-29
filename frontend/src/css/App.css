@@ -105,6 +105,12 @@ body {
 
 }
 
+.react-confirm-alert-button-group > button{
+  background-color: firebrick !important; /* Green */
+  
+}
+
+
 
 
 

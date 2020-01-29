@@ -54,4 +54,9 @@ public class EmergenzaController {
         return new ResponseEntity<>(new ApiResponse<Emergenza>(emergenzaService.getEmergenze(utente.getId())), HttpStatus.OK);
     }
 
+    @GetMapping("/countEmergenze")
+    public @ResponseBody ResponseEntity<InterfaceApi> countGruppo() {
+        return new ResponseEntity<>(new ApiResponse<>(emergenzaService.countGruppo()), HttpStatus.OK);
+    }
+
 }
