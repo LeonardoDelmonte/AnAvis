@@ -18,6 +18,7 @@ import com.avis.utils.InterfaceApi;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -87,6 +88,14 @@ public class PrenotazioneController {
     public ResponseEntity<InterfaceApi> getPrenotazioni() {
         Utente utente = (Utente) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         ApiResponse<Prenotazione> response = prenotazioniService.getPrenotazioni(utente.getId());
+        return new ResponseEntity<>(response, response.getStatus());
+    }
+
+    @PreAuthorize("cancPrenotazioni")
+    @GetMapping("/gestione-date/donatore/prenotazioni")
+    public ResponseEntity<InterfaceApi> getPrenotazioniDonatore() {
+        Utente utente = (Utente) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        ApiResponse<Prenotazione> response = prenotazioniService.getPrenotazioniDonatore(utente.getId());
         return new ResponseEntity<>(response, response.getStatus());
     }
 

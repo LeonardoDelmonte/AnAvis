@@ -114,4 +114,13 @@ public class PrenotazioniService {
         return new ApiResponse<Prenotazione>("listaPrenotate", listPrenotate, "listaLibere", listLibere);
     }
 
+    public ApiResponse<Prenotazione> getPrenotazioniDonatore(long id){
+        List<Prenotazione> listPrenotazioni;
+        Optional<Donatore> donatore = donatoreRepository.findById(id);
+        if (!donatore.isPresent())
+            return new ApiResponse<>("sessione danneggiata, riloggare", HttpStatus.BAD_REQUEST);
+        listPrenotazioni = prenotazioniRepository.findByIdDonatore(donatore.get());
+        return new ApiResponse<Prenotazione>(listPrenotazioni);
+    }
+
 }

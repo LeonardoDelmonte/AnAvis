@@ -57,6 +57,7 @@ public class ApiResponse<T> implements InterfaceApi {
     // get date libere, get emergenza
     public ApiResponse(List<T> list) {
         this.list = list;
+        this.status = HttpStatus.OK;
     }
 
     public ApiResponse(Modulo modulo){
