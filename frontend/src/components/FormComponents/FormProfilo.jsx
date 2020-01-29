@@ -87,24 +87,6 @@ class FormProfilo extends Component {
               this.state.fields.ruolo === "centroTrasfusione") && (
               <div className="col-sm-12 col-md-12 col-lg-12 col-xl-12">
                 <FormInput
-                  label="Denominazione"
-                  type="text"
-                  id="denominazione"
-                  name="denominazione"
-                  value={this.state.fields.denominazione}
-                  onChange={this.handleChange}
-                  required
-                />
-                <FormInput
-                  label="Indirizzo"
-                  type="text"
-                  id="indirizzo"
-                  name="indirizzo"
-                  value={this.state.fields.indirizzo}
-                  onChange={this.handleChange}
-                  required
-                />
-                <FormInput
                   label="Regione"
                   type="text"
                   id="regione"
@@ -131,6 +113,52 @@ class FormProfilo extends Component {
                   onChange={this.handleChange}
                   required
                 />
+                <FormInput
+                  label="Indirizzo"
+                  type="text"
+                  id="indirizzo"
+                  name="indirizzo"
+                  value={this.state.fields.indirizzo}
+                  onChange={this.handleChange}
+                  required
+                />
+              </div>
+            )}
+            {/*campi SedeAvis */}
+            {(this.state.fields.ruolo === "sedeAvis") && (
+              <div className="col-sm-12 col-md-12 col-lg-12 col-xl-12">
+		            <FormInput
+                  label="Telefono"
+                  type="text"
+                  id="telefono"
+                  name="telefono"
+                  value={this.state.fields.telefono}
+                  onChange={this.handleChange}
+                  required
+                />
+              </div>
+            )}
+            {/*campi centroTrasfusione*/}
+            {(this.state.fields.ruolo === "centroTrasfusione") && (
+              <div className="col-sm-12 col-md-12 col-lg-12 col-xl-12">
+		            <FormInput
+                  label="Direttore"
+                  type="text"
+                  id="direttore"
+                  name="direttore"
+                  value={this.state.fields.direttore}
+                  onChange={this.handleChange}
+                  required
+                />
+		            <FormInput
+                  label="Ospedale"
+                  type="text"
+                  id="ospedale"
+                  name="ospedale"
+                  value={this.state.fields.ospedale}
+                  onChange={this.handleChange}
+                  required
+                />
               </div>
             )}
             <div className="col-sm-12 col-md-12 col-lg-12 col-xl-12">
@@ -139,7 +167,7 @@ class FormProfilo extends Component {
                 className="btn btn-primary btn-lg btn-block"
                 disabled={!this.state.isEnabled}
               >
-                modifica Profilo
+                Modifica Profilo
               </button>
             </div>
           </div>
