@@ -1,0 +1,142 @@
+29-01-2020 14:53:55.469 [35m[main][0;39m [31mWARN [0;39m com.avis.AnAvisApplication.main - 
+     Start
+29-01-2020 14:53:55.637 [35m[restartedMain][0;39m [31mWARN [0;39m com.avis.AnAvisApplication.main - 
+     Start
+29-01-2020 14:53:55.904 [35m[restartedMain][0;39m [34mINFO [0;39m com.avis.AnAvisApplication.logStarting - 
+     Starting AnAvisApplication on DESKTOP-K3D9L0U with PID 16812 (C:\Users\Rebichini\Desktop\AnAvis\backend\target\classes started by Rebichini in c:\Users\Rebichini\Desktop\AnAvis\backend)
+29-01-2020 14:53:55.905 [35m[restartedMain][0;39m [34mINFO [0;39m com.avis.AnAvisApplication.logStartupProfileInfo - 
+     No active profile set, falling back to default profiles: default
+29-01-2020 14:53:55.978 [35m[restartedMain][0;39m [34mINFO [0;39m o.s.b.d.restart.ChangeableUrls.logTo - 
+     The Class-Path manifest attribute in C:\Users\Rebichini\.m2\repository\org\glassfish\jaxb\jaxb-runtime\2.3.2\jaxb-runtime-2.3.2.jar referenced one or more files that do not exist: file:/C:/Users/Rebichini/.m2/repository/org/glassfish/jaxb/jaxb-runtime/2.3.2/jakarta.xml.bind-api-2.3.2.jar,file:/C:/Users/Rebichini/.m2/repository/org/glassfish/jaxb/jaxb-runtime/2.3.2/txw2-2.3.2.jar,file:/C:/Users/Rebichini/.m2/repository/org/glassfish/jaxb/jaxb-runtime/2.3.2/istack-commons-runtime-3.0.8.jar,file:/C:/Users/Rebichini/.m2/repository/org/glassfish/jaxb/jaxb-runtime/2.3.2/stax-ex-1.8.1.jar,file:/C:/Users/Rebichini/.m2/repository/org/glassfish/jaxb/jaxb-runtime/2.3.2/FastInfoset-1.2.16.jar,file:/C:/Users/Rebichini/.m2/repository/org/glassfish/jaxb/jaxb-runtime/2.3.2/jakarta.activation-api-1.2.1.jar
+29-01-2020 14:53:55.979 [35m[restartedMain][0;39m [34mINFO [0;39m o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor.logTo - 
+     Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+29-01-2020 14:53:55.979 [35m[restartedMain][0;39m [34mINFO [0;39m o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor.logTo - 
+     For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+29-01-2020 14:53:56.620 [35m[restartedMain][0;39m [34mINFO [0;39m o.s.d.r.c.RepositoryConfigurationDelegate.registerRepositoriesIn - 
+     Bootstrapping Spring Data repositories in DEFAULT mode.
+29-01-2020 14:53:56.724 [35m[restartedMain][0;39m [34mINFO [0;39m o.s.d.r.c.RepositoryConfigurationDelegate.registerRepositoriesIn - 
+     Finished Spring Data repository scanning in 93ms. Found 7 repository interfaces.
+29-01-2020 14:53:57.105 [35m[restartedMain][0;39m [34mINFO [0;39m o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker.postProcessAfterInitialization - 
+     Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+29-01-2020 14:53:57.131 [35m[restartedMain][0;39m [34mINFO [0;39m o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker.postProcessAfterInitialization - 
+     Bean 'org.springframework.security.config.annotation.configuration.ObjectPostProcessorConfiguration' of type [org.springframework.security.config.annotation.configuration.ObjectPostProcessorConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+29-01-2020 14:53:57.146 [35m[restartedMain][0;39m [34mINFO [0;39m o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker.postProcessAfterInitialization - 
+     Bean 'objectPostProcessor' of type [org.springframework.security.config.annotation.configuration.AutowireBeanFactoryObjectPostProcessor] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+29-01-2020 14:53:57.148 [35m[restartedMain][0;39m [34mINFO [0;39m o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker.postProcessAfterInitialization - 
+     Bean 'org.springframework.security.access.expression.method.DefaultMethodSecurityExpressionHandler@ad1dfd0' of type [org.springframework.security.access.expression.method.DefaultMethodSecurityExpressionHandler] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+29-01-2020 14:53:57.152 [35m[restartedMain][0;39m [34mINFO [0;39m o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker.postProcessAfterInitialization - 
+     Bean 'org.springframework.security.config.annotation.method.configuration.GlobalMethodSecurityConfiguration' of type [org.springframework.security.config.annotation.method.configuration.GlobalMethodSecurityConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+29-01-2020 14:53:57.158 [35m[restartedMain][0;39m [34mINFO [0;39m o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker.postProcessAfterInitialization - 
+     Bean 'methodSecurityMetadataSource' of type [org.springframework.security.access.method.DelegatingMethodSecurityMetadataSource] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+29-01-2020 14:53:57.519 [35m[restartedMain][0;39m [34mINFO [0;39m o.s.b.w.e.tomcat.TomcatWebServer.initialize - 
+     Tomcat initialized with port(s): 8080 (http)
+29-01-2020 14:53:57.530 [35m[restartedMain][0;39m [34mINFO [0;39m o.a.coyote.http11.Http11NioProtocol.log - 
+     Initializing ProtocolHandler ["http-nio-8080"]
+29-01-2020 14:53:57.531 [35m[restartedMain][0;39m [34mINFO [0;39m o.a.catalina.core.StandardService.log - 
+     Starting service [Tomcat]
+29-01-2020 14:53:57.531 [35m[restartedMain][0;39m [34mINFO [0;39m o.a.catalina.core.StandardEngine.log - 
+     Starting Servlet engine: [Apache Tomcat/9.0.27]
+29-01-2020 14:53:57.630 [35m[restartedMain][0;39m [34mINFO [0;39m o.a.c.c.C.[Tomcat].[localhost].[/].log - 
+     Initializing Spring embedded WebApplicationContext
+29-01-2020 14:53:57.630 [35m[restartedMain][0;39m [34mINFO [0;39m o.s.web.context.ContextLoader.prepareWebApplicationContext - 
+     Root WebApplicationContext: initialization completed in 1651 ms
+29-01-2020 14:53:57.825 [35m[restartedMain][0;39m [34mINFO [0;39m o.h.jpa.internal.util.LogHelper.logPersistenceUnitInformation - 
+     HHH000204: Processing PersistenceUnitInfo [name: default]
+29-01-2020 14:53:57.891 [35m[restartedMain][0;39m [34mINFO [0;39m org.hibernate.Version.logVersion - 
+     HHH000412: Hibernate Core {5.4.8.Final}
+29-01-2020 14:53:58.032 [35m[restartedMain][0;39m [34mINFO [0;39m o.h.annotations.common.Version.<clinit> - 
+     HCANN000001: Hibernate Commons Annotations {5.1.0.Final}
+29-01-2020 14:53:58.129 [35m[restartedMain][0;39m [34mINFO [0;39m com.zaxxer.hikari.HikariDataSource.getConnection - 
+     HikariPool-1 - Starting...
+29-01-2020 14:53:58.273 [35m[restartedMain][0;39m [34mINFO [0;39m com.zaxxer.hikari.HikariDataSource.getConnection - 
+     HikariPool-1 - Start completed.
+29-01-2020 14:53:58.288 [35m[restartedMain][0;39m [34mINFO [0;39m org.hibernate.dialect.Dialect.<init> - 
+     HHH000400: Using dialect: org.hibernate.dialect.MySQL5InnoDBDialect
+29-01-2020 14:53:59.758 [35m[restartedMain][0;39m [34mINFO [0;39m o.h.e.t.j.p.i.JtaPlatformInitiator.initiateService - 
+     HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+29-01-2020 14:53:59.767 [35m[restartedMain][0;39m [34mINFO [0;39m o.s.o.j.LocalContainerEntityManagerFactoryBean.buildNativeEntityManagerFactory - 
+     Initialized JPA EntityManagerFactory for persistence unit 'default'
+29-01-2020 14:53:59.819 [35m[restartedMain][0;39m [34mINFO [0;39m o.s.b.d.a.OptionalLiveReloadServer.startServer - 
+     LiveReload server is running on port 35729
+29-01-2020 14:54:00.441 [35m[restartedMain][0;39m [31mWARN [0;39m o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration.openEntityManagerInViewInterceptor - 
+     spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+29-01-2020 14:54:00.798 [35m[restartedMain][0;39m [34mINFO [0;39m o.s.s.web.DefaultSecurityFilterChain.<init> - 
+     Creating filter chain: any request, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@7980ad92, org.springframework.security.web.context.SecurityContextPersistenceFilter@409704f6, org.springframework.security.web.header.HeaderWriterFilter@779d50e0, org.springframework.web.filter.CorsFilter@34fc4f21, org.springframework.security.web.authentication.logout.LogoutFilter@341b6a06, com.avis.security.JwtAuthenticationTokenFilter@4daeeaad, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@6182b629, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@1232fb97, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@57ddae01, org.springframework.security.web.session.SessionManagementFilter@7678f3c, org.springframework.security.web.access.ExceptionTranslationFilter@184ab2b0, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@68114ecb]
+29-01-2020 14:54:00.937 [35m[restartedMain][0;39m [34mINFO [0;39m o.s.s.c.ThreadPoolTaskExecutor.initialize - 
+     Initializing ExecutorService 'applicationTaskExecutor'
+29-01-2020 14:54:01.192 [35m[restartedMain][0;39m [34mINFO [0;39m o.a.coyote.http11.Http11NioProtocol.log - 
+     Starting ProtocolHandler ["http-nio-8080"]
+29-01-2020 14:54:01.217 [35m[restartedMain][0;39m [34mINFO [0;39m o.s.b.w.e.tomcat.TomcatWebServer.start - 
+     Tomcat started on port(s): 8080 (http) with context path ''
+29-01-2020 14:54:01.219 [35m[restartedMain][0;39m [34mINFO [0;39m com.avis.AnAvisApplication.logStarted - 
+     Started AnAvisApplication in 5.576 seconds (JVM running for 6.267)
+29-01-2020 14:54:05.011 [35m[http-nio-8080-exec-1][0;39m [34mINFO [0;39m o.a.c.c.C.[Tomcat].[localhost].[/].log - 
+     Initializing Spring DispatcherServlet 'dispatcherServlet'
+29-01-2020 14:54:05.011 [35m[http-nio-8080-exec-1][0;39m [34mINFO [0;39m o.s.web.servlet.DispatcherServlet.initServletBean - 
+     Initializing Servlet 'dispatcherServlet'
+29-01-2020 14:54:05.018 [35m[http-nio-8080-exec-1][0;39m [34mINFO [0;39m o.s.web.servlet.DispatcherServlet.initServletBean - 
+     Completed initialization in 7 ms
+29-01-2020 14:54:05.557 [35m[http-nio-8080-exec-2][0;39m [34mINFO [0;39m global.generateToken - 
+     nuovo token generato
+29-01-2020 14:54:05.572 [35m[http-nio-8080-exec-2][0;39m [34mINFO [0;39m global.createAuthenticationToken - 
+     utente appena autenticato
+29-01-2020 14:54:24.010 [35m[http-nio-8080-exec-2][0;39m [34mINFO [0;39m global.insertDate - 
+     nuove date inserite
+29-01-2020 15:06:28.308 [35m[http-nio-8080-exec-5][0;39m [31mWARN [0;39m o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver.logException - 
+     Resolved [java.lang.NumberFormatException: For input string: ""]
+29-01-2020 15:10:34.349 [35m[http-nio-8080-exec-1][0;39m [34mINFO [0;39m global.generateToken - 
+     nuovo token generato
+29-01-2020 15:10:34.350 [35m[http-nio-8080-exec-1][0;39m [34mINFO [0;39m global.createAuthenticationToken - 
+     utente appena autenticato
+29-01-2020 15:12:15.021 [35m[http-nio-8080-exec-8][0;39m [34mINFO [0;39m global.generateToken - 
+     nuovo token generato
+29-01-2020 15:12:15.025 [35m[http-nio-8080-exec-8][0;39m [34mINFO [0;39m global.createAuthenticationToken - 
+     utente appena autenticato
+29-01-2020 15:25:02.141 [35m[http-nio-8080-exec-3][0;39m [34mINFO [0;39m global.generateToken - 
+     nuovo token generato
+29-01-2020 15:25:02.142 [35m[http-nio-8080-exec-3][0;39m [34mINFO [0;39m global.createAuthenticationToken - 
+     utente appena autenticato
+29-01-2020 15:25:06.596 [35m[http-nio-8080-exec-9][0;39m [31mWARN [0;39m o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver.logException - 
+     Resolved [java.lang.NumberFormatException: For input string: ""]
+29-01-2020 15:25:59.564 [35m[http-nio-8080-exec-1][0;39m [31mWARN [0;39m o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver.logException - 
+     Resolved [java.lang.NumberFormatException: For input string: ""]
+29-01-2020 15:26:05.093 [35m[http-nio-8080-exec-7][0;39m [31mWARN [0;39m o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver.logException - 
+     Resolved [java.lang.NumberFormatException: For input string: ""]
+29-01-2020 15:27:26.357 [35m[http-nio-8080-exec-3][0;39m [34mINFO [0;39m global.deleteDate - 
+     una data è stata cancellata
+29-01-2020 15:27:30.883 [35m[http-nio-8080-exec-6][0;39m [34mINFO [0;39m global.deleteDate - 
+     una data è stata cancellata
+29-01-2020 15:28:36.720 [35m[http-nio-8080-exec-8][0;39m [34mINFO [0;39m global.generateToken - 
+     nuovo token generato
+29-01-2020 15:28:36.722 [35m[http-nio-8080-exec-8][0;39m [34mINFO [0;39m global.createAuthenticationToken - 
+     utente appena autenticato
+29-01-2020 15:29:08.900 [35m[http-nio-8080-exec-2][0;39m [34mINFO [0;39m global.prenotaData - 
+     nuova data prenotata
+29-01-2020 15:29:31.238 [35m[http-nio-8080-exec-6][0;39m [34mINFO [0;39m global.generateToken - 
+     nuovo token generato
+29-01-2020 15:29:31.239 [35m[http-nio-8080-exec-6][0;39m [34mINFO [0;39m global.createAuthenticationToken - 
+     utente appena autenticato
+29-01-2020 15:34:50.552 [35m[http-nio-8080-exec-9][0;39m [34mINFO [0;39m global.prenotaData - 
+     nuova data prenotata
+29-01-2020 15:35:10.084 [35m[http-nio-8080-exec-3][0;39m [31mWARN [0;39m o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver.logException - 
+     Resolved [java.lang.NullPointerException]
+29-01-2020 15:35:20.137 [35m[http-nio-8080-exec-5][0;39m [31mWARN [0;39m o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver.logException - 
+     Resolved [java.lang.NullPointerException]
+29-01-2020 15:35:35.492 [35m[http-nio-8080-exec-7][0;39m [34mINFO [0;39m global.prenotaData - 
+     nuova data prenotata
+29-01-2020 15:35:45.990 [35m[http-nio-8080-exec-9][0;39m [34mINFO [0;39m global.generateToken - 
+     nuovo token generato
+29-01-2020 15:35:45.992 [35m[http-nio-8080-exec-9][0;39m [34mINFO [0;39m global.createAuthenticationToken - 
+     utente appena autenticato
+29-01-2020 15:35:58.051 [35m[http-nio-8080-exec-3][0;39m [34mINFO [0;39m global.generateToken - 
+     nuovo token generato
+29-01-2020 15:35:58.053 [35m[http-nio-8080-exec-3][0;39m [34mINFO [0;39m global.createAuthenticationToken - 
+     utente appena autenticato
+29-01-2020 15:36:10.433 [35m[http-nio-8080-exec-8][0;39m [31mWARN [0;39m o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver.logException - 
+     Resolved [org.springframework.security.authentication.InternalAuthenticationServiceException: UserDetailsService returned null, which is an interface contract violation]
+29-01-2020 15:36:12.776 [35m[http-nio-8080-exec-9][0;39m [34mINFO [0;39m global.generateToken - 
+     nuovo token generato
+29-01-2020 15:36:12.777 [35m[http-nio-8080-exec-9][0;39m [34mINFO [0;39m global.createAuthenticationToken - 
+     utente appena autenticato
+29-01-2020 15:36:58.345 [35m[http-nio-8080-exec-3][0;39m [31mWARN [0;39m o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver.logException - 
+     Resolved [java.lang.NullPointerException]

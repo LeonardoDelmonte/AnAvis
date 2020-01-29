@@ -106,3 +106,27 @@
      nuovo token generato
 28-01-2020 15:11:42.494 [35m[http-nio-8080-exec-10][0;39m [34mINFO [0;39m global.createAuthenticationToken - 
      utente appena autenticato
+28-01-2020 16:16:21.328 [35m[http-nio-8080-exec-5][0;39m [31mWARN [0;39m o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver.logException - 
+     Resolved [org.springframework.security.authentication.InternalAuthenticationServiceException: UserDetailsService returned null, which is an interface contract violation]
+28-01-2020 16:16:27.307 [35m[http-nio-8080-exec-7][0;39m [34mINFO [0;39m global.generateToken - 
+     nuovo token generato
+28-01-2020 16:16:27.307 [35m[http-nio-8080-exec-7][0;39m [34mINFO [0;39m global.createAuthenticationToken - 
+     utente appena autenticato
+28-01-2020 16:22:06.959 [35m[http-nio-8080-exec-2][0;39m [34mINFO [0;39m global.insertDate - 
+     nuove date inserite
+28-01-2020 16:22:10.813 [35m[http-nio-8080-exec-3][0;39m [34mINFO [0;39m global.insertDate - 
+     nuove date inserite
+28-01-2020 16:24:01.882 [35m[http-nio-8080-exec-7][0;39m [34mINFO [0;39m global.generateToken - 
+     nuovo token generato
+28-01-2020 16:24:01.883 [35m[http-nio-8080-exec-7][0;39m [34mINFO [0;39m global.createAuthenticationToken - 
+     utente appena autenticato
+28-01-2020 16:26:57.508 [35m[http-nio-8080-exec-2][0;39m [31mWARN [0;39m o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver.logException - 
+     Resolved [java.lang.NumberFormatException: For input string: ""]
+28-01-2020 16:49:43.786 [35m[http-nio-8080-exec-2][0;39m [34mINFO [0;39m global.generateToken - 
+     nuovo token generato
+28-01-2020 16:49:43.787 [35m[http-nio-8080-exec-2][0;39m [34mINFO [0;39m global.createAuthenticationToken - 
+     utente appena autenticato
+28-01-2020 18:18:08.491 [35m[http-nio-8080-exec-6][0;39m [34mINFO [0;39m global.generateToken - 
+     nuovo token generato
+28-01-2020 18:18:08.491 [35m[http-nio-8080-exec-6][0;39m [34mINFO [0;39m global.createAuthenticationToken - 
+     utente appena autenticato
