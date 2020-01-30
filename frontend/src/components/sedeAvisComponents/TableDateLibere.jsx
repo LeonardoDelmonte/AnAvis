@@ -18,6 +18,11 @@ const columns = memoize(clickHandler => [
         sortable: true,
     },
     {
+        name: 'Ora',
+        selector: 'time',
+        sortable: true,
+    },
+    {
         name: 'Elimina',
         cell: (row) => <button type="button" className="btn btn-danger" onClick={clickHandler} id={row.idPrenotazione}>Elimina</button>,
         ignoreRowClick: true,

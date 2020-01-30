@@ -6,20 +6,13 @@ class Istogramma extends Component {
 		render() {
 		const options = {
 			title: {
-				text: "Basic Column Chart"
+				text: "Richieste emergenze sangue"
 			},
 			animationEnabled: true,
 			data: [
 			{
-				// Change type to "doughnut", "line", "splineArea", etc.
 				type: "column",
-				dataPoints: [
-					{ label: "Apple",  y: 10  },
-					{ label: "Orange", y: 15  },
-					{ label: "Banana", y: 25  },
-					{ label: "Mango",  y: 30  },
-					{ label: "Grape",  y: 28  }
-				]
+				dataPoints: this.props.dataPoints
 			}
 			]
 		}

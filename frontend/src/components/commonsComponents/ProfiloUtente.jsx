@@ -8,6 +8,10 @@ import TableEmergenzeSangue from "../CentroTrasfComponents/TableEmergenzeSangue"
 import CentroTrasfusioneService from "../../utils/CentroTrasfusioneService";
 import TableDateLibere from "../sedeAvisComponents/TableDateLibere";
 import TableDatePrenotate from "../sedeAvisComponents/TableDatePrenotate"
+import TableDatePrenotateDonatore from "../sedeAvisComponents/TableDatePrenotateDonatore"
+
+
+
 
 class ProfiloUtente extends Component {
   constructor(props) {
@@ -24,10 +28,12 @@ class ProfiloUtente extends Component {
   loadProfilo = () => {
     ProfiloService.loadProfilo()
       .then(response => {
+        console.log(response)
         this.setState({ fields: response.data.utente });
         this.setState({ aud: response.data.utente.ruolo });
-        if(this.state.aud === "sedeAvis") this.getPrenotazioni()
-        if(this.state.aud === "centroTrasfusione") this.getEmergency()
+        if (this.state.aud === "donatore") this.getPrenotazioniDonatore()
+        if (this.state.aud === "sedeAvis") this.getPrenotazioni()
+        if (this.state.aud === "centroTrasfusione") this.getEmergency()
       })
       .catch(error => {
         console.log("nessuna risposta dal server");
@@ -39,7 +45,7 @@ class ProfiloUtente extends Component {
       .then(response => {
         response.data.list.forEach(
           (x) => {
-            const myDate = new Date(x.date);
+            const myDate = new Date(x.dataEmergenza);
             x["dataEmergenza"] = myDate.getDate() + "/" + myDate.getMonth() + 1 + "/" + myDate.getFullYear();
           }
         )
@@ -56,19 +62,42 @@ class ProfiloUtente extends Component {
           (x) => {
             const myDate = new Date(x.date);
             x["data"] = myDate.getDate() + "/" + myDate.getMonth() + 1 + "/" + myDate.getFullYear();
+            x["time"] = myDate.getHours() + ":" + myDate.getMinutes();
           }
         )
         response.data.map.listaPrenotate.forEach(
           (x) => {
             const myDate = new Date(x.date);
             x["data"] = myDate.getDate() + "/" + myDate.getMonth() + 1 + "/" + myDate.getFullYear();
+            x["time"] = myDate.getHours() + ":" + myDate.getMinutes();
           }
         )
         this.setState({
           listaPrenotate: response.data.map.listaPrenotate,
           listaLibere: response.data.map.listaLibere,
-        });
+        }, () => console.log(this.state.listaLibere.length));
         console.log(response)
+      })
+      .catch(error => {
+        console.log("nessuna risposta dal server");
+      });
+  }
+
+  getPrenotazioniDonatore = () => {
+    ProfiloService.getPrenotazioniDonatore()
+      .then(response => {
+        console.log(response)
+        response.data.list.forEach(
+          (x) => {
+            const myDate = new Date(x.date);
+            x["data"] = myDate.getDate() + "/" + myDate.getMonth() + 1 + "/" + myDate.getFullYear();
+            x["time"] = myDate.getHours() + ":" + myDate.getMinutes();
+            console.log(x)
+          }
+        )
+        this.setState({
+          listaPrenotateDonatore: response.data.list,
+        });
       })
       .catch(error => {
         console.log("nessuna risposta dal server");
@@ -81,20 +110,18 @@ class ProfiloUtente extends Component {
 
 
   render() {
-    let abilitazioneDonazione;
-
-    if (this.state.aud === "donatore") {
-      if (this.state.fields.abilitazioneDonazione === 0) {
-        abilitazioneDonazione = <FormAlert colorType="warning" message="Non sei abilitato a donare" />
-      }
-      if (this.state.fields.abilitazioneDonazione === 1) {
-        abilitazioneDonazione = <FormAlert colorType="success" message="Sei abilitato a donare" />
-      }
-    }
 
     return (
       <div id="accordion" className="mt-2">
-        {abilitazioneDonazione}
+        {this.state.aud === "donatore" && this.state.fields.abilitazioneDonazione === 0 &&
+          <FormAlert colorType="warning" message="Non sei abilitato a donare" />
+        }
+        {this.state.aud === "donatore" && this.state.fields.abilitazioneDonazione === 1 &&
+          <FormAlert colorType="success" message="Sei abilitato a donare" />
+        }
+        {this.state.aud === "sedeAvis" && this.state.listaLibere == 0 &&
+          <FormAlert colorType="danger" message="Attenzione: Non ci sono date da prenotare" />
+        }
         <div className="card">
           <div className="card-header" id="profilo">
             <h5 className="mb-0">
@@ -143,7 +170,7 @@ class ProfiloUtente extends Component {
             data-parent="#accordion"
           >
             <div className="card-body">
-              {this.state.aud === "donatore" && this.state.fields.id && <FormModulo value={this.state.fields.modulo} />}
+              {this.state.aud === "donatore" && this.state.fields.id && <FormModulo value={this.state.fields.modulo} loadProfilo={this.loadProfilo}/>}
               {this.state.aud === "sedeAvis" && this.state.fields.id && <TableDateLibere data={this.state.listaLibere} />}
               {this.state.aud === "sedeAvis" && this.state.fields.id && <TableDatePrenotate data={this.state.listaPrenotate} />}
               {this.state.aud === "centroTrasfusione" && this.state.fields.id && <TableEmergenzeSangue data={this.state.emergenze} />}
@@ -171,7 +198,7 @@ class ProfiloUtente extends Component {
             data-parent="#accordion"
           >
             <div className="card-body">
-              <FormHistory />
+              {this.state.aud === "donatore" && this.state.fields.id && <TableDatePrenotateDonatore data={this.state.listaPrenotateDonatore} />}
             </div>
           </div>
         </div>

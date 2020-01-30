@@ -28,6 +28,16 @@ class ProfiloService {
           )
     }
 
+    async getPrenotazioniDonatore(){
+        return await axiosInstance.get('/cancPrenotazioni/donatore/prenotazioni')
+    }
+
+    async deleteDateDonatore(Prenotazione){
+        return await axiosInstance.delete('/cancPrenotazioni/donatore/cancellazione',
+                { data:Prenotazione } 
+          )
+    }
+
 }
 
 export default new ProfiloService()

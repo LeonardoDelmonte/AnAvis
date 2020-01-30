@@ -59,6 +59,7 @@ class EmergenzaSangue extends Component {
   getEmergenze = () =>{
     CentroTrasfusioneService.getEmergency()
     .then(response => {
+      console.log(response)
         response.data.list.forEach (
             (x) => {
                 const myDate = new Date(x.dataEmergenza);

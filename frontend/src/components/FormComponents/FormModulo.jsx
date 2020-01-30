@@ -61,13 +61,18 @@ class FormModulo extends Component {
     console.log(DtoModulo);
     ProfiloService.modificaModulo(DtoModulo)
       .then(res => {
-        this.setState({ message: res.data.message, type: "success" });
+        this.setState({ message: res.data.message, type: "success" }, () => {
+          if(this.props.loadProfilo){
+            this.props.loadProfilo()
+          }
+        });
       })
       .catch(err => {
         this.setState({ message: err.response.data.message, type: "danger" });
       });
     this.setState({ isEnabled: false });
     console.log(this.state)
+    
   };
 
   render() {
