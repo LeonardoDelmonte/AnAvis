@@ -58,7 +58,8 @@ public class PrenotazioneController {
         return new ResponseEntity<>(response, response.getStatus());
     }
 
-    @DeleteMapping("/donatore/cancella-prenotazione")
+
+    @DeleteMapping("/cancPrenotazioni/donatore/cancellazione")
     public ResponseEntity<InterfaceApi> deletePrenotazione(HttpServletRequest req) {
         if (!prenotazioniService.deletePrenotazione(Long.valueOf(req.getHeader("data")))) {
             return new ResponseEntity<>(new ApiResponse<>("Prenotazione non cancellata"), HttpStatus.BAD_REQUEST);
@@ -91,8 +92,8 @@ public class PrenotazioneController {
         return new ResponseEntity<>(response, response.getStatus());
     }
 
-    @PreAuthorize("cancPrenotazioni")
-    @GetMapping("/gestione-date/donatore/prenotazioni")
+
+    @GetMapping("/cancPrenotazioni/donatore/prenotazioni")
     public ResponseEntity<InterfaceApi> getPrenotazioniDonatore() {
         Utente utente = (Utente) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         ApiResponse<Prenotazione> response = prenotazioniService.getPrenotazioniDonatore(utente.getId());

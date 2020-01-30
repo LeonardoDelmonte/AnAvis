@@ -1,0 +1,1058 @@
+30-01-2020 15:15:19.543 [35m[main][0;39m [31mWARN [0;39m com.avis.AnAvisApplication.main - 
+     Start
+30-01-2020 15:15:19.761 [35m[restartedMain][0;39m [31mWARN [0;39m com.avis.AnAvisApplication.main - 
+     Start
+30-01-2020 15:15:20.128 [35m[restartedMain][0;39m [34mINFO [0;39m com.avis.AnAvisApplication.logStarting - 
+     Starting AnAvisApplication on DESKTOP-LEO with PID 20776 (E:\School\IngegneriaDelSoftware\AnAvis\AnAvis\backend\target\classes started by Leonardo in E:\School\IngegneriaDelSoftware\AnAvis\AnAvis\backend)
+30-01-2020 15:15:20.129 [35m[restartedMain][0;39m [34mINFO [0;39m com.avis.AnAvisApplication.logStartupProfileInfo - 
+     No active profile set, falling back to default profiles: default
+30-01-2020 15:15:20.212 [35m[restartedMain][0;39m [34mINFO [0;39m o.s.b.d.restart.ChangeableUrls.logTo - 
+     The Class-Path manifest attribute in C:\Users\Leona\.m2\repository\org\glassfish\jaxb\jaxb-runtime\2.3.2\jaxb-runtime-2.3.2.jar referenced one or more files that do not exist: file:/C:/Users/Leona/.m2/repository/org/glassfish/jaxb/jaxb-runtime/2.3.2/jakarta.xml.bind-api-2.3.2.jar,file:/C:/Users/Leona/.m2/repository/org/glassfish/jaxb/jaxb-runtime/2.3.2/txw2-2.3.2.jar,file:/C:/Users/Leona/.m2/repository/org/glassfish/jaxb/jaxb-runtime/2.3.2/istack-commons-runtime-3.0.8.jar,file:/C:/Users/Leona/.m2/repository/org/glassfish/jaxb/jaxb-runtime/2.3.2/stax-ex-1.8.1.jar,file:/C:/Users/Leona/.m2/repository/org/glassfish/jaxb/jaxb-runtime/2.3.2/FastInfoset-1.2.16.jar,file:/C:/Users/Leona/.m2/repository/org/glassfish/jaxb/jaxb-runtime/2.3.2/jakarta.activation-api-1.2.1.jar
+30-01-2020 15:15:20.213 [35m[restartedMain][0;39m [34mINFO [0;39m o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor.logTo - 
+     Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+30-01-2020 15:15:20.213 [35m[restartedMain][0;39m [34mINFO [0;39m o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor.logTo - 
+     For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+30-01-2020 15:15:20.921 [35m[restartedMain][0;39m [34mINFO [0;39m o.s.d.r.c.RepositoryConfigurationDelegate.registerRepositoriesIn - 
+     Bootstrapping Spring Data repositories in DEFAULT mode.
+30-01-2020 15:15:21.011 [35m[restartedMain][0;39m [34mINFO [0;39m o.s.d.r.c.RepositoryConfigurationDelegate.registerRepositoriesIn - 
+     Finished Spring Data repository scanning in 81ms. Found 7 repository interfaces.
+30-01-2020 15:15:21.409 [35m[restartedMain][0;39m [34mINFO [0;39m o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker.postProcessAfterInitialization - 
+     Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+30-01-2020 15:15:21.443 [35m[restartedMain][0;39m [34mINFO [0;39m o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker.postProcessAfterInitialization - 
+     Bean 'org.springframework.security.config.annotation.configuration.ObjectPostProcessorConfiguration' of type [org.springframework.security.config.annotation.configuration.ObjectPostProcessorConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+30-01-2020 15:15:21.450 [35m[restartedMain][0;39m [34mINFO [0;39m o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker.postProcessAfterInitialization - 
+     Bean 'objectPostProcessor' of type [org.springframework.security.config.annotation.configuration.AutowireBeanFactoryObjectPostProcessor] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+30-01-2020 15:15:21.453 [35m[restartedMain][0;39m [34mINFO [0;39m o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker.postProcessAfterInitialization - 
+     Bean 'org.springframework.security.access.expression.method.DefaultMethodSecurityExpressionHandler@73efece6' of type [org.springframework.security.access.expression.method.DefaultMethodSecurityExpressionHandler] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+30-01-2020 15:15:21.460 [35m[restartedMain][0;39m [34mINFO [0;39m o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker.postProcessAfterInitialization - 
+     Bean 'org.springframework.security.config.annotation.method.configuration.GlobalMethodSecurityConfiguration' of type [org.springframework.security.config.annotation.method.configuration.GlobalMethodSecurityConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+30-01-2020 15:15:21.465 [35m[restartedMain][0;39m [34mINFO [0;39m o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker.postProcessAfterInitialization - 
+     Bean 'methodSecurityMetadataSource' of type [org.springframework.security.access.method.DelegatingMethodSecurityMetadataSource] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+30-01-2020 15:15:22.062 [35m[restartedMain][0;39m [34mINFO [0;39m o.s.b.w.e.tomcat.TomcatWebServer.initialize - 
+     Tomcat initialized with port(s): 8080 (http)
+30-01-2020 15:15:22.073 [35m[restartedMain][0;39m [34mINFO [0;39m o.a.coyote.http11.Http11NioProtocol.log - 
+     Initializing ProtocolHandler ["http-nio-8080"]
+30-01-2020 15:15:22.075 [35m[restartedMain][0;39m [34mINFO [0;39m o.a.catalina.core.StandardService.log - 
+     Starting service [Tomcat]
+30-01-2020 15:15:22.076 [35m[restartedMain][0;39m [34mINFO [0;39m o.a.catalina.core.StandardEngine.log - 
+     Starting Servlet engine: [Apache Tomcat/9.0.27]
+30-01-2020 15:15:22.240 [35m[restartedMain][0;39m [34mINFO [0;39m o.a.c.c.C.[Tomcat].[localhost].[/].log - 
+     Initializing Spring embedded WebApplicationContext
+30-01-2020 15:15:22.241 [35m[restartedMain][0;39m [34mINFO [0;39m o.s.web.context.ContextLoader.prepareWebApplicationContext - 
+     Root WebApplicationContext: initialization completed in 2028 ms
+30-01-2020 15:15:22.446 [35m[restartedMain][0;39m [34mINFO [0;39m o.h.jpa.internal.util.LogHelper.logPersistenceUnitInformation - 
+     HHH000204: Processing PersistenceUnitInfo [name: default]
+30-01-2020 15:15:22.505 [35m[restartedMain][0;39m [34mINFO [0;39m org.hibernate.Version.logVersion - 
+     HHH000412: Hibernate Core {5.4.8.Final}
+30-01-2020 15:15:22.638 [35m[restartedMain][0;39m [34mINFO [0;39m o.h.annotations.common.Version.<clinit> - 
+     HCANN000001: Hibernate Commons Annotations {5.1.0.Final}
+30-01-2020 15:15:22.673 [35m[restartedMain][0;39m [39mDEBUG[0;39m org.hibernate.type.BasicTypeRegistry.register - 
+     Adding type registration boolean -> org.hibernate.type.BooleanType@3dcf2ff8
+30-01-2020 15:15:22.675 [35m[restartedMain][0;39m [39mDEBUG[0;39m org.hibernate.type.BasicTypeRegistry.register - 
+     Adding type registration boolean -> org.hibernate.type.BooleanType@3dcf2ff8
+30-01-2020 15:15:22.676 [35m[restartedMain][0;39m [39mDEBUG[0;39m org.hibernate.type.BasicTypeRegistry.register - 
+     Adding type registration java.lang.Boolean -> org.hibernate.type.BooleanType@3dcf2ff8
+30-01-2020 15:15:22.679 [35m[restartedMain][0;39m [39mDEBUG[0;39m org.hibernate.type.BasicTypeRegistry.register - 
+     Adding type registration numeric_boolean -> org.hibernate.type.NumericBooleanType@2ae4e244
+30-01-2020 15:15:22.681 [35m[restartedMain][0;39m [39mDEBUG[0;39m org.hibernate.type.BasicTypeRegistry.register - 
+     Adding type registration true_false -> org.hibernate.type.TrueFalseType@2debed61
+30-01-2020 15:15:22.682 [35m[restartedMain][0;39m [39mDEBUG[0;39m org.hibernate.type.BasicTypeRegistry.register - 
+     Adding type registration yes_no -> org.hibernate.type.YesNoType@16d689fd
+30-01-2020 15:15:22.684 [35m[restartedMain][0;39m [39mDEBUG[0;39m org.hibernate.type.BasicTypeRegistry.register - 
+     Adding type registration byte -> org.hibernate.type.ByteType@4d0f7ce1
+30-01-2020 15:15:22.686 [35m[restartedMain][0;39m [39mDEBUG[0;39m org.hibernate.type.BasicTypeRegistry.register - 
+     Adding type registration byte -> org.hibernate.type.ByteType@4d0f7ce1
+30-01-2020 15:15:22.687 [35m[restartedMain][0;39m [39mDEBUG[0;39m org.hibernate.type.BasicTypeRegistry.register - 
+     Adding type registration java.lang.Byte -> org.hibernate.type.ByteType@4d0f7ce1
+30-01-2020 15:15:22.689 [35m[restartedMain][0;39m [39mDEBUG[0;39m org.hibernate.type.BasicTypeRegistry.register - 
+     Adding type registration character -> org.hibernate.type.CharacterType@36455ba5
+30-01-2020 15:15:22.690 [35m[restartedMain][0;39m [39mDEBUG[0;39m org.hibernate.type.BasicTypeRegistry.register - 
+     Adding type registration char -> org.hibernate.type.CharacterType@36455ba5
+30-01-2020 15:15:22.690 [35m[restartedMain][0;39m [39mDEBUG[0;39m org.hibernate.type.BasicTypeRegistry.register - 
+     Adding type registration java.lang.Character -> org.hibernate.type.CharacterType@36455ba5
+30-01-2020 15:15:22.692 [35m[restartedMain][0;39m [39mDEBUG[0;39m org.hibernate.type.BasicTypeRegistry.register - 
+     Adding type registration short -> org.hibernate.type.ShortType@762f6bde
+30-01-2020 15:15:22.693 [35m[restartedMain][0;39m [39mDEBUG[0;39m org.hibernate.type.BasicTypeRegistry.register - 
+     Adding type registration short -> org.hibernate.type.ShortType@762f6bde
+30-01-2020 15:15:22.693 [35m[restartedMain][0;39m [39mDEBUG[0;39m org.hibernate.type.BasicTypeRegistry.register - 
+     Adding type registration java.lang.Short -> org.hibernate.type.ShortType@762f6bde
+30-01-2020 15:15:22.695 [35m[restartedMain][0;39m [39mDEBUG[0;39m org.hibernate.type.BasicTypeRegistry.register - 
+     Adding type registration integer -> org.hibernate.type.IntegerType@65fe70be
+30-01-2020 15:15:22.697 [35m[restartedMain][0;39m [39mDEBUG[0;39m org.hibernate.type.BasicTypeRegistry.register - 
+     Adding type registration int -> org.hibernate.type.IntegerType@65fe70be
+30-01-2020 15:15:22.699 [35m[restartedMain][0;39m [39mDEBUG[0;39m org.hibernate.type.BasicTypeRegistry.register - 
+     Adding type registration java.lang.Integer -> org.hibernate.type.IntegerType@65fe70be
+30-01-2020 15:15:22.701 [35m[restartedMain][0;39m [39mDEBUG[0;39m org.hibernate.type.BasicTypeRegistry.register - 
+     Adding type registration long -> org.hibernate.type.LongType@399a3ac3
+30-01-2020 15:15:22.708 [35m[restartedMain][0;39m [39mDEBUG[0;39m org.hibernate.type.BasicTypeRegistry.register - 
+     Adding type registration long -> org.hibernate.type.LongType@399a3ac3
+30-01-2020 15:15:22.711 [35m[restartedMain][0;39m [39mDEBUG[0;39m org.hibernate.type.BasicTypeRegistry.register - 
+     Adding type registration java.lang.Long -> org.hibernate.type.LongType@399a3ac3
+30-01-2020 15:15:22.738 [35m[restartedMain][0;39m [39mDEBUG[0;39m org.hibernate.type.BasicTypeRegistry.register - 
+     Adding type registration float -> org.hibernate.type.FloatType@10210f85
+30-01-2020 15:15:22.739 [35m[restartedMain][0;39m [39mDEBUG[0;39m org.hibernate.type.BasicTypeRegistry.register - 
+     Adding type registration float -> org.hibernate.type.FloatType@10210f85
+30-01-2020 15:15:22.741 [35m[restartedMain][0;39m [39mDEBUG[0;39m org.hibernate.type.BasicTypeRegistry.register - 
+     Adding type registration java.lang.Float -> org.hibernate.type.FloatType@10210f85
+30-01-2020 15:15:22.743 [35m[restartedMain][0;39m [39mDEBUG[0;39m org.hibernate.type.BasicTypeRegistry.register - 
+     Adding type registration double -> org.hibernate.type.DoubleType@4a65d0e6
+30-01-2020 15:15:22.745 [35m[restartedMain][0;39m [39mDEBUG[0;39m org.hibernate.type.BasicTypeRegistry.register - 
+     Adding type registration double -> org.hibernate.type.DoubleType@4a65d0e6
+30-01-2020 15:15:22.747 [35m[restartedMain][0;39m [39mDEBUG[0;39m org.hibernate.type.BasicTypeRegistry.register - 
+     Adding type registration java.lang.Double -> org.hibernate.type.DoubleType@4a65d0e6
+30-01-2020 15:15:22.751 [35m[restartedMain][0;39m [39mDEBUG[0;39m org.hibernate.type.BasicTypeRegistry.register - 
+     Adding type registration big_decimal -> org.hibernate.type.BigDecimalType@406566de
+30-01-2020 15:15:22.752 [35m[restartedMain][0;39m [39mDEBUG[0;39m org.hibernate.type.BasicTypeRegistry.register - 
+     Adding type registration java.math.BigDecimal -> org.hibernate.type.BigDecimalType@406566de
+30-01-2020 15:15:22.754 [35m[restartedMain][0;39m [39mDEBUG[0;39m org.hibernate.type.BasicTypeRegistry.register - 
+     Adding type registration big_integer -> org.hibernate.type.BigIntegerType@4b37ff0
+30-01-2020 15:15:22.755 [35m[restartedMain][0;39m [39mDEBUG[0;39m org.hibernate.type.BasicTypeRegistry.register - 
+     Adding type registration java.math.BigInteger -> org.hibernate.type.BigIntegerType@4b37ff0
+30-01-2020 15:15:22.756 [35m[restartedMain][0;39m [39mDEBUG[0;39m org.hibernate.type.BasicTypeRegistry.register - 
+     Adding type registration string -> org.hibernate.type.StringType@341aa841
+30-01-2020 15:15:22.756 [35m[restartedMain][0;39m [39mDEBUG[0;39m org.hibernate.type.BasicTypeRegistry.register - 
+     Adding type registration java.lang.String -> org.hibernate.type.StringType@341aa841
+30-01-2020 15:15:22.757 [35m[restartedMain][0;39m [39mDEBUG[0;39m org.hibernate.type.BasicTypeRegistry.register - 
+     Adding type registration nstring -> org.hibernate.type.StringNVarcharType@8d46766
+30-01-2020 15:15:22.758 [35m[restartedMain][0;39m [39mDEBUG[0;39m org.hibernate.type.BasicTypeRegistry.register - 
+     Adding type registration ncharacter -> org.hibernate.type.CharacterNCharType@50983fad
+30-01-2020 15:15:22.759 [35m[restartedMain][0;39m [39mDEBUG[0;39m org.hibernate.type.BasicTypeRegistry.register - 
+     Adding type registration url -> org.hibernate.type.UrlType@328089e9
+30-01-2020 15:15:22.760 [35m[restartedMain][0;39m [39mDEBUG[0;39m org.hibernate.type.BasicTypeRegistry.register - 
+     Adding type registration java.net.URL -> org.hibernate.type.UrlType@328089e9
+30-01-2020 15:15:22.761 [35m[restartedMain][0;39m [39mDEBUG[0;39m org.hibernate.type.BasicTypeRegistry.register - 
+     Adding type registration Duration -> org.hibernate.type.DurationType@4c4603ec
+30-01-2020 15:15:22.761 [35m[restartedMain][0;39m [39mDEBUG[0;39m org.hibernate.type.BasicTypeRegistry.register - 
+     Adding type registration java.time.Duration -> org.hibernate.type.DurationType@4c4603ec
+30-01-2020 15:15:22.763 [35m[restartedMain][0;39m [39mDEBUG[0;39m org.hibernate.type.BasicTypeRegistry.register - 
+     Adding type registration Instant -> org.hibernate.type.InstantType@16bb0b6d
+30-01-2020 15:15:22.763 [35m[restartedMain][0;39m [39mDEBUG[0;39m org.hibernate.type.BasicTypeRegistry.register - 
+     Adding type registration java.time.Instant -> org.hibernate.type.InstantType@16bb0b6d
+30-01-2020 15:15:22.765 [35m[restartedMain][0;39m [39mDEBUG[0;39m org.hibernate.type.BasicTypeRegistry.register - 
+     Adding type registration LocalDateTime -> org.hibernate.type.LocalDateTimeType@4d06f449
+30-01-2020 15:15:22.765 [35m[restartedMain][0;39m [39mDEBUG[0;39m org.hibernate.type.BasicTypeRegistry.register - 
+     Adding type registration java.time.LocalDateTime -> org.hibernate.type.LocalDateTimeType@4d06f449
+30-01-2020 15:15:22.766 [35m[restartedMain][0;39m [39mDEBUG[0;39m org.hibernate.type.BasicTypeRegistry.register - 
+     Adding type registration LocalDate -> org.hibernate.type.LocalDateType@75aad1a4
+30-01-2020 15:15:22.767 [35m[restartedMain][0;39m [39mDEBUG[0;39m org.hibernate.type.BasicTypeRegistry.register - 
+     Adding type registration java.time.LocalDate -> org.hibernate.type.LocalDateType@75aad1a4
+30-01-2020 15:15:22.768 [35m[restartedMain][0;39m [39mDEBUG[0;39m org.hibernate.type.BasicTypeRegistry.register - 
+     Adding type registration LocalTime -> org.hibernate.type.LocalTimeType@3e2f37cf
+30-01-2020 15:15:22.768 [35m[restartedMain][0;39m [39mDEBUG[0;39m org.hibernate.type.BasicTypeRegistry.register - 
+     Adding type registration java.time.LocalTime -> org.hibernate.type.LocalTimeType@3e2f37cf
+30-01-2020 15:15:22.769 [35m[restartedMain][0;39m [39mDEBUG[0;39m org.hibernate.type.BasicTypeRegistry.register - 
+     Adding type registration OffsetDateTime -> org.hibernate.type.OffsetDateTimeType@4c246962
+30-01-2020 15:15:22.770 [35m[restartedMain][0;39m [39mDEBUG[0;39m org.hibernate.type.BasicTypeRegistry.register - 
+     Adding type registration java.time.OffsetDateTime -> org.hibernate.type.OffsetDateTimeType@4c246962
+30-01-2020 15:15:22.771 [35m[restartedMain][0;39m [39mDEBUG[0;39m org.hibernate.type.BasicTypeRegistry.register - 
+     Adding type registration OffsetTime -> org.hibernate.type.OffsetTimeType@519c1092
+30-01-2020 15:15:22.771 [35m[restartedMain][0;39m [39mDEBUG[0;39m org.hibernate.type.BasicTypeRegistry.register - 
+     Adding type registration java.time.OffsetTime -> org.hibernate.type.OffsetTimeType@519c1092
+30-01-2020 15:15:22.773 [35m[restartedMain][0;39m [39mDEBUG[0;39m org.hibernate.type.BasicTypeRegistry.register - 
+     Adding type registration ZonedDateTime -> org.hibernate.type.ZonedDateTimeType@4ef6bac3
+30-01-2020 15:15:22.773 [35m[restartedMain][0;39m [39mDEBUG[0;39m org.hibernate.type.BasicTypeRegistry.register - 
+     Adding type registration java.time.ZonedDateTime -> org.hibernate.type.ZonedDateTimeType@4ef6bac3
+30-01-2020 15:15:22.774 [35m[restartedMain][0;39m [39mDEBUG[0;39m org.hibernate.type.BasicTypeRegistry.register - 
+     Adding type registration date -> org.hibernate.type.DateType@38ce452a
+30-01-2020 15:15:22.774 [35m[restartedMain][0;39m [39mDEBUG[0;39m org.hibernate.type.BasicTypeRegistry.register - 
+     Adding type registration java.sql.Date -> org.hibernate.type.DateType@38ce452a
+30-01-2020 15:15:22.776 [35m[restartedMain][0;39m [39mDEBUG[0;39m org.hibernate.type.BasicTypeRegistry.register - 
+     Adding type registration time -> org.hibernate.type.TimeType@6b254077
+30-01-2020 15:15:22.776 [35m[restartedMain][0;39m [39mDEBUG[0;39m org.hibernate.type.BasicTypeRegistry.register - 
+     Adding type registration java.sql.Time -> org.hibernate.type.TimeType@6b254077
+30-01-2020 15:15:22.777 [35m[restartedMain][0;39m [39mDEBUG[0;39m org.hibernate.type.BasicTypeRegistry.register - 
+     Adding type registration timestamp -> org.hibernate.type.TimestampType@454fb561
+30-01-2020 15:15:22.777 [35m[restartedMain][0;39m [39mDEBUG[0;39m org.hibernate.type.BasicTypeRegistry.register - 
+     Adding type registration java.sql.Timestamp -> org.hibernate.type.TimestampType@454fb561
+30-01-2020 15:15:22.778 [35m[restartedMain][0;39m [39mDEBUG[0;39m org.hibernate.type.BasicTypeRegistry.register - 
+     Adding type registration java.util.Date -> org.hibernate.type.TimestampType@454fb561
+30-01-2020 15:15:22.779 [35m[restartedMain][0;39m [39mDEBUG[0;39m org.hibernate.type.BasicTypeRegistry.register - 
+     Adding type registration dbtimestamp -> org.hibernate.type.DbTimestampType@6bf1db35
+30-01-2020 15:15:22.780 [35m[restartedMain][0;39m [39mDEBUG[0;39m org.hibernate.type.BasicTypeRegistry.register - 
+     Adding type registration calendar -> org.hibernate.type.CalendarType@59925689
+30-01-2020 15:15:22.781 [35m[restartedMain][0;39m [39mDEBUG[0;39m org.hibernate.type.BasicTypeRegistry.register - 
+     Adding type registration java.util.Calendar -> org.hibernate.type.CalendarType@59925689
+30-01-2020 15:15:22.781 [35m[restartedMain][0;39m [39mDEBUG[0;39m org.hibernate.type.BasicTypeRegistry.register - 
+     Adding type registration java.util.GregorianCalendar -> org.hibernate.type.CalendarType@59925689
+30-01-2020 15:15:22.782 [35m[restartedMain][0;39m [39mDEBUG[0;39m org.hibernate.type.BasicTypeRegistry.register - 
+     Adding type registration calendar_date -> org.hibernate.type.CalendarDateType@3f70d15b
+30-01-2020 15:15:22.783 [35m[restartedMain][0;39m [39mDEBUG[0;39m org.hibernate.type.BasicTypeRegistry.register - 
+     Adding type registration locale -> org.hibernate.type.LocaleType@57ff971e
+30-01-2020 15:15:22.783 [35m[restartedMain][0;39m [39mDEBUG[0;39m org.hibernate.type.BasicTypeRegistry.register - 
+     Adding type registration java.util.Locale -> org.hibernate.type.LocaleType@57ff971e
+30-01-2020 15:15:22.784 [35m[restartedMain][0;39m [39mDEBUG[0;39m org.hibernate.type.BasicTypeRegistry.register - 
+     Adding type registration currency -> org.hibernate.type.CurrencyType@42a7fe1f
+30-01-2020 15:15:22.785 [35m[restartedMain][0;39m [39mDEBUG[0;39m org.hibernate.type.BasicTypeRegistry.register - 
+     Adding type registration java.util.Currency -> org.hibernate.type.CurrencyType@42a7fe1f
+30-01-2020 15:15:22.786 [35m[restartedMain][0;39m [39mDEBUG[0;39m org.hibernate.type.BasicTypeRegistry.register - 
+     Adding type registration timezone -> org.hibernate.type.TimeZoneType@2b714803
+30-01-2020 15:15:22.786 [35m[restartedMain][0;39m [39mDEBUG[0;39m org.hibernate.type.BasicTypeRegistry.register - 
+     Adding type registration java.util.TimeZone -> org.hibernate.type.TimeZoneType@2b714803
+30-01-2020 15:15:22.787 [35m[restartedMain][0;39m [39mDEBUG[0;39m org.hibernate.type.BasicTypeRegistry.register - 
+     Adding type registration class -> org.hibernate.type.ClassType@47dcf4d3
+30-01-2020 15:15:22.788 [35m[restartedMain][0;39m [39mDEBUG[0;39m org.hibernate.type.BasicTypeRegistry.register - 
+     Adding type registration java.lang.Class -> org.hibernate.type.ClassType@47dcf4d3
+30-01-2020 15:15:22.789 [35m[restartedMain][0;39m [39mDEBUG[0;39m org.hibernate.type.BasicTypeRegistry.register - 
+     Adding type registration uuid-binary -> org.hibernate.type.UUIDBinaryType@1d4eaf6a
+30-01-2020 15:15:22.790 [35m[restartedMain][0;39m [39mDEBUG[0;39m org.hibernate.type.BasicTypeRegistry.register - 
+     Adding type registration java.util.UUID -> org.hibernate.type.UUIDBinaryType@1d4eaf6a
+30-01-2020 15:15:22.791 [35m[restartedMain][0;39m [39mDEBUG[0;39m org.hibernate.type.BasicTypeRegistry.register - 
+     Adding type registration uuid-char -> org.hibernate.type.UUIDCharType@3a8a675b
+30-01-2020 15:15:22.792 [35m[restartedMain][0;39m [39mDEBUG[0;39m org.hibernate.type.BasicTypeRegistry.register - 
+     Adding type registration binary -> org.hibernate.type.BinaryType@59601a3a
+30-01-2020 15:15:22.792 [35m[restartedMain][0;39m [39mDEBUG[0;39m org.hibernate.type.BasicTypeRegistry.register - 
+     Adding type registration byte[] -> org.hibernate.type.BinaryType@59601a3a
+30-01-2020 15:15:22.792 [35m[restartedMain][0;39m [39mDEBUG[0;39m org.hibernate.type.BasicTypeRegistry.register - 
+     Adding type registration [B -> org.hibernate.type.BinaryType@59601a3a
+30-01-2020 15:15:22.794 [35m[restartedMain][0;39m [39mDEBUG[0;39m org.hibernate.type.BasicTypeRegistry.register - 
+     Adding type registration wrapper-binary -> org.hibernate.type.WrapperBinaryType@57f5ab45
+30-01-2020 15:15:22.794 [35m[restartedMain][0;39m [39mDEBUG[0;39m org.hibernate.type.BasicTypeRegistry.register - 
+     Adding type registration Byte[] -> org.hibernate.type.WrapperBinaryType@57f5ab45
+30-01-2020 15:15:22.794 [35m[restartedMain][0;39m [39mDEBUG[0;39m org.hibernate.type.BasicTypeRegistry.register - 
+     Adding type registration [Ljava.lang.Byte; -> org.hibernate.type.WrapperBinaryType@57f5ab45
+30-01-2020 15:15:22.795 [35m[restartedMain][0;39m [39mDEBUG[0;39m org.hibernate.type.BasicTypeRegistry.register - 
+     Adding type registration row_version -> org.hibernate.type.RowVersionType@5b792da0
+30-01-2020 15:15:22.796 [35m[restartedMain][0;39m [39mDEBUG[0;39m org.hibernate.type.BasicTypeRegistry.register - 
+     Adding type registration image -> org.hibernate.type.ImageType@3d8eddd5
+30-01-2020 15:15:22.797 [35m[restartedMain][0;39m [39mDEBUG[0;39m org.hibernate.type.BasicTypeRegistry.register - 
+     Adding type registration characters -> org.hibernate.type.CharArrayType@15a82fb8
+30-01-2020 15:15:22.798 [35m[restartedMain][0;39m [39mDEBUG[0;39m org.hibernate.type.BasicTypeRegistry.register - 
+     Adding type registration char[] -> org.hibernate.type.CharArrayType@15a82fb8
+30-01-2020 15:15:22.798 [35m[restartedMain][0;39m [39mDEBUG[0;39m org.hibernate.type.BasicTypeRegistry.register - 
+     Adding type registration [C -> org.hibernate.type.CharArrayType@15a82fb8
+30-01-2020 15:15:22.799 [35m[restartedMain][0;39m [39mDEBUG[0;39m org.hibernate.type.BasicTypeRegistry.register - 
+     Adding type registration wrapper-characters -> org.hibernate.type.CharacterArrayType@3ae474c9
+30-01-2020 15:15:22.799 [35m[restartedMain][0;39m [39mDEBUG[0;39m org.hibernate.type.BasicTypeRegistry.register - 
+     Adding type registration [Ljava.lang.Character; -> org.hibernate.type.CharacterArrayType@3ae474c9
+30-01-2020 15:15:22.799 [35m[restartedMain][0;39m [39mDEBUG[0;39m org.hibernate.type.BasicTypeRegistry.register - 
+     Adding type registration Character[] -> org.hibernate.type.CharacterArrayType@3ae474c9
+30-01-2020 15:15:22.800 [35m[restartedMain][0;39m [39mDEBUG[0;39m org.hibernate.type.BasicTypeRegistry.register - 
+     Adding type registration text -> org.hibernate.type.TextType@22c65416
+30-01-2020 15:15:22.800 [35m[restartedMain][0;39m [39mDEBUG[0;39m org.hibernate.type.BasicTypeRegistry.register - 
+     Adding type registration ntext -> org.hibernate.type.NTextType@26944b1a
+30-01-2020 15:15:22.802 [35m[restartedMain][0;39m [39mDEBUG[0;39m org.hibernate.type.BasicTypeRegistry.register - 
+     Adding type registration blob -> org.hibernate.type.BlobType@49c79211
+30-01-2020 15:15:22.802 [35m[restartedMain][0;39m [39mDEBUG[0;39m org.hibernate.type.BasicTypeRegistry.register - 
+     Adding type registration java.sql.Blob -> org.hibernate.type.BlobType@49c79211
+30-01-2020 15:15:22.802 [35m[restartedMain][0;39m [39mDEBUG[0;39m org.hibernate.type.BasicTypeRegistry.register - 
+     Adding type registration materialized_blob -> org.hibernate.type.MaterializedBlobType@45659028
+30-01-2020 15:15:22.804 [35m[restartedMain][0;39m [39mDEBUG[0;39m org.hibernate.type.BasicTypeRegistry.register - 
+     Adding type registration clob -> org.hibernate.type.ClobType@6a41909
+30-01-2020 15:15:22.804 [35m[restartedMain][0;39m [39mDEBUG[0;39m org.hibernate.type.BasicTypeRegistry.register - 
+     Adding type registration java.sql.Clob -> org.hibernate.type.ClobType@6a41909
+30-01-2020 15:15:22.805 [35m[restartedMain][0;39m [39mDEBUG[0;39m org.hibernate.type.BasicTypeRegistry.register - 
+     Adding type registration nclob -> org.hibernate.type.NClobType@6afeb583
+30-01-2020 15:15:22.805 [35m[restartedMain][0;39m [39mDEBUG[0;39m org.hibernate.type.BasicTypeRegistry.register - 
+     Adding type registration java.sql.NClob -> org.hibernate.type.NClobType@6afeb583
+30-01-2020 15:15:22.806 [35m[restartedMain][0;39m [39mDEBUG[0;39m org.hibernate.type.BasicTypeRegistry.register - 
+     Adding type registration materialized_clob -> org.hibernate.type.MaterializedClobType@216a9cef
+30-01-2020 15:15:22.807 [35m[restartedMain][0;39m [39mDEBUG[0;39m org.hibernate.type.BasicTypeRegistry.register - 
+     Adding type registration materialized_nclob -> org.hibernate.type.MaterializedNClobType@50fa31df
+30-01-2020 15:15:22.808 [35m[restartedMain][0;39m [39mDEBUG[0;39m org.hibernate.type.BasicTypeRegistry.register - 
+     Adding type registration serializable -> org.hibernate.type.SerializableType@7c842738
+30-01-2020 15:15:22.814 [35m[restartedMain][0;39m [39mDEBUG[0;39m org.hibernate.type.BasicTypeRegistry.register - 
+     Adding type registration object -> org.hibernate.type.ObjectType@543098f9
+30-01-2020 15:15:22.814 [35m[restartedMain][0;39m [39mDEBUG[0;39m org.hibernate.type.BasicTypeRegistry.register - 
+     Adding type registration java.lang.Object -> org.hibernate.type.ObjectType@543098f9
+30-01-2020 15:15:22.819 [35m[restartedMain][0;39m [39mDEBUG[0;39m org.hibernate.type.BasicTypeRegistry.register - 
+     Adding type registration imm_date -> org.hibernate.type.AdaptedImmutableType@6b927161
+30-01-2020 15:15:22.819 [35m[restartedMain][0;39m [39mDEBUG[0;39m org.hibernate.type.BasicTypeRegistry.register - 
+     Adding type registration imm_time -> org.hibernate.type.AdaptedImmutableType@61d7e63f
+30-01-2020 15:15:22.819 [35m[restartedMain][0;39m [39mDEBUG[0;39m org.hibernate.type.BasicTypeRegistry.register - 
+     Adding type registration imm_timestamp -> org.hibernate.type.AdaptedImmutableType@406d7223
+30-01-2020 15:15:22.820 [35m[restartedMain][0;39m [39mDEBUG[0;39m org.hibernate.type.BasicTypeRegistry.register - 
+     Adding type registration imm_dbtimestamp -> org.hibernate.type.AdaptedImmutableType@55c073b1
+30-01-2020 15:15:22.820 [35m[restartedMain][0;39m [39mDEBUG[0;39m org.hibernate.type.BasicTypeRegistry.register - 
+     Adding type registration imm_calendar -> org.hibernate.type.AdaptedImmutableType@2da11911
+30-01-2020 15:15:22.820 [35m[restartedMain][0;39m [39mDEBUG[0;39m org.hibernate.type.BasicTypeRegistry.register - 
+     Adding type registration imm_calendar_date -> org.hibernate.type.AdaptedImmutableType@7319e484
+30-01-2020 15:15:22.820 [35m[restartedMain][0;39m [39mDEBUG[0;39m org.hibernate.type.BasicTypeRegistry.register - 
+     Adding type registration imm_binary -> org.hibernate.type.AdaptedImmutableType@584e7cae
+30-01-2020 15:15:22.821 [35m[restartedMain][0;39m [39mDEBUG[0;39m org.hibernate.type.BasicTypeRegistry.register - 
+     Adding type registration imm_serializable -> org.hibernate.type.AdaptedImmutableType@e45c1ed
+30-01-2020 15:15:22.880 [35m[restartedMain][0;39m [34mINFO [0;39m com.zaxxer.hikari.HikariDataSource.getConnection - 
+     HikariPool-1 - Starting...
+30-01-2020 15:15:23.046 [35m[restartedMain][0;39m [34mINFO [0;39m com.zaxxer.hikari.HikariDataSource.getConnection - 
+     HikariPool-1 - Start completed.
+30-01-2020 15:15:23.060 [35m[restartedMain][0;39m [34mINFO [0;39m org.hibernate.dialect.Dialect.<init> - 
+     HHH000400: Using dialect: org.hibernate.dialect.MySQL5InnoDBDialect
+30-01-2020 15:15:23.114 [35m[restartedMain][0;39m [39mDEBUG[0;39m o.h.type.spi.TypeConfiguration$Scope.scope - 
+     Scoping TypeConfiguration [org.hibernate.type.spi.TypeConfiguration@1a7b2da0] to MetadataBuildingContext [org.hibernate.boot.internal.MetadataBuildingContextRootImpl@506be293]
+30-01-2020 15:15:23.449 [35m[restartedMain][0;39m [39mDEBUG[0;39m o.h.type.spi.TypeConfiguration$Scope.scope - 
+     Scoping TypeConfiguration [org.hibernate.type.spi.TypeConfiguration@1a7b2da0] to SessionFactoryImpl [org.hibernate.internal.SessionFactoryImpl@7fc588d2]
+30-01-2020 15:15:23.812 [35m[restartedMain][0;39m [39mDEBUG[0;39m org.hibernate.SQL.logStatement - 
+     alter table centro_trasfusione drop foreign key FKgvn4ces0sj5wmtefjnxjgs40p
+30-01-2020 15:15:23.893 [35m[restartedMain][0;39m [39mDEBUG[0;39m org.hibernate.SQL.logStatement - 
+     alter table donatore drop foreign key FK5hrthsd5hrug8y2vypm4gj5wj
+30-01-2020 15:15:23.929 [35m[restartedMain][0;39m [39mDEBUG[0;39m org.hibernate.SQL.logStatement - 
+     alter table donatore drop foreign key FKkdyyc2y471qmkjdrl7iy2wyyh
+30-01-2020 15:15:23.973 [35m[restartedMain][0;39m [39mDEBUG[0;39m org.hibernate.SQL.logStatement - 
+     alter table emergenza drop foreign key FKi4ekuu9vvmcthk9euuhqht381
+30-01-2020 15:15:24.014 [35m[restartedMain][0;39m [39mDEBUG[0;39m org.hibernate.SQL.logStatement - 
+     alter table prenotazione drop foreign key FKtibbe6r9cm92nkikjqeccwt8b
+30-01-2020 15:15:24.049 [35m[restartedMain][0;39m [39mDEBUG[0;39m org.hibernate.SQL.logStatement - 
+     alter table prenotazione drop foreign key FK1fu0q1v0yj56g35dity5pmhho
+30-01-2020 15:15:24.092 [35m[restartedMain][0;39m [39mDEBUG[0;39m org.hibernate.SQL.logStatement - 
+     alter table sede_avis drop foreign key FKkpgbirivn7kvl3dgawfwbesdp
+30-01-2020 15:15:24.126 [35m[restartedMain][0;39m [39mDEBUG[0;39m org.hibernate.SQL.logStatement - 
+     drop table if exists centro_trasfusione
+30-01-2020 15:15:24.236 [35m[restartedMain][0;39m [39mDEBUG[0;39m org.hibernate.SQL.logStatement - 
+     drop table if exists donatore
+30-01-2020 15:15:24.344 [35m[restartedMain][0;39m [39mDEBUG[0;39m org.hibernate.SQL.logStatement - 
+     drop table if exists emergenza
+30-01-2020 15:15:24.453 [35m[restartedMain][0;39m [39mDEBUG[0;39m org.hibernate.SQL.logStatement - 
+     drop table if exists modulo
+30-01-2020 15:15:24.627 [35m[restartedMain][0;39m [39mDEBUG[0;39m org.hibernate.SQL.logStatement - 
+     drop table if exists prenotazione
+30-01-2020 15:15:24.753 [35m[restartedMain][0;39m [39mDEBUG[0;39m org.hibernate.SQL.logStatement - 
+     drop table if exists sede_avis
+30-01-2020 15:15:24.870 [35m[restartedMain][0;39m [39mDEBUG[0;39m org.hibernate.SQL.logStatement - 
+     drop table if exists utente
+30-01-2020 15:15:25.011 [35m[restartedMain][0;39m [39mDEBUG[0;39m org.hibernate.SQL.logStatement - 
+     create table centro_trasfusione (comune varchar(255) not null, direttore varchar(255), indirizzo varchar(255), ospedale varchar(255), provincia varchar(255) not null, regione varchar(255) not null, id bigint not null, primary key (id)) engine=InnoDB
+30-01-2020 15:15:25.269 [35m[restartedMain][0;39m [39mDEBUG[0;39m org.hibernate.SQL.logStatement - 
+     create table donatore (abilitazione_donazione tinyint, cognome varchar(255) not null, nome varchar(255) not null, id bigint not null, id_modulo bigint, primary key (id)) engine=InnoDB
+30-01-2020 15:15:25.661 [35m[restartedMain][0;39m [39mDEBUG[0;39m org.hibernate.SQL.logStatement - 
+     create table emergenza (id bigint not null auto_increment, data_emergenza datetime, gruppo_sanguigno varchar(255) not null, id_centro_trasfusione bigint not null, primary key (id)) engine=InnoDB
+30-01-2020 15:15:25.962 [35m[restartedMain][0;39m [39mDEBUG[0;39m org.hibernate.SQL.logStatement - 
+     create table modulo (id bigint not null auto_increment, allergie varchar(255), codice_fiscale varchar(255), farmaci varchar(255), fumatore varchar(255), gruppo_sanguigno varchar(255), indirizzo varchar(255), malattie varchar(255), modulo_compilato tinyint, telefono varchar(255), vaccinazioni varchar(255), primary key (id)) engine=InnoDB
+30-01-2020 15:15:26.236 [35m[restartedMain][0;39m [39mDEBUG[0;39m org.hibernate.SQL.logStatement - 
+     create table prenotazione (id bigint not null auto_increment, date datetime not null, id_donatore bigint, id_sede_avis bigint not null, primary key (id)) engine=InnoDB
+30-01-2020 15:15:26.536 [35m[restartedMain][0;39m [39mDEBUG[0;39m org.hibernate.SQL.logStatement - 
+     create table sede_avis (comune varchar(255) not null, indirizzo varchar(255), provincia varchar(255) not null, regione varchar(255) not null, telefono varchar(255), id bigint not null, primary key (id)) engine=InnoDB
+30-01-2020 15:15:26.903 [35m[restartedMain][0;39m [39mDEBUG[0;39m org.hibernate.SQL.logStatement - 
+     create table utente (id bigint not null auto_increment, email varchar(255) not null, password varchar(255) not null, ruolo varchar(255) not null, primary key (id)) engine=InnoDB
+30-01-2020 15:15:27.111 [35m[restartedMain][0;39m [39mDEBUG[0;39m org.hibernate.SQL.logStatement - 
+     alter table utente add constraint UK_gxvq4mjswnupehxnp35vawmo2 unique (email)
+30-01-2020 15:15:27.305 [35m[restartedMain][0;39m [39mDEBUG[0;39m org.hibernate.SQL.logStatement - 
+     alter table centro_trasfusione add constraint FKgvn4ces0sj5wmtefjnxjgs40p foreign key (id) references utente (id)
+30-01-2020 15:15:27.927 [35m[restartedMain][0;39m [39mDEBUG[0;39m org.hibernate.SQL.logStatement - 
+     alter table donatore add constraint FK5hrthsd5hrug8y2vypm4gj5wj foreign key (id_modulo) references modulo (id)
+30-01-2020 15:15:28.453 [35m[restartedMain][0;39m [39mDEBUG[0;39m org.hibernate.SQL.logStatement - 
+     alter table donatore add constraint FKkdyyc2y471qmkjdrl7iy2wyyh foreign key (id) references utente (id)
+30-01-2020 15:15:29.077 [35m[restartedMain][0;39m [39mDEBUG[0;39m org.hibernate.SQL.logStatement - 
+     alter table emergenza add constraint FKi4ekuu9vvmcthk9euuhqht381 foreign key (id_centro_trasfusione) references centro_trasfusione (id)
+30-01-2020 15:15:29.734 [35m[restartedMain][0;39m [39mDEBUG[0;39m org.hibernate.SQL.logStatement - 
+     alter table prenotazione add constraint FKtibbe6r9cm92nkikjqeccwt8b foreign key (id_donatore) references donatore (id)
+30-01-2020 15:15:30.237 [35m[restartedMain][0;39m [39mDEBUG[0;39m org.hibernate.SQL.logStatement - 
+     alter table prenotazione add constraint FK1fu0q1v0yj56g35dity5pmhho foreign key (id_sede_avis) references sede_avis (id)
+30-01-2020 15:15:30.987 [35m[restartedMain][0;39m [39mDEBUG[0;39m org.hibernate.SQL.logStatement - 
+     alter table sede_avis add constraint FKkpgbirivn7kvl3dgawfwbesdp foreign key (id) references utente (id)
+30-01-2020 15:15:31.481 [35m[restartedMain][0;39m [34mINFO [0;39m o.h.e.t.j.p.i.JtaPlatformInitiator.initiateService - 
+     HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+30-01-2020 15:15:31.494 [35m[restartedMain][0;39m [39mTRACE[0;39m o.h.type.spi.TypeConfiguration$Scope.sessionFactoryCreated - 
+     Handling #sessionFactoryCreated from [org.hibernate.internal.SessionFactoryImpl@7fc588d2] for TypeConfiguration
+30-01-2020 15:15:31.498 [35m[restartedMain][0;39m [34mINFO [0;39m o.s.o.j.LocalContainerEntityManagerFactoryBean.buildNativeEntityManagerFactory - 
+     Initialized JPA EntityManagerFactory for persistence unit 'default'
+30-01-2020 15:15:31.530 [35m[restartedMain][0;39m [34mINFO [0;39m o.s.b.d.a.OptionalLiveReloadServer.startServer - 
+     LiveReload server is running on port 35729
+30-01-2020 15:15:32.247 [35m[restartedMain][0;39m [31mWARN [0;39m o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration.openEntityManagerInViewInterceptor - 
+     spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+30-01-2020 15:15:32.498 [35m[restartedMain][0;39m [34mINFO [0;39m o.s.s.web.DefaultSecurityFilterChain.<init> - 
+     Creating filter chain: any request, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@2f3c711, org.springframework.security.web.context.SecurityContextPersistenceFilter@f522e9c, org.springframework.security.web.header.HeaderWriterFilter@51257c91, org.springframework.web.filter.CorsFilter@35baa201, org.springframework.security.web.authentication.logout.LogoutFilter@7cc90597, com.avis.security.JwtAuthenticationTokenFilter@b96f2bd, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@1b040c96, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@619f5243, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@4908ae5e, org.springframework.security.web.session.SessionManagementFilter@6797ffb3, org.springframework.security.web.access.ExceptionTranslationFilter@1c5695f4, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@7545fc7]
+30-01-2020 15:15:32.608 [35m[restartedMain][0;39m [34mINFO [0;39m o.s.s.c.ThreadPoolTaskExecutor.initialize - 
+     Initializing ExecutorService 'applicationTaskExecutor'
+30-01-2020 15:15:32.883 [35m[restartedMain][0;39m [34mINFO [0;39m o.a.coyote.http11.Http11NioProtocol.log - 
+     Starting ProtocolHandler ["http-nio-8080"]
+30-01-2020 15:15:32.913 [35m[restartedMain][0;39m [34mINFO [0;39m o.s.b.w.e.tomcat.TomcatWebServer.start - 
+     Tomcat started on port(s): 8080 (http) with context path ''
+30-01-2020 15:15:32.914 [35m[restartedMain][0;39m [34mINFO [0;39m com.avis.AnAvisApplication.logStarted - 
+     Started AnAvisApplication in 13.147 seconds (JVM running for 13.727)
+30-01-2020 15:15:32.953 [35m[restartedMain][0;39m [39mDEBUG[0;39m org.hibernate.SQL.logStatement - 
+     insert into utente (email, password, ruolo) values (?, ?, ?)
+30-01-2020 15:15:32.963 [35m[restartedMain][0;39m [39mTRACE[0;39m o.h.type.descriptor.sql.BasicBinder.bind - 
+     binding parameter [1] as [VARCHAR] - [sede1]
+30-01-2020 15:15:32.964 [35m[restartedMain][0;39m [39mTRACE[0;39m o.h.type.descriptor.sql.BasicBinder.bind - 
+     binding parameter [2] as [VARCHAR] - [$2a$10$x1VGNaJf8AHJAslOnPsh1e9OufSxWor0OwSDfORdD98GDlXzwMDN6]
+30-01-2020 15:15:32.964 [35m[restartedMain][0;39m [39mTRACE[0;39m o.h.type.descriptor.sql.BasicBinder.bind - 
+     binding parameter [3] as [VARCHAR] - [sedeAvis]
+30-01-2020 15:15:32.998 [35m[restartedMain][0;39m [39mDEBUG[0;39m org.hibernate.SQL.logStatement - 
+     insert into sede_avis (comune, indirizzo, provincia, regione, telefono, id) values (?, ?, ?, ?, ?, ?)
+30-01-2020 15:15:32.999 [35m[restartedMain][0;39m [39mTRACE[0;39m o.h.type.descriptor.sql.BasicBinder.bind - 
+     binding parameter [1] as [VARCHAR] - [morrovalle]
+30-01-2020 15:15:32.999 [35m[restartedMain][0;39m [39mTRACE[0;39m o.h.type.descriptor.sql.BasicBinder.bind - 
+     binding parameter [2] as [VARCHAR] - [null]
+30-01-2020 15:15:32.999 [35m[restartedMain][0;39m [39mTRACE[0;39m o.h.type.descriptor.sql.BasicBinder.bind - 
+     binding parameter [3] as [VARCHAR] - [macerata]
+30-01-2020 15:15:32.999 [35m[restartedMain][0;39m [39mTRACE[0;39m o.h.type.descriptor.sql.BasicBinder.bind - 
+     binding parameter [4] as [VARCHAR] - [marche]
+30-01-2020 15:15:32.999 [35m[restartedMain][0;39m [39mTRACE[0;39m o.h.type.descriptor.sql.BasicBinder.bind - 
+     binding parameter [5] as [VARCHAR] - [null]
+30-01-2020 15:15:33.000 [35m[restartedMain][0;39m [39mTRACE[0;39m o.h.type.descriptor.sql.BasicBinder.bind - 
+     binding parameter [6] as [BIGINT] - [1]
+30-01-2020 15:15:33.051 [35m[restartedMain][0;39m [39mDEBUG[0;39m org.hibernate.SQL.logStatement - 
+     insert into utente (email, password, ruolo) values (?, ?, ?)
+30-01-2020 15:15:33.052 [35m[restartedMain][0;39m [39mTRACE[0;39m o.h.type.descriptor.sql.BasicBinder.bind - 
+     binding parameter [1] as [VARCHAR] - [sede2]
+30-01-2020 15:15:33.052 [35m[restartedMain][0;39m [39mTRACE[0;39m o.h.type.descriptor.sql.BasicBinder.bind - 
+     binding parameter [2] as [VARCHAR] - [$2a$10$x1VGNaJf8AHJAslOnPsh1e9OufSxWor0OwSDfORdD98GDlXzwMDN6]
+30-01-2020 15:15:33.052 [35m[restartedMain][0;39m [39mTRACE[0;39m o.h.type.descriptor.sql.BasicBinder.bind - 
+     binding parameter [3] as [VARCHAR] - [sedeAvis]
+30-01-2020 15:15:33.062 [35m[restartedMain][0;39m [39mDEBUG[0;39m org.hibernate.SQL.logStatement - 
+     insert into sede_avis (comune, indirizzo, provincia, regione, telefono, id) values (?, ?, ?, ?, ?, ?)
+30-01-2020 15:15:33.063 [35m[restartedMain][0;39m [39mTRACE[0;39m o.h.type.descriptor.sql.BasicBinder.bind - 
+     binding parameter [1] as [VARCHAR] - [montecosaro]
+30-01-2020 15:15:33.063 [35m[restartedMain][0;39m [39mTRACE[0;39m o.h.type.descriptor.sql.BasicBinder.bind - 
+     binding parameter [2] as [VARCHAR] - [null]
+30-01-2020 15:15:33.063 [35m[restartedMain][0;39m [39mTRACE[0;39m o.h.type.descriptor.sql.BasicBinder.bind - 
+     binding parameter [3] as [VARCHAR] - [macerata]
+30-01-2020 15:15:33.063 [35m[restartedMain][0;39m [39mTRACE[0;39m o.h.type.descriptor.sql.BasicBinder.bind - 
+     binding parameter [4] as [VARCHAR] - [marche]
+30-01-2020 15:15:33.063 [35m[restartedMain][0;39m [39mTRACE[0;39m o.h.type.descriptor.sql.BasicBinder.bind - 
+     binding parameter [5] as [VARCHAR] - [null]
+30-01-2020 15:15:33.064 [35m[restartedMain][0;39m [39mTRACE[0;39m o.h.type.descriptor.sql.BasicBinder.bind - 
+     binding parameter [6] as [BIGINT] - [2]
+30-01-2020 15:15:33.152 [35m[restartedMain][0;39m [39mDEBUG[0;39m org.hibernate.SQL.logStatement - 
+     insert into modulo (allergie, codice_fiscale, farmaci, fumatore, gruppo_sanguigno, indirizzo, malattie, modulo_compilato, telefono, vaccinazioni) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+30-01-2020 15:15:33.154 [35m[restartedMain][0;39m [39mTRACE[0;39m o.h.type.descriptor.sql.BasicBinder.bind - 
+     binding parameter [1] as [VARCHAR] - [null]
+30-01-2020 15:15:33.155 [35m[restartedMain][0;39m [39mTRACE[0;39m o.h.type.descriptor.sql.BasicBinder.bind - 
+     binding parameter [2] as [VARCHAR] - [null]
+30-01-2020 15:15:33.156 [35m[restartedMain][0;39m [39mTRACE[0;39m o.h.type.descriptor.sql.BasicBinder.bind - 
+     binding parameter [3] as [VARCHAR] - [null]
+30-01-2020 15:15:33.157 [35m[restartedMain][0;39m [39mTRACE[0;39m o.h.type.descriptor.sql.BasicBinder.bind - 
+     binding parameter [4] as [VARCHAR] - [null]
+30-01-2020 15:15:33.158 [35m[restartedMain][0;39m [39mTRACE[0;39m o.h.type.descriptor.sql.BasicBinder.bind - 
+     binding parameter [5] as [VARCHAR] - [null]
+30-01-2020 15:15:33.159 [35m[restartedMain][0;39m [39mTRACE[0;39m o.h.type.descriptor.sql.BasicBinder.bind - 
+     binding parameter [6] as [VARCHAR] - [null]
+30-01-2020 15:15:33.159 [35m[restartedMain][0;39m [39mTRACE[0;39m o.h.type.descriptor.sql.BasicBinder.bind - 
+     binding parameter [7] as [VARCHAR] - [null]
+30-01-2020 15:15:33.162 [35m[restartedMain][0;39m [39mTRACE[0;39m o.h.type.descriptor.sql.BasicBinder.bind - 
+     binding parameter [8] as [TINYINT] - [0]
+30-01-2020 15:15:33.163 [35m[restartedMain][0;39m [39mTRACE[0;39m o.h.type.descriptor.sql.BasicBinder.bind - 
+     binding parameter [9] as [VARCHAR] - [null]
+30-01-2020 15:15:33.165 [35m[restartedMain][0;39m [39mTRACE[0;39m o.h.type.descriptor.sql.BasicBinder.bind - 
+     binding parameter [10] as [VARCHAR] - [null]
+30-01-2020 15:15:33.223 [35m[restartedMain][0;39m [39mDEBUG[0;39m org.hibernate.SQL.logStatement - 
+     insert into utente (email, password, ruolo) values (?, ?, ?)
+30-01-2020 15:15:33.224 [35m[restartedMain][0;39m [39mTRACE[0;39m o.h.type.descriptor.sql.BasicBinder.bind - 
+     binding parameter [1] as [VARCHAR] - [marco]
+30-01-2020 15:15:33.224 [35m[restartedMain][0;39m [39mTRACE[0;39m o.h.type.descriptor.sql.BasicBinder.bind - 
+     binding parameter [2] as [VARCHAR] - [$2a$10$x1VGNaJf8AHJAslOnPsh1e9OufSxWor0OwSDfORdD98GDlXzwMDN6]
+30-01-2020 15:15:33.224 [35m[restartedMain][0;39m [39mTRACE[0;39m o.h.type.descriptor.sql.BasicBinder.bind - 
+     binding parameter [3] as [VARCHAR] - [donatore]
+30-01-2020 15:15:33.225 [35m[restartedMain][0;39m [39mDEBUG[0;39m org.hibernate.SQL.logStatement - 
+     insert into donatore (abilitazione_donazione, cognome, id_modulo, nome, id) values (?, ?, ?, ?, ?)
+30-01-2020 15:15:33.225 [35m[restartedMain][0;39m [39mTRACE[0;39m o.h.type.descriptor.sql.BasicBinder.bind - 
+     binding parameter [1] as [TINYINT] - [0]
+30-01-2020 15:15:33.226 [35m[restartedMain][0;39m [39mTRACE[0;39m o.h.type.descriptor.sql.BasicBinder.bind - 
+     binding parameter [2] as [VARCHAR] - [scarpa]
+30-01-2020 15:15:33.226 [35m[restartedMain][0;39m [39mTRACE[0;39m o.h.type.descriptor.sql.BasicBinder.bind - 
+     binding parameter [3] as [BIGINT] - [1]
+30-01-2020 15:15:33.226 [35m[restartedMain][0;39m [39mTRACE[0;39m o.h.type.descriptor.sql.BasicBinder.bind - 
+     binding parameter [4] as [VARCHAR] - [marco]
+30-01-2020 15:15:33.226 [35m[restartedMain][0;39m [39mTRACE[0;39m o.h.type.descriptor.sql.BasicBinder.bind - 
+     binding parameter [5] as [BIGINT] - [3]
+30-01-2020 15:15:33.246 [35m[restartedMain][0;39m [39mDEBUG[0;39m org.hibernate.SQL.logStatement - 
+     insert into modulo (allergie, codice_fiscale, farmaci, fumatore, gruppo_sanguigno, indirizzo, malattie, modulo_compilato, telefono, vaccinazioni) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+30-01-2020 15:15:33.246 [35m[restartedMain][0;39m [39mTRACE[0;39m o.h.type.descriptor.sql.BasicBinder.bind - 
+     binding parameter [1] as [VARCHAR] - [null]
+30-01-2020 15:15:33.247 [35m[restartedMain][0;39m [39mTRACE[0;39m o.h.type.descriptor.sql.BasicBinder.bind - 
+     binding parameter [2] as [VARCHAR] - [null]
+30-01-2020 15:15:33.247 [35m[restartedMain][0;39m [39mTRACE[0;39m o.h.type.descriptor.sql.BasicBinder.bind - 
+     binding parameter [3] as [VARCHAR] - [null]
+30-01-2020 15:15:33.247 [35m[restartedMain][0;39m [39mTRACE[0;39m o.h.type.descriptor.sql.BasicBinder.bind - 
+     binding parameter [4] as [VARCHAR] - [null]
+30-01-2020 15:15:33.247 [35m[restartedMain][0;39m [39mTRACE[0;39m o.h.type.descriptor.sql.BasicBinder.bind - 
+     binding parameter [5] as [VARCHAR] - [null]
+30-01-2020 15:15:33.247 [35m[restartedMain][0;39m [39mTRACE[0;39m o.h.type.descriptor.sql.BasicBinder.bind - 
+     binding parameter [6] as [VARCHAR] - [null]
+30-01-2020 15:15:33.248 [35m[restartedMain][0;39m [39mTRACE[0;39m o.h.type.descriptor.sql.BasicBinder.bind - 
+     binding parameter [7] as [VARCHAR] - [null]
+30-01-2020 15:15:33.248 [35m[restartedMain][0;39m [39mTRACE[0;39m o.h.type.descriptor.sql.BasicBinder.bind - 
+     binding parameter [8] as [TINYINT] - [0]
+30-01-2020 15:15:33.248 [35m[restartedMain][0;39m [39mTRACE[0;39m o.h.type.descriptor.sql.BasicBinder.bind - 
+     binding parameter [9] as [VARCHAR] - [null]
+30-01-2020 15:15:33.248 [35m[restartedMain][0;39m [39mTRACE[0;39m o.h.type.descriptor.sql.BasicBinder.bind - 
+     binding parameter [10] as [VARCHAR] - [null]
+30-01-2020 15:15:33.250 [35m[restartedMain][0;39m [39mDEBUG[0;39m org.hibernate.SQL.logStatement - 
+     insert into utente (email, password, ruolo) values (?, ?, ?)
+30-01-2020 15:15:33.250 [35m[restartedMain][0;39m [39mTRACE[0;39m o.h.type.descriptor.sql.BasicBinder.bind - 
+     binding parameter [1] as [VARCHAR] - [leo]
+30-01-2020 15:15:33.250 [35m[restartedMain][0;39m [39mTRACE[0;39m o.h.type.descriptor.sql.BasicBinder.bind - 
+     binding parameter [2] as [VARCHAR] - [$2a$10$x1VGNaJf8AHJAslOnPsh1e9OufSxWor0OwSDfORdD98GDlXzwMDN6]
+30-01-2020 15:15:33.250 [35m[restartedMain][0;39m [39mTRACE[0;39m o.h.type.descriptor.sql.BasicBinder.bind - 
+     binding parameter [3] as [VARCHAR] - [donatore]
+30-01-2020 15:15:33.251 [35m[restartedMain][0;39m [39mDEBUG[0;39m org.hibernate.SQL.logStatement - 
+     insert into donatore (abilitazione_donazione, cognome, id_modulo, nome, id) values (?, ?, ?, ?, ?)
+30-01-2020 15:15:33.251 [35m[restartedMain][0;39m [39mTRACE[0;39m o.h.type.descriptor.sql.BasicBinder.bind - 
+     binding parameter [1] as [TINYINT] - [0]
+30-01-2020 15:15:33.252 [35m[restartedMain][0;39m [39mTRACE[0;39m o.h.type.descriptor.sql.BasicBinder.bind - 
+     binding parameter [2] as [VARCHAR] - [del]
+30-01-2020 15:15:33.252 [35m[restartedMain][0;39m [39mTRACE[0;39m o.h.type.descriptor.sql.BasicBinder.bind - 
+     binding parameter [3] as [BIGINT] - [2]
+30-01-2020 15:15:33.252 [35m[restartedMain][0;39m [39mTRACE[0;39m o.h.type.descriptor.sql.BasicBinder.bind - 
+     binding parameter [4] as [VARCHAR] - [leo]
+30-01-2020 15:15:33.252 [35m[restartedMain][0;39m [39mTRACE[0;39m o.h.type.descriptor.sql.BasicBinder.bind - 
+     binding parameter [5] as [BIGINT] - [4]
+30-01-2020 15:15:33.314 [35m[restartedMain][0;39m [39mDEBUG[0;39m org.hibernate.SQL.logStatement - 
+     insert into utente (email, password, ruolo) values (?, ?, ?)
+30-01-2020 15:15:33.315 [35m[restartedMain][0;39m [39mTRACE[0;39m o.h.type.descriptor.sql.BasicBinder.bind - 
+     binding parameter [1] as [VARCHAR] - [centro1]
+30-01-2020 15:15:33.315 [35m[restartedMain][0;39m [39mTRACE[0;39m o.h.type.descriptor.sql.BasicBinder.bind - 
+     binding parameter [2] as [VARCHAR] - [$2a$10$x1VGNaJf8AHJAslOnPsh1e9OufSxWor0OwSDfORdD98GDlXzwMDN6]
+30-01-2020 15:15:33.315 [35m[restartedMain][0;39m [39mTRACE[0;39m o.h.type.descriptor.sql.BasicBinder.bind - 
+     binding parameter [3] as [VARCHAR] - [centroTrasfusione]
+30-01-2020 15:15:33.316 [35m[restartedMain][0;39m [39mDEBUG[0;39m org.hibernate.SQL.logStatement - 
+     insert into centro_trasfusione (comune, direttore, indirizzo, ospedale, provincia, regione, id) values (?, ?, ?, ?, ?, ?, ?)
+30-01-2020 15:15:33.317 [35m[restartedMain][0;39m [39mTRACE[0;39m o.h.type.descriptor.sql.BasicBinder.bind - 
+     binding parameter [1] as [VARCHAR] - [tavullia]
+30-01-2020 15:15:33.317 [35m[restartedMain][0;39m [39mTRACE[0;39m o.h.type.descriptor.sql.BasicBinder.bind - 
+     binding parameter [2] as [VARCHAR] - [null]
+30-01-2020 15:15:33.317 [35m[restartedMain][0;39m [39mTRACE[0;39m o.h.type.descriptor.sql.BasicBinder.bind - 
+     binding parameter [3] as [VARCHAR] - [null]
+30-01-2020 15:15:33.317 [35m[restartedMain][0;39m [39mTRACE[0;39m o.h.type.descriptor.sql.BasicBinder.bind - 
+     binding parameter [4] as [VARCHAR] - [null]
+30-01-2020 15:15:33.317 [35m[restartedMain][0;39m [39mTRACE[0;39m o.h.type.descriptor.sql.BasicBinder.bind - 
+     binding parameter [5] as [VARCHAR] - [pesaro]
+30-01-2020 15:15:33.318 [35m[restartedMain][0;39m [39mTRACE[0;39m o.h.type.descriptor.sql.BasicBinder.bind - 
+     binding parameter [6] as [VARCHAR] - [marche]
+30-01-2020 15:15:33.318 [35m[restartedMain][0;39m [39mTRACE[0;39m o.h.type.descriptor.sql.BasicBinder.bind - 
+     binding parameter [7] as [BIGINT] - [5]
+30-01-2020 15:15:33.337 [35m[restartedMain][0;39m [39mDEBUG[0;39m org.hibernate.SQL.logStatement - 
+     insert into utente (email, password, ruolo) values (?, ?, ?)
+30-01-2020 15:15:33.337 [35m[restartedMain][0;39m [39mTRACE[0;39m o.h.type.descriptor.sql.BasicBinder.bind - 
+     binding parameter [1] as [VARCHAR] - [centro2]
+30-01-2020 15:15:33.337 [35m[restartedMain][0;39m [39mTRACE[0;39m o.h.type.descriptor.sql.BasicBinder.bind - 
+     binding parameter [2] as [VARCHAR] - [$2a$10$x1VGNaJf8AHJAslOnPsh1e9OufSxWor0OwSDfORdD98GDlXzwMDN6]
+30-01-2020 15:15:33.338 [35m[restartedMain][0;39m [39mTRACE[0;39m o.h.type.descriptor.sql.BasicBinder.bind - 
+     binding parameter [3] as [VARCHAR] - [centroTrasfusione]
+30-01-2020 15:15:33.339 [35m[restartedMain][0;39m [39mDEBUG[0;39m org.hibernate.SQL.logStatement - 
+     insert into centro_trasfusione (comune, direttore, indirizzo, ospedale, provincia, regione, id) values (?, ?, ?, ?, ?, ?, ?)
+30-01-2020 15:15:33.340 [35m[restartedMain][0;39m [39mTRACE[0;39m o.h.type.descriptor.sql.BasicBinder.bind - 
+     binding parameter [1] as [VARCHAR] - [fano]
+30-01-2020 15:15:33.340 [35m[restartedMain][0;39m [39mTRACE[0;39m o.h.type.descriptor.sql.BasicBinder.bind - 
+     binding parameter [2] as [VARCHAR] - [null]
+30-01-2020 15:15:33.340 [35m[restartedMain][0;39m [39mTRACE[0;39m o.h.type.descriptor.sql.BasicBinder.bind - 
+     binding parameter [3] as [VARCHAR] - [null]
+30-01-2020 15:15:33.340 [35m[restartedMain][0;39m [39mTRACE[0;39m o.h.type.descriptor.sql.BasicBinder.bind - 
+     binding parameter [4] as [VARCHAR] - [null]
+30-01-2020 15:15:33.340 [35m[restartedMain][0;39m [39mTRACE[0;39m o.h.type.descriptor.sql.BasicBinder.bind - 
+     binding parameter [5] as [VARCHAR] - [pesaro]
+30-01-2020 15:15:33.340 [35m[restartedMain][0;39m [39mTRACE[0;39m o.h.type.descriptor.sql.BasicBinder.bind - 
+     binding parameter [6] as [VARCHAR] - [marche]
+30-01-2020 15:15:33.341 [35m[restartedMain][0;39m [39mTRACE[0;39m o.h.type.descriptor.sql.BasicBinder.bind - 
+     binding parameter [7] as [BIGINT] - [6]
+30-01-2020 15:15:33.376 [35m[restartedMain][0;39m [39mDEBUG[0;39m org.hibernate.SQL.logStatement - 
+     select sedeavis0_.id as id1_6_0_, sedeavis0_1_.email as email2_6_0_, sedeavis0_1_.password as password3_6_0_, sedeavis0_1_.ruolo as ruolo4_6_0_, sedeavis0_.comune as comune1_5_0_, sedeavis0_.indirizzo as indirizz2_5_0_, sedeavis0_.provincia as provinci3_5_0_, sedeavis0_.regione as regione4_5_0_, sedeavis0_.telefono as telefono5_5_0_ from sede_avis sedeavis0_ inner join utente sedeavis0_1_ on sedeavis0_.id=sedeavis0_1_.id where sedeavis0_.id=?
+30-01-2020 15:15:33.377 [35m[restartedMain][0;39m [39mTRACE[0;39m o.h.type.descriptor.sql.BasicBinder.bind - 
+     binding parameter [1] as [BIGINT] - [1]
+30-01-2020 15:15:33.382 [35m[restartedMain][0;39m [39mTRACE[0;39m o.h.t.descriptor.sql.BasicExtractor.extract - 
+     extracted value ([email2_6_0_] : [VARCHAR]) - [sede1]
+30-01-2020 15:15:33.382 [35m[restartedMain][0;39m [39mTRACE[0;39m o.h.t.descriptor.sql.BasicExtractor.extract - 
+     extracted value ([password3_6_0_] : [VARCHAR]) - [$2a$10$x1VGNaJf8AHJAslOnPsh1e9OufSxWor0OwSDfORdD98GDlXzwMDN6]
+30-01-2020 15:15:33.383 [35m[restartedMain][0;39m [39mTRACE[0;39m o.h.t.descriptor.sql.BasicExtractor.extract - 
+     extracted value ([ruolo4_6_0_] : [VARCHAR]) - [sedeAvis]
+30-01-2020 15:15:33.383 [35m[restartedMain][0;39m [39mTRACE[0;39m o.h.t.descriptor.sql.BasicExtractor.extract - 
+     extracted value ([comune1_5_0_] : [VARCHAR]) - [morrovalle]
+30-01-2020 15:15:33.383 [35m[restartedMain][0;39m [39mTRACE[0;39m o.h.t.descriptor.sql.BasicExtractor.extract - 
+     extracted value ([indirizz2_5_0_] : [VARCHAR]) - [null]
+30-01-2020 15:15:33.383 [35m[restartedMain][0;39m [39mTRACE[0;39m o.h.t.descriptor.sql.BasicExtractor.extract - 
+     extracted value ([provinci3_5_0_] : [VARCHAR]) - [macerata]
+30-01-2020 15:15:33.383 [35m[restartedMain][0;39m [39mTRACE[0;39m o.h.t.descriptor.sql.BasicExtractor.extract - 
+     extracted value ([regione4_5_0_] : [VARCHAR]) - [marche]
+30-01-2020 15:15:33.384 [35m[restartedMain][0;39m [39mTRACE[0;39m o.h.t.descriptor.sql.BasicExtractor.extract - 
+     extracted value ([telefono5_5_0_] : [VARCHAR]) - [null]
+30-01-2020 15:15:33.419 [35m[restartedMain][0;39m [39mDEBUG[0;39m org.hibernate.SQL.logStatement - 
+     select prenotazio0_.id as id1_4_, prenotazio0_.date as date2_4_, prenotazio0_.id_donatore as id_donat3_4_, prenotazio0_.id_sede_avis as id_sede_4_4_ from prenotazione prenotazio0_ where prenotazio0_.id_sede_avis=? and prenotazio0_.date=?
+30-01-2020 15:15:33.419 [35m[restartedMain][0;39m [39mTRACE[0;39m o.h.type.descriptor.sql.BasicBinder.bind - 
+     binding parameter [1] as [BIGINT] - [1]
+30-01-2020 15:15:33.420 [35m[restartedMain][0;39m [39mTRACE[0;39m o.h.type.descriptor.sql.BasicBinder.bind - 
+     binding parameter [2] as [TIMESTAMP] - [2020-02-13 11:00:00.0]
+30-01-2020 15:15:33.427 [35m[restartedMain][0;39m [39mDEBUG[0;39m org.hibernate.SQL.logStatement - 
+     insert into prenotazione (date, id_donatore, id_sede_avis) values (?, ?, ?)
+30-01-2020 15:15:33.427 [35m[restartedMain][0;39m [39mTRACE[0;39m o.h.type.descriptor.sql.BasicBinder.bind - 
+     binding parameter [1] as [TIMESTAMP] - [2020-02-13 11:00:00.0]
+30-01-2020 15:15:33.428 [35m[restartedMain][0;39m [39mTRACE[0;39m o.h.type.descriptor.sql.BasicBinder.bind - 
+     binding parameter [2] as [BIGINT] - [null]
+30-01-2020 15:15:33.428 [35m[restartedMain][0;39m [39mTRACE[0;39m o.h.type.descriptor.sql.BasicBinder.bind - 
+     binding parameter [3] as [BIGINT] - [1]
+30-01-2020 15:15:33.445 [35m[restartedMain][0;39m [39mDEBUG[0;39m org.hibernate.SQL.logStatement - 
+     select prenotazio0_.id as id1_4_, prenotazio0_.date as date2_4_, prenotazio0_.id_donatore as id_donat3_4_, prenotazio0_.id_sede_avis as id_sede_4_4_ from prenotazione prenotazio0_ where prenotazio0_.id_sede_avis=? and prenotazio0_.date=?
+30-01-2020 15:15:33.446 [35m[restartedMain][0;39m [39mTRACE[0;39m o.h.type.descriptor.sql.BasicBinder.bind - 
+     binding parameter [1] as [BIGINT] - [1]
+30-01-2020 15:15:33.446 [35m[restartedMain][0;39m [39mTRACE[0;39m o.h.type.descriptor.sql.BasicBinder.bind - 
+     binding parameter [2] as [TIMESTAMP] - [2020-02-13 11:15:00.0]
+30-01-2020 15:15:33.448 [35m[restartedMain][0;39m [39mDEBUG[0;39m org.hibernate.SQL.logStatement - 
+     insert into prenotazione (date, id_donatore, id_sede_avis) values (?, ?, ?)
+30-01-2020 15:15:33.448 [35m[restartedMain][0;39m [39mTRACE[0;39m o.h.type.descriptor.sql.BasicBinder.bind - 
+     binding parameter [1] as [TIMESTAMP] - [2020-02-13 11:15:00.0]
+30-01-2020 15:15:33.448 [35m[restartedMain][0;39m [39mTRACE[0;39m o.h.type.descriptor.sql.BasicBinder.bind - 
+     binding parameter [2] as [BIGINT] - [null]
+30-01-2020 15:15:33.449 [35m[restartedMain][0;39m [39mTRACE[0;39m o.h.type.descriptor.sql.BasicBinder.bind - 
+     binding parameter [3] as [BIGINT] - [1]
+30-01-2020 15:15:33.467 [35m[restartedMain][0;39m [39mDEBUG[0;39m org.hibernate.SQL.logStatement - 
+     select prenotazio0_.id as id1_4_, prenotazio0_.date as date2_4_, prenotazio0_.id_donatore as id_donat3_4_, prenotazio0_.id_sede_avis as id_sede_4_4_ from prenotazione prenotazio0_ where prenotazio0_.id_sede_avis=? and prenotazio0_.date=?
+30-01-2020 15:15:33.468 [35m[restartedMain][0;39m [39mTRACE[0;39m o.h.type.descriptor.sql.BasicBinder.bind - 
+     binding parameter [1] as [BIGINT] - [1]
+30-01-2020 15:15:33.468 [35m[restartedMain][0;39m [39mTRACE[0;39m o.h.type.descriptor.sql.BasicBinder.bind - 
+     binding parameter [2] as [TIMESTAMP] - [2020-02-13 11:30:00.0]
+30-01-2020 15:15:33.469 [35m[restartedMain][0;39m [39mDEBUG[0;39m org.hibernate.SQL.logStatement - 
+     insert into prenotazione (date, id_donatore, id_sede_avis) values (?, ?, ?)
+30-01-2020 15:15:33.470 [35m[restartedMain][0;39m [39mTRACE[0;39m o.h.type.descriptor.sql.BasicBinder.bind - 
+     binding parameter [1] as [TIMESTAMP] - [2020-02-13 11:30:00.0]
+30-01-2020 15:15:33.470 [35m[restartedMain][0;39m [39mTRACE[0;39m o.h.type.descriptor.sql.BasicBinder.bind - 
+     binding parameter [2] as [BIGINT] - [null]
+30-01-2020 15:15:33.470 [35m[restartedMain][0;39m [39mTRACE[0;39m o.h.type.descriptor.sql.BasicBinder.bind - 
+     binding parameter [3] as [BIGINT] - [1]
+30-01-2020 15:15:33.487 [35m[restartedMain][0;39m [39mDEBUG[0;39m org.hibernate.SQL.logStatement - 
+     select prenotazio0_.id as id1_4_, prenotazio0_.date as date2_4_, prenotazio0_.id_donatore as id_donat3_4_, prenotazio0_.id_sede_avis as id_sede_4_4_ from prenotazione prenotazio0_ where prenotazio0_.id_sede_avis=? and prenotazio0_.date=?
+30-01-2020 15:15:33.487 [35m[restartedMain][0;39m [39mTRACE[0;39m o.h.type.descriptor.sql.BasicBinder.bind - 
+     binding parameter [1] as [BIGINT] - [1]
+30-01-2020 15:15:33.488 [35m[restartedMain][0;39m [39mTRACE[0;39m o.h.type.descriptor.sql.BasicBinder.bind - 
+     binding parameter [2] as [TIMESTAMP] - [2020-02-13 11:45:00.0]
+30-01-2020 15:15:33.489 [35m[restartedMain][0;39m [39mDEBUG[0;39m org.hibernate.SQL.logStatement - 
+     insert into prenotazione (date, id_donatore, id_sede_avis) values (?, ?, ?)
+30-01-2020 15:15:33.489 [35m[restartedMain][0;39m [39mTRACE[0;39m o.h.type.descriptor.sql.BasicBinder.bind - 
+     binding parameter [1] as [TIMESTAMP] - [2020-02-13 11:45:00.0]
+30-01-2020 15:15:33.490 [35m[restartedMain][0;39m [39mTRACE[0;39m o.h.type.descriptor.sql.BasicBinder.bind - 
+     binding parameter [2] as [BIGINT] - [null]
+30-01-2020 15:15:33.490 [35m[restartedMain][0;39m [39mTRACE[0;39m o.h.type.descriptor.sql.BasicBinder.bind - 
+     binding parameter [3] as [BIGINT] - [1]
+30-01-2020 15:15:33.518 [35m[restartedMain][0;39m [39mDEBUG[0;39m org.hibernate.SQL.logStatement - 
+     select sedeavis0_.id as id1_6_0_, sedeavis0_1_.email as email2_6_0_, sedeavis0_1_.password as password3_6_0_, sedeavis0_1_.ruolo as ruolo4_6_0_, sedeavis0_.comune as comune1_5_0_, sedeavis0_.indirizzo as indirizz2_5_0_, sedeavis0_.provincia as provinci3_5_0_, sedeavis0_.regione as regione4_5_0_, sedeavis0_.telefono as telefono5_5_0_ from sede_avis sedeavis0_ inner join utente sedeavis0_1_ on sedeavis0_.id=sedeavis0_1_.id where sedeavis0_.id=?
+30-01-2020 15:15:33.518 [35m[restartedMain][0;39m [39mTRACE[0;39m o.h.type.descriptor.sql.BasicBinder.bind - 
+     binding parameter [1] as [BIGINT] - [1]
+30-01-2020 15:15:33.519 [35m[restartedMain][0;39m [39mTRACE[0;39m o.h.t.descriptor.sql.BasicExtractor.extract - 
+     extracted value ([email2_6_0_] : [VARCHAR]) - [sede1]
+30-01-2020 15:15:33.519 [35m[restartedMain][0;39m [39mTRACE[0;39m o.h.t.descriptor.sql.BasicExtractor.extract - 
+     extracted value ([password3_6_0_] : [VARCHAR]) - [$2a$10$x1VGNaJf8AHJAslOnPsh1e9OufSxWor0OwSDfORdD98GDlXzwMDN6]
+30-01-2020 15:15:33.519 [35m[restartedMain][0;39m [39mTRACE[0;39m o.h.t.descriptor.sql.BasicExtractor.extract - 
+     extracted value ([ruolo4_6_0_] : [VARCHAR]) - [sedeAvis]
+30-01-2020 15:15:33.520 [35m[restartedMain][0;39m [39mTRACE[0;39m o.h.t.descriptor.sql.BasicExtractor.extract - 
+     extracted value ([comune1_5_0_] : [VARCHAR]) - [morrovalle]
+30-01-2020 15:15:33.520 [35m[restartedMain][0;39m [39mTRACE[0;39m o.h.t.descriptor.sql.BasicExtractor.extract - 
+     extracted value ([indirizz2_5_0_] : [VARCHAR]) - [null]
+30-01-2020 15:15:33.520 [35m[restartedMain][0;39m [39mTRACE[0;39m o.h.t.descriptor.sql.BasicExtractor.extract - 
+     extracted value ([provinci3_5_0_] : [VARCHAR]) - [macerata]
+30-01-2020 15:15:33.520 [35m[restartedMain][0;39m [39mTRACE[0;39m o.h.t.descriptor.sql.BasicExtractor.extract - 
+     extracted value ([regione4_5_0_] : [VARCHAR]) - [marche]
+30-01-2020 15:15:33.520 [35m[restartedMain][0;39m [39mTRACE[0;39m o.h.t.descriptor.sql.BasicExtractor.extract - 
+     extracted value ([telefono5_5_0_] : [VARCHAR]) - [null]
+30-01-2020 15:15:33.522 [35m[restartedMain][0;39m [39mDEBUG[0;39m org.hibernate.SQL.logStatement - 
+     select prenotazio0_.id as id1_4_, prenotazio0_.date as date2_4_, prenotazio0_.id_donatore as id_donat3_4_, prenotazio0_.id_sede_avis as id_sede_4_4_ from prenotazione prenotazio0_ where prenotazio0_.id_sede_avis=? and prenotazio0_.date=?
+30-01-2020 15:15:33.522 [35m[restartedMain][0;39m [39mTRACE[0;39m o.h.type.descriptor.sql.BasicBinder.bind - 
+     binding parameter [1] as [BIGINT] - [1]
+30-01-2020 15:15:33.522 [35m[restartedMain][0;39m [39mTRACE[0;39m o.h.type.descriptor.sql.BasicBinder.bind - 
+     binding parameter [2] as [TIMESTAMP] - [2020-02-13 11:30:00.0]
+30-01-2020 15:15:33.524 [35m[restartedMain][0;39m [39mTRACE[0;39m o.h.t.descriptor.sql.BasicExtractor.extract - 
+     extracted value ([id1_4_] : [BIGINT]) - [3]
+30-01-2020 15:15:33.525 [35m[restartedMain][0;39m [39mTRACE[0;39m o.h.t.descriptor.sql.BasicExtractor.extract - 
+     extracted value ([date2_4_] : [TIMESTAMP]) - [2020-02-13 11:30:00.0]
+30-01-2020 15:15:33.525 [35m[restartedMain][0;39m [39mTRACE[0;39m o.h.t.descriptor.sql.BasicExtractor.extract - 
+     extracted value ([id_donat3_4_] : [BIGINT]) - [null]
+30-01-2020 15:15:33.525 [35m[restartedMain][0;39m [39mTRACE[0;39m o.h.t.descriptor.sql.BasicExtractor.extract - 
+     extracted value ([id_sede_4_4_] : [BIGINT]) - [1]
+30-01-2020 15:15:33.526 [35m[restartedMain][0;39m [39mDEBUG[0;39m org.hibernate.SQL.logStatement - 
+     select sedeavis0_.id as id1_6_0_, sedeavis0_1_.email as email2_6_0_, sedeavis0_1_.password as password3_6_0_, sedeavis0_1_.ruolo as ruolo4_6_0_, sedeavis0_.comune as comune1_5_0_, sedeavis0_.indirizzo as indirizz2_5_0_, sedeavis0_.provincia as provinci3_5_0_, sedeavis0_.regione as regione4_5_0_, sedeavis0_.telefono as telefono5_5_0_ from sede_avis sedeavis0_ inner join utente sedeavis0_1_ on sedeavis0_.id=sedeavis0_1_.id where sedeavis0_.id=?
+30-01-2020 15:15:33.526 [35m[restartedMain][0;39m [39mTRACE[0;39m o.h.type.descriptor.sql.BasicBinder.bind - 
+     binding parameter [1] as [BIGINT] - [1]
+30-01-2020 15:15:33.527 [35m[restartedMain][0;39m [39mTRACE[0;39m o.h.t.descriptor.sql.BasicExtractor.extract - 
+     extracted value ([email2_6_0_] : [VARCHAR]) - [sede1]
+30-01-2020 15:15:33.528 [35m[restartedMain][0;39m [39mTRACE[0;39m o.h.t.descriptor.sql.BasicExtractor.extract - 
+     extracted value ([password3_6_0_] : [VARCHAR]) - [$2a$10$x1VGNaJf8AHJAslOnPsh1e9OufSxWor0OwSDfORdD98GDlXzwMDN6]
+30-01-2020 15:15:33.528 [35m[restartedMain][0;39m [39mTRACE[0;39m o.h.t.descriptor.sql.BasicExtractor.extract - 
+     extracted value ([ruolo4_6_0_] : [VARCHAR]) - [sedeAvis]
+30-01-2020 15:15:33.528 [35m[restartedMain][0;39m [39mTRACE[0;39m o.h.t.descriptor.sql.BasicExtractor.extract - 
+     extracted value ([comune1_5_0_] : [VARCHAR]) - [morrovalle]
+30-01-2020 15:15:33.529 [35m[restartedMain][0;39m [39mTRACE[0;39m o.h.t.descriptor.sql.BasicExtractor.extract - 
+     extracted value ([indirizz2_5_0_] : [VARCHAR]) - [null]
+30-01-2020 15:15:33.529 [35m[restartedMain][0;39m [39mTRACE[0;39m o.h.t.descriptor.sql.BasicExtractor.extract - 
+     extracted value ([provinci3_5_0_] : [VARCHAR]) - [macerata]
+30-01-2020 15:15:33.529 [35m[restartedMain][0;39m [39mTRACE[0;39m o.h.t.descriptor.sql.BasicExtractor.extract - 
+     extracted value ([regione4_5_0_] : [VARCHAR]) - [marche]
+30-01-2020 15:15:33.529 [35m[restartedMain][0;39m [39mTRACE[0;39m o.h.t.descriptor.sql.BasicExtractor.extract - 
+     extracted value ([telefono5_5_0_] : [VARCHAR]) - [null]
+30-01-2020 15:15:33.530 [35m[restartedMain][0;39m [39mDEBUG[0;39m org.hibernate.SQL.logStatement - 
+     select prenotazio0_.id as id1_4_, prenotazio0_.date as date2_4_, prenotazio0_.id_donatore as id_donat3_4_, prenotazio0_.id_sede_avis as id_sede_4_4_ from prenotazione prenotazio0_ where prenotazio0_.id_sede_avis=? and prenotazio0_.date=?
+30-01-2020 15:15:33.531 [35m[restartedMain][0;39m [39mTRACE[0;39m o.h.type.descriptor.sql.BasicBinder.bind - 
+     binding parameter [1] as [BIGINT] - [1]
+30-01-2020 15:15:33.531 [35m[restartedMain][0;39m [39mTRACE[0;39m o.h.type.descriptor.sql.BasicBinder.bind - 
+     binding parameter [2] as [TIMESTAMP] - [2020-02-13 11:45:00.0]
+30-01-2020 15:15:33.532 [35m[restartedMain][0;39m [39mTRACE[0;39m o.h.t.descriptor.sql.BasicExtractor.extract - 
+     extracted value ([id1_4_] : [BIGINT]) - [4]
+30-01-2020 15:15:33.532 [35m[restartedMain][0;39m [39mTRACE[0;39m o.h.t.descriptor.sql.BasicExtractor.extract - 
+     extracted value ([date2_4_] : [TIMESTAMP]) - [2020-02-13 11:45:00.0]
+30-01-2020 15:15:33.533 [35m[restartedMain][0;39m [39mTRACE[0;39m o.h.t.descriptor.sql.BasicExtractor.extract - 
+     extracted value ([id_donat3_4_] : [BIGINT]) - [null]
+30-01-2020 15:15:33.533 [35m[restartedMain][0;39m [39mTRACE[0;39m o.h.t.descriptor.sql.BasicExtractor.extract - 
+     extracted value ([id_sede_4_4_] : [BIGINT]) - [1]
+30-01-2020 15:15:33.533 [35m[restartedMain][0;39m [39mDEBUG[0;39m org.hibernate.SQL.logStatement - 
+     select sedeavis0_.id as id1_6_0_, sedeavis0_1_.email as email2_6_0_, sedeavis0_1_.password as password3_6_0_, sedeavis0_1_.ruolo as ruolo4_6_0_, sedeavis0_.comune as comune1_5_0_, sedeavis0_.indirizzo as indirizz2_5_0_, sedeavis0_.provincia as provinci3_5_0_, sedeavis0_.regione as regione4_5_0_, sedeavis0_.telefono as telefono5_5_0_ from sede_avis sedeavis0_ inner join utente sedeavis0_1_ on sedeavis0_.id=sedeavis0_1_.id where sedeavis0_.id=?
+30-01-2020 15:15:33.533 [35m[restartedMain][0;39m [39mTRACE[0;39m o.h.type.descriptor.sql.BasicBinder.bind - 
+     binding parameter [1] as [BIGINT] - [1]
+30-01-2020 15:15:33.535 [35m[restartedMain][0;39m [39mTRACE[0;39m o.h.t.descriptor.sql.BasicExtractor.extract - 
+     extracted value ([email2_6_0_] : [VARCHAR]) - [sede1]
+30-01-2020 15:15:33.535 [35m[restartedMain][0;39m [39mTRACE[0;39m o.h.t.descriptor.sql.BasicExtractor.extract - 
+     extracted value ([password3_6_0_] : [VARCHAR]) - [$2a$10$x1VGNaJf8AHJAslOnPsh1e9OufSxWor0OwSDfORdD98GDlXzwMDN6]
+30-01-2020 15:15:33.535 [35m[restartedMain][0;39m [39mTRACE[0;39m o.h.t.descriptor.sql.BasicExtractor.extract - 
+     extracted value ([ruolo4_6_0_] : [VARCHAR]) - [sedeAvis]
+30-01-2020 15:15:33.535 [35m[restartedMain][0;39m [39mTRACE[0;39m o.h.t.descriptor.sql.BasicExtractor.extract - 
+     extracted value ([comune1_5_0_] : [VARCHAR]) - [morrovalle]
+30-01-2020 15:15:33.535 [35m[restartedMain][0;39m [39mTRACE[0;39m o.h.t.descriptor.sql.BasicExtractor.extract - 
+     extracted value ([indirizz2_5_0_] : [VARCHAR]) - [null]
+30-01-2020 15:15:33.536 [35m[restartedMain][0;39m [39mTRACE[0;39m o.h.t.descriptor.sql.BasicExtractor.extract - 
+     extracted value ([provinci3_5_0_] : [VARCHAR]) - [macerata]
+30-01-2020 15:15:33.536 [35m[restartedMain][0;39m [39mTRACE[0;39m o.h.t.descriptor.sql.BasicExtractor.extract - 
+     extracted value ([regione4_5_0_] : [VARCHAR]) - [marche]
+30-01-2020 15:15:33.536 [35m[restartedMain][0;39m [39mTRACE[0;39m o.h.t.descriptor.sql.BasicExtractor.extract - 
+     extracted value ([telefono5_5_0_] : [VARCHAR]) - [null]
+30-01-2020 15:15:33.537 [35m[restartedMain][0;39m [39mDEBUG[0;39m org.hibernate.SQL.logStatement - 
+     select prenotazio0_.id as id1_4_, prenotazio0_.date as date2_4_, prenotazio0_.id_donatore as id_donat3_4_, prenotazio0_.id_sede_avis as id_sede_4_4_ from prenotazione prenotazio0_ where prenotazio0_.id_sede_avis=? and prenotazio0_.date=?
+30-01-2020 15:15:33.537 [35m[restartedMain][0;39m [39mTRACE[0;39m o.h.type.descriptor.sql.BasicBinder.bind - 
+     binding parameter [1] as [BIGINT] - [1]
+30-01-2020 15:15:33.537 [35m[restartedMain][0;39m [39mTRACE[0;39m o.h.type.descriptor.sql.BasicBinder.bind - 
+     binding parameter [2] as [TIMESTAMP] - [2020-02-13 12:00:00.0]
+30-01-2020 15:15:33.540 [35m[restartedMain][0;39m [39mDEBUG[0;39m org.hibernate.SQL.logStatement - 
+     insert into prenotazione (date, id_donatore, id_sede_avis) values (?, ?, ?)
+30-01-2020 15:15:33.540 [35m[restartedMain][0;39m [39mTRACE[0;39m o.h.type.descriptor.sql.BasicBinder.bind - 
+     binding parameter [1] as [TIMESTAMP] - [2020-02-13 12:00:00.0]
+30-01-2020 15:15:33.541 [35m[restartedMain][0;39m [39mTRACE[0;39m o.h.type.descriptor.sql.BasicBinder.bind - 
+     binding parameter [2] as [BIGINT] - [null]
+30-01-2020 15:15:33.541 [35m[restartedMain][0;39m [39mTRACE[0;39m o.h.type.descriptor.sql.BasicBinder.bind - 
+     binding parameter [3] as [BIGINT] - [1]
+30-01-2020 15:15:33.576 [35m[restartedMain][0;39m [39mDEBUG[0;39m org.hibernate.SQL.logStatement - 
+     select prenotazio0_.id as id1_4_, prenotazio0_.date as date2_4_, prenotazio0_.id_donatore as id_donat3_4_, prenotazio0_.id_sede_avis as id_sede_4_4_ from prenotazione prenotazio0_ where prenotazio0_.id_sede_avis=? and prenotazio0_.date=?
+30-01-2020 15:15:33.616 [35m[restartedMain][0;39m [39mTRACE[0;39m o.h.type.descriptor.sql.BasicBinder.bind - 
+     binding parameter [1] as [BIGINT] - [1]
+30-01-2020 15:15:33.617 [35m[restartedMain][0;39m [39mTRACE[0;39m o.h.type.descriptor.sql.BasicBinder.bind - 
+     binding parameter [2] as [TIMESTAMP] - [2020-02-13 12:15:00.0]
+30-01-2020 15:15:33.621 [35m[restartedMain][0;39m [39mDEBUG[0;39m org.hibernate.SQL.logStatement - 
+     insert into prenotazione (date, id_donatore, id_sede_avis) values (?, ?, ?)
+30-01-2020 15:15:33.623 [35m[restartedMain][0;39m [39mTRACE[0;39m o.h.type.descriptor.sql.BasicBinder.bind - 
+     binding parameter [1] as [TIMESTAMP] - [2020-02-13 12:15:00.0]
+30-01-2020 15:15:33.624 [35m[restartedMain][0;39m [39mTRACE[0;39m o.h.type.descriptor.sql.BasicBinder.bind - 
+     binding parameter [2] as [BIGINT] - [null]
+30-01-2020 15:15:33.625 [35m[restartedMain][0;39m [39mTRACE[0;39m o.h.type.descriptor.sql.BasicBinder.bind - 
+     binding parameter [3] as [BIGINT] - [1]
+30-01-2020 15:15:33.696 [35m[restartedMain][0;39m [39mDEBUG[0;39m org.hibernate.SQL.logStatement - 
+     select sedeavis0_.id as id1_6_0_, sedeavis0_1_.email as email2_6_0_, sedeavis0_1_.password as password3_6_0_, sedeavis0_1_.ruolo as ruolo4_6_0_, sedeavis0_.comune as comune1_5_0_, sedeavis0_.indirizzo as indirizz2_5_0_, sedeavis0_.provincia as provinci3_5_0_, sedeavis0_.regione as regione4_5_0_, sedeavis0_.telefono as telefono5_5_0_ from sede_avis sedeavis0_ inner join utente sedeavis0_1_ on sedeavis0_.id=sedeavis0_1_.id where sedeavis0_.id=?
+30-01-2020 15:15:33.696 [35m[restartedMain][0;39m [39mTRACE[0;39m o.h.type.descriptor.sql.BasicBinder.bind - 
+     binding parameter [1] as [BIGINT] - [2]
+30-01-2020 15:15:33.697 [35m[restartedMain][0;39m [39mTRACE[0;39m o.h.t.descriptor.sql.BasicExtractor.extract - 
+     extracted value ([email2_6_0_] : [VARCHAR]) - [sede2]
+30-01-2020 15:15:33.697 [35m[restartedMain][0;39m [39mTRACE[0;39m o.h.t.descriptor.sql.BasicExtractor.extract - 
+     extracted value ([password3_6_0_] : [VARCHAR]) - [$2a$10$x1VGNaJf8AHJAslOnPsh1e9OufSxWor0OwSDfORdD98GDlXzwMDN6]
+30-01-2020 15:15:33.697 [35m[restartedMain][0;39m [39mTRACE[0;39m o.h.t.descriptor.sql.BasicExtractor.extract - 
+     extracted value ([ruolo4_6_0_] : [VARCHAR]) - [sedeAvis]
+30-01-2020 15:15:33.697 [35m[restartedMain][0;39m [39mTRACE[0;39m o.h.t.descriptor.sql.BasicExtractor.extract - 
+     extracted value ([comune1_5_0_] : [VARCHAR]) - [montecosaro]
+30-01-2020 15:15:33.698 [35m[restartedMain][0;39m [39mTRACE[0;39m o.h.t.descriptor.sql.BasicExtractor.extract - 
+     extracted value ([indirizz2_5_0_] : [VARCHAR]) - [null]
+30-01-2020 15:15:33.698 [35m[restartedMain][0;39m [39mTRACE[0;39m o.h.t.descriptor.sql.BasicExtractor.extract - 
+     extracted value ([provinci3_5_0_] : [VARCHAR]) - [macerata]
+30-01-2020 15:15:33.698 [35m[restartedMain][0;39m [39mTRACE[0;39m o.h.t.descriptor.sql.BasicExtractor.extract - 
+     extracted value ([regione4_5_0_] : [VARCHAR]) - [marche]
+30-01-2020 15:15:33.698 [35m[restartedMain][0;39m [39mTRACE[0;39m o.h.t.descriptor.sql.BasicExtractor.extract - 
+     extracted value ([telefono5_5_0_] : [VARCHAR]) - [null]
+30-01-2020 15:15:33.700 [35m[restartedMain][0;39m [39mDEBUG[0;39m org.hibernate.SQL.logStatement - 
+     select prenotazio0_.id as id1_4_, prenotazio0_.date as date2_4_, prenotazio0_.id_donatore as id_donat3_4_, prenotazio0_.id_sede_avis as id_sede_4_4_ from prenotazione prenotazio0_ where prenotazio0_.id_sede_avis=? and prenotazio0_.date=?
+30-01-2020 15:15:33.700 [35m[restartedMain][0;39m [39mTRACE[0;39m o.h.type.descriptor.sql.BasicBinder.bind - 
+     binding parameter [1] as [BIGINT] - [2]
+30-01-2020 15:15:33.701 [35m[restartedMain][0;39m [39mTRACE[0;39m o.h.type.descriptor.sql.BasicBinder.bind - 
+     binding parameter [2] as [TIMESTAMP] - [2020-02-13 12:00:00.0]
+30-01-2020 15:15:33.702 [35m[restartedMain][0;39m [39mDEBUG[0;39m org.hibernate.SQL.logStatement - 
+     insert into prenotazione (date, id_donatore, id_sede_avis) values (?, ?, ?)
+30-01-2020 15:15:33.703 [35m[restartedMain][0;39m [39mTRACE[0;39m o.h.type.descriptor.sql.BasicBinder.bind - 
+     binding parameter [1] as [TIMESTAMP] - [2020-02-13 12:00:00.0]
+30-01-2020 15:15:33.703 [35m[restartedMain][0;39m [39mTRACE[0;39m o.h.type.descriptor.sql.BasicBinder.bind - 
+     binding parameter [2] as [BIGINT] - [null]
+30-01-2020 15:15:33.703 [35m[restartedMain][0;39m [39mTRACE[0;39m o.h.type.descriptor.sql.BasicBinder.bind - 
+     binding parameter [3] as [BIGINT] - [2]
+30-01-2020 15:15:33.721 [35m[restartedMain][0;39m [39mDEBUG[0;39m org.hibernate.SQL.logStatement - 
+     select prenotazio0_.id as id1_4_, prenotazio0_.date as date2_4_, prenotazio0_.id_donatore as id_donat3_4_, prenotazio0_.id_sede_avis as id_sede_4_4_ from prenotazione prenotazio0_ where prenotazio0_.id_sede_avis=? and prenotazio0_.date=?
+30-01-2020 15:15:33.721 [35m[restartedMain][0;39m [39mTRACE[0;39m o.h.type.descriptor.sql.BasicBinder.bind - 
+     binding parameter [1] as [BIGINT] - [2]
+30-01-2020 15:15:33.721 [35m[restartedMain][0;39m [39mTRACE[0;39m o.h.type.descriptor.sql.BasicBinder.bind - 
+     binding parameter [2] as [TIMESTAMP] - [2020-02-13 12:15:00.0]
+30-01-2020 15:15:33.723 [35m[restartedMain][0;39m [39mDEBUG[0;39m org.hibernate.SQL.logStatement - 
+     insert into prenotazione (date, id_donatore, id_sede_avis) values (?, ?, ?)
+30-01-2020 15:15:33.723 [35m[restartedMain][0;39m [39mTRACE[0;39m o.h.type.descriptor.sql.BasicBinder.bind - 
+     binding parameter [1] as [TIMESTAMP] - [2020-02-13 12:15:00.0]
+30-01-2020 15:15:33.724 [35m[restartedMain][0;39m [39mTRACE[0;39m o.h.type.descriptor.sql.BasicBinder.bind - 
+     binding parameter [2] as [BIGINT] - [null]
+30-01-2020 15:15:33.724 [35m[restartedMain][0;39m [39mTRACE[0;39m o.h.type.descriptor.sql.BasicBinder.bind - 
+     binding parameter [3] as [BIGINT] - [2]
+30-01-2020 15:15:33.742 [35m[restartedMain][0;39m [39mDEBUG[0;39m org.hibernate.SQL.logStatement - 
+     select prenotazio0_.id as id1_4_, prenotazio0_.date as date2_4_, prenotazio0_.id_donatore as id_donat3_4_, prenotazio0_.id_sede_avis as id_sede_4_4_ from prenotazione prenotazio0_ where prenotazio0_.id_sede_avis=? and prenotazio0_.date=?
+30-01-2020 15:15:33.742 [35m[restartedMain][0;39m [39mTRACE[0;39m o.h.type.descriptor.sql.BasicBinder.bind - 
+     binding parameter [1] as [BIGINT] - [2]
+30-01-2020 15:15:33.743 [35m[restartedMain][0;39m [39mTRACE[0;39m o.h.type.descriptor.sql.BasicBinder.bind - 
+     binding parameter [2] as [TIMESTAMP] - [2020-02-13 12:30:00.0]
+30-01-2020 15:15:33.744 [35m[restartedMain][0;39m [39mDEBUG[0;39m org.hibernate.SQL.logStatement - 
+     insert into prenotazione (date, id_donatore, id_sede_avis) values (?, ?, ?)
+30-01-2020 15:15:33.744 [35m[restartedMain][0;39m [39mTRACE[0;39m o.h.type.descriptor.sql.BasicBinder.bind - 
+     binding parameter [1] as [TIMESTAMP] - [2020-02-13 12:30:00.0]
+30-01-2020 15:15:33.745 [35m[restartedMain][0;39m [39mTRACE[0;39m o.h.type.descriptor.sql.BasicBinder.bind - 
+     binding parameter [2] as [BIGINT] - [null]
+30-01-2020 15:15:33.745 [35m[restartedMain][0;39m [39mTRACE[0;39m o.h.type.descriptor.sql.BasicBinder.bind - 
+     binding parameter [3] as [BIGINT] - [2]
+30-01-2020 15:15:33.762 [35m[restartedMain][0;39m [39mDEBUG[0;39m org.hibernate.SQL.logStatement - 
+     select prenotazio0_.id as id1_4_, prenotazio0_.date as date2_4_, prenotazio0_.id_donatore as id_donat3_4_, prenotazio0_.id_sede_avis as id_sede_4_4_ from prenotazione prenotazio0_ where prenotazio0_.id_sede_avis=? and prenotazio0_.date=?
+30-01-2020 15:15:33.762 [35m[restartedMain][0;39m [39mTRACE[0;39m o.h.type.descriptor.sql.BasicBinder.bind - 
+     binding parameter [1] as [BIGINT] - [2]
+30-01-2020 15:15:33.762 [35m[restartedMain][0;39m [39mTRACE[0;39m o.h.type.descriptor.sql.BasicBinder.bind - 
+     binding parameter [2] as [TIMESTAMP] - [2020-02-13 12:45:00.0]
+30-01-2020 15:15:33.764 [35m[restartedMain][0;39m [39mDEBUG[0;39m org.hibernate.SQL.logStatement - 
+     insert into prenotazione (date, id_donatore, id_sede_avis) values (?, ?, ?)
+30-01-2020 15:15:33.764 [35m[restartedMain][0;39m [39mTRACE[0;39m o.h.type.descriptor.sql.BasicBinder.bind - 
+     binding parameter [1] as [TIMESTAMP] - [2020-02-13 12:45:00.0]
+30-01-2020 15:15:33.764 [35m[restartedMain][0;39m [39mTRACE[0;39m o.h.type.descriptor.sql.BasicBinder.bind - 
+     binding parameter [2] as [BIGINT] - [null]
+30-01-2020 15:15:33.765 [35m[restartedMain][0;39m [39mTRACE[0;39m o.h.type.descriptor.sql.BasicBinder.bind - 
+     binding parameter [3] as [BIGINT] - [2]
+30-01-2020 15:15:33.784 [35m[restartedMain][0;39m [39mDEBUG[0;39m org.hibernate.SQL.logStatement - 
+     select sedeavis0_.id as id1_6_0_, sedeavis0_1_.email as email2_6_0_, sedeavis0_1_.password as password3_6_0_, sedeavis0_1_.ruolo as ruolo4_6_0_, sedeavis0_.comune as comune1_5_0_, sedeavis0_.indirizzo as indirizz2_5_0_, sedeavis0_.provincia as provinci3_5_0_, sedeavis0_.regione as regione4_5_0_, sedeavis0_.telefono as telefono5_5_0_ from sede_avis sedeavis0_ inner join utente sedeavis0_1_ on sedeavis0_.id=sedeavis0_1_.id where sedeavis0_.id=?
+30-01-2020 15:15:33.784 [35m[restartedMain][0;39m [39mTRACE[0;39m o.h.type.descriptor.sql.BasicBinder.bind - 
+     binding parameter [1] as [BIGINT] - [1]
+30-01-2020 15:15:33.785 [35m[restartedMain][0;39m [39mTRACE[0;39m o.h.t.descriptor.sql.BasicExtractor.extract - 
+     extracted value ([email2_6_0_] : [VARCHAR]) - [sede1]
+30-01-2020 15:15:33.785 [35m[restartedMain][0;39m [39mTRACE[0;39m o.h.t.descriptor.sql.BasicExtractor.extract - 
+     extracted value ([password3_6_0_] : [VARCHAR]) - [$2a$10$x1VGNaJf8AHJAslOnPsh1e9OufSxWor0OwSDfORdD98GDlXzwMDN6]
+30-01-2020 15:15:33.785 [35m[restartedMain][0;39m [39mTRACE[0;39m o.h.t.descriptor.sql.BasicExtractor.extract - 
+     extracted value ([ruolo4_6_0_] : [VARCHAR]) - [sedeAvis]
+30-01-2020 15:15:33.785 [35m[restartedMain][0;39m [39mTRACE[0;39m o.h.t.descriptor.sql.BasicExtractor.extract - 
+     extracted value ([comune1_5_0_] : [VARCHAR]) - [morrovalle]
+30-01-2020 15:15:33.785 [35m[restartedMain][0;39m [39mTRACE[0;39m o.h.t.descriptor.sql.BasicExtractor.extract - 
+     extracted value ([indirizz2_5_0_] : [VARCHAR]) - [null]
+30-01-2020 15:15:33.786 [35m[restartedMain][0;39m [39mTRACE[0;39m o.h.t.descriptor.sql.BasicExtractor.extract - 
+     extracted value ([provinci3_5_0_] : [VARCHAR]) - [macerata]
+30-01-2020 15:15:33.786 [35m[restartedMain][0;39m [39mTRACE[0;39m o.h.t.descriptor.sql.BasicExtractor.extract - 
+     extracted value ([regione4_5_0_] : [VARCHAR]) - [marche]
+30-01-2020 15:15:33.786 [35m[restartedMain][0;39m [39mTRACE[0;39m o.h.t.descriptor.sql.BasicExtractor.extract - 
+     extracted value ([telefono5_5_0_] : [VARCHAR]) - [null]
+30-01-2020 15:15:33.787 [35m[restartedMain][0;39m [39mDEBUG[0;39m org.hibernate.SQL.logStatement - 
+     select prenotazio0_.id as id1_4_, prenotazio0_.date as date2_4_, prenotazio0_.id_donatore as id_donat3_4_, prenotazio0_.id_sede_avis as id_sede_4_4_ from prenotazione prenotazio0_ where prenotazio0_.id_sede_avis=? and prenotazio0_.date=?
+30-01-2020 15:15:33.787 [35m[restartedMain][0;39m [39mTRACE[0;39m o.h.type.descriptor.sql.BasicBinder.bind - 
+     binding parameter [1] as [BIGINT] - [1]
+30-01-2020 15:15:33.787 [35m[restartedMain][0;39m [39mTRACE[0;39m o.h.type.descriptor.sql.BasicBinder.bind - 
+     binding parameter [2] as [TIMESTAMP] - [2020-01-13 13:00:00.0]
+30-01-2020 15:15:33.789 [35m[restartedMain][0;39m [39mDEBUG[0;39m org.hibernate.SQL.logStatement - 
+     insert into prenotazione (date, id_donatore, id_sede_avis) values (?, ?, ?)
+30-01-2020 15:15:33.789 [35m[restartedMain][0;39m [39mTRACE[0;39m o.h.type.descriptor.sql.BasicBinder.bind - 
+     binding parameter [1] as [TIMESTAMP] - [2020-01-13 13:00:00.0]
+30-01-2020 15:15:33.789 [35m[restartedMain][0;39m [39mTRACE[0;39m o.h.type.descriptor.sql.BasicBinder.bind - 
+     binding parameter [2] as [BIGINT] - [null]
+30-01-2020 15:15:33.789 [35m[restartedMain][0;39m [39mTRACE[0;39m o.h.type.descriptor.sql.BasicBinder.bind - 
+     binding parameter [3] as [BIGINT] - [1]
+30-01-2020 15:15:33.809 [35m[restartedMain][0;39m [39mDEBUG[0;39m org.hibernate.SQL.logStatement - 
+     select prenotazio0_.id as id1_4_, prenotazio0_.date as date2_4_, prenotazio0_.id_donatore as id_donat3_4_, prenotazio0_.id_sede_avis as id_sede_4_4_ from prenotazione prenotazio0_ where prenotazio0_.id_sede_avis=? and prenotazio0_.date=?
+30-01-2020 15:15:33.810 [35m[restartedMain][0;39m [39mTRACE[0;39m o.h.type.descriptor.sql.BasicBinder.bind - 
+     binding parameter [1] as [BIGINT] - [1]
+30-01-2020 15:15:33.810 [35m[restartedMain][0;39m [39mTRACE[0;39m o.h.type.descriptor.sql.BasicBinder.bind - 
+     binding parameter [2] as [TIMESTAMP] - [2020-01-13 13:15:00.0]
+30-01-2020 15:15:33.811 [35m[restartedMain][0;39m [39mDEBUG[0;39m org.hibernate.SQL.logStatement - 
+     insert into prenotazione (date, id_donatore, id_sede_avis) values (?, ?, ?)
+30-01-2020 15:15:33.812 [35m[restartedMain][0;39m [39mTRACE[0;39m o.h.type.descriptor.sql.BasicBinder.bind - 
+     binding parameter [1] as [TIMESTAMP] - [2020-01-13 13:15:00.0]
+30-01-2020 15:15:33.812 [35m[restartedMain][0;39m [39mTRACE[0;39m o.h.type.descriptor.sql.BasicBinder.bind - 
+     binding parameter [2] as [BIGINT] - [null]
+30-01-2020 15:15:33.812 [35m[restartedMain][0;39m [39mTRACE[0;39m o.h.type.descriptor.sql.BasicBinder.bind - 
+     binding parameter [3] as [BIGINT] - [1]
+30-01-2020 15:15:33.829 [35m[restartedMain][0;39m [39mDEBUG[0;39m org.hibernate.SQL.logStatement - 
+     select prenotazio0_.id as id1_4_, prenotazio0_.date as date2_4_, prenotazio0_.id_donatore as id_donat3_4_, prenotazio0_.id_sede_avis as id_sede_4_4_ from prenotazione prenotazio0_ where prenotazio0_.id_sede_avis=? and prenotazio0_.date=?
+30-01-2020 15:15:33.829 [35m[restartedMain][0;39m [39mTRACE[0;39m o.h.type.descriptor.sql.BasicBinder.bind - 
+     binding parameter [1] as [BIGINT] - [1]
+30-01-2020 15:15:33.829 [35m[restartedMain][0;39m [39mTRACE[0;39m o.h.type.descriptor.sql.BasicBinder.bind - 
+     binding parameter [2] as [TIMESTAMP] - [2020-01-13 13:30:00.0]
+30-01-2020 15:15:33.831 [35m[restartedMain][0;39m [39mDEBUG[0;39m org.hibernate.SQL.logStatement - 
+     insert into prenotazione (date, id_donatore, id_sede_avis) values (?, ?, ?)
+30-01-2020 15:15:33.831 [35m[restartedMain][0;39m [39mTRACE[0;39m o.h.type.descriptor.sql.BasicBinder.bind - 
+     binding parameter [1] as [TIMESTAMP] - [2020-01-13 13:30:00.0]
+30-01-2020 15:15:33.831 [35m[restartedMain][0;39m [39mTRACE[0;39m o.h.type.descriptor.sql.BasicBinder.bind - 
+     binding parameter [2] as [BIGINT] - [null]
+30-01-2020 15:15:33.832 [35m[restartedMain][0;39m [39mTRACE[0;39m o.h.type.descriptor.sql.BasicBinder.bind - 
+     binding parameter [3] as [BIGINT] - [1]
+30-01-2020 15:15:33.851 [35m[restartedMain][0;39m [39mDEBUG[0;39m org.hibernate.SQL.logStatement - 
+     select prenotazio0_.id as id1_4_, prenotazio0_.date as date2_4_, prenotazio0_.id_donatore as id_donat3_4_, prenotazio0_.id_sede_avis as id_sede_4_4_ from prenotazione prenotazio0_ where prenotazio0_.id_sede_avis=? and prenotazio0_.date=?
+30-01-2020 15:15:33.852 [35m[restartedMain][0;39m [39mTRACE[0;39m o.h.type.descriptor.sql.BasicBinder.bind - 
+     binding parameter [1] as [BIGINT] - [1]
+30-01-2020 15:15:33.852 [35m[restartedMain][0;39m [39mTRACE[0;39m o.h.type.descriptor.sql.BasicBinder.bind - 
+     binding parameter [2] as [TIMESTAMP] - [2020-01-13 13:45:00.0]
+30-01-2020 15:15:33.854 [35m[restartedMain][0;39m [39mDEBUG[0;39m org.hibernate.SQL.logStatement - 
+     insert into prenotazione (date, id_donatore, id_sede_avis) values (?, ?, ?)
+30-01-2020 15:15:33.854 [35m[restartedMain][0;39m [39mTRACE[0;39m o.h.type.descriptor.sql.BasicBinder.bind - 
+     binding parameter [1] as [TIMESTAMP] - [2020-01-13 13:45:00.0]
+30-01-2020 15:15:33.855 [35m[restartedMain][0;39m [39mTRACE[0;39m o.h.type.descriptor.sql.BasicBinder.bind - 
+     binding parameter [2] as [BIGINT] - [null]
+30-01-2020 15:15:33.855 [35m[restartedMain][0;39m [39mTRACE[0;39m o.h.type.descriptor.sql.BasicBinder.bind - 
+     binding parameter [3] as [BIGINT] - [1]
+30-01-2020 15:15:33.871 [35m[restartedMain][0;39m [39mDEBUG[0;39m org.hibernate.SQL.logStatement - 
+     select prenotazio0_.id as id1_4_, prenotazio0_.date as date2_4_, prenotazio0_.id_donatore as id_donat3_4_, prenotazio0_.id_sede_avis as id_sede_4_4_ from prenotazione prenotazio0_ where prenotazio0_.id_sede_avis=? and prenotazio0_.date=?
+30-01-2020 15:15:33.871 [35m[restartedMain][0;39m [39mTRACE[0;39m o.h.type.descriptor.sql.BasicBinder.bind - 
+     binding parameter [1] as [BIGINT] - [1]
+30-01-2020 15:15:33.871 [35m[restartedMain][0;39m [39mTRACE[0;39m o.h.type.descriptor.sql.BasicBinder.bind - 
+     binding parameter [2] as [TIMESTAMP] - [2020-01-13 14:00:00.0]
+30-01-2020 15:15:33.872 [35m[restartedMain][0;39m [39mDEBUG[0;39m org.hibernate.SQL.logStatement - 
+     insert into prenotazione (date, id_donatore, id_sede_avis) values (?, ?, ?)
+30-01-2020 15:15:33.873 [35m[restartedMain][0;39m [39mTRACE[0;39m o.h.type.descriptor.sql.BasicBinder.bind - 
+     binding parameter [1] as [TIMESTAMP] - [2020-01-13 14:00:00.0]
+30-01-2020 15:15:33.873 [35m[restartedMain][0;39m [39mTRACE[0;39m o.h.type.descriptor.sql.BasicBinder.bind - 
+     binding parameter [2] as [BIGINT] - [null]
+30-01-2020 15:15:33.873 [35m[restartedMain][0;39m [39mTRACE[0;39m o.h.type.descriptor.sql.BasicBinder.bind - 
+     binding parameter [3] as [BIGINT] - [1]
+30-01-2020 15:15:33.901 [35m[restartedMain][0;39m [39mDEBUG[0;39m org.hibernate.SQL.logStatement - 
+     select prenotazio0_.id as id1_4_, prenotazio0_.date as date2_4_, prenotazio0_.id_donatore as id_donat3_4_, prenotazio0_.id_sede_avis as id_sede_4_4_ from prenotazione prenotazio0_ where prenotazio0_.id_sede_avis=? and prenotazio0_.date=?
+30-01-2020 15:15:33.902 [35m[restartedMain][0;39m [39mTRACE[0;39m o.h.type.descriptor.sql.BasicBinder.bind - 
+     binding parameter [1] as [BIGINT] - [1]
+30-01-2020 15:15:33.902 [35m[restartedMain][0;39m [39mTRACE[0;39m o.h.type.descriptor.sql.BasicBinder.bind - 
+     binding parameter [2] as [TIMESTAMP] - [2020-01-13 14:15:00.0]
+30-01-2020 15:15:33.903 [35m[restartedMain][0;39m [39mDEBUG[0;39m org.hibernate.SQL.logStatement - 
+     insert into prenotazione (date, id_donatore, id_sede_avis) values (?, ?, ?)
+30-01-2020 15:15:33.904 [35m[restartedMain][0;39m [39mTRACE[0;39m o.h.type.descriptor.sql.BasicBinder.bind - 
+     binding parameter [1] as [TIMESTAMP] - [2020-01-13 14:15:00.0]
+30-01-2020 15:15:33.904 [35m[restartedMain][0;39m [39mTRACE[0;39m o.h.type.descriptor.sql.BasicBinder.bind - 
+     binding parameter [2] as [BIGINT] - [null]
+30-01-2020 15:15:33.904 [35m[restartedMain][0;39m [39mTRACE[0;39m o.h.type.descriptor.sql.BasicBinder.bind - 
+     binding parameter [3] as [BIGINT] - [1]
+30-01-2020 15:15:33.921 [35m[restartedMain][0;39m [39mDEBUG[0;39m org.hibernate.SQL.logStatement - 
+     select prenotazio0_.id as id1_4_, prenotazio0_.date as date2_4_, prenotazio0_.id_donatore as id_donat3_4_, prenotazio0_.id_sede_avis as id_sede_4_4_ from prenotazione prenotazio0_ where prenotazio0_.id_sede_avis=? and prenotazio0_.date=?
+30-01-2020 15:15:33.921 [35m[restartedMain][0;39m [39mTRACE[0;39m o.h.type.descriptor.sql.BasicBinder.bind - 
+     binding parameter [1] as [BIGINT] - [1]
+30-01-2020 15:15:33.921 [35m[restartedMain][0;39m [39mTRACE[0;39m o.h.type.descriptor.sql.BasicBinder.bind - 
+     binding parameter [2] as [TIMESTAMP] - [2020-01-13 14:30:00.0]
+30-01-2020 15:15:33.923 [35m[restartedMain][0;39m [39mDEBUG[0;39m org.hibernate.SQL.logStatement - 
+     insert into prenotazione (date, id_donatore, id_sede_avis) values (?, ?, ?)
+30-01-2020 15:15:33.923 [35m[restartedMain][0;39m [39mTRACE[0;39m o.h.type.descriptor.sql.BasicBinder.bind - 
+     binding parameter [1] as [TIMESTAMP] - [2020-01-13 14:30:00.0]
+30-01-2020 15:15:33.923 [35m[restartedMain][0;39m [39mTRACE[0;39m o.h.type.descriptor.sql.BasicBinder.bind - 
+     binding parameter [2] as [BIGINT] - [null]
+30-01-2020 15:15:33.923 [35m[restartedMain][0;39m [39mTRACE[0;39m o.h.type.descriptor.sql.BasicBinder.bind - 
+     binding parameter [3] as [BIGINT] - [1]
+30-01-2020 15:15:33.942 [35m[restartedMain][0;39m [39mDEBUG[0;39m org.hibernate.SQL.logStatement - 
+     select prenotazio0_.id as id1_4_, prenotazio0_.date as date2_4_, prenotazio0_.id_donatore as id_donat3_4_, prenotazio0_.id_sede_avis as id_sede_4_4_ from prenotazione prenotazio0_ where prenotazio0_.id_sede_avis=? and prenotazio0_.date=?
+30-01-2020 15:15:33.942 [35m[restartedMain][0;39m [39mTRACE[0;39m o.h.type.descriptor.sql.BasicBinder.bind - 
+     binding parameter [1] as [BIGINT] - [1]
+30-01-2020 15:15:33.943 [35m[restartedMain][0;39m [39mTRACE[0;39m o.h.type.descriptor.sql.BasicBinder.bind - 
+     binding parameter [2] as [TIMESTAMP] - [2020-01-13 14:45:00.0]
+30-01-2020 15:15:33.944 [35m[restartedMain][0;39m [39mDEBUG[0;39m org.hibernate.SQL.logStatement - 
+     insert into prenotazione (date, id_donatore, id_sede_avis) values (?, ?, ?)
+30-01-2020 15:15:33.945 [35m[restartedMain][0;39m [39mTRACE[0;39m o.h.type.descriptor.sql.BasicBinder.bind - 
+     binding parameter [1] as [TIMESTAMP] - [2020-01-13 14:45:00.0]
+30-01-2020 15:15:33.945 [35m[restartedMain][0;39m [39mTRACE[0;39m o.h.type.descriptor.sql.BasicBinder.bind - 
+     binding parameter [2] as [BIGINT] - [null]
+30-01-2020 15:15:33.945 [35m[restartedMain][0;39m [39mTRACE[0;39m o.h.type.descriptor.sql.BasicBinder.bind - 
+     binding parameter [3] as [BIGINT] - [1]
+30-01-2020 15:15:33.962 [35m[restartedMain][0;39m [39mDEBUG[0;39m org.hibernate.SQL.logStatement - 
+     select prenotazio0_.id as id1_4_, prenotazio0_.date as date2_4_, prenotazio0_.id_donatore as id_donat3_4_, prenotazio0_.id_sede_avis as id_sede_4_4_ from prenotazione prenotazio0_ where prenotazio0_.id_sede_avis=? and prenotazio0_.date=?
+30-01-2020 15:15:33.962 [35m[restartedMain][0;39m [39mTRACE[0;39m o.h.type.descriptor.sql.BasicBinder.bind - 
+     binding parameter [1] as [BIGINT] - [1]
+30-01-2020 15:15:33.962 [35m[restartedMain][0;39m [39mTRACE[0;39m o.h.type.descriptor.sql.BasicBinder.bind - 
+     binding parameter [2] as [TIMESTAMP] - [2020-01-13 15:00:00.0]
+30-01-2020 15:15:33.964 [35m[restartedMain][0;39m [39mDEBUG[0;39m org.hibernate.SQL.logStatement - 
+     insert into prenotazione (date, id_donatore, id_sede_avis) values (?, ?, ?)
+30-01-2020 15:15:33.965 [35m[restartedMain][0;39m [39mTRACE[0;39m o.h.type.descriptor.sql.BasicBinder.bind - 
+     binding parameter [1] as [TIMESTAMP] - [2020-01-13 15:00:00.0]
+30-01-2020 15:15:33.965 [35m[restartedMain][0;39m [39mTRACE[0;39m o.h.type.descriptor.sql.BasicBinder.bind - 
+     binding parameter [2] as [BIGINT] - [null]
+30-01-2020 15:15:33.965 [35m[restartedMain][0;39m [39mTRACE[0;39m o.h.type.descriptor.sql.BasicBinder.bind - 
+     binding parameter [3] as [BIGINT] - [1]
+30-01-2020 15:15:33.984 [35m[restartedMain][0;39m [39mDEBUG[0;39m org.hibernate.SQL.logStatement - 
+     select prenotazio0_.id as id1_4_, prenotazio0_.date as date2_4_, prenotazio0_.id_donatore as id_donat3_4_, prenotazio0_.id_sede_avis as id_sede_4_4_ from prenotazione prenotazio0_ where prenotazio0_.id_sede_avis=? and prenotazio0_.date=?
+30-01-2020 15:15:33.985 [35m[restartedMain][0;39m [39mTRACE[0;39m o.h.type.descriptor.sql.BasicBinder.bind - 
+     binding parameter [1] as [BIGINT] - [1]
+30-01-2020 15:15:33.985 [35m[restartedMain][0;39m [39mTRACE[0;39m o.h.type.descriptor.sql.BasicBinder.bind - 
+     binding parameter [2] as [TIMESTAMP] - [2020-01-13 15:15:00.0]
+30-01-2020 15:15:33.986 [35m[restartedMain][0;39m [39mDEBUG[0;39m org.hibernate.SQL.logStatement - 
+     insert into prenotazione (date, id_donatore, id_sede_avis) values (?, ?, ?)
+30-01-2020 15:15:33.987 [35m[restartedMain][0;39m [39mTRACE[0;39m o.h.type.descriptor.sql.BasicBinder.bind - 
+     binding parameter [1] as [TIMESTAMP] - [2020-01-13 15:15:00.0]
+30-01-2020 15:15:33.987 [35m[restartedMain][0;39m [39mTRACE[0;39m o.h.type.descriptor.sql.BasicBinder.bind - 
+     binding parameter [2] as [BIGINT] - [null]
+30-01-2020 15:15:33.987 [35m[restartedMain][0;39m [39mTRACE[0;39m o.h.type.descriptor.sql.BasicBinder.bind - 
+     binding parameter [3] as [BIGINT] - [1]
+30-01-2020 15:15:34.017 [35m[restartedMain][0;39m [39mDEBUG[0;39m org.hibernate.SQL.logStatement - 
+     select prenotazio0_.id as id1_4_, prenotazio0_.date as date2_4_, prenotazio0_.id_donatore as id_donat3_4_, prenotazio0_.id_sede_avis as id_sede_4_4_ from prenotazione prenotazio0_ where prenotazio0_.id_sede_avis=? and prenotazio0_.date=?
+30-01-2020 15:15:34.017 [35m[restartedMain][0;39m [39mTRACE[0;39m o.h.type.descriptor.sql.BasicBinder.bind - 
+     binding parameter [1] as [BIGINT] - [1]
+30-01-2020 15:15:34.018 [35m[restartedMain][0;39m [39mTRACE[0;39m o.h.type.descriptor.sql.BasicBinder.bind - 
+     binding parameter [2] as [TIMESTAMP] - [2020-01-13 15:30:00.0]
+30-01-2020 15:15:34.019 [35m[restartedMain][0;39m [39mDEBUG[0;39m org.hibernate.SQL.logStatement - 
+     insert into prenotazione (date, id_donatore, id_sede_avis) values (?, ?, ?)
+30-01-2020 15:15:34.019 [35m[restartedMain][0;39m [39mTRACE[0;39m o.h.type.descriptor.sql.BasicBinder.bind - 
+     binding parameter [1] as [TIMESTAMP] - [2020-01-13 15:30:00.0]
+30-01-2020 15:15:34.019 [35m[restartedMain][0;39m [39mTRACE[0;39m o.h.type.descriptor.sql.BasicBinder.bind - 
+     binding parameter [2] as [BIGINT] - [null]
+30-01-2020 15:15:34.020 [35m[restartedMain][0;39m [39mTRACE[0;39m o.h.type.descriptor.sql.BasicBinder.bind - 
+     binding parameter [3] as [BIGINT] - [1]
+30-01-2020 15:15:34.037 [35m[restartedMain][0;39m [39mDEBUG[0;39m org.hibernate.SQL.logStatement - 
+     select prenotazio0_.id as id1_4_, prenotazio0_.date as date2_4_, prenotazio0_.id_donatore as id_donat3_4_, prenotazio0_.id_sede_avis as id_sede_4_4_ from prenotazione prenotazio0_ where prenotazio0_.id_sede_avis=? and prenotazio0_.date=?
+30-01-2020 15:15:34.037 [35m[restartedMain][0;39m [39mTRACE[0;39m o.h.type.descriptor.sql.BasicBinder.bind - 
+     binding parameter [1] as [BIGINT] - [1]
+30-01-2020 15:15:34.037 [35m[restartedMain][0;39m [39mTRACE[0;39m o.h.type.descriptor.sql.BasicBinder.bind - 
+     binding parameter [2] as [TIMESTAMP] - [2020-01-13 15:45:00.0]
+30-01-2020 15:15:34.039 [35m[restartedMain][0;39m [39mDEBUG[0;39m org.hibernate.SQL.logStatement - 
+     insert into prenotazione (date, id_donatore, id_sede_avis) values (?, ?, ?)
+30-01-2020 15:15:34.039 [35m[restartedMain][0;39m [39mTRACE[0;39m o.h.type.descriptor.sql.BasicBinder.bind - 
+     binding parameter [1] as [TIMESTAMP] - [2020-01-13 15:45:00.0]
+30-01-2020 15:15:34.039 [35m[restartedMain][0;39m [39mTRACE[0;39m o.h.type.descriptor.sql.BasicBinder.bind - 
+     binding parameter [2] as [BIGINT] - [null]
+30-01-2020 15:15:34.039 [35m[restartedMain][0;39m [39mTRACE[0;39m o.h.type.descriptor.sql.BasicBinder.bind - 
+     binding parameter [3] as [BIGINT] - [1]
+30-01-2020 15:15:34.059 [35m[restartedMain][0;39m [39mDEBUG[0;39m org.hibernate.SQL.logStatement - 
+     select centrotras0_.id as id1_6_0_, centrotras0_1_.email as email2_6_0_, centrotras0_1_.password as password3_6_0_, centrotras0_1_.ruolo as ruolo4_6_0_, centrotras0_.comune as comune1_0_0_, centrotras0_.direttore as direttor2_0_0_, centrotras0_.indirizzo as indirizz3_0_0_, centrotras0_.ospedale as ospedale4_0_0_, centrotras0_.provincia as provinci5_0_0_, centrotras0_.regione as regione6_0_0_ from centro_trasfusione centrotras0_ inner join utente centrotras0_1_ on centrotras0_.id=centrotras0_1_.id where centrotras0_.id=?
+30-01-2020 15:15:34.060 [35m[restartedMain][0;39m [39mTRACE[0;39m o.h.type.descriptor.sql.BasicBinder.bind - 
+     binding parameter [1] as [BIGINT] - [5]
+30-01-2020 15:15:34.060 [35m[restartedMain][0;39m [39mTRACE[0;39m o.h.t.descriptor.sql.BasicExtractor.extract - 
+     extracted value ([email2_6_0_] : [VARCHAR]) - [centro1]
+30-01-2020 15:15:34.061 [35m[restartedMain][0;39m [39mTRACE[0;39m o.h.t.descriptor.sql.BasicExtractor.extract - 
+     extracted value ([password3_6_0_] : [VARCHAR]) - [$2a$10$x1VGNaJf8AHJAslOnPsh1e9OufSxWor0OwSDfORdD98GDlXzwMDN6]
+30-01-2020 15:15:34.061 [35m[restartedMain][0;39m [39mTRACE[0;39m o.h.t.descriptor.sql.BasicExtractor.extract - 
+     extracted value ([ruolo4_6_0_] : [VARCHAR]) - [centroTrasfusione]
+30-01-2020 15:15:34.061 [35m[restartedMain][0;39m [39mTRACE[0;39m o.h.t.descriptor.sql.BasicExtractor.extract - 
+     extracted value ([comune1_0_0_] : [VARCHAR]) - [tavullia]
+30-01-2020 15:15:34.061 [35m[restartedMain][0;39m [39mTRACE[0;39m o.h.t.descriptor.sql.BasicExtractor.extract - 
+     extracted value ([direttor2_0_0_] : [VARCHAR]) - [null]
+30-01-2020 15:15:34.061 [35m[restartedMain][0;39m [39mTRACE[0;39m o.h.t.descriptor.sql.BasicExtractor.extract - 
+     extracted value ([indirizz3_0_0_] : [VARCHAR]) - [null]
+30-01-2020 15:15:34.061 [35m[restartedMain][0;39m [39mTRACE[0;39m o.h.t.descriptor.sql.BasicExtractor.extract - 
+     extracted value ([ospedale4_0_0_] : [VARCHAR]) - [null]
+30-01-2020 15:15:34.061 [35m[restartedMain][0;39m [39mTRACE[0;39m o.h.t.descriptor.sql.BasicExtractor.extract - 
+     extracted value ([provinci5_0_0_] : [VARCHAR]) - [pesaro]
+30-01-2020 15:15:34.062 [35m[restartedMain][0;39m [39mTRACE[0;39m o.h.t.descriptor.sql.BasicExtractor.extract - 
+     extracted value ([regione6_0_0_] : [VARCHAR]) - [marche]
+30-01-2020 15:15:34.065 [35m[restartedMain][0;39m [39mDEBUG[0;39m org.hibernate.SQL.logStatement - 
+     insert into emergenza (data_emergenza, gruppo_sanguigno, id_centro_trasfusione) values (?, ?, ?)
+30-01-2020 15:15:34.066 [35m[restartedMain][0;39m [39mTRACE[0;39m o.h.type.descriptor.sql.BasicBinder.bind - 
+     binding parameter [1] as [TIMESTAMP] - [2020-01-30 15:15:34.063]
+30-01-2020 15:15:34.066 [35m[restartedMain][0;39m [39mTRACE[0;39m o.h.type.descriptor.sql.BasicBinder.bind - 
+     binding parameter [2] as [VARCHAR] - [A]
+30-01-2020 15:15:34.067 [35m[restartedMain][0;39m [39mTRACE[0;39m o.h.type.descriptor.sql.BasicBinder.bind - 
+     binding parameter [3] as [BIGINT] - [5]
+30-01-2020 15:15:34.087 [35m[restartedMain][0;39m [39mDEBUG[0;39m org.hibernate.SQL.logStatement - 
+     select centrotras0_.id as id1_6_0_, centrotras0_1_.email as email2_6_0_, centrotras0_1_.password as password3_6_0_, centrotras0_1_.ruolo as ruolo4_6_0_, centrotras0_.comune as comune1_0_0_, centrotras0_.direttore as direttor2_0_0_, centrotras0_.indirizzo as indirizz3_0_0_, centrotras0_.ospedale as ospedale4_0_0_, centrotras0_.provincia as provinci5_0_0_, centrotras0_.regione as regione6_0_0_ from centro_trasfusione centrotras0_ inner join utente centrotras0_1_ on centrotras0_.id=centrotras0_1_.id where centrotras0_.id=?
+30-01-2020 15:15:34.087 [35m[restartedMain][0;39m [39mTRACE[0;39m o.h.type.descriptor.sql.BasicBinder.bind - 
+     binding parameter [1] as [BIGINT] - [6]
+30-01-2020 15:15:34.088 [35m[restartedMain][0;39m [39mTRACE[0;39m o.h.t.descriptor.sql.BasicExtractor.extract - 
+     extracted value ([email2_6_0_] : [VARCHAR]) - [centro2]
+30-01-2020 15:15:34.089 [35m[restartedMain][0;39m [39mTRACE[0;39m o.h.t.descriptor.sql.BasicExtractor.extract - 
+     extracted value ([password3_6_0_] : [VARCHAR]) - [$2a$10$x1VGNaJf8AHJAslOnPsh1e9OufSxWor0OwSDfORdD98GDlXzwMDN6]
+30-01-2020 15:15:34.089 [35m[restartedMain][0;39m [39mTRACE[0;39m o.h.t.descriptor.sql.BasicExtractor.extract - 
+     extracted value ([ruolo4_6_0_] : [VARCHAR]) - [centroTrasfusione]
+30-01-2020 15:15:34.089 [35m[restartedMain][0;39m [39mTRACE[0;39m o.h.t.descriptor.sql.BasicExtractor.extract - 
+     extracted value ([comune1_0_0_] : [VARCHAR]) - [fano]
+30-01-2020 15:15:34.089 [35m[restartedMain][0;39m [39mTRACE[0;39m o.h.t.descriptor.sql.BasicExtractor.extract - 
+     extracted value ([direttor2_0_0_] : [VARCHAR]) - [null]
+30-01-2020 15:15:34.089 [35m[restartedMain][0;39m [39mTRACE[0;39m o.h.t.descriptor.sql.BasicExtractor.extract - 
+     extracted value ([indirizz3_0_0_] : [VARCHAR]) - [null]
+30-01-2020 15:15:34.089 [35m[restartedMain][0;39m [39mTRACE[0;39m o.h.t.descriptor.sql.BasicExtractor.extract - 
+     extracted value ([ospedale4_0_0_] : [VARCHAR]) - [null]
+30-01-2020 15:15:34.089 [35m[restartedMain][0;39m [39mTRACE[0;39m o.h.t.descriptor.sql.BasicExtractor.extract - 
+     extracted value ([provinci5_0_0_] : [VARCHAR]) - [pesaro]
+30-01-2020 15:15:34.090 [35m[restartedMain][0;39m [39mTRACE[0;39m o.h.t.descriptor.sql.BasicExtractor.extract - 
+     extracted value ([regione6_0_0_] : [VARCHAR]) - [marche]
+30-01-2020 15:15:34.091 [35m[restartedMain][0;39m [39mDEBUG[0;39m org.hibernate.SQL.logStatement - 
+     insert into emergenza (data_emergenza, gruppo_sanguigno, id_centro_trasfusione) values (?, ?, ?)
+30-01-2020 15:15:34.091 [35m[restartedMain][0;39m [39mTRACE[0;39m o.h.type.descriptor.sql.BasicBinder.bind - 
+     binding parameter [1] as [TIMESTAMP] - [2020-01-30 15:15:34.091]
+30-01-2020 15:15:34.092 [35m[restartedMain][0;39m [39mTRACE[0;39m o.h.type.descriptor.sql.BasicBinder.bind - 
+     binding parameter [2] as [VARCHAR] - [00]
+30-01-2020 15:15:34.092 [35m[restartedMain][0;39m [39mTRACE[0;39m o.h.type.descriptor.sql.BasicBinder.bind - 
+     binding parameter [3] as [BIGINT] - [6]
+30-01-2020 15:15:35.903 [35m[http-nio-8080-exec-1][0;39m [34mINFO [0;39m o.a.c.c.C.[Tomcat].[localhost].[/].log - 
+     Initializing Spring DispatcherServlet 'dispatcherServlet'
+30-01-2020 15:15:35.903 [35m[http-nio-8080-exec-1][0;39m [34mINFO [0;39m o.s.web.servlet.DispatcherServlet.initServletBean - 
+     Initializing Servlet 'dispatcherServlet'
+30-01-2020 15:15:35.908 [35m[http-nio-8080-exec-1][0;39m [34mINFO [0;39m o.s.web.servlet.DispatcherServlet.initServletBean - 
+     Completed initialization in 5 ms
