@@ -3,10 +3,7 @@ import axiosInstance from './interceptor'
 class LoginService{
 
     async login(loginDto){
-        var response = await axiosInstance.post('/public/login',loginDto)
-            localStorage.removeItem('Authorization');
-            localStorage.setItem('Authorization', response.data.token);
-        return response;
+        return await axiosInstance.post('/public/login',loginDto)
     }
 
     async register(registerDto){

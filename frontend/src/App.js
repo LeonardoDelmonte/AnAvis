@@ -1,137 +1,87 @@
 import React, { Component } from 'react';
-
-//-----bootstrap-----
-// import $ from 'jquery';
-// import Popper from 'popper.js';
-import 'bootstrap/dist/js/bootstrap.bundle.min';
-import 'bootstrap/dist/css/bootstrap.min.css';
-//-----css-----
-import './css/App.css';
 //-----router-----
 import { BrowserRouter as Router, Route, Redirect } from 'react-router-dom';
-//-----JWT-----
-import jwt from 'jwt-decode'
+//-----Helpers
+import { isLogged, isDonatore, isSede, isCentro } from './utils/helpers'
 //-----components-----
-import Login from './components/AuthComponents/Login';
-import Register from './components/AuthComponents/Register';
-import Home from './components/commonsComponents/Home';
-import FormPrenota from './components/commonsComponents/FormPrenota';
-import InsertDate from './components/sedeAvisComponents/InsertDate';
 import TopMenu from './components/PersistentComponents/TopMenu';
-import LogOut from './components/AuthComponents/LogOut';
-import ProfiloUtente from './components/commonsComponents/ProfiloUtente';
 import Footer from './components/PersistentComponents/Footer';
-import EmergenzaSangue from './components/CentroTrasfComponents/EmergenzaSangue';
-import News from './components/NewsComponents/News';
 
-const Auth = {
-  isLogged() {
-    if (localStorage.getItem('Authorization') && jwt(localStorage.getItem('Authorization')).exp > Date.now() / 1000 | 0) {
-      return true
-    }
-    return false;
-  },
-  isDonatore() {
-    if (this.isLogged() && jwt(localStorage.getItem('Authorization')).aud === "donatore") {
-      return true
-    }
-    return false;
-  },
-  isSede() {
-    if (this.isLogged() && jwt(localStorage.getItem('Authorization')).aud === "sedeAvis") {
-      return true;
-    }
-    return false;
-  },
-  isCentro() {
-    if (this.isLogged() && jwt(localStorage.getItem('Authorization')).aud === "centroTrasfusione") {
-      return true;
-    }
-    return false;
-  }
-}
+import Home from './components/pages/Home';
+import Dashboard from './components/pages/Dashboard';
+import Profilo from './components/pages/Profilo';
+import Prenota from './components/pages/Prenota';
+import InserisciDate from './components/pages/InserisciDate';
+import GestioneDate from './components/pages/GestioneDate';
+import Faq from './components/pages/Faq';
+
+import EmergenzaSangue from './components/pages/EmergenzaSangue';
+
 
 const PrivateRoute = ({ component: Component, ...rest }) => (
   <Route {...rest} render={(props) => (
-    Auth.isLogged() === true
+    isLogged() === true
       ? <Component {...props} />
-      : <Redirect to='/Login' />
+      : <Redirect to='/' />
   )} />
 )
 
-// const DonatoreRoute = ({ component: Component, ...rest }) => (
-//   <Route {...rest} render={(props) => (
-//     Auth.isDonatore()
-//       ? <Component {...props} />
-//       : <Redirect to='/Login' />
-//   )} />
-// )
-
 const SedeRoute = ({ component: Component, ...rest }) => (
   <Route {...rest} render={(props) => (
-    Auth.isSede()
+    isSede()
       ? <Component {...props} />
-      : <Redirect to='/Login' />
+      : <Redirect to='/' />
   )} />
 )
 
 const SedeDonatoreRoute = ({ component: Component, ...rest }) => (
   <Route {...rest} render={(props) => (
-    (Auth.isSede() || Auth.isDonatore())
+    (isSede() || isDonatore())
       ? <Component {...props} />
-      : <Redirect to='/Login' />
+      : <Redirect to='/' />
   )} />
 )
 
 const CentroRoute = ({ component: Component, ...rest }) => (
   <Route {...rest} render={(props) => (
-    Auth.isCentro()
+    isCentro()
       ? <Component {...props} />
-      : <Redirect to='/Login' />
+      : <Redirect to='/' />
   )} />
 )
 
+
 class App extends Component {
+
+  constructor(props) {
+    super(props)
+    this.state = {
+    }
+  }
 
   render() {
     return (
 
       <Router>
-        <Route path="/" component={() => <TopMenu isLogged={Auth.isLogged()} isDonatore={Auth.isDonatore()} isSede={Auth.isSede()} isCentro={Auth.isCentro()} />} />
-      
-          <div id="page-content">
-            <div className="container">
+        <PrivateRoute path="/gest" component={(props) => <TopMenu  {...props} />} />
 
-              {/* Pagine non Protette */}
-              <Route path="/" exact component={Login} />
-              <Route path='/login' exact component={Login} />
-              <Route path='/register' exact component={Register} />
-              <Route path="/logOut" exact component={LogOut} />
-              <Route path="/news" exact component={News} />
+        <PrivateRoute path="/gest/dashboard" exact component={(props) => <Dashboard {...props} />} />
+        <PrivateRoute path="/gest/profilo" exact component={(props) => <Profilo {...props} />} />
 
-              {/* Pagine Condivise */}
-              <PrivateRoute path="/home" exact component={Home} />
-              <PrivateRoute path="/profilo" exact component={ProfiloUtente} />
+        <SedeDonatoreRoute path="/gest/prenota" exact component={(props) => <Prenota {...props} />} />
 
-              {/* Pagine Solo Donatore & Sede */}
-              <SedeDonatoreRoute path="/prenota" exact component={FormPrenota} />
+        <SedeRoute path="/gest/InserisciDate" exact component={(props) => <InserisciDate {...props} />} />
+        <SedeDonatoreRoute path="/gest/GestioneDate" exact component={(props) => <GestioneDate {...props} />} />
 
-              {/* Pagine Solo Donatore */}
+        <CentroRoute path="/gest/emergenzaSangue" exact component={(props) => <EmergenzaSangue {...props} />} />
 
-              {/* Pagine Solo Sede */}
-              <SedeRoute path="/insertDate" exact component={InsertDate} />
+        <Route path="/gest/faq" exact render={(props) => <Faq {...props} />} />
 
-              {/* Pagine Solo Centro */}
-              <CentroRoute path="/EmergenzaSangue" exact component={EmergenzaSangue} />
+        <Route path="/" exact render={(props) => <Home {...props} />} />
 
+        <Route path="/" component={(props) => <Footer  {...props} />} />
 
-            </div>
-          </div>
-    
-
-        <Route path="/" component={() => <Footer />} />
       </Router>
-
 
     );
   }

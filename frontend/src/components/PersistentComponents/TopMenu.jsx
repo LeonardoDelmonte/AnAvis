@@ -1,46 +1,60 @@
-import React from 'react';
+import React, { Component } from 'react';
+//-----Helpers
+import { isDonatore, isSede, isCentro } from '../../utils/helpers'
 
-function TopMenu(props) {
-    return (
-        <nav className="navbar navbar-expand-md navbar-dark bg-dark">
-            <a className="navbar-brand" href="/home">AnAvis</a>
-            <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
-                <span className="navbar-toggler-icon"></span>
-            </button>
-            <div className="navbar-collapse collapse w-100 order-1 order-md-0 dual-collapse2" id="collapsibleNavbar">
-                <ul className="navbar-nav mr-auto">
-                    <li className="nav-item">
-                        {!props.isLogged && <a className="nav-link" href="login">Login</a>}
-                    </li>
-                    <li className="nav-item">
-                        {!props.isLogged && <a className="nav-link" href="register">Registrazione</a>}
-                    </li>
-                    <li className="nav-item">
-                        {props.isLogged && (props.isSede || props.isDonatore) && <a className="nav-link" href="prenota">Prenota</a>}
-                    </li>
-                    <li className="nav-item">
-                        {props.isLogged && props.isSede && <a className="nav-link" href="InsertDate">Inserisci data</a>}
-                    </li>
-                    <li className="nav-item">
-                        {props.isLogged && props.isCentro && <a className="nav-link" href="EmergenzaSangue">Emergenza sangue</a>}
-                    </li>
-                </ul>
-                <ul className="navbar-nav ml-auto">
-                    <li className="nav-item">
-                        <a className="nav-link" href="news">News</a>
+class TopMenu extends Component {
 
-                    </li>
-                    <li className="nav-item">
-                        {props.isLogged && <a className="nav-link" href="profilo">Profilo</a>}
+    constructor(props) {
+        super(props);
+        this.state = {
+        }
+    }
 
-                    </li>
-                    <li className="nav-item">
-                        {props.isLogged && <a className="nav-link" href="LogOut">Esci</a>}
-                    </li>
-                </ul>
-            </div>
-        </nav>
-    )
+    logOut = () => {
+        localStorage.removeItem("Authorization")
+        localStorage.removeItem("Ruolo")
+        this.props.history.push('/')
+    }
+
+    render() {
+        return (
+
+            <nav className="navbar navbar-expand-md navbar-dark" >
+                <a className="navbar-brand" href="/gest/dashboard">AnAvis</a>
+                <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+                    <span className="navbar-toggler-icon"></span>
+                </button>
+                <div className="navbar-collapse collapse w-100 order-1 order-md-0 dual-collapse2" id="collapsibleNavbar">
+                    <ul className="navbar-nav mr-auto">
+                        <li className="nav-item">
+                            {(isDonatore() || isSede()) && <a className="nav-link" href="/gest/prenota">Prenota</a>}
+                        </li>
+                        <li className="nav-item">
+                            {(isSede()) && <a className="nav-link" href="/gest/inserisciDate">Insersci Date</a>}
+                        </li>
+                        <li className="nav-item">
+                            {(isDonatore() || isSede()) && <a className="nav-link" href="/gest/GestioneDate">Gestione Date</a>}
+                        </li>
+                        <li className="nav-item">
+                            {isCentro() && <a className="nav-link" href="/gest/emergenzaSangue">Emergenza Sangue</a>}
+                        </li>
+                    </ul>
+                    <ul className="navbar-nav ml-auto">
+
+                        <li className="nav-item">
+                            <a className="nav-link" href="/gest/profilo">Profilo</a>
+                        </li>
+                        <li className="nav-item">
+                            <a className="nav-link" href="/gest/faq">FAQ</a>
+                        </li>
+                        <li className="nav-item">
+                            <a className="nav-link" onClick={this.logOut}>Esci</a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        )
+    }
 }
 
 export default TopMenu

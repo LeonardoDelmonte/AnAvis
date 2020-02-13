@@ -1,0 +1,156 @@
+08-02-2020 12:31:16.252 [35m[restartedMain][0;39m [34mINFO [0;39m com.avis.AnAvisApplication.logStarting - 
+     Starting AnAvisApplication on DESKTOP-K3D9L0U with PID 16180 (C:\Users\Rebichini\Desktop\AnAvis2LaVendetta\backend\target\classes started by Rebichini in c:\Users\Rebichini\Desktop\AnAvis2LaVendetta\backend)
+08-02-2020 12:31:16.253 [35m[restartedMain][0;39m [34mINFO [0;39m com.avis.AnAvisApplication.logStartupProfileInfo - 
+     No active profile set, falling back to default profiles: default
+08-02-2020 12:31:16.317 [35m[restartedMain][0;39m [34mINFO [0;39m o.s.b.d.restart.ChangeableUrls.logTo - 
+     The Class-Path manifest attribute in C:\Users\Rebichini\.m2\repository\org\glassfish\jaxb\jaxb-runtime\2.3.2\jaxb-runtime-2.3.2.jar referenced one or more files that do not exist: file:/C:/Users/Rebichini/.m2/repository/org/glassfish/jaxb/jaxb-runtime/2.3.2/jakarta.xml.bind-api-2.3.2.jar,file:/C:/Users/Rebichini/.m2/repository/org/glassfish/jaxb/jaxb-runtime/2.3.2/txw2-2.3.2.jar,file:/C:/Users/Rebichini/.m2/repository/org/glassfish/jaxb/jaxb-runtime/2.3.2/istack-commons-runtime-3.0.8.jar,file:/C:/Users/Rebichini/.m2/repository/org/glassfish/jaxb/jaxb-runtime/2.3.2/stax-ex-1.8.1.jar,file:/C:/Users/Rebichini/.m2/repository/org/glassfish/jaxb/jaxb-runtime/2.3.2/FastInfoset-1.2.16.jar,file:/C:/Users/Rebichini/.m2/repository/org/glassfish/jaxb/jaxb-runtime/2.3.2/jakarta.activation-api-1.2.1.jar
+08-02-2020 12:31:16.317 [35m[restartedMain][0;39m [34mINFO [0;39m o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor.logTo - 
+     Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+08-02-2020 12:31:16.317 [35m[restartedMain][0;39m [34mINFO [0;39m o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor.logTo - 
+     For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+08-02-2020 12:31:17.166 [35m[restartedMain][0;39m [34mINFO [0;39m o.s.d.r.c.RepositoryConfigurationDelegate.registerRepositoriesIn - 
+     Bootstrapping Spring Data repositories in DEFAULT mode.
+08-02-2020 12:31:17.282 [35m[restartedMain][0;39m [34mINFO [0;39m o.s.d.r.c.RepositoryConfigurationDelegate.registerRepositoriesIn - 
+     Finished Spring Data repository scanning in 104ms. Found 7 repository interfaces.
+08-02-2020 12:31:17.631 [35m[restartedMain][0;39m [34mINFO [0;39m o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker.postProcessAfterInitialization - 
+     Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+08-02-2020 12:31:17.665 [35m[restartedMain][0;39m [34mINFO [0;39m o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker.postProcessAfterInitialization - 
+     Bean 'org.springframework.security.config.annotation.configuration.ObjectPostProcessorConfiguration' of type [org.springframework.security.config.annotation.configuration.ObjectPostProcessorConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+08-02-2020 12:31:17.669 [35m[restartedMain][0;39m [34mINFO [0;39m o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker.postProcessAfterInitialization - 
+     Bean 'objectPostProcessor' of type [org.springframework.security.config.annotation.configuration.AutowireBeanFactoryObjectPostProcessor] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+08-02-2020 12:31:17.671 [35m[restartedMain][0;39m [34mINFO [0;39m o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker.postProcessAfterInitialization - 
+     Bean 'org.springframework.security.access.expression.method.DefaultMethodSecurityExpressionHandler@1a927c4' of type [org.springframework.security.access.expression.method.DefaultMethodSecurityExpressionHandler] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+08-02-2020 12:31:17.672 [35m[restartedMain][0;39m [34mINFO [0;39m o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker.postProcessAfterInitialization - 
+     Bean 'org.springframework.security.config.annotation.method.configuration.GlobalMethodSecurityConfiguration' of type [org.springframework.security.config.annotation.method.configuration.GlobalMethodSecurityConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+08-02-2020 12:31:17.676 [35m[restartedMain][0;39m [34mINFO [0;39m o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker.postProcessAfterInitialization - 
+     Bean 'methodSecurityMetadataSource' of type [org.springframework.security.access.method.DelegatingMethodSecurityMetadataSource] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+08-02-2020 12:31:18.012 [35m[restartedMain][0;39m [34mINFO [0;39m o.s.b.w.e.tomcat.TomcatWebServer.initialize - 
+     Tomcat initialized with port(s): 8080 (http)
+08-02-2020 12:31:18.024 [35m[restartedMain][0;39m [34mINFO [0;39m o.a.coyote.http11.Http11NioProtocol.log - 
+     Initializing ProtocolHandler ["http-nio-8080"]
+08-02-2020 12:31:18.025 [35m[restartedMain][0;39m [34mINFO [0;39m o.a.catalina.core.StandardService.log - 
+     Starting service [Tomcat]
+08-02-2020 12:31:18.025 [35m[restartedMain][0;39m [34mINFO [0;39m o.a.catalina.core.StandardEngine.log - 
+     Starting Servlet engine: [Apache Tomcat/9.0.27]
+08-02-2020 12:31:18.116 [35m[restartedMain][0;39m [34mINFO [0;39m o.a.c.c.C.[Tomcat].[localhost].[/].log - 
+     Initializing Spring embedded WebApplicationContext
+08-02-2020 12:31:18.116 [35m[restartedMain][0;39m [34mINFO [0;39m o.s.web.context.ContextLoader.prepareWebApplicationContext - 
+     Root WebApplicationContext: initialization completed in 1798 ms
+08-02-2020 12:31:18.315 [35m[restartedMain][0;39m [34mINFO [0;39m o.h.jpa.internal.util.LogHelper.logPersistenceUnitInformation - 
+     HHH000204: Processing PersistenceUnitInfo [name: default]
+08-02-2020 12:31:18.389 [35m[restartedMain][0;39m [34mINFO [0;39m org.hibernate.Version.logVersion - 
+     HHH000412: Hibernate Core {5.4.8.Final}
+08-02-2020 12:31:18.513 [35m[restartedMain][0;39m [34mINFO [0;39m o.h.annotations.common.Version.<clinit> - 
+     HCANN000001: Hibernate Commons Annotations {5.1.0.Final}
+08-02-2020 12:31:18.608 [35m[restartedMain][0;39m [34mINFO [0;39m com.zaxxer.hikari.HikariDataSource.getConnection - 
+     HikariPool-1 - Starting...
+08-02-2020 12:31:18.746 [35m[restartedMain][0;39m [34mINFO [0;39m com.zaxxer.hikari.HikariDataSource.getConnection - 
+     HikariPool-1 - Start completed.
+08-02-2020 12:31:18.761 [35m[restartedMain][0;39m [34mINFO [0;39m org.hibernate.dialect.Dialect.<init> - 
+     HHH000400: Using dialect: org.hibernate.dialect.MySQL5InnoDBDialect
+08-02-2020 12:31:20.172 [35m[restartedMain][0;39m [34mINFO [0;39m o.h.e.t.j.p.i.JtaPlatformInitiator.initiateService - 
+     HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+08-02-2020 12:31:20.178 [35m[restartedMain][0;39m [34mINFO [0;39m o.s.o.j.LocalContainerEntityManagerFactoryBean.buildNativeEntityManagerFactory - 
+     Initialized JPA EntityManagerFactory for persistence unit 'default'
+08-02-2020 12:31:20.210 [35m[restartedMain][0;39m [34mINFO [0;39m o.s.b.d.a.OptionalLiveReloadServer.startServer - 
+     LiveReload server is running on port 35729
+08-02-2020 12:31:20.948 [35m[restartedMain][0;39m [31mWARN [0;39m o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration.openEntityManagerInViewInterceptor - 
+     spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+08-02-2020 12:31:21.143 [35m[restartedMain][0;39m [34mINFO [0;39m o.s.s.web.DefaultSecurityFilterChain.<init> - 
+     Creating filter chain: any request, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@2a442c0b, org.springframework.security.web.context.SecurityContextPersistenceFilter@5f401788, org.springframework.security.web.header.HeaderWriterFilter@26a36d65, org.springframework.web.filter.CorsFilter@e36f0a0, org.springframework.security.web.authentication.logout.LogoutFilter@396fb928, com.avis.security.JwtAuthenticationTokenFilter@40cb4db8, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@6d3bc349, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@6a206e02, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@56849734, org.springframework.security.web.session.SessionManagementFilter@6808fadb, org.springframework.security.web.access.ExceptionTranslationFilter@1c69e5e4, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@97c4718]
+08-02-2020 12:31:21.293 [35m[restartedMain][0;39m [34mINFO [0;39m o.s.s.c.ThreadPoolTaskExecutor.initialize - 
+     Initializing ExecutorService 'applicationTaskExecutor'
+08-02-2020 12:31:21.535 [35m[restartedMain][0;39m [34mINFO [0;39m o.a.coyote.http11.Http11NioProtocol.log - 
+     Starting ProtocolHandler ["http-nio-8080"]
+08-02-2020 12:31:21.563 [35m[restartedMain][0;39m [34mINFO [0;39m o.s.b.w.e.tomcat.TomcatWebServer.start - 
+     Tomcat started on port(s): 8080 (http) with context path ''
+08-02-2020 12:31:21.566 [35m[restartedMain][0;39m [34mINFO [0;39m com.avis.AnAvisApplication.logStarted - 
+     Started AnAvisApplication in 5.588 seconds (JVM running for 6.266)
+08-02-2020 12:31:29.666 [35m[http-nio-8080-exec-1][0;39m [34mINFO [0;39m o.a.c.c.C.[Tomcat].[localhost].[/].log - 
+     Initializing Spring DispatcherServlet 'dispatcherServlet'
+08-02-2020 12:31:29.666 [35m[http-nio-8080-exec-1][0;39m [34mINFO [0;39m o.s.web.servlet.DispatcherServlet.initServletBean - 
+     Initializing Servlet 'dispatcherServlet'
+08-02-2020 12:31:29.672 [35m[http-nio-8080-exec-1][0;39m [34mINFO [0;39m o.s.web.servlet.DispatcherServlet.initServletBean - 
+     Completed initialization in 6 ms
+08-02-2020 12:31:29.920 [35m[http-nio-8080-exec-2][0;39m [34mINFO [0;39m global.generateToken - 
+     nuovo token generato
+08-02-2020 12:31:30.132 [35m[http-nio-8080-exec-2][0;39m [34mINFO [0;39m global.createAuthenticationToken - 
+     utente appena autenticato
+08-02-2020 12:32:06.326 [35m[http-nio-8080-exec-2][0;39m [34mINFO [0;39m global.prenotaData - 
+     nuova data prenotata
+08-02-2020 12:32:12.637 [35m[http-nio-8080-exec-8][0;39m [34mINFO [0;39m global.deleteDate - 
+     una data è stata cancellata
+08-02-2020 12:32:25.129 [35m[http-nio-8080-exec-9][0;39m [34mINFO [0;39m global.prenotaData - 
+     nuova data prenotata
+08-02-2020 12:32:30.288 [35m[http-nio-8080-exec-5][0;39m [34mINFO [0;39m global.deleteDate - 
+     una data è stata cancellata
+08-02-2020 12:32:38.629 [35m[http-nio-8080-exec-9][0;39m [34mINFO [0;39m global.generateToken - 
+     nuovo token generato
+08-02-2020 12:32:38.632 [35m[http-nio-8080-exec-9][0;39m [34mINFO [0;39m global.createAuthenticationToken - 
+     utente appena autenticato
+08-02-2020 12:37:41.631 [35m[http-nio-8080-exec-2][0;39m [34mINFO [0;39m global.deletePrenotazione - 
+     una prenotazione è stata cancellata
+08-02-2020 12:37:53.142 [35m[http-nio-8080-exec-3][0;39m [34mINFO [0;39m global.prenotaData - 
+     nuova data prenotata
+08-02-2020 12:40:32.917 [35m[http-nio-8080-exec-5][0;39m [34mINFO [0;39m global.generateToken - 
+     nuovo token generato
+08-02-2020 12:40:32.918 [35m[http-nio-8080-exec-5][0;39m [34mINFO [0;39m global.createAuthenticationToken - 
+     utente appena autenticato
+08-02-2020 13:40:54.659 [35m[http-nio-8080-exec-2][0;39m [34mINFO [0;39m global.generateToken - 
+     nuovo token generato
+08-02-2020 13:40:54.660 [35m[http-nio-8080-exec-2][0;39m [34mINFO [0;39m global.createAuthenticationToken - 
+     utente appena autenticato
+08-02-2020 13:41:03.574 [35m[http-nio-8080-exec-8][0;39m [34mINFO [0;39m global.prenotaData - 
+     nuova data prenotata
+08-02-2020 13:41:17.584 [35m[http-nio-8080-exec-6][0;39m [34mINFO [0;39m global.prenotaData - 
+     nuova data prenotata
+08-02-2020 13:41:33.509 [35m[http-nio-8080-exec-7][0;39m [34mINFO [0;39m global.prenotaData - 
+     nuova data prenotata
+08-02-2020 14:13:45.932 [35m[http-nio-8080-exec-9][0;39m [34mINFO [0;39m global.generateToken - 
+     nuovo token generato
+08-02-2020 14:13:45.934 [35m[http-nio-8080-exec-9][0;39m [34mINFO [0;39m global.createAuthenticationToken - 
+     utente appena autenticato
+08-02-2020 14:14:00.376 [35m[http-nio-8080-exec-4][0;39m [34mINFO [0;39m global.generateToken - 
+     nuovo token generato
+08-02-2020 14:14:00.377 [35m[http-nio-8080-exec-4][0;39m [34mINFO [0;39m global.createAuthenticationToken - 
+     utente appena autenticato
+08-02-2020 14:17:29.451 [35m[http-nio-8080-exec-3][0;39m [34mINFO [0;39m global.generateToken - 
+     nuovo token generato
+08-02-2020 14:17:29.451 [35m[http-nio-8080-exec-3][0;39m [34mINFO [0;39m global.createAuthenticationToken - 
+     utente appena autenticato
+08-02-2020 14:17:37.877 [35m[http-nio-8080-exec-10][0;39m [34mINFO [0;39m global.generateToken - 
+     nuovo token generato
+08-02-2020 14:17:37.878 [35m[http-nio-8080-exec-10][0;39m [34mINFO [0;39m global.createAuthenticationToken - 
+     utente appena autenticato
+08-02-2020 14:17:48.018 [35m[http-nio-8080-exec-5][0;39m [34mINFO [0;39m global.insertEmergenza - 
+     un emergenza è stata inviata
+08-02-2020 14:20:51.281 [35m[http-nio-8080-exec-10][0;39m [34mINFO [0;39m global.register - 
+     utente registrato
+08-02-2020 14:49:25.090 [35m[http-nio-8080-exec-3][0;39m [34mINFO [0;39m global.generateToken - 
+     nuovo token generato
+08-02-2020 14:49:25.092 [35m[http-nio-8080-exec-3][0;39m [34mINFO [0;39m global.createAuthenticationToken - 
+     utente appena autenticato
+08-02-2020 15:15:19.332 [35m[http-nio-8080-exec-9][0;39m [34mINFO [0;39m global.generateToken - 
+     nuovo token generato
+08-02-2020 15:15:19.333 [35m[http-nio-8080-exec-9][0;39m [34mINFO [0;39m global.createAuthenticationToken - 
+     utente appena autenticato
+08-02-2020 15:15:27.128 [35m[http-nio-8080-exec-5][0;39m [34mINFO [0;39m global.deleteDate - 
+     una data è stata cancellata
+08-02-2020 15:15:29.094 [35m[http-nio-8080-exec-10][0;39m [34mINFO [0;39m global.deleteDate - 
+     una data è stata cancellata
+08-02-2020 15:15:36.227 [35m[http-nio-8080-exec-9][0;39m [34mINFO [0;39m global.deleteDate - 
+     una data è stata cancellata
+08-02-2020 15:15:38.661 [35m[http-nio-8080-exec-1][0;39m [34mINFO [0;39m global.deleteDate - 
+     una data è stata cancellata
+08-02-2020 15:17:57.770 [35m[http-nio-8080-exec-10][0;39m [34mINFO [0;39m global.insertDate - 
+     nuove date inserite
+08-02-2020 15:18:11.374 [35m[http-nio-8080-exec-6][0;39m [34mINFO [0;39m global.generateToken - 
+     nuovo token generato
+08-02-2020 15:18:11.379 [35m[http-nio-8080-exec-6][0;39m [34mINFO [0;39m global.createAuthenticationToken - 
+     utente appena autenticato
+08-02-2020 15:18:24.812 [35m[http-nio-8080-exec-2][0;39m [34mINFO [0;39m global.prenotaData - 
+     nuova data prenotata
+08-02-2020 15:31:49.721 [35m[http-nio-8080-exec-9][0;39m [34mINFO [0;39m global.generateToken - 
+     nuovo token generato
+08-02-2020 15:31:49.725 [35m[http-nio-8080-exec-9][0;39m [34mINFO [0;39m global.createAuthenticationToken - 
+     utente appena autenticato
