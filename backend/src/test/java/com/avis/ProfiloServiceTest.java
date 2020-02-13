@@ -15,6 +15,7 @@ import com.avis.models.Modulo;
 import com.avis.models.Prenotazione;
 import com.avis.models.SedeAvis;
 import com.avis.models.Utente;
+import com.avis.repositories.AuthenticationRepository;
 import com.avis.repositories.CentroTrasfusioneRepository;
 import com.avis.repositories.DonatoreRepository;
 
@@ -60,12 +61,15 @@ public class ProfiloServiceTest {
     @MockBean
     private CentroTrasfusioneRepository centroRepository;
     @MockBean
+    private AuthenticationRepository authRepository;
+    @MockBean
     private PrenotazioniRepository prenotazioneRepository;
 
     @Before
     public void setup() {
         Donatore donatore = new Donatore("donatore@don.it", "123123", "donatore", "leonardo", "rossi");
         Optional<Donatore> optionalDonatore = Optional.of(donatore);
+        Optional<Utente> optionalutente = Optional.of(donatore);
         Modulo modulo = new Modulo("A", "A", "A", "A", "A", "A", "A", "A", "A");
         Optional<Modulo> optionalModulo = Optional.of(modulo);
         SedeAvis sedeAvis = new SedeAvis("sede@avis.it", "123123", "sedeAvis", "Marche", "Macerata", "Morrovalle");
@@ -79,6 +83,7 @@ public class ProfiloServiceTest {
         long id = 0;
         String emailDonatore = "donatore@don.it";
         Mockito.when(donatoreRepository.findById(id)).thenReturn(optionalDonatore);
+        Mockito.when(authRepository.findById(id)).thenReturn(optionalutente);
         Mockito.when(sedeAvisRepository.findById(id)).thenReturn(optionalSede);
         Mockito.when(centroRepository.findById(id)).thenReturn(optionalCentro);
         Mockito.when(donatoreRepository.findByEmail(emailDonatore)).thenReturn(donatore);
@@ -113,9 +118,12 @@ public class ProfiloServiceTest {
     @Test
     public void modificaCredenzialiTest() {
         CredenzialiDto credenzialiDto = new CredenzialiDto();
-        // cambiata meail e cognome
-        credenzialiDto.setDonatore(new Donatore("don@donatore.it", "123123", "donatore", "leonardo", "bianchi"));
-        profiloService.modificaCredenziali(credenzialiDto, new Utente("donatore@don.it", "123123", "donatore"));
+        Donatore don = donatoreRepository.findById(0L).get();
+        Donatore don2 = (new Donatore("don@donatore.it", "123123", "donatore", "leonardo", "bianchi"));
+        don2.setId(0L);
+        credenzialiDto.setDonatore(don2);
+        Utente ut = profiloService.modificaCredenziali(credenzialiDto, don);
+        assertTrue(((Donatore) ut).getCognome()== "bianchi");
     }
 
 }

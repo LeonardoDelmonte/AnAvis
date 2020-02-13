@@ -43,6 +43,7 @@ public class LoginController {
         if(utente.getRuolo().compareTo("donatore")==0)
             utente = profilo.checkAbilitazione(utente.getEmail());
         Logger.getGlobal().info("utente appena autenticato");
+        utente.setPassword("");
         return new ResponseEntity<>(new ApiResponse<>(utente, token), HttpStatus.OK);
     }
 }

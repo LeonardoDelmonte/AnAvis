@@ -18,7 +18,6 @@ import com.avis.utils.InterfaceApi;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -59,7 +58,7 @@ public class PrenotazioneController {
     }
 
 
-    @DeleteMapping("/cancPrenotazioni/donatore/cancellazione")
+    @DeleteMapping("/donatore/cancellazione")
     public ResponseEntity<InterfaceApi> deletePrenotazione(HttpServletRequest req) {
         if (!prenotazioniService.deletePrenotazione(Long.valueOf(req.getHeader("data")))) {
             return new ResponseEntity<>(new ApiResponse<>("Prenotazione non cancellata"), HttpStatus.BAD_REQUEST);
@@ -93,7 +92,7 @@ public class PrenotazioneController {
     }
 
 
-    @GetMapping("/cancPrenotazioni/donatore/prenotazioni")
+    @GetMapping("/donatore/prenotazioni")
     public ResponseEntity<InterfaceApi> getPrenotazioniDonatore() {
         Utente utente = (Utente) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         ApiResponse<Prenotazione> response = prenotazioniService.getPrenotazioniDonatore(utente.getId());
@@ -114,6 +113,11 @@ public class PrenotazioneController {
     @GetMapping("/prenotazione/comuni/{provincia}")
     public @ResponseBody ResponseEntity<InterfaceApi> searchComuni(@PathVariable String provincia) {
         return new ResponseEntity<>(new ApiResponse<>(sedeAvisService.getComuni(provincia)), HttpStatus.OK);
+    }
+
+    @GetMapping("/countPrenotazioni")
+    public @ResponseBody ResponseEntity<InterfaceApi> countPrenotazioni() {
+        return new ResponseEntity<>(new ApiResponse<>(prenotazioniService.countPrenotazioni()), HttpStatus.OK);
     }
 
 }

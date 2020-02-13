@@ -12,6 +12,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotNull;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import lombok.Data;
 
 @Data
@@ -24,10 +26,12 @@ public class Prenotazione {
     private long idPrenotazione;
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "idDonatore", referencedColumnName = "id")
+    @JsonIgnoreProperties({ "password" })
     private Donatore idDonatore;
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "idSedeAvis", referencedColumnName = "id")
     @NotNull
+    @JsonIgnoreProperties({ "password" })
     private SedeAvis idSedeAvis;
     @Column
     @NotNull

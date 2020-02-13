@@ -44,10 +44,11 @@ public class ProfiloController {
     public ResponseEntity<InterfaceApi> modificaCredenziali(@RequestBody CredenzialiDto credenziali) {
         Utente utente = (Utente) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         utente = profiloService.modificaCredenziali(credenziali, utente);
-        if (utente != null)
-            return new ResponseEntity<>(new ApiResponse<>("Credenziali modificate", utente), HttpStatus.OK);
-        Logger.getGlobal().info("credenziali non modificate");
-        return new ResponseEntity<>(new ApiResponse<>("Credenziali non modificate"), HttpStatus.NO_CONTENT);
+        if (utente == null)
+            return new ResponseEntity<>(new ApiResponse<>("Credenziali non modificate"), HttpStatus.NO_CONTENT);
+        Logger.getGlobal().info("credenziali modificate");
+        utente.setPassword("");
+        return new ResponseEntity<>(new ApiResponse<>("Credenziali modificate", utente), HttpStatus.OK);
     }
 
     @GetMapping("/profilo/info")
@@ -58,6 +59,7 @@ public class ProfiloController {
             Logger.getGlobal().warning("sessione danneggiata");
             return new ResponseEntity<>(new ApiResponse<>("sessione danneggiata, riloggare"), HttpStatus.BAD_REQUEST);
         }
+        utente.setPassword("");
         return new ResponseEntity<>(new ApiResponse<>(utente, ""), HttpStatus.OK);
     }
 

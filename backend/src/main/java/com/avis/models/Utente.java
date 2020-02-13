@@ -54,7 +54,7 @@ public class Utente implements UserDetails {
         switch (ruolo) {
         case "donatore":
             authoritiesDonatore.add(new SimpleGrantedAuthority("donare"));
-            authoritiesDonatore.add(new SimpleGrantedAuthority("cancPrenotazioni"));
+            authoritiesDonatore.add(new SimpleGrantedAuthority("handlerDonazioni"));
             return authoritiesDonatore;
         case "sedeAvis":
             authoritiesDonatore.add(new SimpleGrantedAuthority("donare"));

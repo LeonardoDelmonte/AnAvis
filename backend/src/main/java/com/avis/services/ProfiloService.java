@@ -2,6 +2,7 @@ package com.avis.services;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
 import com.avis.dto.CredenzialiDto;
 import com.avis.models.CentroTrasfusione;
@@ -57,6 +58,7 @@ public class ProfiloService {
         default:
             return null;
         }
+
     }
 
     public Modulo showModulo(String email) {
@@ -72,10 +74,12 @@ public class ProfiloService {
     }
 
     public Utente modificaCredenziali(CredenzialiDto credenziali, Utente utente) {
+        Optional<Utente> utente2 = authRepository.findById(utente.getId());
         switch (utente.getRuolo()) {
         case "donatore":
             Donatore don = credenziali.getDonatore();
             if (don != null && utente.getId() == don.getId()) {
+                don.setPassword(utente2.get().getPassword());
                 donatoreRepository.save(don);
                 return don;
             }
@@ -83,6 +87,7 @@ public class ProfiloService {
         case "sedeAvis":
             SedeAvis sede = credenziali.getSedeAvis();
             if (sede != null && utente.getId() == sede.getId()) {
+                sede.setPassword(utente2.get().getPassword());
                 sedeAvisRepository.save(sede);
                 return sede;
             }
@@ -90,6 +95,7 @@ public class ProfiloService {
         case "centroTrasfusione":
             CentroTrasfusione centro = credenziali.getCentroTrasfusione();
             if (centro != null && utente.getId() == centro.getId()) {
+                centro.setPassword(utente2.get().getPassword());
                 centroRepository.save(centro);
                 return centro;
             }

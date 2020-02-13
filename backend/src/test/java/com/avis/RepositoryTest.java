@@ -111,7 +111,6 @@ public class RepositoryTest {
     @Test
     public void ModuloTest() {
         Modulo modulo = new Modulo("scrmrc", "via roma 3", "333-2211", "00", "no", "no", "si", "si", "no");
-        modulo.setId(1L);
         manager.persist(modulo);
         Modulo found = moduloRep.getOne(modulo.getId());
         assertTrue(found != null);

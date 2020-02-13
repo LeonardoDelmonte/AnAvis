@@ -123,4 +123,9 @@ public class PrenotazioniService {
         return new ApiResponse<Prenotazione>(listPrenotazioni);
     }
 
+    public List<?> countPrenotazioni(){
+        List<?> list = prenotazioniRepository.countPrenotazioni();
+        return list;
+    }
+
 }
