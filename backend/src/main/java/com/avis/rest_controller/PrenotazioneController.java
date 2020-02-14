@@ -40,7 +40,7 @@ public class PrenotazioneController {
     public ResponseEntity<InterfaceApi> getDateLibere(@RequestBody DateDto dto) {
         List<Prenotazione> dateLibere = prenotazioniService.getDateLibere(dto);
         if (dateLibere.isEmpty()) {
-            return new ResponseEntity<>(new ApiResponse<>("nessuna data disponibile con questi criteri di ricerca"),
+            return new ResponseEntity<>(new ApiResponse<>("Nessuna data disponibile con questi criteri di ricerca"),
                     HttpStatus.OK);
         }
         return new ResponseEntity<>(new ApiResponse<>(dateLibere), HttpStatus.OK);

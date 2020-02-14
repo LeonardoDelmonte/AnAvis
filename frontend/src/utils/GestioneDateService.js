@@ -13,11 +13,11 @@ class GestioneDateService {
     }
 
     async getPrenotazioniDonatore(){
-        return await axiosInstance.get('/cancPrenotazioni/donatore/prenotazioni')
+        return await axiosInstance.get('/donatore/prenotazioni')
     }
 
     async deleteDateDonatore(Prenotazione){
-        return await axiosInstance.delete('/cancPrenotazioni/donatore/cancellazione',
+        return await axiosInstance.delete('/donatore/cancellazione',
                 { data:Prenotazione } 
           )
     }

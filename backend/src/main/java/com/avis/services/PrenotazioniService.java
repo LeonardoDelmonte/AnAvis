@@ -37,22 +37,22 @@ public class PrenotazioniService {
     public ApiResponse<String> prenotaData(PrenotazioneDto prenotazioneDto) {
         Donatore donatore = profilo.checkAbilitazione(prenotazioneDto.getEmailDonatore());
         if (donatore.getAbilitazioneDonazione() == 0)
-            return new ApiResponse<>("non sei abilitato a donare", HttpStatus.FORBIDDEN);
+            return new ApiResponse<>("Non sei abilitato a donare", HttpStatus.FORBIDDEN);
         Optional<Prenotazione> prenotazione = prenotazioniRepository.findById(prenotazioneDto.getIdDataLibera());
         if (!prenotazione.isPresent() || prenotazione.get().getIdDonatore() != null) {
-            return new ApiResponse<>("la data scelta non è più disponibile", HttpStatus.CONFLICT);
+            return new ApiResponse<>("La data scelta non è più disponibile", HttpStatus.CONFLICT);
         }
         prenotazione.get().setIdDonatore(donatore);
         prenotazioniRepository.save(prenotazione.get());
         donatore.setAbilitazioneDonazione((byte) 0);
         donatoreRepository.save(donatore);
-        return new ApiResponse<>("data prenotata con successo", prenotazione.get());
+        return new ApiResponse<>("Data prenotata con successo", prenotazione.get());
     }
 
     public ApiResponse<Timestamp> save(DateDto dateLibere, Long idSede) {
         Optional<SedeAvis> sedeAvis = sedeAvisRepository.findById(idSede);
         if (!sedeAvis.isPresent())
-            return new ApiResponse<>("sessione danneggiata, riloggare", HttpStatus.BAD_REQUEST);
+            return new ApiResponse<>("Sessione danneggiata, riloggare", HttpStatus.BAD_REQUEST);
         Timestamp data1 = dateLibere.getDataIniziale();
         List<Timestamp> listError = new ArrayList<>();
         List<Timestamp> listOK = new ArrayList<>();
@@ -98,7 +98,7 @@ public class PrenotazioniService {
     public ApiResponse<Prenotazione> getPrenotazioni(long id) {
         Optional<SedeAvis> sedeAvis = sedeAvisRepository.findById(id);
         if (!sedeAvis.isPresent())
-            return new ApiResponse<>("sessione danneggiata, riloggare", HttpStatus.BAD_REQUEST);
+            return new ApiResponse<>("Sessione danneggiata, riloggare", HttpStatus.BAD_REQUEST);
         List<Prenotazione> listPrenotate = new ArrayList<>();
         List<Prenotazione> listLibere = new ArrayList<>();
         List<Prenotazione> listPrenotazioni = prenotazioniRepository.findByIdSedeAvisAndDateAfter(sedeAvis.get(),
@@ -118,7 +118,7 @@ public class PrenotazioniService {
         List<Prenotazione> listPrenotazioni;
         Optional<Donatore> donatore = donatoreRepository.findById(id);
         if (!donatore.isPresent())
-            return new ApiResponse<>("sessione danneggiata, riloggare", HttpStatus.BAD_REQUEST);
+            return new ApiResponse<>("Sessione danneggiata, riloggare", HttpStatus.BAD_REQUEST);
         listPrenotazioni = prenotazioniRepository.findByIdDonatore(donatore.get());
         return new ApiResponse<Prenotazione>(listPrenotazioni);
     }

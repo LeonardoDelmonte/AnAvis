@@ -151,6 +151,7 @@ class GestioneDateSede extends Component {
                     columns={columnsPrenotate(this.handleButtonClickPrenotate)}
                     data={this.state.listaPrenotate}
                     defaultSortField="title"
+                    noDataComponent="Non ci sono date prenotate per questa sede Avis!"
                     pagination
                 />
 
@@ -159,6 +160,7 @@ class GestioneDateSede extends Component {
                     columns={columnsLibere(this.handleButtonClickLibere)}
                     data={this.state.listaLibere}
                     defaultSortField="title"
+                    noDataComponent="Non ci sono date libere per questa sede Avis!"
                     pagination
                 />
             </div>

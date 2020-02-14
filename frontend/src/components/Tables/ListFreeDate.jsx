@@ -105,7 +105,7 @@ class ListFreeDate extends Component {
                     $("#myModal").modal()
                 })
                 .catch(error => {
-                    ShowSimpleAlert("email non valida!")
+                    ShowSimpleAlert("Attenzione, email non valida!")
                 });
         }
     }
@@ -144,6 +144,7 @@ class ListFreeDate extends Component {
                         columns={columns(this.handleButtonClick)}
                         data={this.props.freeDate}
                         defaultSortField="day"
+                        noDataComponent="Non ci sono date disponibili per questa sede Avis!"
                         pagination
                     />
 

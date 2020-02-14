@@ -3,17 +3,19 @@ import axiosInstance from './interceptor'
 class CentroTrasfusioneService {
 
     async inviaEmergenza(gruppoSanguigno) {
-        return await axiosInstance.post('/emergenze/inserimento',gruppoSanguigno)
+        return await axiosInstance.post('/emergenze/inserimento', gruppoSanguigno, {
+            headers: { "Content-Type": "application/json" }
+        })
     }
 
-    async getEmergency(){
+    async getEmergency() {
         return await axiosInstance.get('/emergenze')
     }
 
-    async deleteEmergenze(emergenza){
+    async deleteEmergenze(emergenza) {
         return await axiosInstance.delete('/emergenze/cancellazione',
-                { data:emergenza } 
-          )
+            { data: emergenza }
+        )
     }
 }
 

@@ -57,7 +57,7 @@ public class ProfiloController {
         utente = profiloService.showInfo(utente);
         if (utente == null) {
             Logger.getGlobal().warning("sessione danneggiata");
-            return new ResponseEntity<>(new ApiResponse<>("sessione danneggiata, riloggare"), HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<>(new ApiResponse<>("Sessione danneggiata, riloggare"), HttpStatus.BAD_REQUEST);
         }
         utente.setPassword("");
         return new ResponseEntity<>(new ApiResponse<>(utente, ""), HttpStatus.OK);
@@ -67,7 +67,7 @@ public class ProfiloController {
     public @ResponseBody ResponseEntity<InterfaceApi> showModulo(@PathVariable String email) {
         Modulo modulo = profiloService.showModulo(email);
         if (modulo == null)
-            return new ResponseEntity<>(new ApiResponse<>("email non valida!"), HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<>(new ApiResponse<>("Email non valida!"), HttpStatus.BAD_REQUEST);
         return new ResponseEntity<>(new ApiResponse<>(modulo), HttpStatus.OK);
     }
 
