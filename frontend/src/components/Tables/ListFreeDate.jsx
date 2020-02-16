@@ -6,7 +6,7 @@ import FormModulo from '../Forms/Modulo'
 import { confirmAlert } from 'react-confirm-alert';
 //Services
 import PrenotaService from '../../utils/PrenotaService';
-import ProfiloService from "../../utils/ProfiloService"
+import ModuloService from "../../utils/ModuloService"
 //JQuery
 import $ from 'jquery';
 //Helpers
@@ -53,44 +53,77 @@ class ListFreeDate extends Component {
     }
 
     concludiDonazione = () => {
+        if(isSede()){
+            PrenotaService.prenotaPerDonatore(this.state.prenotazioneDto)
+                .then(
+                    response => {
+                        if (response.data) {
+                            confirmAlert({
+                                message: response.data.message,
+                                buttons: [
+                                    {
+                                        label: 'Ok',
+                                        onClick: () => window.location.reload()
+                                    },
+                                ],
+                                closeOnClickOutside: false,
+                            });
 
-        PrenotaService.prenota(this.state.prenotazioneDto)
-            .then(
-                response => {
-                    if (response.data) {
+                        }
+                    }
+                )
+                .catch(
+                    error => {
                         confirmAlert({
-                            message: response.data.message,
+                            message: error.response.data.message,
                             buttons: [
                                 {
                                     label: 'Ok',
-                                    onClick: () => window.location.reload()
                                 },
                             ],
-                            closeOnClickOutside: false,
                         });
-
                     }
-                }
-            )
-            .catch(
-                error => {
-                    confirmAlert({
-                        message: error.response.data.message,
-                        buttons: [
-                            {
-                                label: 'Ok',
-                            },
-                        ],
-                    });
-                }
-            )
+                )
+        }
+        if(isDonatore()){
+            PrenotaService.prenota(this.state.prenotazioneDto.idPrenotazione)
+                .then(
+                    response => {
+                        if (response.data) {
+                            confirmAlert({
+                                message: response.data.message,
+                                buttons: [
+                                    {
+                                        label: 'Ok',
+                                        onClick: () => window.location.reload()
+                                    },
+                                ],
+                                closeOnClickOutside: false,
+                            });
+
+                        }
+                    }
+                )
+                .catch(
+                    error => {
+                        confirmAlert({
+                            message: error.response.data.message,
+                            buttons: [
+                                {
+                                    label: 'Ok',
+                                },
+                            ],
+                        });
+                    }
+                )
+        }
     }
 
     modificaModulo = () => {
         {isDonatore() &&
-            ProfiloService.loadProfilo()
+            ModuloService.loadModuloDonatore()
                 .then(response => {
-                    this.setState({ modulo: response.data.utente.modulo });
+                    this.setState({ modulo: response.data.entity });
                     $("#myModal").modal()
                 })
                 .catch(error => {
@@ -98,25 +131,35 @@ class ListFreeDate extends Component {
                 });
         }
         {isSede() &&
-            ProfiloService.loadModulo(this.state.prenotazioneDto.emailDonatore)
+            ModuloService.loadModuloSede(this.state.prenotazioneDto.email)
                 .then(response => {
                     this.setState({ modulo: undefined }, () => { console.log(this.state) });
-                    this.setState({ modulo: response.data.modulo }, () => { console.log(this.state) });
+                    this.setState({ modulo: response.data.entity }, () => { console.log(this.state) });
                     $("#myModal").modal()
                 })
                 .catch(error => {
-                    ShowSimpleAlert("Attenzione, email non valida!")
+                    ShowSimpleAlert("email non valida!")
                 });
         }
     }
 
     handleButtonClick = (state) => {
-        this.setState({
+        if(isSede()){
+            this.setState({
             prenotazioneDto: {
-                'idDataLibera': state.target.id,
-                'emailDonatore': this.props.emailDonatore
+                'idPrenotazione': state.target.id,
+                'email': this.props.emailDonatore
+            }
+        }, () => console.log(this.state))
+     }
+     if(isDonatore()){
+            this.setState({
+            prenotazioneDto: {
+                'idPrenotazione': state.target.id              
             }
         })
+     }
+        
    
         confirmAlert({
             title: 'Modifica Modulo',
@@ -144,7 +187,6 @@ class ListFreeDate extends Component {
                         columns={columns(this.handleButtonClick)}
                         data={this.props.freeDate}
                         defaultSortField="day"
-                        noDataComponent="Non ci sono date disponibili per questa sede Avis!"
                         pagination
                     />
 

@@ -7,7 +7,7 @@ import Button from "../FormComponents/Button";
 //-----Helpers
 import { isSede } from '../../utils/helpers'
 
-class EmergenzaSangue extends Component {
+class Prenota extends Component {
 
   render() {
     return (
@@ -74,4 +74,4 @@ class EmergenzaSangue extends Component {
   }
 }
 
-export default EmergenzaSangue;
+export default Prenota;

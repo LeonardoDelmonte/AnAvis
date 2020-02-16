@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 //Services
-import graphicsService from "../../utils/graphicsService";
+import graphicsService from "../../utils/GestioneCentroTrasfusione";
 //canvas
 import CanvasJSReact from '../../utils/cancas/canvasjs.react';
 
@@ -16,9 +16,9 @@ class Istogramma extends Component {
 	
 	componentDidMount() {
 		var dataPoints = []
-		graphicsService.GetDatiEmergenzeSangue()
+		graphicsService.GetCountRichieste()
 			.then(response => {
-				response.data.list.forEach(
+				response.data.entity.forEach(
 					(x) => {
 						dataPoints.push({ label: x[1], y: x[0] })
 					}

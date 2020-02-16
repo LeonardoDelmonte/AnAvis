@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import InserisciDate from '../Forms/InserisciDate';
 import ResultInserDate from '../Other/ResultInserDate';
 
-import PrenotaService from "../../utils/PrenotaService"
+import GestioneSedeAvis from "../../utils/GestioneSedeAvis"
 
 
 class InserisciDatePage extends Component {
@@ -32,12 +32,13 @@ class InserisciDatePage extends Component {
             "dataFinale": EndDate
         }
 
-        PrenotaService.insert(dateDto)
+        GestioneSedeAvis.insert(dateDto)
             .then(response => {
+                console.log(response.data.entity.ListError)
                 this.setState({
-                    listError: response.data.map.listError,
-                    listOK: response.data.map.listOK
-                })
+                    listError: response.data.entity.ListError,
+                    listOK: response.data.entity.ListOK
+                }, () => {console.log(this.state)})
             });
     }
 

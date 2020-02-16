@@ -4,7 +4,7 @@ import DataTable from 'react-data-table-component';
 import memoize from 'memoize-one';
 import { ShowSimpleAlert } from '../../utils/helpers'
 //Services
-import CentroTrasfusioneService from "../../utils/CentroTrasfusioneService";
+import GestioneCentroTrasfusione from "../../utils/GestioneCentroTrasfusione";
 //-----Helpers
 import {dateToString} from '../../utils/helpers'
 
@@ -41,23 +41,23 @@ class EmergenzeSangue extends Component {
     }
 
     getEmergency = () =>{
-        CentroTrasfusioneService.getEmergency()
+        GestioneCentroTrasfusione.getEmergency()
             .then(response => {
-                response.data.list.forEach(
+                response.data.entity.forEach(
                     (x) => {
                         const myDate = new Date(x.dataEmergenza);
                         x["dataEmergenza"] = dateToString(myDate)
                     }
                 )
                 this.setState({
-                    emergenze: response.data.list
+                    emergenze: response.data.entity
                 });
             })
     }
 
     handleButtonClick = (state) => {
         console.log(state.target.id)
-        CentroTrasfusioneService.deleteEmergenze(state.target.id)
+        GestioneCentroTrasfusione.deleteEmergenze(state.target.id)
             .then(
                 response => {
                     if (response.data) {
@@ -86,7 +86,6 @@ class EmergenzeSangue extends Component {
                     columns={columns(this.handleButtonClick)}
                     data={this.state.emergenze}
                     defaultSortField="title"
-                    noDataComponent="Non ci sono emergenze da visualizzare!"
                     pagination
                 />
             </div>

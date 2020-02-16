@@ -45,7 +45,7 @@ class PrenotaPage extends Component {
                 PrenotaService.getProvince(regione.value)
                     .then(
                         response => {
-                            response.data.set.map(
+                            response.data.entity.map(
                                 v =>
                                     this.state.province.push({ value: v, label: v })
                             )
@@ -63,7 +63,7 @@ class PrenotaPage extends Component {
                 PrenotaService.getComuni(provincia.value)
                     .then(
                         response => {
-                            response.data.set.map(
+                            response.data.entity.map(
                                 v =>
                                     this.state.comuni.push({ value: v, label: v })
                             )
@@ -95,16 +95,19 @@ class PrenotaPage extends Component {
         this.setState({ freeDate: [] })
         var getDateDto = {
             "comune": this.state.comune,
-            "dataIniziale": this.state.startDate,
-            "dataFinale": this.state.endDate
+            "rangeDateDto":{
+                "dataIniziale": this.state.startDate,
+                "dataFinale": this.state.endDate
+            }
         }
         PrenotaService.search(getDateDto)
             .then(
-                response => {console.log(response)
-                    if (!response.data.list) {
+                response => {
+                    if (!response.data.entity) {
                         response.data = []
                     } else {
-                        response.data.list.forEach (
+                        console.log(response.data.entity)
+                        response.data.entity.forEach (
                             (x) => {
                                 const myDate = new Date(x.date);
                                 delete x["date"];
@@ -113,7 +116,7 @@ class PrenotaPage extends Component {
                             }
                         )
                     }
-                    this.setState({ freeDate: response.data.list, searched: true })
+                    this.setState({ freeDate: response.data.entity, searched: true })
                 }
             )
     }
@@ -123,7 +126,7 @@ class PrenotaPage extends Component {
         PrenotaService.getRegioni()
             .then(
                 response => {
-                    response.data.set.map(
+                    response.data.entity.map(
                         v =>
                             this.state.regioni.push({ value: v, label: v })
                     )

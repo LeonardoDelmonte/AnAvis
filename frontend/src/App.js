@@ -14,6 +14,7 @@ import Prenota from './components/pages/Prenota';
 import InserisciDate from './components/pages/InserisciDate';
 import GestioneDate from './components/pages/GestioneDate';
 import Faq from './components/pages/Faq';
+import RegistraDonatore from './components/Forms/RegistraDonatore';
 
 import EmergenzaSangue from './components/pages/EmergenzaSangue';
 
@@ -71,6 +72,7 @@ class App extends Component {
         <SedeDonatoreRoute path="/gest/prenota" exact component={(props) => <Prenota {...props} />} />
 
         <SedeRoute path="/gest/InserisciDate" exact component={(props) => <InserisciDate {...props} />} />
+        <SedeRoute path="/gest/RegistraDonatore" exact component={(props) => <RegistraDonatore {...props} />} />
         <SedeDonatoreRoute path="/gest/GestioneDate" exact component={(props) => <GestioneDate {...props} />} />
 
         <CentroRoute path="/gest/emergenzaSangue" exact component={(props) => <EmergenzaSangue {...props} />} />

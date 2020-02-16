@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import Input from '../FormComponents/Input'
 import Button from '../FormComponents/Button'
 //Services
-import AuthService from '../../utils/AuthService';
+import Autenticazione from '../../utils/Autenticazione';
 
 //Helpers
 import { ShowSimpleAlert} from '../../utils/helpers'
@@ -36,16 +36,14 @@ class Login extends Component {
 
         var loginDto = {
             'email': this.state.fields.email,
-            'pw': this.state.fields.password
+            'password': this.state.fields.password
         }
 
-        AuthService.login(loginDto)
+        Autenticazione.login(loginDto)
             .then(
                 (response) => {
                     localStorage.removeItem('Authorization');
-                    localStorage.removeItem('Ruolo');
                     localStorage.setItem('Authorization', response.data.token);
-                    localStorage.setItem('Ruolo', JSON.stringify(response.data.utente.ruolo));
                     this.props.history.push('/gest/dashboard');
                 }
             ).catch(error => {
@@ -53,6 +51,7 @@ class Login extends Component {
                     ShowSimpleAlert('Errore del server, contattare l\'amministratore. ')
                 }
                 else {
+                    console.log(error.response)
                     ShowSimpleAlert(error.response.data.message)
                 }
             })

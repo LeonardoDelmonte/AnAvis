@@ -3,6 +3,7 @@ import React from 'react';
 function ResultInserDate(props) {
     return (
         <div>
+        {console.log(props)}
             {props.listError && props.listOK &&
                 <p>
                 Si sono verificati <b>{props.listError.length} </b>errori 
@@ -17,7 +18,7 @@ function ResultInserDate(props) {
                             <ul key={i} className="list-group m-1">
                                 <li className="list-group-item list-group-item-danger ">
                                     {
-                                        "Questa data è già presente : " + myDate.getDate() + "/" + (myDate.getMonth() + 1) + "/" + myDate.getFullYear() + " Alle ore " + myDate.getHours() + ":" + myDate.getMinutes()
+                                        "Questa data è già presente : " + myDate.getDate() + "/" + myDate.getMonth() + 1 + "/" + myDate.getFullYear() + " Alle ore " + myDate.getHours() + ":" + myDate.getMinutes()
                                     }
                                 </li>
                             </ul>
@@ -33,7 +34,7 @@ function ResultInserDate(props) {
                             <ul key={i} className="list-group m-1">
                                 <li className="list-group-item list-group-item-success">
                                     {
-                                        "Data inserita : " + myDate.getDate() + "/" + (myDate.getMonth() + 1) + "/" + myDate.getFullYear() + " Alle ore " + myDate.getHours() + ":" + myDate.getMinutes()
+                                        "Data inserita : " + myDate.getDate() + "/" + myDate.getMonth() + 1 + "/" + myDate.getFullYear() + " Alle ore " + myDate.getHours() + ":" + myDate.getMinutes()
                                     }
                                 </li>
                             </ul>

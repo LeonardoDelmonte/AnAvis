@@ -33,6 +33,9 @@ class TopMenu extends Component {
                             {(isSede()) && <a className="nav-link" href="/gest/inserisciDate">Insersci Date</a>}
                         </li>
                         <li className="nav-item">
+                         {(isSede()) && <a className="nav-link" href="/gest/registraDonatore">Registra Utente</a>}
+                         </li>
+                        <li className="nav-item">
                             {(isDonatore() || isSede()) && <a className="nav-link" href="/gest/GestioneDate">Gestione Date</a>}
                         </li>
                         <li className="nav-item">

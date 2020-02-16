@@ -4,9 +4,9 @@ import Input from '../FormComponents/Input'
 import Button from '../FormComponents/Button'
 import Select from '../FormComponents/Select'
 //Services
-import ProfiloService from '../../utils/ProfiloService';
+import ModuloService from '../../utils/ModuloService';
 //Helpers
-import { ShowSimpleAlert, optionsGruppoSanguigno, optionsSiNo } from '../../utils/helpers'
+import { ShowSimpleAlert, optionsGruppoSanguigno, optionsSiNo , isDonatore , isSede } from '../../utils/helpers'
 
 class Modulo extends Component {
 
@@ -51,31 +51,44 @@ class Modulo extends Component {
     handlerSubmit = e => {
         e.preventDefault();
 
-        var DtoModulo = {
-            modulo: this.state.fields,
-            email: this.state.email
+        if(isDonatore()){
+            var DtoModulo = this.state.fields;
+            ModuloService.modificaModuloDonatore(DtoModulo)
+                .then(response => {
+                    ShowSimpleAlert(response.data.message)
+                })
+                .catch(error => {
+                    ShowSimpleAlert(error.response.data.message)
+                });
         }
 
-        ProfiloService.modificaModulo(DtoModulo)
-            .then(response => {
-                ShowSimpleAlert(response.data.message)
-            })
-            .catch(error => {
-                ShowSimpleAlert(error.response.data.message)
-            });
+        
+        if(isSede()){
+            var DtoModulo = {
+            modulo: this.state.fields,
+            email: this.state.email
+            }
+            ModuloService.modificaModuloSede(DtoModulo)
+                .then(response => {
+                    ShowSimpleAlert(response.data.message)
+                })
+                .catch(error => {
+                    ShowSimpleAlert(error.response.data.message)
+                });
+        }       
     };
 
     componentDidMount() {
         if (this.props.value)
             this.setState({ fields: this.props.value, email: this.props.email });
         else{
-            ProfiloService.loadProfilo()
+            ModuloService.loadModuloDonatore()
             .then(response => {
-                this.setState({ 
-                    fields: response.data.utente.modulo, 
-                    email: response.data.utente.email });
+                console.log(response);
+                this.setState({fields: response.data.entity});                   
             })
             .catch(error => {
+                console.log(error);
                 console.log("nessuna risposta dal server");
             });
         }

@@ -3,32 +3,30 @@ import axiosInstance from './interceptor'
 class PrenotaService {
 
     async search(getDateDto) {
-        return await axiosInstance.post('/prenotazione/date-libere',getDateDto)
+        return await axiosInstance.post('/prenotazione/ottieni-date-libere',getDateDto)
     }
 
-    async prenota(prenotazioneDto) {       
-        return await axiosInstance.put('/prenotazione',prenotazioneDto)
+    async prenotaPerDonatore(prenotazioneDto) {       
+        return await axiosInstance.post('/sede/prenota-per-donatore',prenotazioneDto)
+    }
+    
+    async prenota(idPrenotazione) {       
+        return await axiosInstance.post('/donatore/prenota-data',idPrenotazione, {
+            headers: { "Content-Type": "application/json" }})
     }
 
     async getRegioni() {
-        return await axiosInstance.get('/prenotazione/regioni')
+        return await axiosInstance.get('/prenotazione/ottieni-regioni')
     }
 
     async getProvince(regione) {
-        return await axiosInstance.get('/prenotazione/province/'+regione)
+        return await axiosInstance.get('/prenotazione/ottieni-provincie/'+regione)
     }
 
     async getComuni(provincia) {
-        return await axiosInstance.get('/prenotazione/comuni/'+provincia)
+        return await axiosInstance.get('/prenotazione/ottieni-comuni/'+provincia)
     }
 
-    async insert(dateDto) {
-        return await axiosInstance.post('/gestione-date/inserimento',dateDto)
-    }
-
-    async getDate(){
-        return await axiosInstance.get('/gestione-date/prenotazioni')
-    }
 }
 
 export default new PrenotaService()

@@ -2,21 +2,30 @@ import axiosInstance from './interceptor'
 
 class ProfiloService {
 
-    async updateProfilo(utente){
-        return await axiosInstance.put('/profilo/credenziali',utente)       
+    async updateProfiloDonatore(utente){
+        return await axiosInstance.put('/donatore/gestione-profilo/modifica-profilo',utente)       
     }
 
-    async modificaModulo(modulo){
-        return await axiosInstance.put('/profilo/modulo',modulo)
+    async updateProfiloSede(utente){
+        return await axiosInstance.put('/sede/gestione-profilo/modifica-profilo',utente)       
     }
 
-    async loadProfilo() {
-        return await axiosInstance.get('/profilo/info')
+    async updateProfiloCentro(utente){
+        return await axiosInstance.put('/centro/gestione-profilo/modifica-profilo',utente)       
     }
 
-    async loadModulo(email) {
-        return await axiosInstance.get('/profilo/info-modulo/' + email)
+    async loadProfiloDonatore() {
+        return await axiosInstance.get('/donatore/gestione-profilo/ottieni-profilo')
     }
+
+    async loadProfiloSede() {
+        return await axiosInstance.get('/sede/gestione-profilo/ottieni-profilo')
+    }
+
+    async loadProfiloCentro() {
+        return await axiosInstance.get('/centro/gestione-profilo/ottieni-profilo')
+    }
+
 }
 
 export default new ProfiloService()

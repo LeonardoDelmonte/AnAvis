@@ -5,7 +5,7 @@ import TableEmergenzeSangue from '../Tables/EmergenzeSangue';
 //Helpers
 import { ShowSimpleAlert } from '../../utils/helpers'
 //Services
-import CentroTrasfusioneService from '../../utils/CentroTrasfusioneService';
+import GestioneCentroTrasfusione from '../../utils/GestioneCentroTrasfusione';
 
 class EmergenzaSangue extends Component {
 
@@ -26,7 +26,7 @@ class EmergenzaSangue extends Component {
     handleSubmit = e => {
         e.preventDefault();
 
-        CentroTrasfusioneService.inviaEmergenza(this.state.gruppoSanguigno)
+        GestioneCentroTrasfusione.inviaEmergenza(this.state.gruppoSanguigno)
             .then(response => {
                 ShowSimpleAlert(response.data.message)
                 this.TableEmergenzeSangueElement.current.getEmergency()

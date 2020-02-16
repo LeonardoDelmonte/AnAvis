@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 //Components
 import Profilo from '../Forms/Profilo';
 import Modulo from '../Forms/Modulo';
+//service
+import {isDonatore} from '../../utils/helpers'
 
 class ProfiloPage extends Component {
 
@@ -19,7 +21,7 @@ class ProfiloPage extends Component {
                 <div className="container">
                     <h1>PROFILO</h1>
                     <Profilo />
-                    {ruolo === "donatore" &&
+                    {isDonatore() &&
                         <Modulo />
                     }
                 </div>

@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import DataTable from 'react-data-table-component';
 import memoize from 'memoize-one';
 //Services
-import GestioneDateService from "../../utils/GestioneDateService";
+import GestioneSedeAvis from "../../utils/GestioneSedeAvis";
 //-----Helpers
 import { dateToString, timeToString, ShowSimpleAlert, isSede } from '../../utils/helpers'
 
@@ -70,16 +70,17 @@ class GestioneDateSede extends Component {
     }
 
     getPrenotazioni = () => {
-        GestioneDateService.getPrenotazioni()
+        GestioneSedeAvis.getPrenotazioni()
             .then(response => {
-                response.data.map.listaLibere.forEach(
+                console.log(response)
+                response.data.entity.listaLibere.forEach(
                     (x) => {
                         const myDate = new Date(x.date);
                         x["data"] = dateToString(myDate)
                         x["time"] = timeToString(myDate)
                     }
                 )
-                response.data.map.listaPrenotate.forEach(
+                response.data.entity.listaPrenotate.forEach(
                     (x) => {
                         const myDate = new Date(x.date);
                         x["data"] = dateToString(myDate)
@@ -87,8 +88,8 @@ class GestioneDateSede extends Component {
                     }
                 )
                 this.setState({
-                    listaPrenotate: response.data.map.listaPrenotate,
-                    listaLibere: response.data.map.listaLibere,
+                    listaPrenotate: response.data.entity.listaPrenotate,
+                    listaLibere: response.data.entity.listaLibere,
                 });
             })
             .catch(error => {
@@ -98,7 +99,7 @@ class GestioneDateSede extends Component {
 
     handleButtonClickLibere = (state) => {
         console.log(state)
-        GestioneDateService.deleteDate(state.target.id)
+        GestioneSedeAvis.deleteDate(state.target.id)
             .then(
                 response => {
                     if (response.data) {
@@ -117,7 +118,7 @@ class GestioneDateSede extends Component {
 
     handleButtonClickPrenotate = (state) => {
         console.log(state.target.id)
-        GestioneDateService.deleteDate(state.target.id)
+        GestioneSedeAvis.deleteDate(state.target.id)
             .then(
                 response => {
                     if (response.data) {
@@ -151,7 +152,6 @@ class GestioneDateSede extends Component {
                     columns={columnsPrenotate(this.handleButtonClickPrenotate)}
                     data={this.state.listaPrenotate}
                     defaultSortField="title"
-                    noDataComponent="Non ci sono date prenotate per questa sede Avis!"
                     pagination
                 />
 
@@ -160,7 +160,6 @@ class GestioneDateSede extends Component {
                     columns={columnsLibere(this.handleButtonClickLibere)}
                     data={this.state.listaLibere}
                     defaultSortField="title"
-                    noDataComponent="Non ci sono date libere per questa sede Avis!"
                     pagination
                 />
             </div>
