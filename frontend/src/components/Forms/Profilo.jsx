@@ -33,10 +33,10 @@ class Profilo extends Component {
         e.preventDefault();
         var utente = this.state.fields ;
         if(isDonatore()){
-            console.log(utente);
             ProfiloService.updateProfiloDonatore(utente)
                 .then(response => {
                     ShowSimpleAlert(response.data.message)
+                    this.loadProfilo()
                 })
                 .catch(error => {
                     ShowSimpleAlert(error.response.data.message)
@@ -46,6 +46,7 @@ class Profilo extends Component {
             ProfiloService.updateProfiloSede(utente)
                 .then(response => {
                     ShowSimpleAlert(response.data.message)
+                    this.loadProfilo()
                 })
                 .catch(error => {
                     ShowSimpleAlert(error.response.data.message)
@@ -55,12 +56,13 @@ class Profilo extends Component {
             ProfiloService.updateProfiloCentro(utente)
                 .then(response => {
                     ShowSimpleAlert(response.data.message)
+                    this.loadProfilo()
                 })
                 .catch(error => {
                     ShowSimpleAlert(error.response.data.message)
                 });
         }
-        this.loadProfilo()
+ 
     };
 
     loadProfilo = () => {
@@ -95,7 +97,6 @@ class Profilo extends Component {
 
     componentDidMount() {
         this.loadProfilo()
-        
     }
 
     render() {
@@ -103,7 +104,6 @@ class Profilo extends Component {
         return (
             <form onSubmit={this.handleSubmit} id="ProfiloForm">
                 <h3>DATI BASE</h3>
-                {console.log(this.state.fields)}
                 {isDonatore() && !this.state.fields.abilitaDonazione &&
                     <div className="alert alert-info">
                         <strong>Info!</strong>Non sei abilitato a donare

@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import Login from '../Forms/Login'
 import Register from '../Forms/Register'
 import News from '../Other/News';
+import Maps from '../Other/Maps';
 import Faq from '../pages/Faq';
 
 
@@ -31,11 +32,9 @@ class Home extends Component {
                             <Register />
                         </div>
                     </div>
-
+                    <Maps />
                     <News />
-
                     <Faq />
-
                 </div>
             </div>
         );

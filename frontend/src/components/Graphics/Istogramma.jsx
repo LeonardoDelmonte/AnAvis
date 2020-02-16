@@ -25,7 +25,7 @@ class Istogramma extends Component {
 				)
 				this.setState({
 					dataPoints: dataPoints
-				}, () => console.log(this.state))
+				})
 			})
 			.catch(error => {
 				console.log("nessuna risposta dal server");

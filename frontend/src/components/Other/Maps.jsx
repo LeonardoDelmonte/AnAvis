@@ -34,7 +34,6 @@ const MapWithAMarker = compose(withScriptjs, withGoogleMap)(props => {
                   {marker.shelter}
                 </div>
               </InfoWindow>}
-            }
           </Marker>
         )
       })}
@@ -52,56 +51,55 @@ export default class ShelterMap extends Component {
   }
 
   componentDidMount() {
+    var points = []
 
     MapsServices.ottieniComuni()
-    .then(response => {
-        console.log(response)
-    })
-    .catch(error => {
+      .then(response => {
+        response.data.entity.map(
+          (x, i) => {
+            Geocode.fromAddress(x).then(
+              response => {
+                const { lat, lng } = response.results[0].geometry.location;
+
+                points[i] = {
+                  id: i,
+                  shelter: x,
+                  longitude: lng,
+                  latitude: lat
+                }
+                this.setState({ shelters: points })
+              },
+              error => {
+                console.error(error);
+              }
+            );
+          }
+        )
+      })
+      .catch(error => {
         console.log(error);
-    });
-
-    // Geocode.fromAddress("Morrovalle asjhdasdasdgjhasgdjhsgda gjhgdsygasy").then(
-    //   response => {
-    //     const { lat, lng } = response.results[0].geometry.location;
-    //     console.log(lat, lng);
-    //     var aaa = []
-    //     aaa[0] = {
-    //       shelter: "Via della riviera Porto Potenza Picena",
-    //       longitude: lng,
-    //       latitude: lat
-    //     }
-
-
-    //     this.setState({ shelters: aaa }, () => {
-    //       console.log(this.state.shelters)
-    //     })
-    //   },
-    //   error => {
-    //     console.error(error);
-    //   }
-    // );
-
-
-    // console.log(this.state.shelters)
+      });
   }
 
-  handleClick = (marker, event) => {
-    console.log({ event })
+  handleClick = (marker) => {
     this.setState({ selectedMarker: marker })
   }
 
   render() {
     return (
-      <MapWithAMarker
-        selectedMarker={this.state.selectedMarker}
-        markers={this.state.shelters}
-        onClick={this.handleClick}
-        googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyCRfaW0Kx2El3bVuYiB4DYZ5i2w_vsKoDM&v=3.exp&libraries=geometry,drawing,places"
-        loadingElement={<div style={{ height: `100%` }} />}
-        containerElement={<div style={{ height: `400px` }} />}
-        mapElement={<div style={{ height: `100%` }} />}
-      />
+      <div>
+        <h1>Tutte le nostre Sedi</h1>
+        <MapWithAMarker
+          selectedMarker={this.state.selectedMarker}
+          markers={this.state.shelters}
+          onClick={this.handleClick}
+          googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyCRfaW0Kx2El3bVuYiB4DYZ5i2w_vsKoDM&v=3.exp&libraries=geometry,drawing,places"
+          loadingElement={<div style={{ height: `100%` }} />}
+          containerElement={<div style={{ height: `400px` }} />}
+          mapElement={<div style={{ height: `100%` }} />}
+        />
+      </div>
+
     )
   }
 }

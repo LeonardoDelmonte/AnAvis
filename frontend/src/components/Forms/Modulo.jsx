@@ -84,7 +84,6 @@ class Modulo extends Component {
         else{
             ModuloService.loadModuloDonatore()
             .then(response => {
-                console.log(response);
                 this.setState({fields: response.data.entity});                   
             })
             .catch(error => {

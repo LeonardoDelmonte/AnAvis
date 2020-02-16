@@ -14,8 +14,6 @@ class ProfiloPage extends Component {
     }
 
     render() {
-        var ruolo = JSON.parse(localStorage.getItem('Ruolo'));
-
         return (
             <div>
                 <div className="container">
@@ -26,7 +24,6 @@ class ProfiloPage extends Component {
                     }
                 </div>
             </div>
-
         );
     }
 }

@@ -19,6 +19,16 @@
             "mainClass": "com.moc.AnAvisApplication",
             "projectName": "avis",
             "args": ""
+        },
+        {
+            "type": "java",
+            "name": "Spring Boot-AnAvisApplication<moc>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "console": "internalConsole",
+            "mainClass": "com.moc.AnAvisApplication",
+            "projectName": "moc",
+            "args": ""
         }
     ]
 }
