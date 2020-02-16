@@ -59,7 +59,7 @@ public class Registrazione implements RegistrazioneInterface {
     public ResponseEntity<InterfaceApi> registrazioneDonatore(RegistrazioneDto registrazioneDto) throws NoSuchFieldException {
         
         if(registrazioneDto.getDonatore()==null)
-            throw new NullPointerException("argomento passato al metodo NULL");
+            throw new NullPointerException("Argomento passato al metodo NULL");
         
         Creator creator = new CreatorDonatore();
 
@@ -69,7 +69,7 @@ public class Registrazione implements RegistrazioneInterface {
 
         //manda una mail alla mail appena registrata con la pw per accedere al proprio account
 
-        return new ResponseEntity<InterfaceApi>(new ResponseOK("utente registrato correttamente"),HttpStatus.CREATED);
+        return new ResponseEntity<InterfaceApi>(new ResponseOK("Utente registrato correttamente"),HttpStatus.CREATED);
     }
 
 }

@@ -9,7 +9,7 @@ import com.moc.dto.RangeDateDto;
 import org.springframework.stereotype.Component;
 
 /**
- * GestioneDateService formatta date e po vedo
+ * GestioneDateService formatta date
  */
 @Component
 public class ControllaDate {

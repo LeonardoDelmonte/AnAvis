@@ -11,7 +11,7 @@ import org.springframework.stereotype.Repository;
  * SedeAvisRepository
  */
 @Repository
-public interface SedeAvisRepository extends JpaRepository<SedeAvis,Long>{
+public interface SedeAvisRepository extends JpaRepository<SedeAvis, Long> {
 
 	SedeAvis findByComune(String comune);
 
@@ -21,5 +21,4 @@ public interface SedeAvisRepository extends JpaRepository<SedeAvis,Long>{
 
 	List<SedeAvis> findByProvincia(String provincia);
 
-    
 }

@@ -22,12 +22,10 @@ public class ResponseCustomEntity<T> extends ApiResponse {
 
     private T entity;
 
-    public ResponseCustomEntity(T entity){
+    public ResponseCustomEntity(T entity) {
         this.entity = entity;
         this.setMessage("ok");
         this.setHttpStatus(HttpStatus.OK);
     }
 
 }
-
-    

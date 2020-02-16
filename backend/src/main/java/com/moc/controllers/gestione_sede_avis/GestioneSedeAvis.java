@@ -25,9 +25,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 
 /**
- * GestioneDateSedeAvis può entrare qui solo la sedeAvis
+ * GestioneDateSedeAvis
  * 
- * //TO DO// implementa modifica ed elimina
  */
 @RestController
 public class GestioneSedeAvis implements GestioneSedeAvisInterface {

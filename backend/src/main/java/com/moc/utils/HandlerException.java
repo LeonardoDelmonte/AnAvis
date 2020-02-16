@@ -12,41 +12,35 @@ import javax.naming.AuthenticationException;
 
 import org.springframework.dao.DataIntegrityViolationException;
 
-
 /**
  * JwtHandlerException
  */
 @RestControllerAdvice
 public class HandlerException extends ResponseEntityExceptionHandler {
 
-    private ResponseEntity<InterfaceApi> buildResponseEntity(ApiError apiError){
-        return new ResponseEntity<>(apiError,apiError.getStatus()); 
+    private ResponseEntity<InterfaceApi> buildResponseEntity(ApiError apiError) {
+        return new ResponseEntity<>(apiError, apiError.getStatus());
     }
 
     @ExceptionHandler(IllegalArgumentException.class)
     protected ResponseEntity<InterfaceApi> IllegalArgumentException(IllegalArgumentException ex) {
-        return buildResponseEntity(new ApiError(HttpStatus.BAD_REQUEST,ex));   
+        return buildResponseEntity(new ApiError(HttpStatus.BAD_REQUEST, ex));
     }
-      
 
     @ExceptionHandler(NullPointerException.class)
     protected ResponseEntity<InterfaceApi> NullPointerException(NullPointerException ex) {
-        return buildResponseEntity(new ApiError(HttpStatus.BAD_REQUEST,ex));   
+        return buildResponseEntity(new ApiError(HttpStatus.BAD_REQUEST, ex));
     }
 
-
-
     @ExceptionHandler(DataIntegrityViolationException.class)
-    protected ResponseEntity<InterfaceApi> DataIntegrityViolationException(DataIntegrityViolationException ex) { 
+    protected ResponseEntity<InterfaceApi> DataIntegrityViolationException(DataIntegrityViolationException ex) {
         return buildResponseEntity(new ApiError(HttpStatus.CONFLICT, ex));
     }
 
-    
     @ExceptionHandler(BadCredentialsException.class)
     protected ResponseEntity<InterfaceApi> BadCredentialsException(BadCredentialsException ex) {
         return buildResponseEntity(new ApiError(HttpStatus.UNAUTHORIZED, ex));
     }
-
 
     @ExceptionHandler(NoSuchFieldException.class)
     protected ResponseEntity<InterfaceApi> NoSuchFieldException(NoSuchFieldException ex) {
@@ -62,6 +56,5 @@ public class HandlerException extends ResponseEntityExceptionHandler {
     protected ResponseEntity<InterfaceApi> AuthenticationException(AuthenticationException ex) {
         return buildResponseEntity(new ApiError(HttpStatus.BAD_REQUEST, ex));
     }
-
 
 }

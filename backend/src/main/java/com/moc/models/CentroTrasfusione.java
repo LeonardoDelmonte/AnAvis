@@ -17,9 +17,6 @@ import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import lombok.experimental.SuperBuilder;
 
-
-
-
 /**
  * Utente->CentroTrasfusione
  */
@@ -32,19 +29,18 @@ import lombok.experimental.SuperBuilder;
 @EqualsAndHashCode(callSuper = true)
 @DiscriminatorValue("CENTRO_TRASFUSIONE")
 
-public class CentroTrasfusione extends Utente{
+public class CentroTrasfusione extends Utente {
 
-    //@OneToOne(fetch = FetchType.EAGER)
-    //@JoinColumn(name="shop_owned_id",nullable=true)
-    
-    @Column
-    private String direttore,indirizzo,ospedale;
-    @Column
-    private String regione,provincia,comune;
+    // @OneToOne(fetch = FetchType.EAGER)
+    // @JoinColumn(name="shop_owned_id",nullable=true)
 
-    @OneToMany(mappedBy="idCentroTrasfusione",fetch = FetchType.LAZY)
-    @JsonIgnoreProperties({"idCentroTrasfusione"})
+    @Column
+    private String direttore, indirizzo, ospedale;
+    @Column
+    private String regione, provincia, comune;
+
+    @OneToMany(mappedBy = "idCentroTrasfusione", fetch = FetchType.LAZY)
+    @JsonIgnoreProperties({ "idCentroTrasfusione" })
     private List<Emergenza> listaEmergenze;
 
-        
 }

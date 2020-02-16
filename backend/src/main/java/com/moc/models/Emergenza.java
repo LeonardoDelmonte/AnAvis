@@ -35,7 +35,7 @@ public class Emergenza {
     private long id;
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "idCentroTrasfusione", referencedColumnName = "id")
-    @JsonIgnoreProperties({"id","password","ruolo","autorizzazioni","email"})
+    @JsonIgnoreProperties({ "id", "password", "ruolo", "autorizzazioni", "email" })
     @NotNull
     private CentroTrasfusione idCentroTrasfusione;
     @Column

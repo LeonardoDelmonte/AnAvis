@@ -21,9 +21,6 @@ import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import lombok.experimental.SuperBuilder;
 
-
-
-
 /**
  * Utente->Donatore
  */
@@ -36,26 +33,29 @@ import lombok.experimental.SuperBuilder;
 @EqualsAndHashCode(callSuper = true)
 @DiscriminatorValue("DONATORE")
 
-public class Donatore extends Utente{ 
+public class Donatore extends Utente {
 
-    @Column@NotNull@NotBlank
+    @Column
+    @NotNull
+    @NotBlank
     private String nome;
-    @Column@NotNull@NotBlank
+    @Column
+    @NotNull
+    @NotBlank
     private String cognome;
     @Column
-    private String citta,professione;
+    private String citta, professione;
     @Column
     private int anni;
     @Column
     private Boolean abilitaDonazione;
 
-    @OneToMany(mappedBy="idDonatore",fetch = FetchType.LAZY)
-    @JsonIgnoreProperties({"idDonatore"})
+    @OneToMany(mappedBy = "idDonatore", fetch = FetchType.LAZY)
+    @JsonIgnoreProperties({ "idDonatore" })
     private List<Prenotazione> listaPrenotazioni;
 
     @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "idModulo", referencedColumnName = "id")
     private Modulo modulo;
 
-        
 }

@@ -26,14 +26,13 @@ public class UtenteService implements UserDetailsService {
     @Autowired
     private AuthenticationManager authenticationManager;
 
-
     public void registrazione(Utente utente) {
         if(utente==null)
-            throw new IllegalArgumentException("argomento passato NULL");
+            throw new IllegalArgumentException("Argomento passato NULL");
         try{
             utenteRepository.save(utente);
         }catch(DataIntegrityViolationException e){
-            throw new DataIntegrityViolationException("email alredy exists");
+            throw new DataIntegrityViolationException("L'email inserita è già esistente");
         }
     }
 
@@ -43,7 +42,7 @@ public class UtenteService implements UserDetailsService {
             new UsernamePasswordAuthenticationToken(
                 authDto.getEmail(), authDto.getPassword()));
         }catch(AuthenticationException e){
-            throw new BadCredentialsException("credenziali errate");
+            throw new BadCredentialsException("Credenziali errate");
         }
     }
 
@@ -60,6 +59,5 @@ public class UtenteService implements UserDetailsService {
                       .autorizzazioni(utente.getAutorizzazioni())
                       .build();       
     }
-
     
 }

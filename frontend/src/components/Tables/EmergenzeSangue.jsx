@@ -86,6 +86,7 @@ class EmergenzeSangue extends Component {
                     columns={columns(this.handleButtonClick)}
                     data={this.state.emergenze}
                     defaultSortField="title"
+                    noDataComponent= "Non ci sono richieste di emergenza sangue inviate"
                     pagination
                 />
             </div>

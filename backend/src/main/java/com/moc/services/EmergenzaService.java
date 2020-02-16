@@ -28,7 +28,7 @@ public class EmergenzaService implements EmergenzaInterface {
     @Override
     public void cancellaEmergenza(Emergenza emergenza) {
         if(emergenza==null)
-            throw new NullPointerException("emergenza NULL");
+            throw new NullPointerException("Emergenza NULL");
         //exception
         emergenzaRepository.delete(emergenza);
     }
@@ -36,7 +36,7 @@ public class EmergenzaService implements EmergenzaInterface {
     @Override
     public void inserireEmergenza(String gruppo, CentroTrasfusione centro) {
         if(gruppo==null || centro==null)
-            throw new NullPointerException("argomento NULL");
+            throw new NullPointerException("Argomento NULL");
         //exception
         emergenzaRepository.save(Emergenza.builder().gruppoSanguigno(gruppo).idCentroTrasfusione(centro)
                 .dataEmergenza(new Timestamp(new Date().getTime())).build());

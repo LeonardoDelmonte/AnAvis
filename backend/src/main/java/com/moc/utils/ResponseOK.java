@@ -14,9 +14,9 @@ import lombok.experimental.SuperBuilder;
 @EqualsAndHashCode(callSuper = true)
 @SuperBuilder
 @NoArgsConstructor
-public class ResponseOK extends ApiResponse{
+public class ResponseOK extends ApiResponse {
 
-    public ResponseOK(String message){
+    public ResponseOK(String message) {
         this.setMessage(message);
         this.setHttpStatus(HttpStatus.OK);
     }

@@ -16,19 +16,18 @@ import lombok.experimental.SuperBuilder;
 @EqualsAndHashCode(callSuper = true)
 @SuperBuilder
 @NoArgsConstructor
-public class ResponseLogin extends ApiResponse{
+public class ResponseLogin extends ApiResponse {
 
     private String token;
     private UtenteCorrente utenteCorrente;
 
+    // this.setMessage("ok");
+    // this.setHttpStatus(HttpStatus.OK);
 
-    //this.setMessage("ok");
-    //this.setHttpStatus(HttpStatus.OK);   
-
-    public ResponseLogin(String token){
-        this.token=token;
+    public ResponseLogin(String token) {
+        this.token = token;
         this.setMessage("ok");
-        this.setHttpStatus(HttpStatus.CREATED);   
- 
+        this.setHttpStatus(HttpStatus.CREATED);
+
     }
 }

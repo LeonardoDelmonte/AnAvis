@@ -23,22 +23,22 @@ public class DonatoreService implements DonatoreInterface {
 
     @Override
     public List<Prenotazione> ottieniPrenotazioni(Donatore donatore) {
-        if(donatore==null)
-            throw new NullPointerException("donatore NULL");
+        if (donatore == null)
+            throw new NullPointerException("Donatore NULL");
         return donatore.getListaPrenotazioni();
     }
 
     @Override
     public Donatore findByEmail(String email) {
-        if(email==null)
-            throw new NullPointerException("email NULL");
+        if (email == null)
+            throw new NullPointerException("Email NULL");
         return donatoreRepository.findByEmail(email);
     }
 
     @Override
     public void modificaModulo(Donatore donatore, Modulo modulo) {
         if (donatore.getModulo() == null) {
-            //se da errore vedi nel modulo se cè il donatore != null
+            // se da errore vedi nel modulo se cè il donatore != null
             donatore.setModulo(modulo);
             donatore.setAbilitaDonazione(true);
             donatoreRepository.save(donatore);
@@ -47,7 +47,7 @@ public class DonatoreService implements DonatoreInterface {
 
     @Override
     public Modulo ottieniModulo(Donatore donatore) {
-        //exception donatore null
+        // exception donatore null
 
         if (donatore.getModulo() == null) {
             return new Modulo();
@@ -57,7 +57,7 @@ public class DonatoreService implements DonatoreInterface {
     }
 
     @Override
-    public void isAbilitatoAdonare(Donatore donatore){
+    public void isAbilitatoAdonare(Donatore donatore) {
         Long date = new Date().getTime();
         Long last = 0L;
         List<Prenotazione> list = donatore.getListaPrenotazioni();
@@ -65,14 +65,14 @@ public class DonatoreService implements DonatoreInterface {
             last = list.get(list.size() - 1).getDate().getTime();
         if (date - last > 7884008640L) {
             donatore.setAbilitaDonazione(true);
-            donatoreRepository.save(donatore);     
-        }   
+            donatoreRepository.save(donatore);
+        }
     }
 
     @Override
     public DonatoreProfiloDto ottieniProfilo(Donatore donatore) {
         ModelMapper mapper = new ModelMapper();
-        DonatoreProfiloDto profilo = mapper.map(donatore,DonatoreProfiloDto.class);
+        DonatoreProfiloDto profilo = mapper.map(donatore, DonatoreProfiloDto.class);
         return profilo;
     }
 
@@ -83,11 +83,10 @@ public class DonatoreService implements DonatoreInterface {
         donatoreRepository.save(donatore);
     }
 
-
     @Override
     public void isModuloCompilato(Donatore donatore) {
-        if(donatore.getModulo()==null)
-            throw new NoSuchElementException("non abilitato a donare, modulo non compilato!");
+        if (donatore.getModulo() == null)
+            throw new NoSuchElementException("Non sei abilitato a donare, modulo non compilato!");
     }
 
     @Override
@@ -96,6 +95,4 @@ public class DonatoreService implements DonatoreInterface {
         donatoreRepository.save(donatore);
     }
 
-    
-    
 }

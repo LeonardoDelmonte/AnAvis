@@ -95,6 +95,7 @@ class GestioneDateDonatore extends Component {
                     columns={columns(this.handleButtonClick)}
                     data={this.state.listaPrenotate}
                     defaultSortField="title"
+                    noDataComponent= "Non hai ancora prenotato una donazione!"
                     pagination
                 />
             </div>

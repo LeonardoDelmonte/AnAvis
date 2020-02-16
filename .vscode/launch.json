@@ -9,6 +9,16 @@
             "mainClass": "com.avis.AnAvisApplication",
             "projectName": "avis",
             "args": ""
+        },
+        {
+            "type": "java",
+            "name": "Spring Boot-AnAvisApplication<avis>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "console": "internalConsole",
+            "mainClass": "com.moc.AnAvisApplication",
+            "projectName": "avis",
+            "args": ""
         }
     ]
 }

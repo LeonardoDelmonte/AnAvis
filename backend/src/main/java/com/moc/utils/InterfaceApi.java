@@ -5,5 +5,4 @@ package com.moc.utils;
  */
 public interface InterfaceApi {
 
-    
 }

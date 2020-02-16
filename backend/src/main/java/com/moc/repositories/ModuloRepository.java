@@ -9,7 +9,6 @@ import org.springframework.stereotype.Repository;
  * ModuloRepository
  */
 @Repository
-public interface ModuloRepository extends JpaRepository<Modulo,Long>{
+public interface ModuloRepository extends JpaRepository<Modulo, Long> {
 
-    
 }

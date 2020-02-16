@@ -26,14 +26,14 @@ public class GestioneCentroTrasfusione implements GestioneCentroTrasfusioneInter
 
     @Autowired
     private CentroTrasfusioneInterface centroService;
-    @Autowired 
+    @Autowired
     private EmergenzaInterface emergenzaService;
 
     @Override
     public ResponseEntity<InterfaceApi> ottieniEmergenze(UtenteCorrente utenteCorrente) {
         CentroTrasfusione centro = centroService.findByEmail(utenteCorrente.getEmail());
         List<Emergenza> list = centroService.ottieniEmergenze(centro);
-        return new ResponseEntity<>(new ResponseCustomEntity<List<Emergenza>>(list),HttpStatus.OK);
+        return new ResponseEntity<>(new ResponseCustomEntity<List<Emergenza>>(list), HttpStatus.OK);
     }
 
     @Override
@@ -41,21 +41,20 @@ public class GestioneCentroTrasfusione implements GestioneCentroTrasfusioneInter
         Long idEmergenza = Long.valueOf(req.getHeader("data"));
         Emergenza emergenza = emergenzaService.findById(idEmergenza);
         emergenzaService.cancellaEmergenza(emergenza);
-        return new ResponseEntity<>(new ResponseOK("Emergenza eliminata correttamente"),HttpStatus.OK);
+        return new ResponseEntity<>(new ResponseOK("Emergenza eliminata correttamente"), HttpStatus.OK);
     }
 
     @Override
     public ResponseEntity<InterfaceApi> inserireEmergenza(UtenteCorrente utenteCorrente, String gruppo) {
         CentroTrasfusione centro = centroService.findByEmail(utenteCorrente.getEmail());
-        emergenzaService.inserireEmergenza(gruppo,centro);
-        return new ResponseEntity<>(new ResponseOK("Emergenza inserita correttamente"),HttpStatus.CREATED);
+        emergenzaService.inserireEmergenza(gruppo, centro);
+        return new ResponseEntity<>(new ResponseOK("Emergenza inserita correttamente"), HttpStatus.CREATED);
     }
 
     @Override
     public ResponseEntity<InterfaceApi> contaEmergenze(UtenteCorrente utenteCorrente) {
         List<?> list = emergenzaService.contaEmergenze();
-        return new ResponseEntity<>(new ResponseCustomEntity<List<?>>(list),HttpStatus.OK);
+        return new ResponseEntity<>(new ResponseCustomEntity<List<?>>(list), HttpStatus.OK);
     }
 
-    
 }

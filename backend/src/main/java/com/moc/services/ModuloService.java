@@ -11,26 +11,26 @@ import org.springframework.stereotype.Service;
  * ModuloService
  */
 @Service
-public class ModuloService implements ModuloInterface{
+public class ModuloService implements ModuloInterface {
 
     @Autowired
     private ModuloRepository moduloRepository;
 
     @Override
     public Modulo ottieniModulo(Donatore donatore) {
-        if(donatore.getModulo()==null){
+        if (donatore.getModulo() == null) {
             return new Modulo();
         }
-        return donatore.getModulo();        
+        return donatore.getModulo();
     }
 
     @Override
-    public Modulo modificaModulo(Donatore donatore,Modulo modulo) {
-        if(donatore == null || modulo==null)
-            throw new NullPointerException("argomenti null");
+    public Modulo modificaModulo(Donatore donatore, Modulo modulo) {
+        if (donatore == null || modulo == null)
+            throw new NullPointerException("Argomenti null");
 
         return moduloRepository.save(modulo);
-        
+
     }
-    
+
 }

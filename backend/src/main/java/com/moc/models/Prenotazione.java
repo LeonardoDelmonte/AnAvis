@@ -1,6 +1,5 @@
 package com.moc.models;
 
-
 import java.sql.Timestamp;
 
 import javax.persistence.Column;
@@ -30,7 +29,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-@Table(name="prenotazioni",uniqueConstraints = @UniqueConstraint(columnNames={"date","idSedeAvis"}))
+@Table(name = "prenotazioni", uniqueConstraints = @UniqueConstraint(columnNames = { "date", "idSedeAvis" }))
 public class Prenotazione {
 
     @Column(name = "id")
@@ -40,17 +39,17 @@ public class Prenotazione {
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "idDonatore", referencedColumnName = "id")
-    @JsonIgnoreProperties({"id","password","ruolo","autorizzazioni"})
+    @JsonIgnoreProperties({ "id", "password", "ruolo", "autorizzazioni" })
     private Donatore idDonatore;
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "idSedeAvis", referencedColumnName = "id")
     @NotNull
-    @JsonIgnoreProperties({"id","password","ruolo","autorizzazioni","listaPrenotazioni"})
+    @JsonIgnoreProperties({ "id", "password", "ruolo", "autorizzazioni", "listaPrenotazioni" })
     private SedeAvis idSedeAvis;
 
-    @Column @NotNull 
+    @Column
+    @NotNull
     private Timestamp date;
-
 
 }

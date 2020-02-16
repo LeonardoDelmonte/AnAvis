@@ -29,7 +29,7 @@ public class SedeAvisService implements SedeAvisInterface {
     @Override
     public Map<String, List<Prenotazione>> ottieni(SedeAvis sedeAvis) {
         if (sedeAvis == null)
-            throw new NullPointerException("sedeAvis NULL");
+            throw new NullPointerException("SedeAvis NULL");
 
         return ottieniLibereEprenotate(sedeAvis);
 
@@ -52,7 +52,7 @@ public class SedeAvisService implements SedeAvisInterface {
     @Override
     public SedeAvis findByEmail(String email) {
         if (email == null)
-            throw new NullPointerException("email NULL");
+            throw new NullPointerException("Email NULL");
         return sedeAvisRepository.findByEmail(email);
     }
 
@@ -105,7 +105,7 @@ public class SedeAvisService implements SedeAvisInterface {
     @Override
     public List<String> getAllComuni() {
         List<String> comuni = new ArrayList<>();
-        for(SedeAvis sede : sedeAvisRepository.findAll()){
+        for (SedeAvis sede : sedeAvisRepository.findAll()) {
             comuni.add(sede.getComune());
         }
         return comuni;
